@@ -1,0 +1,21 @@
+DETECTIVES DIGITALES - VERSION WEB 2.0
+=====================================
+
+Este proyecto se puede usar de DOS maneras:
+
+A) SIN INTERNET: instalá Node.js 20+ una sola vez en la computadora,
+   conectá PC y celulares al mismo Wi-Fi y abrí INICIAR_JUEGO.bat.
+   Panel: http://localhost:3000/organizador
+
+B) COMO PAGINA WEB: subí el contenido de esta carpeta a GitHub y
+   desplegá el repositorio en Render como Web Service de Node.js.
+   La computadora y los celulares usarán Internet.
+   Leé PUBLICAR_PASO_A_PASO.txt y README.md.
+
+Funciones: salas con QR, 30 segundos Detectar, 20 segundos Decidir,
+ranking, podio, CSV, pantalla completa y tres casos de prueba.
+
+ATENCION: Las salas se guardan SOLO EN MEMORIA. Si el servidor
+se reinicia o el hosting lo suspende, se pierden los resultados.
+Por eso Render Free sirve para probar; para eventos críticos se
+recomienda un servicio siempre activo, plan de respaldo y pruebas.

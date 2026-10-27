@@ -1,0 +1,39 @@
+DETECTIVES DIGITALES - PUBLICACIÓN EN GITHUB + RENDER
+======================================================
+
+1) Descomprimí el archivo ZIP que recibiste.
+2) Entrá en https://github.com/new y creá el repositorio
+   detectives-digitales (o el nombre que prefieras).
+3) En el repositorio nuevo, elegí "uploading an existing file"
+   (o Add file > Upload files) y subí el CONTENIDO de la carpeta
+   del proyecto. Conservá las carpetas public, vendor, tests y .github.
+   Confirmá con "Commit changes".
+4) Entrá en https://dashboard.render.com/ y conectá GitHub.
+5) New > Blueprint. Seleccioná ese repositorio.
+6) Confirmá el archivo render.yaml y desplegá el servicio.
+7) Al terminar, Render te dará una URL HTTPS propia.
+8) Abrila con /organizador al final.
+9) Creá sala, compartí QR y probá con dos celulares.
+
+ALTERNATIVA A BLUEPRINT:
+New > Web Service; Runtime Node; Build: npm install --ignore-scripts;
+Start: npm start; Health check: /healthz.
+
+MUY IMPORTANTE:
+* NO es una web estática: GitHub Pages NO ejecuta este servidor.
+* El plan GRATIS de Render sirve para ensayos, no para eventos críticos.
+  Puede suspenderse o reiniciarse y se pierden las salas sin guardar.
+* Por Internet los celulares pueden usar datos móviles o cualquier Wi-Fi.
+* En el modo LOCAL el juego sigue funcionando sin Internet con
+  INICIAR_JUEGO.bat, pero solo en la misma red Wi-Fi.
+* No subas datos reales de menores. Usá apodos.
+* El organizador crea la sala desde /organizador; los jugadores desde el QR.
+
+PROBAR ANTES DE UN EVENTO:
+- Abrir el enlace en computadora y dos celulares.
+- Iniciar, detectar, decidir, consultar ranking.
+- Probar todos los casos y descargar CSV.
+- Volver a ingresar desde un celular (misma pestaña/navegador).
+- Tener un plan de respaldo local si falla Internet.
+
+Para más detalle leé README.md.

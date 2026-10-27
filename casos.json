@@ -1,0 +1,97 @@
+[
+  {
+    "id": "caso-01",
+    "titulo": "El secreto de la foto",
+    "categoria": "Cuidar mi imagen",
+    "personaje": "Mila juega en línea",
+    "relato": "Un extraño dice: «Mandame una foto. Es un secreto».",
+    "pistas": [
+      { "id": "foto", "texto": "Pide una foto", "correcta": true, "icono": "📸" },
+      { "id": "secreto", "texto": "Pide secreto", "correcta": true, "icono": "🤫" },
+      { "id": "juego", "texto": "Es un juego", "correcta": false, "icono": "🎮" },
+      { "id": "saludo", "texto": "Dice hola", "correcta": false, "icono": "👋" }
+    ],
+    "pregunta": "¿Qué hace Mila?",
+    "opciones": [
+      { "id": "a", "icono": "📸", "texto": "Mandar foto" },
+      { "id": "c", "icono": "🛡️", "texto": "Parar y contar" }
+    ],
+    "respuesta": "c",
+    "explicacion": "¡Bien! Las fotos privadas no son secretos para guardar.",
+    "miniJuego": {
+      "tipo": "tocar",
+      "titulo": "¡Tocá el escudo!",
+      "instruccion": "¿Qué te cuida?",
+      "opciones": [
+        { "id": "escudo", "icono": "🛡️", "texto": "Pedir ayuda" },
+        { "id": "camara", "icono": "📸", "texto": "Mandar foto" }
+      ],
+      "respuesta": "escudo",
+      "explicacion": "El escudo es pedir ayuda a una persona adulta de confianza."
+    }
+  },
+  {
+    "id": "caso-02",
+    "titulo": "El premio fantasma",
+    "categoria": "Links y premios",
+    "personaje": "Teo recibe un mensaje",
+    "relato": "Un mensaje dice: «¡Monedas gratis! Tocá este link».",
+    "pistas": [
+      { "id": "premio", "texto": "Premio gratis", "correcta": true, "icono": "🎁" },
+      { "id": "enlace", "texto": "Link raro", "correcta": true, "icono": "🔗" },
+      { "id": "clave", "texto": "Pide clave", "correcta": true, "icono": "🔑" },
+      { "id": "amigo", "texto": "Es mi amigo", "correcta": false, "icono": "🧑‍🤝‍🧑" }
+    ],
+    "pregunta": "¿Qué hace Teo?",
+    "opciones": [
+      { "id": "a", "icono": "🎁", "texto": "Abrir rápido" },
+      { "id": "b", "icono": "🛡️", "texto": "Cerrar y contar" }
+    ],
+    "respuesta": "b",
+    "explicacion": "Los premios mágicos y los links raros pueden ser una trampa.",
+    "miniJuego": {
+      "tipo": "ordenar",
+      "titulo": "Orden mágico",
+      "instruccion": "Tocá los pasos en orden.",
+      "pasos": [
+        { "id": "guardar", "icono": "💾", "texto": "Guardar" },
+        { "id": "bloquear", "icono": "🚫", "texto": "Bloquear" },
+        { "id": "contar", "icono": "🧑‍🏫", "texto": "Contar" }
+      ],
+      "ordenCorrecto": ["guardar", "bloquear", "contar"],
+      "explicacion": "Primero guardamos la prueba, después bloqueamos y contamos."
+    }
+  },
+  {
+    "id": "caso-03",
+    "titulo": "El chat que asusta",
+    "categoria": "Ser buenos en línea",
+    "personaje": "Luna mira un chat",
+    "relato": "En un chat se ríen de Luna y dicen: «No cuentes».",
+    "pistas": [
+      { "id": "burlas", "texto": "Se burlan", "correcta": true, "icono": "😢" },
+      { "id": "secreto", "texto": "No cuentes", "correcta": true, "icono": "🤫" },
+      { "id": "ayuda", "texto": "Piden ayuda", "correcta": false, "icono": "🧑‍🏫" },
+      { "id": "juego", "texto": "Es un juego", "correcta": false, "icono": "🎲" }
+    ],
+    "pregunta": "¿Qué hace Luna?",
+    "opciones": [
+      { "id": "a", "icono": "😡", "texto": "Responder mal" },
+      { "id": "b", "icono": "🛡️", "texto": "Guardar y contar" }
+    ],
+    "respuesta": "b",
+    "explicacion": "Nadie merece burlas. Guardar y contar ayuda mucho.",
+    "miniJuego": {
+      "tipo": "clasificar",
+      "titulo": "¿Escudo o fantasma?",
+      "instruccion": "Tocá cada tarjeta.",
+      "tarjetas": [
+        { "id": "clave", "icono": "🔐", "texto": "Cuidar clave" },
+        { "id": "link", "icono": "🔗", "texto": "Link raro" },
+        { "id": "adulto", "icono": "🧑‍🏫", "texto": "Pedir ayuda" }
+      ],
+      "clasificacion": { "clave": "safe", "link": "danger", "adulto": "safe" },
+      "explicacion": "Escudo: cuidar la clave y pedir ayuda. Fantasma: un link raro."
+    }
+  }
+]
