@@ -41,14 +41,22 @@ const alphanumeric = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 const newToken = () => crypto.randomBytes(24).toString('hex');
 const error = (message, status=400) => Object.assign(new Error(message), {status});
 function uniqueCode() { let code; do {code = Array.from({length:4},()=>alphanumeric[crypto.randomInt(alphanumeric.length)]).join('');} while(rooms.has(code)); return code; }
+// Phones cannot reach virtual adapters (VirtualBox, VMware, Hyper-V, WSL, Docker, VPNs), so the real Wi-Fi or Ethernet goes first in the QR.
+const VIRTUAL_NAME=/virtual|vbox|vmware|vethernet|hyper-v|wsl|docker|loopback|tailscale|zerotier|hamachi|radmin|bluetooth/i;
+const VIRTUAL_MAC=/^(0a:00:27|08:00:27|00:50:56|00:0c:29|00:05:69|00:1c:14|00:15:5d|02:42)/i;
+function rankAddresses(list) {
+  const marked=list.map(item=>({...item,virtual:!!item.virtual||VIRTUAL_NAME.test(item.interfaz)||/^192\.168\.56\./.test(item.ip)}));
+  const score=item=>(item.virtual?-10:0)+(/wi-?fi|wlan|wireless|inal[aá]mbric/i.test(item.interfaz)?3:0)+(/^(ethernet|eth|en)/i.test(item.interfaz)?1:0)+(/^192\.168\./.test(item.ip)?1:/^10\./.test(item.ip)?.5:0);
+  return marked.sort((a,b)=>score(b)-score(a));
+}
 function addresses() {
   const data=[];
   for(const [iface, devs] of Object.entries(os.networkInterfaces())) {
     for(const dev of devs||[]) {
-      if(dev.family==='IPv4' && !dev.internal && !dev.address.startsWith('169.254.')) data.push({interfaz:iface,ip:dev.address});
+      if(dev.family==='IPv4' && !dev.internal && !dev.address.startsWith('169.254.')) data.push({interfaz:iface,ip:dev.address,virtual:VIRTUAL_MAC.test(dev.mac||'')});
     }
   }
-  return data;
+  return rankAddresses(data);
 }
 function stageDuration(room,stage=room.stage) { return PACES[room.pace][stage]||0; }
 function advance(room, action='next') {
@@ -192,7 +200,7 @@ function getQR(text) {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${n+8} ${n+8}" shape-rendering="crispEdges"><rect width="100%" height="100%" fill="white"/><g fill="black">${cells}</g></svg>`;
 }
 function sendStatic(req,res,url) {
-  const paths={'/':'index.html','/organizador':'index.html','/jugar':'index.html','/estilos.css':'estilos.css','/infantil.css':'infantil.css','/organizador.css':'organizador.css','/app.js':'app.js','/favicon.svg':'favicon.svg'};
+  const paths={'/':'index.html','/organizador':'index.html','/jugar':'index.html','/estilos.css':'estilos.css','/infantil.css':'infantil.css','/organizador.css':'organizador.css','/manual':'manual.html','/app.js':'app.js','/favicon.svg':'favicon.svg'};
   const fname=paths[url.pathname];if(!fname) throw error('Página no encontrada.',404);
   const types={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'application/javascript; charset=utf-8','.svg':'image/svg+xml'};
   const full=path.join(PUBLIC,fname);
@@ -318,7 +326,8 @@ server.listen(PORT,HOST,()=>{
   console.log('    🕵️  DETECTIVES DIGITALES');
   console.log('========================================');
   console.log(`Organizador: http://localhost:${PORT}/organizador`);
-  addresses().forEach(a=>console.log(`Celulares (${a.interfaz}): http://${a.ip}:${PORT}/jugar`));
+  addresses().forEach(a=>console.log(`Celulares (${a.interfaz}): http://${a.ip}:${PORT}/jugar${a.virtual?'   <- red virtual: los celulares no la ven':''}`));
+  console.log(`Manual de usuario: http://localhost:${PORT}/manual`);
   console.log('Modo local: los celulares deben compartir la red Wi-Fi.');
   console.log('Modo web: accedé por la URL HTTPS proporcionada por el hosting.');
   console.log('Para detener: Ctrl+C\n');

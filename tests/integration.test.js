@@ -76,6 +76,8 @@ test('QR SVG local, cabeceras de seguridad, rutas y acciones protegidas',async()
    const page=await r.text();assert.match(page,/app.js/);assert.match(page,/infantil.css/);
    assert.match(page,/organizador.css/);
    r=await fetch(base+'/organizador.css');assert.equal(r.status,200);assert.match(r.headers.get('content-type'),/text\/css/);assert.match(await r.text(),/\.tv-stage/);
+   r=await fetch(base+'/manual');assert.equal(r.status,200);assert.match(r.headers.get('content-type'),/text\/html/);
+   const manual=await r.text();assert.match(manual,/Manual de usuario/);assert.match(manual,/Guía para los chicos/);assert.match(manual,/PERMITIR_CELULARES\.bat/);
    r=await fetch(base+'/infantil.css');assert.equal(r.status,200);
    assert.match(r.headers.get('content-type'),/text\/css/);assert.match(await r.text(),/\.child-panel/);
    r=await fetch(base+'/api/qr?texto='+encodeURIComponent(base+'/jugar?codigo=ABCD'));

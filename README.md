@@ -15,6 +15,8 @@ El contenido y las consignas están orientados a chicos de **8 a 12 años**, con
 - **Nueve minijuegos de Halloween, uno distinto por misión**: **Encendé una calabaza** (tocar la opción que ayuda), **Camino embrujado** (ordenar pasos sobre lápidas), **¿Dulce o truco?** (deslizar cada carta: dulce = me cuida, truco = atención), **Llená tu calabaza** (seleccionar las ideas que cuidan), **Cazafantasmas** (atrapar los datos privados que asoman por las ventanas de una casa embrujada), **Bola de cristal** (conectar situaciones con acciones), **Linterna detective** (iluminar una habitación oscura y marcar permisos sospechosos), **Poción anti-rumores** (echar los pasos al caldero en orden) y **Defendé tu cuenta** (frenar a fantasmas, murciélagos y vampiros con cartas de la mano). +300 puntos por superar cada reto.
 - **Recompensas de juego móvil con temática de Halloween**: los puntos se muestran como dulces 🍬, cada misión y minijuego se presenta con murciélagos, hay racha 🔥 de aciertos, tres calabazas 🎃 que se encienden por misión y una calabaza sorpresa con una carta de superpoder cuya rareza depende de las calabazas. Al final, cada chico ve su colección de cartas. Fondo con luna, murciélagos y telarañas. Sonidos cortos de Halloween y vibración opcionales (se apagan desde la sala de espera).
 - **Ritmo tranquilo** para dar más tiempo de lectura y **ritmo clásico** para partidas más rápidas.
+- **Manual de usuario** para docentes con una guía de una página para los chicos: se abre desde el juego en **/manual** (botón «📖 Manual», funciona sin Internet) y también está en `MANUAL_DE_USUARIO.pdf` para imprimir. Si se edita `public/manual.html`, `npm run manual` vuelve a generar el PDF.
+- **Cartel con QR para imprimir**: en la sala de espera, «🖨️ Cartel con QR» arma una hoja A4 con el QR de la sala, el código, el nombre del Wi-Fi, cuatro pasos con dibujos y la dirección para escribir a mano.
 - **Pantalla del organizador como programa de juegos de Halloween**, pensada para proyector o televisor: noche con luna y murciélagos, letra grande, el código de sala en fichas y un QR grande, la historia contada por el búho, la carta que se gana en cada misión, un reloj grande y los avatares del equipo que se encienden a medida que cada chico responde (solo muestra quién respondió, nunca qué). Cada etapa de la partida entra completa en 1366×768 y en 1920×1080 sin desplazarse.
 - Interfaz móvil infantil con historias de pocas líneas, tarjetas de hasta seis palabras y una tarea por pantalla. Clasificar y conectar avanzan de a una tarjeta con **Atrás / Siguiente / Enviar**; en clasificar, la carta también se puede deslizar y la siguiente llega sola.
 - Lectura opcional con un botón **Escuchar / Parar** cuando el navegador la admite. Resultados breves y soluciones completas desplegables.
@@ -42,9 +44,11 @@ La lectura en voz alta depende de las voces y capacidades del dispositivo; no am
 1. Descargar o descomprimir todos los archivos de este proyecto.
 2. Doble clic en `INICIAR_JUEGO.bat`.
 3. En la PC se abrirá **http://localhost:3000/organizador**.
-4. Elegir cantidad de casos, ritmo y cupo. Crear sala y elegir la IP de la red Wi-Fi correcta.
-5. Escanear el QR en cada celular, elegir apodo y avatar.
+4. Elegir cantidad de casos, ritmo y cupo. Crear sala y elegir la IP de la red Wi-Fi correcta. El juego pone primero el Wi-Fi o la Ethernet real y marca como «virtual» las redes de VirtualBox, VMware, Hyper-V, WSL, Docker o VPN, porque los celulares no las ven.
+5. Escanear el QR en cada celular (o imprimir el **Cartel con QR**), elegir apodo y avatar.
 6. Iniciar desde la PC y avanzar por los casos.
+
+Si los celulares no pueden abrir la página, ejecutar una vez `PERMITIR_CELULARES.bat`: pide permiso de administrador y abre el puerto 3000 en el Firewall de Windows solo para redes privadas. La red Wi-Fi debe estar marcada como *Privada*.
 
 En modo local no se necesita Internet durante la partida, solamente una red Wi-Fi que permita comunicación entre dispositivos. Si el router aísla clientes, se deben cambiar sus ajustes o utilizar otro punto de acceso.
 
@@ -118,7 +122,8 @@ public/
   app.js            Interacción cliente y eventos
   estilos.css       Tema visual de detectives / Halloween
   infantil.css      Pantallas breves para los participantes en celular
-  organizador.css   Pantalla grande del organizador (proyector o TV)
+  organizador.css   Pantalla grande del organizador (proyector o TV) y cartel con QR
+  manual.html       Manual de usuario imprimible, servido en /manual
   favicon.svg       Ícono
 vendor/             Generador QR local y su licencia
 casos.json          Contenido educativo editable
@@ -127,6 +132,9 @@ MANUAL_CLIENTE.md    Instrucciones para organizar y jugar
 server.js           Servidor HTTP + lógica de las partidas
 render.yaml         Configuración para Render Blueprint
 INICIAR_JUEGO.bat   Inicio en Windows
+PERMITIR_CELULARES.bat  Abre el puerto del juego en el firewall (redes privadas)
+MANUAL_DE_USUARIO.pdf   Manual para imprimir (se regenera con npm run manual)
+scripts/exportar-manual.cjs  Generador del PDF en Windows con Chrome o Edge y Node.js 22+
 package.json        Comandos y versión mínima de Node
 package-lock.json   Metadatos reproducibles
 .github/workflows/   Pruebas CI al publicar código

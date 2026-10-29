@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manual de usuario · Detectives Digitales</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <style>
+    /* Printable user manual. Served at /manual so it works without Internet; Ctrl+P prints it or saves a PDF. */
+    :root{--ink:#2a1240;--muted:#5d4b72;--purple:#5b37a6;--purple-dark:#3a1e6c;--orange:#e9640b;--cream:#fff8ea;--line:#e7d6f7;--green:#1d7a12;--display:ui-rounded,'Arial Rounded MT Bold','Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif}
+    *{box-sizing:border-box}
+    body{margin:0;background:#efe7f8;color:var(--ink);font:16px/1.55 system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+    .sheet{max-width:860px;margin:24px auto;padding:44px 52px;background:#fff;border-radius:18px;box-shadow:0 10px 30px #3a1e6c26}
+    h1,h2,h3{font-family:var(--display);line-height:1.15;color:var(--purple-dark)}
+    h2{display:flex;align-items:center;gap:12px;margin:38px 0 12px;padding-bottom:8px;border-bottom:3px solid var(--line);font-size:26px}
+    h2 .n{display:grid;place-items:center;flex:none;width:38px;height:38px;border-radius:12px;background:var(--orange);color:#fff;font-size:20px}
+    h3{margin:22px 0 8px;font-size:19px}
+    p{margin:8px 0}
+    a{color:var(--purple)}
+    code,kbd{padding:1px 6px;border-radius:6px;background:#f3ecfb;font:600 .92em ui-monospace,Consolas,monospace;color:var(--purple-dark)}
+    b,strong{color:#1c0b30}
+    .cover{display:flex;flex-direction:column;align-items:center;gap:10px;padding:34px 20px 30px;border-radius:22px;background:radial-gradient(circle at 85% 18%,#fff3c455 0 46px,transparent 50px),linear-gradient(180deg,#5b37a6,#2a1450);color:#fff;text-align:center}
+    .cover .logo{display:grid;place-items:center;width:84px;height:84px;font-size:50px;border-radius:24px;background:linear-gradient(180deg,#ffc061,#f07a1a);border:4px solid #12062a;transform:rotate(-6deg)}
+    .cover small{color:#ffb648;font-weight:900;letter-spacing:3px;text-transform:uppercase}
+    .cover h1{margin:0;color:#fff;font-size:44px;text-transform:uppercase}
+    .cover p{max-width:560px;margin:0;color:#e9dcff;font-size:18px}
+    .for{display:inline-block;margin-top:8px;padding:6px 16px;border-radius:999px;background:#12062a;color:#ffe066;font-weight:800}
+    .print-hint{margin:16px 0 0;padding:10px 14px;border:2px dashed var(--line);border-radius:12px;color:var(--muted);font-size:14px;text-align:center}
+    .toc{columns:2;gap:30px;margin:18px 0 0;padding:16px 20px 16px 40px;border-radius:14px;background:#faf5ff}
+    .toc li{margin:3px 0;break-inside:avoid}
+    ol.steps{counter-reset:step;margin:10px 0;padding:0;list-style:none}
+    ol.steps>li{position:relative;margin:8px 0;padding:10px 14px 10px 54px;border:2px solid var(--line);border-radius:14px;background:#fff;counter-increment:step;break-inside:avoid}
+    ol.steps>li:before{content:counter(step);position:absolute;left:12px;top:10px;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--orange);color:#fff;font-weight:900}
+    ul{padding-left:22px}
+    li{margin:4px 0}
+    .tip,.warn{margin:14px 0;padding:12px 16px 12px 52px;border-radius:14px;position:relative;break-inside:avoid}
+    .tip{background:#eaffdf;border:2px solid #b5ecaa}
+    .warn{background:#fff1e3;border:2px solid #ffcc9a}
+    .tip:before,.warn:before{position:absolute;left:14px;top:10px;font-size:24px}
+    .tip:before{content:'💡'}
+    .warn:before{content:'⚠️'}
+    table{width:100%;margin:12px 0;border-collapse:separate;border-spacing:0;border:2px solid var(--line);border-radius:14px;overflow:hidden;font-size:15px;break-inside:avoid}
+    th,td{padding:9px 12px;text-align:left;vertical-align:top}
+    th{background:var(--purple);color:#fff;font-family:var(--display)}
+    tr:nth-child(even) td{background:#faf5ff}
+    td:first-child{font-weight:700}
+    .screen{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
+    .screen>div{padding:12px;border:2px solid var(--line);border-radius:14px;background:var(--cream);break-inside:avoid}
+    .screen>div>b:first-child{display:block;font-family:var(--display);font-size:17px}
+    .kids{margin-top:40px;padding:30px;border-radius:22px;background:linear-gradient(180deg,#2d1559,#1a0a36);color:#fff}
+    .kids h2{border-color:#ffffff33;color:#fff}
+    .kids h2 .n{background:#ffd23a;color:#6b3200}
+    .kids p{color:#e9dcff;font-size:18px}
+    .kids b,.kids strong{color:#ffe066}
+    .kid-steps{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:14px 0;padding:0;list-style:none;counter-reset:kid}
+    .kid-steps li{display:flex;align-items:center;gap:12px;margin:0;padding:14px;border:3px solid #12062a;border-radius:16px;background:var(--cream);color:var(--ink);font-size:18px;font-weight:700;line-height:1.3;counter-increment:kid;break-inside:avoid}
+    .kid-steps li:before{content:counter(kid);display:grid;place-items:center;flex:none;width:34px;height:34px;border-radius:50%;background:var(--orange);color:#fff;font-weight:900}
+    .kid-steps li span{flex:none;font-size:34px;line-height:1}
+    .kids .kid-steps p{margin:0;color:var(--ink);font-size:18px;font-weight:700}
+    .kid-steps li b,.kid-steps li strong{color:var(--ink)}
+    .stages{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:12px 0}
+    .stages>div{padding:14px;border:3px solid #12062a;border-radius:16px;background:linear-gradient(180deg,#ffb45a,#e9640b);color:#fff;text-align:center;break-inside:avoid}
+    .stages span{display:block;font-size:40px;line-height:1.1}
+    .stages b{display:block;margin:4px 0;color:#fff;font-family:var(--display);font-size:20px}
+    .stages p{margin:0;color:#fff3dc;font-size:15px}
+    .rules{margin:12px 0 0;padding:14px 18px 14px 42px;border-radius:16px;background:#12062a;color:#e9dcff;font-size:17px}
+    footer{margin-top:34px;padding-top:14px;border-top:2px solid var(--line);color:var(--muted);font-size:13px;text-align:center}
+    @media(max-width:700px){.sheet{margin:0;padding:22px 16px;border-radius:0}.toc{columns:1}.screen,.stages,.kid-steps{grid-template-columns:1fr}.cover h1{font-size:32px}}
+    @page{size:A4;margin:14mm}
+    @media print{
+      body{background:#fff;font-size:12.5pt}
+      .sheet{max-width:none;margin:0;padding:0;border-radius:0;box-shadow:none}
+      .print-hint{display:none}
+      .page-break{break-before:page}
+      h2,h3{break-after:avoid}
+      *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    }
+  </style>
+</head>
+<body>
+<main class="sheet">
+  <section class="cover">
+    <span class="logo" aria-hidden="true">🎃</span>
+    <small>Manual de usuario</small>
+    <h1>Detectives Digitales</h1>
+    <p>Manual de usuario del juego de Halloween para aprender a cuidarnos en Internet.</p>
+    <span class="for">Para docentes y personas que organizan la actividad · incluye una guía para los chicos</span>
+  </section>
+  <p class="print-hint">Para imprimir o guardar como PDF: <kbd>Ctrl</kbd> + <kbd>P</kbd>. La última página es la guía para los chicos y se puede imprimir sola.</p>
+
+  <ol class="toc">
+    <li><a href="#necesitas">Qué necesitás</a></li>
+    <li><a href="#encender">Encender el juego en la PC del organizador</a></li>
+    <li><a href="#sala">Crear la sala</a></li>
+    <li><a href="#ingresar">Que los chicos entren con el QR</a></li>
+    <li><a href="#partida">Conducir la partida</a></li>
+    <li><a href="#minijuegos">Los nueve minijuegos</a></li>
+    <li><a href="#puntos">Puntos y premios</a></li>
+    <li><a href="#terminar">Terminar y guardar resultados</a></li>
+    <li><a href="#problemas">Problemas frecuentes</a></li>
+    <li><a href="#cuidados">Cuidados y privacidad</a></li>
+    <li><a href="#chicos">Guía para los chicos</a></li>
+  </ol>
+
+  <h2 id="necesitas"><span class="n">1</span>Qué necesitás</h2>
+  <ul>
+    <li><b>Una computadora</b> (la «PC del organizador») con Windows y <b>Node.js 20 o superior</b>. Se instala una sola vez desde <code>nodejs.org</code> (versión LTS). Después el juego funciona sin Internet.</li>
+    <li><b>Un proyector o televisor</b> conectado a la PC, para que todo el grupo vea la pantalla del organizador. Es opcional pero recomendado.</li>
+    <li><b>Un celular o tablet por chico o por grupo</b>, con cámara para leer el QR y un navegador (Chrome, Safari, Edge…). No hay que instalar ninguna app.</li>
+    <li><b>Una red Wi-Fi</b> a la que se conecten la PC y los celulares. No hace falta que tenga Internet.</li>
+  </ul>
+  <p>El juego está pensado para chicos de 8 a 12 años con una persona adulta que acompañe. Una partida corta (3 misiones) dura unos 15 a 20 minutos.</p>
+
+  <h2 id="encender"><span class="n">2</span>Encender el juego en la PC del organizador</h2>
+  <ol class="steps">
+    <li>Conectá la PC al <b>mismo Wi-Fi</b> que van a usar los celulares.</li>
+    <li>En la carpeta del juego, hacé doble clic en <code>INICIAR_JUEGO.bat</code>. Se abre una <b>ventana negra</b>: es el servidor del juego. <b>No la cierres</b> mientras juegan.</li>
+    <li>Se abre solo el navegador en <code>http://localhost:3000/organizador</code>. Si no se abre, escribí esa dirección en el navegador de la PC.</li>
+    <li>La primera vez, Windows puede preguntar si Node.js puede usar la red. Marcá <b>Redes privadas</b> y tocá <b>Permitir acceso</b>.</li>
+  </ol>
+  <div class="tip">La ventana negra muestra las direcciones para los celulares. Si alguna dice <b>«red virtual»</b> (por ejemplo, de VirtualBox o de una VPN), esa no sirve: los celulares usan la otra.</div>
+  <h3>Si los celulares no pueden entrar</h3>
+  <ol class="steps">
+    <li>Hacé doble clic en <code>PERMITIR_CELULARES.bat</code> y aceptá el permiso de administrador. Abre el puerto del juego (3000) en el Firewall de Windows <b>solo para redes privadas</b>. Hace falta una sola vez.</li>
+    <li>Revisá que la red Wi-Fi esté marcada como <b>Privada</b>: <i>Configuración → Red e Internet → Wi-Fi → (tu red) → Tipo de perfil de red → Privada</i>.</li>
+    <li>Algunas redes de escuelas o «de invitados» no dejan que los dispositivos se vean entre sí. En ese caso usá un router propio, o activá el <b>punto de acceso (hotspot) del celular del docente</b> y conectá a esa red la PC y los celulares.</li>
+  </ol>
+  <div class="warn">Las salas se guardan solo mientras la ventana negra está abierta. Si se cierra o la PC se suspende, la partida se pierde. Conectá la PC a la corriente y desactivá la suspensión durante la actividad.</div>
+  <h3>Si el juego está publicado en Internet</h3>
+  <p>Si el juego está publicado en un sitio web (por ejemplo, en Render), abrí en la PC <code>https://tu-sitio/organizador</code>. En ese caso no hace falta el Wi-Fi compartido ni el firewall, pero todos necesitan Internet.</p>
+
+  <h2 id="sala" class="page-break"><span class="n">3</span>Crear la sala</h2>
+  <p>En la pantalla de inicio del organizador elegí tres cosas y tocá <b>Crear aventura</b>:</p>
+  <table>
+    <tr><th>Opción</th><th>Qué elegir</th></tr>
+    <tr><td>¿Cuántas misiones?</td><td>3 (aventura corta), 6 o 9 (todas). Para una primera vez, 3.</td></tr>
+    <tr><td>Ritmo</td><td><b>Tranquilo</b> da más tiempo para leer. <b>Clásico</b> es más rápido.</td></tr>
+    <tr><td>Tamaño del equipo</td><td>De 1 detective (individual) hasta 30. Si entran más chicos que el tamaño elegido, la sala aparece completa.</td></tr>
+  </table>
+  <table>
+    <tr><th>Tiempo por etapa</th><th>Buscar pistas</th><th>Decidir</th><th>Minijuego</th></tr>
+    <tr><td>Tranquilo</td><td>45 segundos</td><td>30 segundos</td><td>60 segundos</td></tr>
+    <tr><td>Clásico</td><td>30 segundos</td><td>20 segundos</td><td>35 segundos</td></tr>
+  </table>
+
+  <h2 id="ingresar"><span class="n">4</span>Que los chicos entren con el QR</h2>
+  <p>Al crear la sala aparece la <b>sala de espera</b> con un QR grande y el <b>código de sala</b> de 4 letras. Hay tres formas de entrar:</p>
+  <div class="screen">
+    <div><b>📷 QR en pantalla</b>Proyectá la sala de espera. Los chicos apuntan la cámara del celular al QR y tocan el enlace.</div>
+    <div><b>🖨️ Cartel con QR</b>Tocá <b>Cartel con QR</b>, escribí el nombre del Wi-Fi y tocá <b>Imprimir cartel</b>. Sale una hoja A4 para pegar en el aula o en cada mesa.</div>
+    <div><b>⌨️ Dirección y código</b>Sin cámara: escribir en el navegador la dirección que figura en el cartel (por ejemplo <code>http://192.168.0.14:3000/jugar</code>) y después el código.</div>
+  </div>
+  <ol class="steps">
+    <li>Si la PC tiene varias redes, en <b>Red Wi-Fi del organizador</b> elegí la del Wi-Fi que usan los celulares. Las redes marcadas como <b>virtual</b> no sirven. Si cambiaste de red, tocá <b>↻ Buscar</b>.</li>
+    <li>Cada chico escribe un <b>apodo</b> (de 2 a 22 letras, sin su nombre real) y elige un personaje. Dos chicos no pueden usar el mismo apodo.</li>
+    <li>A medida que entran, aparecen en <b>Nuestro equipo</b>. Con un solo detective ya se puede empezar.</li>
+    <li>Tocá <b>Empezar aventura</b>. Después de empezar ya no se puede entrar: quien llegue tarde espera a la próxima partida (<b>Volver a jugar</b>).</li>
+  </ol>
+  <div class="tip">El QR y el cartel sirven solo para la sala abierta. Si cerrás la sala y creás otra, el código cambia: imprimí un cartel nuevo.</div>
+
+  <h2 id="partida"><span class="n">5</span>Conducir la partida</h2>
+  <p>Cada misión es un caso con una historia corta y tiene tres etapas. La pantalla grande muestra la historia, que cuenta el búho, y las tarjetas. Los chicos responden en su celular.</p>
+  <div class="screen">
+    <div><b>🔎 Buscá</b>Marcan todas las pistas que les parecen señales de alerta.</div>
+    <div><b>💡 Decidí</b>Eligen qué haría el personaje para cuidarse.</div>
+    <div><b>🎮 Jugá</b>Un minijuego distinto en cada misión.</div>
+  </div>
+  <ol class="steps">
+    <li>Mientras responden, los <b>avatares del equipo se encienden</b> en la pantalla grande. Solo muestran quién respondió, nunca qué eligió.</li>
+    <li>Cuando todos respondieron, o cuando termina el reloj, tocá el botón amarillo (<b>Mostrar las pistas</b>, <b>Mostrar respuesta</b>, <b>Mostrar resultado</b>). Si el reloj llega a cero, la etapa se cierra sola.</li>
+    <li>En cada resultado aparece la respuesta y el búho explica por qué. Es el momento para <b>conversar en grupo</b>: no hay apuro, el reloj está detenido.</li>
+    <li>Seguí con el botón amarillo hasta el ranking de la misión y después a la próxima misión.</li>
+  </ol>
+  <div class="tip">En los celulares, el botón 🔊 lee la consigna en voz alta si el navegador lo permite. Los chicos pueden apagar los sonidos del juego en la sala de espera (<b>Sonido: sí / no</b>).</div>
+
+  <h2 id="minijuegos" class="page-break"><span class="n">6</span>Los nueve minijuegos</h2>
+  <table>
+    <tr><th>Misión</th><th>Minijuego</th><th>Cómo se juega</th></tr>
+    <tr><td>1 · El secreto de la foto</td><td>🎃 Encendé una calabaza</td><td>Tocar la calabaza con la acción que ayuda. Se enciende al elegirla.</td></tr>
+    <tr><td>2 · El premio fantasma</td><td>🕯️ Camino embrujado</td><td>Tocar los pasos en orden. El personaje salta de lápida en lápida. «Deshacer» corrige.</td></tr>
+    <tr><td>3 · El chat que asusta</td><td>🍬 ¿Dulce o truco?</td><td>Deslizar cada carta: a la derecha <b>Dulce</b> (me cuida), a la izquierda <b>Truco</b> (atención). También hay botones.</td></tr>
+    <tr><td>4 · La bóveda de las claves</td><td>🎃 Llená tu calabaza</td><td>Marcar todas las ideas que cuidan una cuenta. Cada una cae como dulce en la calabaza.</td></tr>
+    <tr><td>5 · La foto con pistas de más</td><td>👻 Cazafantasmas</td><td>Tocar <b>¡Empezar!</b>. Durante unos 15 segundos asoman fantasmas; atrapar los que llevan datos privados. Cada uno aparece dos veces y se puede jugar <b>Otra vez</b>.</td></tr>
+    <tr><td>6 · Un equipo que acompaña</td><td>🔮 Bola de cristal</td><td>Una situación por vez en la bola de cristal: elegir la ayuda y tocar <b>Siguiente</b>.</td></tr>
+    <tr><td>7 · La linterna curiosa</td><td>🔦 Linterna detective</td><td>Mover el dedo por la habitación oscura hasta encontrar todo y marcar 🚨 los permisos que no tienen sentido.</td></tr>
+    <tr><td>8 · El rumor del dragón</td><td>🧪 Poción anti-rumores</td><td>Echar los ingredientes al caldero en el orden de la consigna.</td></tr>
+    <tr><td>9 · El código que no se presta</td><td>🏰 Defendé tu cuenta</td><td>Llegan amenazas al castillo: tocar la carta de la mano que frena cada una.</td></tr>
+  </table>
+  <p>En todos los minijuegos se puede corregir antes de tocar <b>Enviar</b>. Tocar una opción no envía la respuesta.</p>
+
+  <h2 id="puntos"><span class="n">7</span>Puntos y premios</h2>
+  <table>
+    <tr><th>Etapa</th><th>Puntos</th></tr>
+    <tr><td>Buscá las pistas</td><td>+100 por cada señal de alerta marcada, −100 por cada pista marcada que no es alerta</td></tr>
+    <tr><td>Decidí</td><td>+500 si acierta, −500 si no</td></tr>
+    <tr><td>Minijuego</td><td>+300 si supera el reto</td></tr>
+    <tr><td>Sin responder</td><td>No suma ni resta. El total puede ser negativo.</td></tr>
+  </table>
+  <ul>
+    <li>En los celulares los puntos se muestran como <b>dulces 🍬</b>.</li>
+    <li>Al terminar cada misión, cada chico enciende una <b>calabaza 🎃</b> por cada etapa acertada (hasta tres) y abre una <b>calabaza sorpresa</b> con la carta de superpoder de esa misión. La carta es común, rara, épica o legendaria según las calabazas encendidas. Siempre se gana una carta: no hay azar ni compras.</li>
+    <li>En el podio final cada chico ve su <b>colección de cartas</b> y su puesto.</li>
+  </ul>
+
+  <h2 id="terminar"><span class="n">8</span>Terminar y guardar resultados</h2>
+  <ol class="steps">
+    <li>Después de la última misión aparece el <b>podio</b> con los tres primeros y una corona para el ganador.</li>
+    <li>Tocá <b>Descargar ranking CSV</b> para guardar los puntos de todos. Se abre con Excel o Google Sheets.</li>
+    <li><b>Volver a jugar</b> vuelve a la sala de espera con los mismos chicos y los puntos en cero. Pueden entrar nuevos.</li>
+    <li><b>Cerrar sala</b> borra la partida. Descargá el CSV antes.</li>
+  </ol>
+  <p>La pantalla grande muestra los primeros puestos del ranking. Cada chico ve su propio puesto en el celular.</p>
+
+  <h2 id="problemas" class="page-break"><span class="n">9</span>Problemas frecuentes</h2>
+  <table>
+    <tr><th>Qué pasa</th><th>Qué hacer</th></tr>
+    <tr><td>El celular no abre la página del QR</td><td>Que el celular esté en el <b>mismo Wi-Fi</b> que la PC (con los datos móviles apagados). En la sala, elegí la red correcta (no una «virtual»). Ejecutá <code>PERMITIR_CELULARES.bat</code> y revisá que la red sea <b>Privada</b>. Si es una red de escuela o de invitados, probá con un hotspot.</td></tr>
+    <tr><td>La cámara no lee el QR</td><td>Subí el brillo de la pantalla o usá el cartel impreso. También se puede escribir la dirección y el código.</td></tr>
+    <tr><td>«No existe esa sala»</td><td>El código está mal escrito, o la ventana negra se cerró y la sala se perdió. Creá una sala nueva.</td></tr>
+    <tr><td>«La partida ya comenzó»</td><td>Solo se entra en la sala de espera. Al terminar, tocá <b>Volver a jugar</b>.</td></tr>
+    <tr><td>«La sala está completa»</td><td>Creá una sala con un tamaño de equipo más grande.</td></tr>
+    <tr><td>«Ese nombre ya está ocupado»</td><td>Elegir otro apodo.</td></tr>
+    <tr><td>Aparece «Reconectando…»</td><td>Se cortó el Wi-Fi un momento. Esperá unos segundos. Si el chico cierra la página, al volver a abrirla en el mismo celular sigue en la partida.</td></tr>
+    <tr><td>No suenan los efectos</td><td>Tocar la pantalla una vez, sacar el celular de silencio y revisar <b>Sonido: sí</b> en la sala de espera.</td></tr>
+    <tr><td>El QR tiene una dirección que empieza con 192.168.56</td><td>Es una red virtual de la PC. Elegí otra en <b>Red Wi-Fi del organizador</b>.</td></tr>
+  </table>
+
+  <h2 id="cuidados"><span class="n">10</span>Cuidados y privacidad</h2>
+  <ul>
+    <li>Pedí a los chicos que usen un <b>apodo</b>, nunca su nombre completo. El juego no pide fotos, teléfonos, direcciones ni claves.</li>
+    <li>Las historias son ficticias. Los consejos invitan siempre a <b>pedir ayuda a una persona adulta de confianza</b>.</li>
+    <li>Si un chico cuenta algo que le pasó de verdad, priorizá escucharlo y acompañarlo fuera del juego.</li>
+    <li>Las fuentes y criterios del contenido están en <code>FUENTES_EDUCATIVAS.md</code>.</li>
+  </ul>
+
+  <section class="kids page-break" id="chicos">
+    <h2><span class="n">★</span>Guía para los chicos: ¡a jugar, detectives!</h2>
+    <p>Vas a resolver misterios de Halloween y a aprender a cuidarte en Internet. ¡Prestá atención a las pistas!</p>
+    <h3 style="color:#ffb648">¿Cómo entro?</h3>
+    <ol class="kid-steps">
+      <li><span aria-hidden="true">📶</span><p>Conectá el celular al <strong>Wi-Fi del aula</strong>.</p></li>
+      <li><span aria-hidden="true">📷</span><p>Abrí la cámara y apuntá al <strong>QR</strong>. Tocá el enlace.</p></li>
+      <li><span aria-hidden="true">🦊</span><p>Escribí un <strong>apodo</strong> (no tu nombre real) y elegí tu personaje.</p></li>
+      <li><span aria-hidden="true">🎮</span><p>Tocá <strong>¡A jugar!</strong> y esperá a que empiece la misión.</p></li>
+    </ol>
+    <h3 style="color:#ffb648">¿Cómo se juega cada misión?</h3>
+    <div class="stages">
+      <div><span aria-hidden="true">🔎</span><b>Buscá</b><p>Marcá todas las pistas que te parezcan peligrosas y tocá Enviar.</p></div>
+      <div><span aria-hidden="true">💡</span><b>Decidí</b><p>Elegí qué harías para cuidarte y tocá Enviar.</p></div>
+      <div><span aria-hidden="true">🎮</span><b>Jugá</b><p>¡Un minijuego distinto en cada misión!</p></div>
+    </div>
+    <p>Ganás <b>dulces 🍬</b> cuando acertás. Cada etapa acertada <b>enciende una calabaza 🎃</b>. Al final de cada misión, tocá la <b>calabaza sorpresa</b> para ganar una carta de superpoder.</p>
+    <ul class="rules">
+      <li>Usá siempre un apodo. Nunca compartas tu dirección, tu teléfono ni tus claves.</li>
+      <li>Si algo de Internet te incomoda o te da miedo, contáselo a una persona adulta de confianza.</li>
+      <li>Equivocarse está bien: ¡así aprendemos juntos!</li>
+    </ul>
+  </section>
+
+  <footer>Detectives Digitales · Manual de usuario · Hecho para aprender, investigar y cuidarnos. 🎃</footer>
+</main>
+</body>
+</html>

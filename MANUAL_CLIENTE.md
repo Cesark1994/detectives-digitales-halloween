@@ -1,5 +1,7 @@
 # Manual de usuario — Detectives Digitales
 
+> Versión para imprimir, con una guía de una página para los chicos: `MANUAL_DE_USUARIO.pdf`, o el botón **📖 Manual** del organizador (dirección `/manual`).
+
 Versión de demostración: juego educativo multijugador con nueve casos de seguridad digital y nueve minijuegos distintos, uno por misión.
 
 Las misiones están pensadas para chicos de **8 a 12 años**, con una persona adulta que organice, lea o converse con el grupo cuando sea necesario. La edad es una orientación del contenido; podés adaptar el acompañamiento a cada grupo.
@@ -20,7 +22,7 @@ Para probar por Internet, se necesita una computadora para organizar y al menos 
 2. Elegí la capacidad: una partida individual o una sala de hasta 6, 10, 15, 20 o 30 participantes.
 3. Elegí una partida de **3, 6 o 9 misiones** y el ritmo de juego. Para una primera prueba, dejá la selección inicial de tres misiones y ritmo tranquilo.
 4. Presioná **Crear aventura**.
-5. Compartí el QR o usá **Copiar enlace** para enviar el acceso a los participantes.
+5. Compartí el QR o usá **Copiar enlace** para enviar el acceso a los participantes. Con **🖨️ Cartel con QR** podés imprimir una hoja A4 con el QR, el código de sala, el nombre del Wi-Fi y los pasos para los chicos. El cartel sirve solo para esa sala: si creás otra, imprimí uno nuevo.
 6. Esperá a que aparezcan los jugadores en la pantalla.
 7. Presioná **Empezar aventura**. Podés usar **Pantalla completa** para proyectar.
 
@@ -101,6 +103,7 @@ Para informar un problema, enviá al proveedor: paso realizado, resultado espera
 | --- | --- |
 | La web tarda en abrir | Si el alojamiento de prueba estaba suspendido, esperá aproximadamente un minuto y volvé a intentar. |
 | No puedo ingresar | Revisá el código, el cupo y que la sala siga esperando participantes. |
+| El celular no abre la página (sin Internet) | Mismo Wi-Fi que la PC y datos móviles apagados. En el panel elegí la red real, no una marcada como «virtual». Ejecutá `PERMITIR_CELULARES.bat` una vez y revisá que la red Wi-Fi sea *Privada*. |
 | Aparece “Reconectando” | Revisá la conexión y esperá la recuperación. Si el servidor se reinició, creá una nueva sala. |
 | No puedo cambiar la respuesta | Una vez confirmada queda bloqueada; es el funcionamiento esperado. |
 | Desapareció la partida | Las salas se pierden al reiniciar el servidor. Iniciá una nueva partida. |
@@ -115,7 +118,7 @@ Esta modalidad requiere Node.js 20 o superior instalado previamente en una compu
 2. Ejecutá **INICIAR_JUEGO.bat** y mantené abierta su ventana.
 3. Abrí **http://localhost:3000/organizador** en esa computadora.
 4. Conectá los celulares al mismo Wi-Fi, creá la sala y elegí la IP de esa red en el panel.
-5. Permití Node.js en el Firewall de Windows para redes privadas y escaneá el QR desde los celulares.
+5. Permití Node.js en el Firewall de Windows para redes privadas (o ejecutá `PERMITIR_CELULARES.bat`) y escaneá el QR desde los celulares.
 
 En los celulares usá el enlace del QR; la dirección localhost corresponde a la propia computadora. Esta modalidad no requiere Internet durante el juego, pero la red debe permitir comunicación entre sus dispositivos.
 

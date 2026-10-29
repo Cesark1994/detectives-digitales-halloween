@@ -6,6 +6,8 @@ Este proyecto se puede usar de DOS maneras:
 A) SIN INTERNET: instalá Node.js 20+ una sola vez en la computadora,
    conectá PC y celulares al mismo Wi-Fi y abrí INICIAR_JUEGO.bat.
    Panel: http://localhost:3000/organizador
+   Si los celulares no pueden entrar, ejecutá PERMITIR_CELULARES.bat
+   una vez (abre el firewall solo para redes privadas).
 
 B) COMO PAGINA WEB: subí el contenido de esta carpeta a GitHub y
    desplegá el repositorio en Render como Web Service de Node.js.
@@ -25,7 +27,9 @@ Al crear la aventura elegí 3, 6 o 9 misiones y el ritmo:
 Las consignas tienen lectura en voz alta opcional si el navegador
 la admite; el cronómetro sigue mientras se escucha.
 Contenido orientado a chicos de 8 a 12 años con acompañamiento adulto.
-Leé MANUAL_CLIENTE.md para organizar una partida.
+Manual para imprimir: MANUAL_DE_USUARIO.pdf (o el botón Manual del
+panel). En la sala de espera, "Cartel con QR" imprime el cartel para
+que los chicos entren. Leé también MANUAL_CLIENTE.md.
 
 ATENCION: Las salas se guardan SOLO EN MEMORIA. Si el servidor
 se reinicia o el hosting lo suspende, se pierden los resultados.
