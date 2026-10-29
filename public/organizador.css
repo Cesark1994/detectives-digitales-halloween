@@ -1,0 +1,277 @@
+/* The organizer view: a Halloween game show for a laptop, TV or projector. Live screens fit one screen and read from afar. */
+body.host-mode{background:#1d0b3a;color:#fff}
+body.host-mode:before{content:'';top:0;right:0;bottom:0;left:0;font-size:0;letter-spacing:0;opacity:1;background:radial-gradient(circle 44px at calc(100% - 7vw) 150px,#fff8dc 0 90%,transparent 100%),radial-gradient(circle 150px at calc(100% - 7vw) 150px,#ffe9a833,transparent 100%),radial-gradient(ellipse 60% 110px at 14% 100%,#0b0318 0 96%,transparent 100%),radial-gradient(ellipse 55% 90px at 88% 100%,#110524 0 96%,transparent 100%),radial-gradient(ellipse 50% 35% at 92% 0%,#ff9d3a33,transparent 70%),radial-gradient(ellipse 70% 45% at 6% 100%,#b04bff2e,transparent 70%),radial-gradient(1.6px 1.6px at 18px 26px,#ffffffd0 50%,transparent 55%),radial-gradient(1.2px 1.2px at 92px 74px,#ffffffa0 50%,transparent 55%),radial-gradient(1.4px 1.4px at 48px 118px,#ffe8a6c0 50%,transparent 55%),radial-gradient(1px 1px at 128px 14px,#ffffff90 50%,transparent 55%),linear-gradient(180deg,#2d1259 0%,#1d0b3a 55%,#14072a 100%);background-size:auto,auto,auto,auto,auto,auto,140px 140px,140px 140px,140px 140px,140px 140px,auto;background-repeat:no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,repeat,repeat,repeat,repeat,no-repeat}
+body.host-mode:after{content:'🦇';position:fixed;top:24%;right:14%;z-index:-1;font-size:34px;opacity:.3;pointer-events:none;text-shadow:-220px 90px 0 #05011099,-110px 210px 0 #05011080;animation:bat-float 8s ease-in-out infinite}
+body.host-mode #toast{background:#12062a;border:3px solid #ffd84a;color:#fff;font-weight:800;box-shadow:0 5px 0 #000}
+
+.host-app{--display:ui-rounded,'Arial Rounded MT Bold','Segoe UI',system-ui,-apple-system,Roboto,'Helvetica Neue',Arial,sans-serif;--edge:#12062a;--stroke:#12062a;max-width:1440px;color:#fff}
+.host-app :is(.brand h1,.tv-ribbon h2,.tv-stage-name,.button,.lobby-code span,.podium-block,.tv-join h2,.tv-team-panel h2,.adventure-hero h2,.setup-panel h2,.section-heading h2,.story-heading h2){text-shadow:0 2px 0 var(--stroke),2px 0 0 var(--stroke),-2px 0 0 var(--stroke),0 -2px 0 var(--stroke),1.4px 1.4px 0 var(--stroke),-1.4px 1.4px 0 var(--stroke),1.4px -1.4px 0 var(--stroke),-1.4px -1.4px 0 var(--stroke),0 3.5px 0 var(--stroke)}
+.host-app :is(button,a,input,select,summary):focus-visible{outline:3px solid #ffe14d;outline-offset:3px}
+.host-app h1,.host-app h2,.host-app h3{color:#fff}
+.host-app .help,.host-app .dim,.host-app .intro{color:#cdb8f5}
+.host-app .section-kicker,.host-app .eyebrow,.host-app .tv-kicker{color:#ffb648;font-weight:900;letter-spacing:1.2px;text-transform:uppercase}
+
+/* Header: the game logo and room chips. */
+.host-app .top{min-height:0;margin:0 0 18px;padding:16px 0;border:0}
+.host-app .brand{color:#fff}
+.host-app .brand-icon{width:52px;height:52px;font-size:30px;border-radius:15px;background:linear-gradient(180deg,#ffc061,#f07a1a);border:3px solid var(--edge);box-shadow:inset 0 2px 0 #ffe1b0,0 4px 0 var(--edge);transform:rotate(-6deg)}
+.host-app .brand-kicker{color:#ffb648;font-size:10px;letter-spacing:2px}
+.host-app .brand h1{font-family:var(--display);font-size:26px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;color:#fff}
+.host-app .brand h1 span{color:#ffb648}
+.host-app .brand h1 .brand-dot{display:none}
+.host-app :is(.room-pill,.edition-pill){padding:7px 14px;border:2px solid #000;border-radius:999px;background:#12062a;box-shadow:inset 0 2px 0 #ffffff1a;color:#d8c6ff;font-size:14px;font-weight:800}
+.host-app .room-pill b{letter-spacing:2px;color:#ffe066}
+.host-app .connection{padding:6px 12px;border-radius:999px;background:#1d4a17;border:2px solid #000;color:#9df07f;font-size:13px;font-weight:800}
+.host-app .connection.reconnecting{background:#ffd23a;color:#4a2400}
+.host-app .footer{border-color:#ffffff1f;color:#a993d4}
+
+/* Panels and chunky 3D buttons, the same family as the phones. */
+.host-app .panel{position:relative;border:3px solid var(--edge);border-radius:24px;background:linear-gradient(180deg,#5b37a6 0%,#45257f 40%,#3a1e6c 100%);box-shadow:inset 0 2px 0 #ffffff38,inset 0 0 0 2px #ffffff12,0 6px 0 var(--edge),0 16px 30px #00000066;color:#fff}
+.host-app .button{--c1:#fff59a;--c2:#ffd23a;--c3:#ffad1f;--cd:#7a3c00;--stroke:var(--cd);--btn-bg:linear-gradient(180deg,var(--c1) 0%,var(--c2) 48%,var(--c3) 52%,var(--c3) 100%);--btn-shadow:inset 0 2px 0 #ffffffa6,inset 0 -3px 0 #00000026,0 5px 0 var(--cd),0 9px 14px #00000059;position:relative;overflow:hidden;min-height:52px;padding:10px 22px;border:3px solid var(--cd);border-radius:15px;background:var(--btn-bg);box-shadow:var(--btn-shadow);color:#fff;font-family:var(--display);font-size:18px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;transition:transform .08s,box-shadow .08s,filter .15s}
+.host-app .button:hover:not(:disabled),.host-app .button.primary:hover:not(:disabled),.host-app .button.ghost:hover:not(:disabled){background:var(--btn-bg);box-shadow:var(--btn-shadow);color:#fff;transform:translateY(-1px);filter:brightness(1.05)}
+.host-app .button:active:not(:disabled){transform:translateY(4px);box-shadow:inset 0 2px 0 #ffffffa6,0 1px 0 var(--cd)}
+.host-app .button:disabled{filter:grayscale(1) brightness(.75);opacity:1}
+.host-app .button.primary,.host-app .button.orange{background:var(--btn-bg);box-shadow:var(--btn-shadow);color:#fff}
+.host-app .button.ghost{--c1:#b6e8ff;--c2:#5cb8ff;--c3:#2f8be8;--cd:#123d7a;background:var(--btn-bg)}
+.host-app .button.btn-small{min-height:42px;padding:6px 14px;font-size:14px}
+.host-app .button.primary:not(:disabled):after{content:'';position:absolute;top:-10%;bottom:-10%;left:-45%;width:26%;background:linear-gradient(100deg,transparent,#ffffffa0,transparent);transform:skewX(-20deg);animation:btn-shine 2.8s ease-in-out infinite;pointer-events:none}
+.host-app .label{color:#e9dcff;font-size:13px;font-weight:800}
+.host-app .field{border:3px solid #0b0318;border-radius:12px;background:#1b0a33;box-shadow:inset 0 3px 0 #00000066;color:#fff;font-size:15px;font-weight:700}
+.host-app .field:focus{border-color:#ffd84a}
+.host-app select.field option{background:#1b0a33;color:#fff}
+
+/* Setup page: the same hero, form and mission library, dressed for Halloween night. */
+.host-app .adventure-hero{border:3px solid var(--edge);border-radius:26px;box-shadow:0 6px 0 var(--edge),0 16px 30px #00000066}
+.host-app .adventure-hero h2{font-family:var(--display);font-weight:900;letter-spacing:0}
+.host-app .setup-panel h2{font-family:var(--display);font-weight:900}
+.host-app .setup-panel .brand-dot{color:#ffb648}
+.host-app .setup-details{border:2px solid #000;border-radius:14px;background:#12062a;color:#e9dcff}
+.host-app .setup-summary b{color:#ffe066}
+.host-app .setup-details :is(.help,.setup-summary){color:#d8c6ff}
+.host-app .hero-subtitle{color:#e9dcff}
+.host-app .setup-footnote{color:#cdb8f5}
+.host-app .how-it-works{border:3px solid var(--edge);border-radius:20px;background:#2a1450;box-shadow:0 5px 0 var(--edge);color:#fff}
+.host-app .how-it-works>span{color:#fff;font-weight:800}
+.host-app .how-it-works>span+span{border-color:#ffffff1f}
+.host-app .how-it-works b{border:2px solid #6b3200;background:linear-gradient(180deg,#fff07a,#ffad1f);color:#6b3200}
+.host-app .section-heading h2{font-family:var(--display);font-weight:900}
+.host-app .mission-total{border:2px solid #000;background:#12062a;color:#ffe066}
+.host-app .mission-card{border:3px solid var(--edge);border-radius:20px;background:linear-gradient(180deg,#4f2e93,#38196a);box-shadow:inset 0 2px 0 #ffffff2e,0 5px 0 var(--edge);color:#fff}
+.host-app .mission-card:hover{border-color:var(--edge);transform:translateY(-3px);box-shadow:inset 0 2px 0 #ffffff2e,0 8px 0 var(--edge),0 0 22px #ffb64866}
+.host-app .mission-art{border:3px solid var(--edge);box-shadow:inset 0 2px 0 #ffffff80,0 3px 0 var(--edge)}
+.host-app .mission-art.lilac{background:linear-gradient(180deg,#e6b8ff,#a95ff0)}
+.host-app .mission-art.mint{background:linear-gradient(180deg,#b5f59a,#45c034)}
+.host-app .mission-art.yellow{background:linear-gradient(180deg,#fff08a,#ffad1f)}
+.host-app .mission-art.peach{background:linear-gradient(180deg,#ffdb85,#ff982b)}
+.host-app .mission-art.blue{background:linear-gradient(180deg,#a5dcff,#3f9cf2)}
+.host-app .mission-index{color:#ffe066;font-family:var(--display);font-weight:900}
+.host-app .mission-card h3{color:#fff}
+.host-app .mission-type{border-top-color:#ffffff1f;color:#d8c6ff}
+
+/* Live screens fill the viewport: no footer, compact header. */
+.host-app.tv-live{display:flex;flex-direction:column;max-width:none;min-height:100vh;min-height:100dvh;padding:0 clamp(16px,2.2vw,44px) clamp(10px,1.6vh,22px)}
+.host-app.tv-live .top{margin:0;padding:clamp(8px,1.2vh,16px) 0}
+.host-app.tv-live .brand-icon{width:44px;height:44px;font-size:26px}
+.host-app.tv-live .footer{display:none}
+
+/* Live game: HUD with mission gems, stage ribbon and a big timer. */
+.host-app .tv-stage{flex:1;display:flex;flex-direction:column;gap:clamp(8px,1.4vh,16px);min-height:0}
+.host-app .tv-hud{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px}
+.host-app .tv-hud .mission-progress{display:flex;align-items:center;gap:14px;margin:0;padding:0;border:0}
+.host-app .tv-hud .mission-progress>span{font-size:15px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#d8c6ff;white-space:nowrap}
+.host-app .tv-hud .mission-progress>span b{color:#fff}
+.host-app .tv-hud .stage-steps{display:flex;gap:8px;margin:0}
+.host-app .tv-hud .stage-steps>span{display:flex;align-items:center;gap:6px;padding:5px 12px 5px 5px;border:2px solid #000;border-radius:999px;background:#2a1450;color:#cdb8f5;font-size:14px;font-weight:800;opacity:.7}
+.host-app .tv-hud .stage-steps b{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#12062a;color:#fff;font-size:13px}
+.host-app .tv-hud .stage-steps>span.active{opacity:1;background:linear-gradient(180deg,#ffe98a,#ffb01f);border-color:#6b3200;color:#4a2400;box-shadow:0 0 14px #ffc83d}
+.host-app .tv-hud .stage-steps>span.active b{background:#7a3c00}
+.host-app .tv-hud .stage-steps>span.done{opacity:1;background:linear-gradient(180deg,#9df07f,#3fb52e);border-color:#1b5a12;color:#103a0b}
+.host-app .tv-hud .stage-steps>span.done b{background:#1b5a12}
+.host-app .tv-stage-name{--stroke:#6b2a00;margin:0;padding:6px 28px;border:3px solid #6b2a00;border-radius:15px;background:linear-gradient(180deg,#ffb45a 0%,#ff8b22 48%,#f2700c 52%,#e9640b 100%);box-shadow:inset 0 2px 0 #ffd9a6,0 4px 0 #6b2a00;font-family:var(--display);font-size:clamp(20px,1.9vw,34px);font-weight:900;line-height:1.1;text-align:center;white-space:nowrap}
+.host-app .tv-hud .timer-wrap{justify-self:end;display:flex;flex-direction:column;gap:6px;width:auto;min-width:clamp(150px,13vw,230px);margin:0;padding:6px 14px 9px;border:3px solid #000;border-radius:16px;background:#12062a;box-shadow:inset 0 2px 0 #ffffff1a}
+.host-app .tv-hud .timer{font-family:var(--display);font-size:clamp(26px,2.4vw,44px);font-weight:900;line-height:1;text-align:center;color:#fff;font-variant-numeric:tabular-nums}
+.host-app .tv-hud .timer.urgent{color:#ff7a6b;animation:hud-pulse .9s ease-in-out infinite}
+.host-app .tv-hud .timer-track{height:10px;margin:0;border-radius:99px;background:#000}
+.host-app .tv-hud .timer-track>span{display:block;height:100%;border-radius:99px;background:linear-gradient(180deg,#f3a6ff 0,#c955ff 50%,#a332f0 51%,#b445ff 100%);transition:width .25s linear}
+.host-app .tv-hud .timer-track>span.urgent{background:linear-gradient(180deg,#ffb3a6,#e23a24)}
+.host-app .tv-talk{justify-self:end;padding:8px 16px;border:2px solid #000;border-radius:999px;background:#12062a;color:#ffe9a8;font-size:15px;font-weight:800}
+
+.host-app .tv-grid{flex:1;display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(12px,1.6vw,28px);align-items:stretch;min-height:0}
+/* Story: the owl narrates the case in a big speech bubble. */
+.host-app .tv-story{display:flex;flex-direction:column;gap:clamp(10px,1.6vh,18px);margin:0;padding:clamp(14px,2vh,26px);border:3px solid var(--edge);border-radius:24px;background:linear-gradient(180deg,#2f1760,#22104a);box-shadow:inset 0 2px 0 #ffffff24,0 6px 0 var(--edge);color:#fff}
+.host-app .tv-story .story-meta{display:flex;justify-content:space-between;gap:10px;margin:0}
+.host-app .tv-story .story-meta>span{padding:4px 12px;border:2px solid #000;border-radius:999px;background:#12062a;color:#ffb648;font-size:13px;font-weight:900;letter-spacing:1px;text-transform:uppercase}
+.host-app .tv-story .story-meta>span:last-child{color:#d8c6ff;letter-spacing:.3px;text-transform:none}
+.host-app .tv-story .story-heading{display:flex;align-items:center;gap:14px;margin:0}
+.host-app .tv-story .story-avatar{display:grid;place-items:center;flex:none;width:clamp(56px,7vh,76px);height:clamp(56px,7vh,76px);font-size:clamp(32px,4.2vh,46px);border-radius:18px;background:radial-gradient(circle at 50% 38%,#9a6cf0,#4b2696 80%);border:3px solid var(--edge);box-shadow:inset 0 0 0 3px #ffd84a,0 4px 0 var(--edge)}
+.host-app .tv-story .story-heading h2{margin:0;font-family:var(--display);font-size:clamp(28px,2.6vw,52px);font-weight:900;line-height:1.08;letter-spacing:0;color:#fff}
+.host-app .tv-story .story-heading p{margin:4px 0 0;font-size:clamp(14px,1.1vw,19px);font-weight:700;color:#d8c6ff}
+.host-app .tv-owl{display:flex;align-items:flex-start;gap:12px;margin:0}
+.host-app .tv-owl>span{display:grid;place-items:center;flex:none;width:clamp(48px,6vh,64px);height:clamp(48px,6vh,64px);font-size:clamp(28px,3.6vh,38px);border-radius:50%;background:linear-gradient(180deg,#ffe9b8,#ffc25e);border:3px solid var(--edge);box-shadow:0 3px 0 var(--edge)}
+.host-app .tv-owl>p{position:relative;flex:1;min-width:0;margin:0;padding:clamp(10px,1.6vh,18px) clamp(14px,1.4vw,22px);border:3px solid var(--edge);border-radius:18px;background:#fff8ea;box-shadow:0 4px 0 var(--edge);color:#2e1646;font-size:clamp(17px,1.5vw,32px);font-weight:650;line-height:1.4}
+.host-app .tv-owl>p:before{content:'';position:absolute;left:-10px;top:18px;width:14px;height:14px;background:#fff8ea;border-left:3px solid var(--edge);border-bottom:3px solid var(--edge);transform:rotate(45deg)}
+.host-app .tv-story .tv-owl>p{font-size:clamp(20px,1.75vw,36px)}
+/* The badge card this mission awards, with the three pumpkins each phone can light. */
+.host-app .tv-prize{display:flex;align-items:center;gap:14px;margin-top:auto;padding:10px 16px 10px 10px;border:3px solid #6b3200;border-radius:18px;background:linear-gradient(180deg,#fff08a,#ffad1f);box-shadow:inset 0 0 0 3px #ffffff59,0 5px 0 #6b3200,0 0 24px #ffd84a66;color:#3d1d00}
+.host-app .tv-prize-icon{display:grid;place-items:center;flex:none;width:clamp(50px,7vh,74px);height:clamp(50px,7vh,74px);font-size:clamp(28px,4.4vh,46px);border-radius:50%;background:#fff8ea;border:3px solid #6b3200}
+.host-app .tv-prize small{display:block;font-size:13px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:#7a3c00}
+.host-app .tv-prize b{font-family:var(--display);font-size:clamp(18px,1.6vw,30px);font-weight:900;line-height:1.1}
+.host-app .tv-prize-pumpkins{margin-left:auto;font-size:clamp(20px,2vw,34px);letter-spacing:2px;white-space:nowrap}
+
+/* Board: the orange ribbon, the cards and the next-step button. */
+.host-app .tv-board{display:flex;flex-direction:column;gap:clamp(10px,1.4vh,16px);min-height:0;margin:0;padding:clamp(14px,2vh,24px)}
+.host-app .tv-ribbon{--stroke:#6b2a00;display:flex;align-items:center;gap:14px;padding:clamp(8px,1.2vh,12px) 16px;border:3px solid #6b2a00;border-radius:18px;background:linear-gradient(180deg,#ffb45a 0%,#ff8b22 48%,#f2700c 52%,#e9640b 100%);box-shadow:inset 0 2px 0 #ffd9a6,inset 0 -3px 0 #00000021,0 4px 0 #6b2a00;text-align:left}
+.host-app .tv-ribbon-icon{display:grid;place-items:center;flex:none;width:clamp(48px,6vh,64px);height:clamp(48px,6vh,64px);font-size:clamp(28px,3.6vh,38px);border-radius:15px;background:#fff8ea;border:3px solid #6b2a00;box-shadow:0 3px 0 #6b2a00}
+.host-app .tv-ribbon>div{min-width:0}
+.host-app .tv-ribbon .tv-kicker{display:block;margin:0 0 2px;color:#fff3dc;font-size:13px;text-shadow:0 1px 0 #6b2a00}
+.host-app .tv-ribbon h2{margin:0;font-family:var(--display);font-size:clamp(24px,2.3vw,46px);font-weight:900;line-height:1.1;color:#fff}
+.host-app .tv-ribbon p{margin:3px 0 0;color:#fff3dc;font-size:clamp(15px,1.2vw,23px);font-weight:800;line-height:1.25;text-shadow:0 1px 0 #6b2a00}
+.host-app .choice-0{--f1:#a5dcff;--f2:#3f9cf2;--fd:#123f7a}
+.host-app .choice-1{--f1:#ffdb85;--f2:#ff982b;--fd:#7a3500}
+.host-app .choice-2{--f1:#e6b8ff;--f2:#a95ff0;--fd:#46168a}
+.host-app .choice-3{--f1:#b5f59a;--f2:#45c034;--fd:#1b5a12}
+/* The cards sit centered in the free space of tall screens. */
+.host-app .tv-board>:is(.tv-cards,.answers,.mini-preview,.mini-result){flex:1 1 auto;align-content:center}
+.host-app .tv-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(8px,1.2vh,14px)}
+.host-app .tv-card{position:relative;display:flex;align-items:center;gap:12px;min-height:clamp(64px,11vh,150px);padding:8px 14px 8px 8px;border:3px solid var(--fd);border-radius:16px;background:#fff8ea;box-shadow:0 4px 0 var(--fd);color:#2a1240;transition:filter .3s,box-shadow .3s}
+.host-app .tv-card-icon{display:grid;place-items:center;flex:none;align-self:stretch;width:clamp(52px,8vh,104px);border-radius:11px;background:linear-gradient(180deg,var(--f1),var(--f2));font-size:clamp(28px,5vh,58px);line-height:1;box-shadow:inset 0 -3px 0 #00000024,inset 0 2px 0 #ffffff66}
+.host-app .tv-card b{flex:1;font-size:clamp(16px,1.45vw,30px);font-weight:800;line-height:1.25}
+.host-app .tv-card small{position:absolute;right:10px;bottom:-12px;padding:3px 10px;border:2px solid #000;border-radius:99px;background:#12062a;color:#d8c6ff;font-size:clamp(12px,.9vw,17px);font-weight:800;white-space:nowrap}
+.host-app .tv-card.good{border-color:#145a10;background:#eaffdf;box-shadow:0 0 0 3px #7dff6a,0 0 22px #7dff6a80,0 4px 0 #145a10}
+.host-app .tv-card.good small{background:linear-gradient(180deg,#a6f57d,#36b02a);border-color:#145a10;color:#fff}
+.host-app .tv-card.neutral{filter:saturate(.35) brightness(.8)}
+.host-app .tv-detect .tv-card{min-height:clamp(64px,14vh,170px)}
+.host-app .tv-detect_reveal .tv-card{min-height:clamp(64px,17vh,230px)}
+.host-app .tv-board .answers{display:grid;gap:clamp(8px,1.2vh,12px)}
+.host-app .tv-board .answer{display:flex;align-items:center;gap:14px;min-height:clamp(56px,9.5vh,120px);padding:8px 16px 8px 8px;border:3px solid var(--edge);border-radius:16px;background:#fff8ea;box-shadow:0 4px 0 var(--edge);color:#2a1240;font-size:clamp(17px,1.5vw,30px);font-weight:800;line-height:1.25}
+.host-app .tv-board .answer-icon{display:grid;place-items:center;flex:none;align-self:stretch;width:clamp(50px,7.5vh,96px);border-radius:11px;background:linear-gradient(180deg,#a5dcff,#3f9cf2);font-size:clamp(26px,4.6vh,52px);box-shadow:inset 0 -3px 0 #00000024}
+.host-app .tv-board .answer>b{display:grid;place-items:center;flex:none;width:34px;height:34px;margin-left:auto;border-radius:50%;background:linear-gradient(180deg,#a6f57d,#36b02a);border:2px solid #145a10;color:#fff;font-size:18px}
+.host-app .tv-decide_reveal .answer:not(.correct){filter:saturate(.35) brightness(.78)}
+.host-app .tv-board .answer.correct{background:#fff0a8;box-shadow:0 0 0 3px #ffb800,0 0 22px #ffd84a99,0 4px 0 var(--edge)}
+.host-app .tv-board .mini-preview{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:clamp(8px,1.2vh,12px)}
+.host-app .tv-board .mini-preview-card{display:flex;align-items:center;gap:12px;min-height:clamp(58px,9vh,130px);padding:8px 12px 8px 8px;border:3px solid var(--edge);border-radius:16px;background:#fff8ea;box-shadow:0 4px 0 var(--edge);color:#2a1240;text-align:left}
+.host-app .tv-board .mini-preview-card>span{display:grid;place-items:center;flex:none;align-self:stretch;width:clamp(44px,6.5vh,88px);border-radius:11px;background:linear-gradient(180deg,#e6b8ff,#a95ff0);font-size:clamp(24px,4.2vh,50px);line-height:1;box-shadow:inset 0 -3px 0 #00000024}
+.host-app .tv-board .mini-preview-card>b{font-size:clamp(15px,1.3vw,26px);font-weight:800;line-height:1.2}
+.host-app .tv-board .mini-result{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(8px,1.2vh,12px)}
+.host-app .tv-board .result-row{padding:10px 14px;border:3px solid var(--edge);border-radius:14px;background:#eaffdf;box-shadow:0 4px 0 var(--edge);color:#1b4a12;font-size:clamp(16px,1.4vw,28px);font-weight:800;line-height:1.3;text-align:left}
+.host-app .tv-board .result-row b{display:block;color:#1d6a12}
+.host-app .tv-board .notice{align-self:flex-start;margin:0;padding:4px 14px;border:2px solid #000;border-radius:999px;background:#12062a;color:#ffe9a8;font-size:14px;font-weight:800}
+/* Team meter: avatars light up as each detective answers. */
+.host-app .tv-team{display:flex;flex-direction:column;gap:8px;padding:10px 14px;border:3px solid #000;border-radius:16px;background:#12062a;box-shadow:inset 0 3px 0 #00000066}
+.host-app .tv-team-head{display:flex;align-items:center;gap:14px;color:#d8c6ff;font-size:15px;font-weight:800;white-space:nowrap}
+.host-app .tv-team-head b{font-family:var(--display);font-size:24px;color:#ffe066}
+.host-app .tv-team .progress{flex:1;height:12px;margin:0;border-radius:99px;background:#000;overflow:hidden}
+.host-app .tv-team .progress>div{height:100%;border-radius:99px;background:linear-gradient(180deg,#b6ff8f,#45c034);transition:width .3s}
+.host-app .tv-team-avatars{display:flex;flex-wrap:wrap;gap:6px}
+.host-app .tv-team-avatars>span{display:grid;place-items:center;width:clamp(32px,4.4vh,44px);height:clamp(32px,4.4vh,44px);font-size:clamp(18px,2.6vh,26px);line-height:1;border:2px solid #000;border-radius:50%;background:#2a1450;filter:grayscale(1) brightness(.6);transition:filter .3s,box-shadow .3s}
+.host-app .tv-team-avatars>span.done{filter:none;border-color:#145a10;background:#2f6b2a;box-shadow:0 0 0 2px #7dff6a,0 0 12px #7dff6a99;animation:pop-in .35s cubic-bezier(.3,1.6,.5,1)}
+.host-app .tv-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto;padding-top:4px}
+.host-app .tv-team-total{margin-right:auto;color:#d8c6ff;font-size:15px;font-weight:800}
+.host-app .tv-actions .button.primary{min-height:60px;padding:10px 28px;font-size:clamp(18px,1.5vw,28px);white-space:nowrap}
+.host-app .tv-actions .tools{display:flex;flex-wrap:wrap;gap:10px;margin:0}
+
+/* Lobby: a big QR, the room code in tiles and the team gathering. */
+.host-app .tv-lobby{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(14px,1.8vw,30px);align-items:stretch}
+.host-app.tv-live .tv-lobby{flex:1;min-height:0}
+.host-app .tv-join{display:flex;flex-direction:column;align-items:center;gap:8px;margin:0;padding:clamp(16px,2.4vh,30px);text-align:center}
+.host-app .tv-join h2{margin:0;font-family:var(--display);font-size:clamp(24px,2.2vw,40px);font-weight:900;line-height:1.1}
+.host-app .tv-join-body{display:flex;align-items:center;justify-content:center;gap:clamp(16px,2vw,36px);width:100%;margin:auto 0}
+.host-app .tv-join .qr-frame{flex:none;width:auto;margin:0;padding:12px;border:4px solid var(--edge);border-radius:22px;background:#fff;box-shadow:0 6px 0 var(--edge),0 0 34px #ffb64855}
+.host-app .tv-join .qr-frame img{display:block;width:clamp(190px,36vh,380px);height:clamp(190px,36vh,380px)}
+.host-app .tv-join-info{display:flex;flex:1;flex-direction:column;align-items:center;gap:10px;min-width:0;max-width:460px}
+.host-app .tv-code-label{color:#d8c6ff;font-size:14px;font-weight:900;letter-spacing:1.4px;text-transform:uppercase}
+.host-app .lobby-code{display:flex;gap:8px;margin:0;border:0;color:#fff;letter-spacing:0}
+.host-app .lobby-code span{--stroke:#6b3200;display:grid;place-items:center;width:clamp(54px,5vw,88px);height:clamp(64px,6vw,100px);border:3px solid #6b3200;border-radius:16px;background:linear-gradient(180deg,#fff59a 0%,#ffd23a 48%,#ffad1f 52%);box-shadow:inset 0 2px 0 #ffffffa6,0 5px 0 #6b3200;font-family:var(--display);font-size:clamp(36px,3.6vw,64px);font-weight:900;line-height:1}
+.host-app .join-url{max-width:100%;margin:0;padding:8px 14px;border:2px solid #000;border-radius:12px;background:#12062a;color:#ffe9a8;font-size:clamp(13px,1vw,17px);font-weight:700;overflow-wrap:anywhere}
+.host-app .tv-network{width:100%;max-width:420px;text-align:left}
+.host-app .tv-network .label{margin:0 0 5px}
+.host-app .tv-network-row{display:flex;gap:8px}
+.host-app .tv-network-row .field{flex:1;min-width:0;min-height:42px;padding:6px 10px}
+.host-app .tv-network-row .button{flex:none;white-space:nowrap}
+.host-app .tv-network .help{margin:4px 0 0;font-size:12px}
+.host-app .tv-join .tools{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:0}
+.host-app .tv-team-panel{display:flex;flex-direction:column;gap:10px;margin:0;padding:clamp(16px,2.4vh,30px)}
+.host-app .tv-team-panel h2{margin:0;font-family:var(--display);font-size:clamp(30px,3vw,52px);font-weight:900;line-height:1}
+.host-app .tv-team-panel h2 .dim{color:#cdb8f5;font-size:.6em}
+.host-app .tv-team-panel>.help{margin:0}
+.host-app .tv-team-panel .roster{flex:1;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));align-content:start;gap:10px;min-height:0;overflow:auto}
+.host-app .tv-team-panel .roster-item{display:flex;align-items:center;gap:10px;min-height:0;padding:8px 10px;border:3px solid var(--edge);border-radius:14px;background:#fff8ea;box-shadow:0 4px 0 var(--edge);color:#2a1240;animation:pop-in .35s cubic-bezier(.3,1.6,.5,1)}
+.host-app .tv-team-panel .roster-item .av{display:grid;place-items:center;flex:none;width:42px;height:42px;font-size:26px;border-radius:12px;background:radial-gradient(circle at 50% 38%,#9a6cf0,#4b2696 80%);border:2px solid var(--edge)}
+.host-app .tv-team-panel .roster-item b{flex:1;min-width:0;font-size:clamp(15px,1.05vw,20px);font-weight:800;overflow-wrap:break-word}
+.host-app .tv-team-panel .roster-item .status-good{color:#36b02a;font-weight:900}
+.host-app .tv-team-panel .roster-item.wait{grid-column:1/-1;justify-content:center;padding:18px;border:3px dashed #9a7ddc;background:#24104a;box-shadow:none;color:#cdb8f5;font-weight:800}
+.host-app .tv-team-panel #next{min-height:64px;font-size:clamp(20px,1.6vw,28px)}
+.host-app .tv-team-panel #close-room{align-self:center}
+
+/* Ranking and podium. */
+.host-app .tv-ranking{display:flex;flex-direction:column;gap:clamp(10px,1.6vh,18px);width:min(100%,1180px);max-width:none;margin:0 auto;padding:clamp(16px,2.4vh,28px)}
+.host-app.tv-live .tv-ranking{flex:1;min-height:0}
+.host-app .tv-ranking .rank{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(var(--rows,1),auto);grid-auto-flow:column;gap:clamp(8px,1.2vh,12px);margin:0;text-align:left}
+.host-app .tv-ranking .rank-row{display:flex;align-items:center;gap:12px;min-height:clamp(52px,8vh,96px);padding:6px 16px;border:3px solid var(--edge);border-radius:16px;background:linear-gradient(180deg,#7450c2,#5531a0);box-shadow:inset 0 2px 0 #ffffff2e,0 4px 0 var(--edge);color:#fff}
+.host-app .tv-ranking .rank-row.podium-1{background:linear-gradient(180deg,#fff08a,#ffb526);color:#3d1d00}
+.host-app .tv-ranking .rank-row.podium-2{background:linear-gradient(180deg,#f2f4ff,#b8bfd8);color:#2a2d3d}
+.host-app .tv-ranking .rank-row.podium-3{background:linear-gradient(180deg,#ffd2a6,#d98a4a);color:#3d1d00}
+.host-app .tv-ranking .rank-num{flex:none;width:36px;font-size:clamp(20px,2.2vh,28px);font-weight:900;text-align:center;color:inherit}
+.host-app .tv-ranking .rank-name{display:flex;align-items:center;gap:10px;flex:1;min-width:0;font-size:clamp(17px,1.5vw,30px);font-weight:800;color:inherit;overflow-wrap:break-word}
+.host-app .tv-ranking .rank-face{font-size:1.3em}
+.host-app .tv-ranking .rank-points{flex:none;font-family:var(--display);font-size:clamp(18px,1.7vw,32px);font-weight:900;color:#ffe066}
+.host-app .tv-ranking .rank-row[class*=podium-] .rank-points{color:#6b3200}
+.host-app .tv-rank-more{margin:0}
+.host-app .tv-ranking .tv-actions{margin-top:auto}
+.host-app .podium{display:flex;align-items:flex-end;justify-content:center;gap:clamp(10px,1.4vw,22px);max-width:720px;margin:clamp(14px,3vh,34px) auto 0}
+.host-app .podium-place{position:relative;flex:none;display:flex;flex-direction:column;align-items:center;gap:3px;width:clamp(130px,13vw,250px);min-width:0;max-width:none}
+.host-app .podium-face{display:grid;place-items:center;width:clamp(64px,10vh,104px);height:clamp(64px,10vh,104px);font-size:clamp(40px,6.4vh,66px);line-height:1;border-radius:28px;background:radial-gradient(circle at 50% 38%,#9a6cf0,#4b2696 80%);border:4px solid var(--edge);box-shadow:inset 0 0 0 3px #ffd84a,0 5px 0 var(--edge)}
+.host-app .podium-place.first .podium-face{width:clamp(78px,12.5vh,128px);height:clamp(78px,12.5vh,128px);font-size:clamp(48px,8vh,82px);box-shadow:inset 0 0 0 3px #ffd84a,0 5px 0 var(--edge),0 0 34px #ffd84acc}
+.host-app .podium-place.first:before{content:'👑';position:absolute;top:clamp(-46px,-5vh,-30px);font-size:clamp(30px,4.6vh,48px);line-height:1;animation:lobby-float 2.6s ease-in-out infinite}
+.host-app .podium-name{max-width:100%;color:#fff;font-size:clamp(16px,1.4vw,26px);font-weight:900;line-height:1.15;overflow-wrap:break-word}
+.host-app .podium-score{color:#ffe066;font-size:clamp(14px,1.1vw,19px);font-weight:800}
+.host-app .podium-block{--stroke:var(--pd);display:grid;place-items:center;width:100%;margin-top:6px;border:3px solid var(--pd);border-radius:14px 14px 4px 4px;background:linear-gradient(180deg,var(--p1),var(--p2));box-shadow:inset 0 3px 0 #ffffff99,0 5px 0 var(--pd);color:#fff;font-family:var(--display);font-size:clamp(34px,5vh,58px);font-weight:900}
+.host-app .podium-place.first .podium-block{--p1:#fff08a;--p2:#ffad1f;--pd:#6b3200;height:clamp(90px,17vh,190px)}
+.host-app .podium-place.second .podium-block{--p1:#f2f4ff;--p2:#a9b1cc;--pd:#2c3a4a;height:clamp(64px,12vh,140px)}
+.host-app .podium-place.third .podium-block{--p1:#ffd2a6;--p2:#d98a4a;--pd:#5a2a00;height:clamp(48px,8.5vh,100px)}
+
+/* Bigger intro card on the big screen. */
+.host-app .stage-splash>b{max-width:min(90vw,1000px);font-size:clamp(34px,4.6vw,76px)}
+.host-app .splash-icon{width:clamp(120px,18vh,200px);height:clamp(120px,18vh,200px);font-size:clamp(70px,11vh,120px);border-radius:40px}
+.host-app .splash-kicker{font-size:clamp(18px,1.8vw,30px)}
+.host-app .splash-tag{font-size:clamp(15px,1.3vw,22px)}
+
+/* Entrance motion when a new screen appears. */
+.host-app.screen-enter :is(.tv-story,.tv-board,.tv-join,.tv-team-panel,.tv-ranking){animation:panel-in .4s cubic-bezier(.2,1.3,.4,1) backwards}
+.host-app.screen-enter .tv-board{animation-delay:.08s}
+.host-app.screen-enter :is(.tv-card,.answer,.mini-preview-card,.result-row,.rank-row){animation:pop-in .38s .18s cubic-bezier(.3,1.5,.5,1) backwards}
+.host-app.screen-enter :is(.tv-card,.answer,.mini-preview-card,.result-row,.rank-row):nth-child(2){animation-delay:.24s}
+.host-app.screen-enter :is(.tv-card,.answer,.mini-preview-card,.result-row,.rank-row):nth-child(3){animation-delay:.3s}
+.host-app.screen-enter :is(.tv-card,.answer,.mini-preview-card,.result-row,.rank-row):nth-child(4){animation-delay:.36s}
+.host-app.screen-enter .podium-place{animation:big-pop .55s .2s cubic-bezier(.3,1.6,.5,1) backwards}
+.host-app.screen-enter .podium-place.first{animation-delay:.5s}
+
+/* Laptop-height screens (1366×768 and similar): tighten spacing so every live screen still fits. */
+@media(max-height:820px) and (min-width:901px){
+ .host-app.tv-live .top{padding:6px 0}
+ .host-app.tv-live .brand-icon{width:40px;height:40px;font-size:23px}
+ .host-app .tv-stage{gap:8px}
+ .host-app .tv-hud .timer-wrap{gap:4px;padding:4px 12px 7px}
+ .host-app .tv-board{gap:9px;padding:12px 14px}
+ .host-app .tv-ribbon{padding:6px 12px}
+ .host-app .tv-team{gap:5px;padding:6px 12px}
+ .host-app .tv-team-head b{font-size:20px}
+ .host-app .tv-team-avatars>span{width:30px;height:30px;font-size:17px}
+ .host-app .tv-board .answer{min-height:58px}
+ .host-app .tv-actions .button.primary{min-height:52px}
+ .host-app .tv-prize{padding:6px 12px 6px 6px}
+}
+
+/* Narrow organizer screens (a phone or a small window) stack and scroll instead. */
+@media(max-width:900px){
+ .host-app.tv-live{min-height:0}
+ .host-app .tv-hud{grid-template-columns:1fr;justify-items:center}
+ .host-app .tv-hud .timer-wrap,.host-app .tv-talk{justify-self:center}
+ .host-app .tv-stage-name{white-space:normal}
+ .host-app .tv-grid,.host-app .tv-lobby{grid-template-columns:1fr}
+ .host-app .tv-join-body{flex-direction:column}
+ .host-app .tv-cards,.host-app .tv-ranking .rank,.host-app .tv-board .mini-preview{grid-template-columns:1fr}
+ .host-app .tv-actions{flex-wrap:wrap}
+ .host-app .brand h1{font-size:20px}
+}
+@media(max-width:650px){.host-app .edition-pill{display:none}}

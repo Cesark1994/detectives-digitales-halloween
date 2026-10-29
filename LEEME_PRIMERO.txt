@@ -1,4 +1,4 @@
-DETECTIVES DIGITALES - VERSION WEB 2.0
+DETECTIVES DIGITALES - MISIONES DE SEGURIDAD DIGITAL
 =====================================
 
 Este proyecto se puede usar de DOS maneras:
@@ -12,10 +12,27 @@ B) COMO PAGINA WEB: subí el contenido de esta carpeta a GitHub y
    La computadora y los celulares usarán Internet.
    Leé PUBLICAR_PASO_A_PASO.txt y README.md.
 
-Funciones: salas con QR, 30 segundos Detectar, 20 segundos Decidir,
-ranking, podio, CSV, pantalla completa y tres casos de prueba.
+Funciones: salas con QR, ranking, podio, CSV, pantalla completa,
+nueve casos de demostración con nueve minijuegos distintos: tocar,
+ordenar, clasificar, seleccionar, conectar, Cazafantasmas, Linterna
+detective, Poción anti-rumores y Defendé tu cuenta. Cada misión
+termina con calabazas encendidas y una calabaza sorpresa con una
+carta de superpoder. Todo con ambientación de Halloween.
+
+Al crear la aventura elegí 3, 6 o 9 misiones y el ritmo:
+- Tranquilo: Detectar 45 s, Decidir 30 s, Minijuego 60 s.
+- Clásico: Detectar 30 s, Decidir 20 s, Minijuego 35 s.
+Las consignas tienen lectura en voz alta opcional si el navegador
+la admite; el cronómetro sigue mientras se escucha.
+Contenido orientado a chicos de 8 a 12 años con acompañamiento adulto.
+Leé MANUAL_CLIENTE.md para organizar una partida.
 
 ATENCION: Las salas se guardan SOLO EN MEMORIA. Si el servidor
 se reinicia o el hosting lo suspende, se pierden los resultados.
 Por eso Render Free sirve para probar; para eventos críticos se
 recomienda un servicio siempre activo, plan de respaldo y pruebas.
+
+Si el juego ya está en Render, actualizá los archivos en el repositorio
+de GitHub conectado y esperá que el nuevo despliegue diga Live.
+Terminá las partidas y guardá el CSV antes de publicar cambios.
+Los cambios en esta carpeta local no actualizan por sí solos la web.

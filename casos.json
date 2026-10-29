@@ -4,94 +4,937 @@
     "titulo": "El secreto de la foto",
     "categoria": "Cuidar mi imagen",
     "personaje": "Mila juega en línea",
-    "relato": "Un extraño dice: «Mandame una foto. Es un secreto».",
+    "insignia": {
+      "icono": "🛡️",
+      "nombre": "Escudo de imagen"
+    },
+    "relato": "En el chat del juego, una persona que Mila no conoce pide una foto suya y dice: «Que sea nuestro secreto». Mila siente incomodidad.",
     "pistas": [
-      { "id": "foto", "texto": "Pide una foto", "correcta": true, "icono": "📸" },
-      { "id": "secreto", "texto": "Pide secreto", "correcta": true, "icono": "🤫" },
-      { "id": "juego", "texto": "Es un juego", "correcta": false, "icono": "🎮" },
-      { "id": "saludo", "texto": "Dice hola", "correcta": false, "icono": "👋" }
+      {
+        "id": "foto",
+        "texto": "Una persona desconocida pide su foto",
+        "correcta": true,
+        "icono": "📸",
+        "textoCorto": "Un desconocido pide su foto"
+      },
+      {
+        "id": "secreto",
+        "texto": "Pide secreto",
+        "correcta": true,
+        "icono": "🤫",
+        "textoCorto": "Pide guardar el secreto"
+      },
+      {
+        "id": "juego",
+        "texto": "El juego tiene personajes de colores",
+        "correcta": false,
+        "icono": "🎮",
+        "textoCorto": "El juego tiene colores"
+      },
+      {
+        "id": "saludo",
+        "texto": "Dice hola",
+        "correcta": false,
+        "icono": "👋",
+        "textoCorto": "Dice hola"
+      }
     ],
     "pregunta": "¿Qué hace Mila?",
     "opciones": [
-      { "id": "a", "icono": "📸", "texto": "Mandar foto" },
-      { "id": "c", "icono": "🛡️", "texto": "Parar y contar" }
+      {
+        "id": "a",
+        "icono": "📸",
+        "texto": "Mandar foto",
+        "textoCorto": "Mandar la foto"
+      },
+      {
+        "id": "c",
+        "icono": "🛡️",
+        "texto": "Dejar el chat y pedir ayuda a una persona adulta de confianza",
+        "textoCorto": "Salir y pedir ayuda adulta"
+      }
     ],
     "respuesta": "c",
-    "explicacion": "¡Bien! Las fotos privadas no son secretos para guardar.",
+    "explicacion": "Mila puede decir que no y pedir ayuda. Si ya envió algo, también merece ayuda: no es su culpa que otra persona la presione.",
     "miniJuego": {
       "tipo": "tocar",
-      "titulo": "¡Tocá el escudo!",
-      "instruccion": "¿Qué te cuida?",
+      "titulo": "Activá tu escudo",
+      "instruccion": "Tocá la acción que ayuda a Mila.",
       "opciones": [
-        { "id": "escudo", "icono": "🛡️", "texto": "Pedir ayuda" },
-        { "id": "camara", "icono": "📸", "texto": "Mandar foto" }
+        {
+          "id": "escudo",
+          "icono": "🛡️",
+          "texto": "Hablar con alguien que la cuide",
+          "textoCorto": "Pedir ayuda adulta"
+        },
+        {
+          "id": "camara",
+          "icono": "📸",
+          "texto": "Enviar una foto para que no insistan",
+          "textoCorto": "Enviar la foto"
+        },
+        {
+          "id": "silencio",
+          "icono": "🤐",
+          "texto": "Guardar el secreto aunque le dé miedo",
+          "textoCorto": "Guardar el secreto"
+        }
       ],
       "respuesta": "escudo",
-      "explicacion": "El escudo es pedir ayuda a una persona adulta de confianza."
-    }
+      "explicacion": "El escudo es pedir ayuda a una persona adulta de confianza.",
+      "instruccionCorta": "Elegí qué puede ayudar a Mila.",
+      "explicacionCorta": "Si algo te incomoda, contáselo a una persona adulta de confianza. No tenés que resolverlo solo."
+    },
+    "relatoCorto": "Alguien que Mila no conoce le pide una foto y dice: «No se lo cuentes a nadie».",
+    "consejoCorto": "Podés decir que no y pedir ayuda a una persona adulta de confianza. Si ya enviaste algo, también podés contar."
   },
   {
     "id": "caso-02",
     "titulo": "El premio fantasma",
     "categoria": "Links y premios",
     "personaje": "Teo recibe un mensaje",
-    "relato": "Un mensaje dice: «¡Monedas gratis! Tocá este link».",
+    "insignia": {
+      "icono": "🎣",
+      "nombre": "Radar anti-anzuelos"
+    },
+    "relato": "Una cuenta desconocida escribe: «¡Monedas gratis! Abrí premio-fantasma.example y poné tu contraseña». Es un enlace de ejemplo; no hace falta abrirlo.",
     "pistas": [
-      { "id": "premio", "texto": "Premio gratis", "correcta": true, "icono": "🎁" },
-      { "id": "enlace", "texto": "Link raro", "correcta": true, "icono": "🔗" },
-      { "id": "clave", "texto": "Pide clave", "correcta": true, "icono": "🔑" },
-      { "id": "amigo", "texto": "Es mi amigo", "correcta": false, "icono": "🧑‍🤝‍🧑" }
+      {
+        "id": "premio",
+        "texto": "Premio gratis",
+        "correcta": true,
+        "icono": "🎁",
+        "textoCorto": "Promete monedas gratis"
+      },
+      {
+        "id": "enlace",
+        "texto": "Lo manda a un sitio ajeno al juego",
+        "correcta": true,
+        "icono": "🔗",
+        "textoCorto": "Lo manda a otro sitio"
+      },
+      {
+        "id": "clave",
+        "texto": "Pide clave",
+        "correcta": true,
+        "icono": "🔑",
+        "textoCorto": "Pide su clave"
+      },
+      {
+        "id": "amigo",
+        "texto": "El mensaje usa un dibujo de regalo",
+        "correcta": false,
+        "icono": "🎨",
+        "textoCorto": "Usa un dibujo de regalo"
+      }
     ],
     "pregunta": "¿Qué hace Teo?",
     "opciones": [
-      { "id": "a", "icono": "🎁", "texto": "Abrir rápido" },
-      { "id": "b", "icono": "🛡️", "texto": "Cerrar y contar" }
+      {
+        "id": "a",
+        "icono": "🎁",
+        "texto": "Abrir rápido",
+        "textoCorto": "Abrir rápido"
+      },
+      {
+        "id": "b",
+        "icono": "🛡️",
+        "texto": "No abrir y mostrar el mensaje a una persona adulta",
+        "textoCorto": "No abrir y pedir ayuda"
+      }
     ],
     "respuesta": "b",
     "explicacion": "Los premios mágicos y los links raros pueden ser una trampa.",
     "miniJuego": {
       "tipo": "ordenar",
-      "titulo": "Orden mágico",
-      "instruccion": "Tocá los pasos en orden.",
+      "titulo": "Ruta contra las trampas",
+      "instruccion": "Armá esta ruta: primero frenar, después consultar y al final bloquear con ayuda.",
       "pasos": [
-        { "id": "guardar", "icono": "💾", "texto": "Guardar" },
-        { "id": "bloquear", "icono": "🚫", "texto": "Bloquear" },
-        { "id": "contar", "icono": "🧑‍🏫", "texto": "Contar" }
+        {
+          "id": "bloquear",
+          "icono": "🧑‍🏫",
+          "texto": "Consultar con una persona adulta",
+          "textoCorto": "Pedir ayuda adulta"
+        },
+        {
+          "id": "contar",
+          "icono": "🚫",
+          "texto": "Bloquear y reportar con su ayuda",
+          "textoCorto": "Bloquear con ayuda"
+        },
+        {
+          "id": "guardar",
+          "icono": "✋",
+          "texto": "Frenar sin abrir el enlace",
+          "textoCorto": "No abrir el enlace"
+        }
       ],
-      "ordenCorrecto": ["guardar", "bloquear", "contar"],
-      "explicacion": "Primero guardamos la prueba, después bloqueamos y contamos."
-    }
+      "ordenCorrecto": [
+        "guardar",
+        "bloquear",
+        "contar"
+      ],
+      "explicacion": "Esta ruta propone frenar, buscar ayuda y usar bloqueo y reporte. No hace falta abrir el enlace para investigar.",
+      "instruccionCorta": "Primero frená, después pedí ayuda y al final bloqueá con ayuda.",
+      "explicacionCorta": "No hace falta abrir el enlace. Podés pedir ayuda y bloquear con una persona adulta."
+    },
+    "relatoCorto": "Teo recibe «¡Monedas gratis!». Le piden entrar a otro sitio y dar su clave.",
+    "consejoCorto": "No abras el enlace. Mostráselo a una persona adulta de confianza."
   },
   {
     "id": "caso-03",
     "titulo": "El chat que asusta",
     "categoria": "Ser buenos en línea",
     "personaje": "Luna mira un chat",
-    "relato": "En un chat se ríen de Luna y dicen: «No cuentes».",
+    "insignia": {
+      "icono": "💜",
+      "nombre": "Corazón valiente"
+    },
+    "relato": "En un chat se burlan de Luna varias veces y dicen: «No le cuentes a nadie». Luna se siente triste.",
     "pistas": [
-      { "id": "burlas", "texto": "Se burlan", "correcta": true, "icono": "😢" },
-      { "id": "secreto", "texto": "No cuentes", "correcta": true, "icono": "🤫" },
-      { "id": "ayuda", "texto": "Piden ayuda", "correcta": false, "icono": "🧑‍🏫" },
-      { "id": "juego", "texto": "Es un juego", "correcta": false, "icono": "🎲" }
+      {
+        "id": "burlas",
+        "texto": "Se burlan",
+        "correcta": true,
+        "icono": "😢",
+        "textoCorto": "Se burlan de Luna"
+      },
+      {
+        "id": "secreto",
+        "texto": "No cuentes",
+        "correcta": true,
+        "icono": "🤫",
+        "textoCorto": "Le dicen que no cuente"
+      },
+      {
+        "id": "ayuda",
+        "texto": "Una persona adulta escucha sin retar",
+        "correcta": false,
+        "icono": "🧑‍🏫",
+        "textoCorto": "Una persona adulta la escucha"
+      },
+      {
+        "id": "juego",
+        "texto": "El chat permite elegir un avatar",
+        "correcta": false,
+        "icono": "🦊",
+        "textoCorto": "Puede elegir un avatar"
+      }
     ],
     "pregunta": "¿Qué hace Luna?",
     "opciones": [
-      { "id": "a", "icono": "😡", "texto": "Responder mal" },
-      { "id": "b", "icono": "🛡️", "texto": "Guardar y contar" }
+      {
+        "id": "a",
+        "icono": "😡",
+        "texto": "Responder mal",
+        "textoCorto": "Responder con insultos"
+      },
+      {
+        "id": "b",
+        "icono": "🛡️",
+        "texto": "Contarlo a una persona adulta y guardar los mensajes con su ayuda",
+        "textoCorto": "Contar y guardar mensajes acompañada"
+      }
     ],
     "respuesta": "b",
-    "explicacion": "Nadie merece burlas. Guardar y contar ayuda mucho.",
+    "explicacion": "Nadie merece burlas y no es culpa de Luna. Una persona adulta puede acompañarla, guardar pruebas y ayudar a reportar sin reenviar las agresiones.",
     "miniJuego": {
       "tipo": "clasificar",
-      "titulo": "¿Escudo o fantasma?",
-      "instruccion": "Tocá cada tarjeta.",
+      "titulo": "Escudo o alerta",
+      "instruccion": "Para cada tarjeta, elegí si ayuda a cuidarnos o necesita una alerta.",
       "tarjetas": [
-        { "id": "clave", "icono": "🔐", "texto": "Cuidar clave" },
-        { "id": "link", "icono": "🔗", "texto": "Link raro" },
-        { "id": "adulto", "icono": "🧑‍🏫", "texto": "Pedir ayuda" }
+        {
+          "id": "clave",
+          "icono": "🔐",
+          "texto": "Cuidar clave",
+          "textoCorto": "Cuidar mi clave"
+        },
+        {
+          "id": "link",
+          "icono": "🔗",
+          "texto": "Abrir un enlace desconocido que pide mi clave",
+          "textoCorto": "Abrir enlace que pide clave"
+        },
+        {
+          "id": "adulto",
+          "icono": "🧑‍🏫",
+          "texto": "Pedir ayuda",
+          "textoCorto": "Pedir ayuda adulta"
+        }
       ],
-      "clasificacion": { "clave": "safe", "link": "danger", "adulto": "safe" },
-      "explicacion": "Escudo: cuidar la clave y pedir ayuda. Fantasma: un link raro."
-    }
+      "clasificacion": {
+        "clave": "safe",
+        "link": "danger",
+        "adulto": "safe"
+      },
+      "explicacion": "Cuidar la clave y pedir ayuda son escudos. Un enlace desconocido que pide la clave es una alerta.",
+      "instruccionCorta": "En cada tarjeta elegí: ¿me cuida o necesita atención?",
+      "explicacionCorta": "Cuidar tu clave y pedir ayuda te protege. Frená ante un enlace que pide tu clave."
+    },
+    "relatoCorto": "En el chat se burlan de Luna y le dicen: «No le cuentes a nadie».",
+    "consejoCorto": "No es culpa de Luna. Contarle a una persona adulta de confianza puede ayudarla."
+  },
+  {
+    "id": "caso-04",
+    "titulo": "La bóveda de las claves",
+    "categoria": "Proteger mis cuentas",
+    "personaje": "Nico prepara una cuenta con su familia",
+    "insignia": {
+      "icono": "🗝️",
+      "nombre": "Llave maestra"
+    },
+    "relato": "Un compañero le dice: «Usá 1234 en todos tus juegos y pasame la clave así te ayudo». Nico quiere aprender a cuidar su cuenta.",
+    "pistas": [
+      {
+        "id": "corta",
+        "icono": "🔓",
+        "texto": "Propone una clave muy fácil de adivinar",
+        "correcta": true,
+        "textoCorto": "Propone una clave fácil"
+      },
+      {
+        "id": "repetida",
+        "icono": "♻️",
+        "texto": "Propone repetir la misma clave en todo",
+        "correcta": true,
+        "textoCorto": "Repite la misma clave"
+      },
+      {
+        "id": "compartir",
+        "icono": "📨",
+        "texto": "Le pide que mande su contraseña",
+        "correcta": true,
+        "textoCorto": "Le pide su clave"
+      },
+      {
+        "id": "familia",
+        "icono": "🏡",
+        "texto": "Nico pide orientación a su familia",
+        "correcta": false,
+        "textoCorto": "Su familia lo orienta"
+      }
+    ],
+    "pregunta": "¿Qué plan cuida mejor la cuenta?",
+    "opciones": [
+      {
+        "id": "a",
+        "icono": "♻️",
+        "texto": "Repetir una clave corta para recordarla",
+        "textoCorto": "Repetir una clave corta"
+      },
+      {
+        "id": "b",
+        "icono": "📨",
+        "texto": "Mandar la contraseña al grupo",
+        "textoCorto": "Mandar la clave al grupo"
+      },
+      {
+        "id": "c",
+        "icono": "🔐",
+        "texto": "Crear con su familia una clave larga y distinta, sin compartirla en chats",
+        "textoCorto": "Crear claves largas con mi familia"
+      }
+    ],
+    "respuesta": "c",
+    "explicacion": "Una contraseña larga y distinta para cada cuenta es más difícil de adivinar. Para aprender, pedí ayuda a tu familia. Nunca escribas contraseñas reales en este juego.",
+    "miniJuego": {
+      "tipo": "seleccionar",
+      "titulo": "Equipá la bóveda",
+      "instruccion": "Elegí todas las ideas que protegen una cuenta. No escribas ninguna contraseña.",
+      "opciones": [
+        {
+          "id": "larga",
+          "icono": "📏",
+          "texto": "Elegir una clave larga y difícil de adivinar",
+          "textoCorto": "Una clave larga"
+        },
+        {
+          "id": "repetir",
+          "icono": "♻️",
+          "texto": "Usar la misma clave en todos los juegos",
+          "textoCorto": "Repetir la misma clave"
+        },
+        {
+          "id": "distinta",
+          "icono": "🗝️",
+          "texto": "Usar una clave distinta para cada cuenta",
+          "textoCorto": "Una clave distinta por cuenta"
+        },
+        {
+          "id": "chat",
+          "icono": "💬",
+          "texto": "Enviar la clave al chat de amigos",
+          "textoCorto": "Mandar la clave al chat"
+        }
+      ],
+      "correctas": [
+        "larga",
+        "distinta"
+      ],
+      "explicacion": "La bóveda se equipa con claves largas y diferentes. Las contraseñas reales quedan fuera del juego y de los chats.",
+      "instruccionCorta": "Marcá las ideas que cuidan una cuenta.",
+      "explicacionCorta": "Elegí claves largas y distintas con ayuda familiar. Nunca escribas claves reales en este juego."
+    },
+    "relatoCorto": "A Nico le dicen: «Usá 1234 en todos tus juegos y pasame tu clave».",
+    "consejoCorto": "Usá claves largas y distintas. Pedí ayuda a tu familia y no las mandes por chat."
+  },
+  {
+    "id": "caso-05",
+    "titulo": "La foto con pistas de más",
+    "categoria": "Privacidad y consentimiento",
+    "personaje": "Uma quiere compartir una foto",
+    "insignia": {
+      "icono": "🎒",
+      "nombre": "Mochila privada"
+    },
+    "relato": "Uma va a publicar una foto para todo el mundo. Se ve la dirección de su casa y aparece su amiga, que todavía no dijo si quiere salir en la publicación.",
+    "pistas": [
+      {
+        "id": "direccion",
+        "icono": "📍",
+        "texto": "La foto muestra dónde vive",
+        "correcta": true,
+        "textoCorto": "Se ve su dirección"
+      },
+      {
+        "id": "permiso",
+        "icono": "🧑‍🤝‍🧑",
+        "texto": "Su amiga no dio permiso para publicarla",
+        "correcta": true,
+        "textoCorto": "Su amiga no dio permiso"
+      },
+      {
+        "id": "publica",
+        "icono": "🌍",
+        "texto": "La publicación será visible para cualquiera",
+        "correcta": true,
+        "textoCorto": "Cualquiera verá la foto"
+      },
+      {
+        "id": "colores",
+        "icono": "🎨",
+        "texto": "La foto tiene muchos colores",
+        "correcta": false,
+        "textoCorto": "La foto tiene colores"
+      }
+    ],
+    "pregunta": "¿Qué puede hacer Uma antes de compartir?",
+    "opciones": [
+      {
+        "id": "a",
+        "icono": "🚀",
+        "texto": "Publicar ya porque la foto es linda",
+        "textoCorto": "Publicar ya"
+      },
+      {
+        "id": "b",
+        "icono": "🛡️",
+        "texto": "Quitar la dirección, preguntar a su amiga y revisar con su familia quién la verá",
+        "textoCorto": "Quitar datos, pedir permiso y revisar"
+      },
+      {
+        "id": "c",
+        "icono": "🙈",
+        "texto": "Publicar sin avisarle a su amiga",
+        "textoCorto": "Publicar sin avisar"
+      }
+    ],
+    "respuesta": "b",
+    "explicacion": "Antes de compartir, revisá qué datos aparecen, quién podrá verlos y si las personas de la foto están de acuerdo. Un «no» se respeta.",
+    "miniJuego": {
+      "tipo": "atrapar",
+      "titulo": "Cazafantasmas de datos",
+      "instruccion": "Atrapá los fantasmas que llevan datos que no van en una publicación pública. Dejá ir los demás.",
+      "opciones": [
+        {
+          "id": "casa",
+          "icono": "🏠",
+          "texto": "Dirección de mi casa",
+          "textoCorto": "La dirección de mi casa"
+        },
+        {
+          "id": "dibujo",
+          "icono": "🎨",
+          "texto": "Un dibujo inventado sin datos personales",
+          "textoCorto": "Un dibujo sin datos personales"
+        },
+        {
+          "id": "telefono",
+          "icono": "📱",
+          "texto": "Mi número de teléfono",
+          "textoCorto": "Mi teléfono"
+        },
+        {
+          "id": "ubicacion",
+          "icono": "📍",
+          "texto": "Mi ubicación en este momento",
+          "textoCorto": "Mi ubicación de ahora"
+        },
+        {
+          "id": "amiga",
+          "icono": "👭",
+          "texto": "La cara de mi amiga sin su permiso",
+          "textoCorto": "Mi amiga sin su permiso"
+        },
+        {
+          "id": "sticker",
+          "icono": "😺",
+          "texto": "Un sticker de gatito sin datos personales",
+          "textoCorto": "Un sticker de gatito"
+        }
+      ],
+      "correctas": [
+        "casa",
+        "telefono",
+        "ubicacion",
+        "amiga"
+      ],
+      "explicacion": "La dirección, el teléfono y la ubicación revelan datos personales, y la imagen de otra persona necesita su permiso. Revisá las publicaciones con una persona adulta antes de compartirlas.",
+      "instruccionCorta": "Atrapá los datos privados. ¡Dejá ir los demás!",
+      "explicacionCorta": "No publiques dirección, teléfono ni ubicación, ni a otras personas sin permiso. Revisá con una persona adulta."
+    },
+    "relatoCorto": "Uma publicará para todos una foto con su dirección y su amiga. Su amiga no dio permiso.",
+    "consejoCorto": "Quitá datos privados y pedí permiso. Revisá con tu familia quién verá la foto."
+  },
+  {
+    "id": "caso-06",
+    "titulo": "Un equipo que acompaña",
+    "categoria": "Ayudar sin lastimar",
+    "personaje": "Benja ve lo que pasa en un grupo",
+    "insignia": {
+      "icono": "🤝",
+      "nombre": "Equipo que cuida"
+    },
+    "relato": "Alguien comparte una imagen para burlarse de Alex. Varias personas la reenvían y piden dejarlo fuera del juego. Benja quiere acompañarlo.",
+    "pistas": [
+      {
+        "id": "burla",
+        "icono": "😢",
+        "texto": "Usan una imagen para humillar",
+        "correcta": true,
+        "textoCorto": "Usan una foto para humillar"
+      },
+      {
+        "id": "reenvio",
+        "icono": "📨",
+        "texto": "Reenvían algo que lastima a Alex",
+        "correcta": true,
+        "textoCorto": "Reenvían la burla"
+      },
+      {
+        "id": "exclusion",
+        "icono": "🚪",
+        "texto": "Piden excluirlo para hacerlo sentir mal",
+        "correcta": true,
+        "textoCorto": "Piden dejarlo fuera"
+      },
+      {
+        "id": "acompanar",
+        "icono": "💚",
+        "texto": "Benja quiere ayudarlo",
+        "correcta": false,
+        "textoCorto": "Benja quiere ayudarlo"
+      }
+    ],
+    "pregunta": "¿Cómo puede ayudar Benja?",
+    "opciones": [
+      {
+        "id": "a",
+        "icono": "📨",
+        "texto": "Reenviar la burla para que otros la vean",
+        "textoCorto": "Reenviar la burla"
+      },
+      {
+        "id": "b",
+        "icono": "😡",
+        "texto": "Responder con otra burla",
+        "textoCorto": "Burlarse también"
+      },
+      {
+        "id": "c",
+        "icono": "💚",
+        "texto": "No reenviar, acompañar a Alex y pedir ayuda a una persona adulta",
+        "textoCorto": "No reenviar y acompañarlo con ayuda"
+      }
+    ],
+    "respuesta": "c",
+    "explicacion": "Acompañar es escuchar y buscar ayuda sin difundir lo que lastima. Alex no tiene la culpa y Benja no tiene que resolverlo solo.",
+    "miniJuego": {
+      "tipo": "conectar",
+      "titulo": "Conectá la ayuda",
+      "instruccion": "Uní cada situación con una acción que acompaña. Usá cada acción una vez.",
+      "situaciones": [
+        {
+          "id": "imagen",
+          "icono": "🖼️",
+          "texto": "Me llega una imagen que humilla",
+          "textoCorto": "Me llega una imagen hiriente"
+        },
+        {
+          "id": "amigo",
+          "icono": "😢",
+          "texto": "Mi amigo se siente solo",
+          "textoCorto": "Mi amigo se siente solo"
+        },
+        {
+          "id": "continua",
+          "icono": "🔁",
+          "texto": "Las agresiones continúan",
+          "textoCorto": "Las agresiones siguen"
+        }
+      ],
+      "acciones": [
+        {
+          "id": "adulto",
+          "icono": "🧑‍🏫",
+          "texto": "Pedir ayuda a una persona adulta",
+          "textoCorto": "Pedir ayuda adulta"
+        },
+        {
+          "id": "frenar",
+          "icono": "✋",
+          "texto": "Frenar el reenvío de esa imagen",
+          "textoCorto": "No reenviar esa imagen"
+        },
+        {
+          "id": "escuchar",
+          "icono": "💚",
+          "texto": "Escucharlo y acompañarlo",
+          "textoCorto": "Escucharlo y acompañarlo"
+        }
+      ],
+      "soluciones": {
+        "imagen": "frenar",
+        "amigo": "escuchar",
+        "continua": "adulto"
+      },
+      "explicacion": "Podemos frenar reenvíos, acompañar y buscar ayuda. Estas acciones se complementan: pedir ayuda está bien en cualquier momento.",
+      "instruccionCorta": "Elegí una ayuda para cada situación. Usá cada acción una vez.",
+      "explicacionCorta": "Acompañá sin reenviar las burlas. Pedir ayuda está bien en cualquier momento."
+    },
+    "relatoCorto": "Benja ve que comparten y reenvían una foto para burlarse de Alex. Piden dejarlo fuera del juego.",
+    "consejoCorto": "No reenvíes lo que lastima. Escuchá a tu amigo y pedí ayuda a una persona adulta de confianza."
+  },
+  {
+    "id": "caso-07",
+    "titulo": "La linterna curiosa",
+    "categoria": "Permisos de aplicaciones",
+    "personaje": "Sol instala una linterna con su familia",
+    "insignia": {
+      "icono": "🔦",
+      "nombre": "Linterna detective"
+    },
+    "relato": "Una app que solo promete encender la luz pide leer mensajes, acceder a los contactos y saber dónde está Sol todo el tiempo. No explica para qué.",
+    "pistas": [
+      {
+        "id": "mensajes",
+        "icono": "💬",
+        "texto": "Pide leer mensajes para encender una luz",
+        "correcta": true,
+        "textoCorto": "Pide leer mensajes"
+      },
+      {
+        "id": "ubicacion",
+        "icono": "📍",
+        "texto": "Pide ubicación todo el tiempo sin explicar por qué",
+        "correcta": true,
+        "textoCorto": "Pide ubicación todo el tiempo"
+      },
+      {
+        "id": "contactos",
+        "icono": "📒",
+        "texto": "Pide la lista de contactos sin necesidad clara",
+        "correcta": true,
+        "textoCorto": "Pide todos sus contactos"
+      },
+      {
+        "id": "revisar",
+        "icono": "🔎",
+        "texto": "Sol revisa los permisos con su familia",
+        "correcta": false,
+        "textoCorto": "Su familia revisa los permisos"
+      }
+    ],
+    "pregunta": "¿Qué conviene hacer?",
+    "opciones": [
+      {
+        "id": "a",
+        "icono": "✅",
+        "texto": "Aceptar todo sin leer",
+        "textoCorto": "Aceptar sin leer"
+      },
+      {
+        "id": "b",
+        "icono": "🔎",
+        "texto": "No dar esos permisos y revisar la app con una persona adulta",
+        "textoCorto": "Frenar y revisar con ayuda adulta"
+      },
+      {
+        "id": "c",
+        "icono": "📨",
+        "texto": "Enviar sus contactos a la app",
+        "textoCorto": "Enviar los contactos"
+      }
+    ],
+    "respuesta": "b",
+    "explicacion": "Los permisos deben tener sentido para lo que hace una app. Si pide datos que no necesita o no explica su uso, frená y revisalo con una persona adulta.",
+    "miniJuego": {
+      "tipo": "linterna",
+      "titulo": "La linterna detective",
+      "instruccion": "Iluminá la habitación oscura, encontrá los permisos escondidos y marcá los que no tienen una razón clara.",
+      "opciones": [
+        {
+          "id": "camara",
+          "icono": "📸",
+          "texto": "Una app de fotos usa la cámara al sacar una foto",
+          "textoCorto": "Cámara al sacar una foto"
+        },
+        {
+          "id": "microfono",
+          "icono": "🎙️",
+          "texto": "Una grabadora usa el micrófono mientras grabamos",
+          "textoCorto": "Micrófono mientras grabo"
+        },
+        {
+          "id": "contactos",
+          "icono": "📒",
+          "texto": "Una linterna quiere leer todos los contactos",
+          "textoCorto": "Linterna quiere leer contactos"
+        },
+        {
+          "id": "mensajes",
+          "icono": "💬",
+          "texto": "Una calculadora quiere leer mensajes sin explicar por qué",
+          "textoCorto": "Calculadora quiere leer mensajes"
+        }
+      ],
+      "correctas": [
+        "contactos",
+        "mensajes"
+      ],
+      "explicacion": "Cámara para sacar una foto y micrófono para grabar tienen sentido. Eso no garantiza que la app sea confiable: también hay que revisarla con una persona adulta.",
+      "instruccionCorta": "Iluminá y marcá los permisos que no tienen sentido.",
+      "explicacionCorta": "El permiso debe servir para esa tarea. Aunque tenga sentido, revisá la app con una persona adulta."
+    },
+    "relatoCorto": "Una linterna pide leer mensajes y contactos, y saber siempre dónde está Sol. No explica para qué.",
+    "consejoCorto": "Si una app pide datos que no necesita, frená y revisala con una persona adulta."
+  },
+  {
+    "id": "caso-08",
+    "titulo": "El rumor del dragón",
+    "categoria": "Pensar antes de compartir",
+    "personaje": "Vera recibe una captura",
+    "insignia": {
+      "icono": "🔍",
+      "nombre": "Lupa de la verdad"
+    },
+    "relato": "Una captura dice: «¡Un dragón apareció en el patio de la escuela! Reenviá ya». No dice quién lo publicó, no tiene fecha ni muestra una fuente.",
+    "pistas": [
+      {
+        "id": "fuente",
+        "icono": "🔎",
+        "texto": "No permite saber de dónde salió la noticia",
+        "correcta": true,
+        "textoCorto": "No dice de dónde salió"
+      },
+      {
+        "id": "fecha",
+        "icono": "📅",
+        "texto": "No muestra la fecha",
+        "correcta": true,
+        "textoCorto": "No tiene fecha"
+      },
+      {
+        "id": "apuro",
+        "icono": "⏩",
+        "texto": "Pide reenviar sin comprobar",
+        "correcta": true,
+        "textoCorto": "Pide reenviar ya"
+      },
+      {
+        "id": "preguntar",
+        "icono": "🧑‍🏫",
+        "texto": "Vera consulta a su docente",
+        "correcta": false,
+        "textoCorto": "Vera pregunta a su docente"
+      }
+    ],
+    "pregunta": "¿Qué hace una buena detective?",
+    "opciones": [
+      {
+        "id": "a",
+        "icono": "🔎",
+        "texto": "Frena el reenvío y busca la fuente con ayuda",
+        "textoCorto": "Frenar y comprobar con ayuda"
+      },
+      {
+        "id": "b",
+        "icono": "📨",
+        "texto": "Reenvía porque la imagen parece real",
+        "textoCorto": "Reenviar porque parece real"
+      },
+      {
+        "id": "c",
+        "icono": "👍",
+        "texto": "Lo cree porque tiene muchos me gusta",
+        "textoCorto": "Creer por los me gusta"
+      }
+    ],
+    "respuesta": "a",
+    "explicacion": "Una captura, una imagen llamativa o muchos me gusta no prueban que algo sea cierto. Buscá la fuente, la fecha y otra confirmación confiable antes de compartir.",
+    "miniJuego": {
+      "tipo": "pocion",
+      "titulo": "Poción anti-rumores",
+      "instruccion": "Echá los ingredientes en el caldero: frenar, buscar el origen y comparar antes de compartir.",
+      "pasos": [
+        {
+          "id": "comparar",
+          "icono": "🧑‍🏫",
+          "texto": "Comparar con una fuente confiable y ayuda adulta",
+          "textoCorto": "Comparar con ayuda adulta"
+        },
+        {
+          "id": "frenar",
+          "icono": "✋",
+          "texto": "Frenar el reenvío",
+          "textoCorto": "Frenar el reenvío"
+        },
+        {
+          "id": "origen",
+          "icono": "🔎",
+          "texto": "Buscar quién lo publicó y en qué fecha",
+          "textoCorto": "Buscar quién publicó y cuándo"
+        }
+      ],
+      "ordenCorrecto": [
+        "frenar",
+        "origen",
+        "comparar"
+      ],
+      "explicacion": "Este plan ayuda a comprobar un mensaje. Si no se puede confirmar, podemos dejarlo sin compartir.",
+      "instruccionCorta": "Primero frená, después buscá el origen y al final compará.",
+      "explicacionCorta": "Buscá quién lo publicó y cuándo. Compará con una fuente confiable y ayuda adulta antes de compartir."
+    },
+    "relatoCorto": "«¡Un dragón en la escuela! Reenviá ya». El mensaje no dice de dónde salió ni tiene fecha.",
+    "consejoCorto": "Antes de compartir, buscá la fuente y la fecha. Pedí ayuda para comprobarlo."
+  },
+  {
+    "id": "caso-09",
+    "titulo": "El código que no se presta",
+    "categoria": "Verificar quién escribe",
+    "personaje": "Ivo recibe un pedido extraño",
+    "insignia": {
+      "icono": "🏰",
+      "nombre": "Guardián de cuentas"
+    },
+    "relato": "Llega un código para entrar a la cuenta de Ivo, aunque él no intentó entrar. Una cuenta con la foto de su primo pide: «Mandame ese código, lo necesito ya». Un código de acceso es privado.",
+    "pistas": [
+      {
+        "id": "inesperado",
+        "icono": "📩",
+        "texto": "Llegó un código que Ivo no pidió",
+        "correcta": true,
+        "textoCorto": "Llegó un código que no pidió"
+      },
+      {
+        "id": "pedido",
+        "icono": "🔐",
+        "texto": "Otra cuenta le pide su código privado",
+        "correcta": true,
+        "textoCorto": "Le piden su código privado"
+      },
+      {
+        "id": "urgencia",
+        "icono": "⏰",
+        "texto": "Lo apuran para que lo mande",
+        "correcta": true,
+        "textoCorto": "Lo apuran para enviarlo"
+      },
+      {
+        "id": "apodo",
+        "icono": "🦊",
+        "texto": "Ivo usa un apodo en un juego",
+        "correcta": false,
+        "textoCorto": "Usa un apodo en el juego"
+      }
+    ],
+    "pregunta": "¿Cómo puede cuidar su cuenta?",
+    "opciones": [
+      {
+        "id": "a",
+        "icono": "📨",
+        "texto": "Enviar el código porque reconoce la foto",
+        "textoCorto": "Enviar porque reconoce la foto"
+      },
+      {
+        "id": "b",
+        "icono": "🔐",
+        "texto": "No enviar el código y revisar el pedido con una persona adulta",
+        "textoCorto": "No enviar y pedir ayuda adulta"
+      },
+      {
+        "id": "c",
+        "icono": "🌍",
+        "texto": "Publicar el código para preguntar qué es",
+        "textoCorto": "Publicar el código"
+      }
+    ],
+    "respuesta": "b",
+    "explicacion": "Una foto o un nombre conocido no prueban quién escribe. Los códigos para entrar a una cuenta no se envían por chat. Pedí ayuda para revisar el acceso y confirmar el pedido por otro medio.",
+    "miniJuego": {
+      "tipo": "defender",
+      "titulo": "Defendé tu cuenta",
+      "instruccion": "Las amenazas avanzan hacia tu castillo. Lanzá la carta que frena cada una.",
+      "situaciones": [
+        {
+          "id": "codigo",
+          "icono": "🔢",
+          "texto": "Alguien pide el código privado de mi cuenta",
+          "textoCorto": "Piden el código de mi cuenta"
+        },
+        {
+          "id": "pedido",
+          "icono": "💬",
+          "texto": "Pedido extraño de un contacto conocido",
+          "textoCorto": "Pedido extraño de un conocido"
+        },
+        {
+          "id": "alerta",
+          "icono": "📩",
+          "texto": "Aviso de un acceso que no hice",
+          "textoCorto": "Aviso de acceso que no hice"
+        }
+      ],
+      "acciones": [
+        {
+          "id": "revisar",
+          "icono": "🧑‍🏫",
+          "texto": "Revisar la seguridad con una persona adulta",
+          "textoCorto": "Revisar con ayuda adulta"
+        },
+        {
+          "id": "privado",
+          "icono": "🔐",
+          "texto": "Mantenerlo privado, sin enviarlo por chat",
+          "textoCorto": "Guardarlo sin enviarlo por chat"
+        },
+        {
+          "id": "confirmar",
+          "icono": "📞",
+          "texto": "Confirmar quién es por otro medio con ayuda",
+          "textoCorto": "Llamar con ayuda adulta"
+        }
+      ],
+      "soluciones": {
+        "codigo": "privado",
+        "pedido": "confirmar",
+        "alerta": "revisar"
+      },
+      "explicacion": "Cuidar los códigos, verificar quién escribe y revisar los avisos con ayuda protege las cuentas. En este juego nunca hay que ingresar códigos reales de acceso.",
+      "instruccionCorta": "Lanzá la carta que frena cada amenaza.",
+      "explicacionCorta": "Un nombre o una foto no prueban quién escribe. Los códigos de acceso no se mandan por chat."
+    },
+    "relatoCorto": "Ivo recibe un código que no pidió. Una cuenta con la foto de su primo dice: «Mandame tu código privado, ¡ya!».",
+    "consejoCorto": "No envíes códigos de acceso. Pedí ayuda adulta para revisar quién te escribe."
   }
 ]

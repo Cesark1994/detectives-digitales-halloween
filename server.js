@@ -10,9 +10,17 @@ const QRCode = require('./vendor/QRCode');
 const QRErrorCorrectLevel = require('./vendor/QRCode/QRErrorCorrectLevel');
 const cases = JSON.parse(fs.readFileSync(path.join(__dirname, 'casos.json'), 'utf8'));
 const PORT = Number(process.env.PORT) || 3000;
-const DETECT_MS = Math.max(1000, Number(process.env.DETECT_SECONDS || 30) * 1000);
-const DECIDE_MS = Math.max(1000, Number(process.env.DECIDE_SECONDS || 20) * 1000);
-const MINI_MS = Math.max(1000, Number(process.env.MINI_SECONDS || 18) * 1000);
+const PACES = {
+  calm: {detect:45000,decide:30000,mini:60000},
+  classic: {detect:30000,decide:20000,mini:35000}
+};
+// Keep deployment/test overrides available for both classroom rhythms.
+for(const stages of Object.values(PACES)) for(const stage of Object.keys(stages)) {
+  const seconds=Number(process.env[stage.toUpperCase()+'_SECONDS']);
+  if(Number.isFinite(seconds) && seconds>0) stages[stage]=Math.max(1000,seconds*1000);
+}
+// Arcade formats reuse the answer shape of a classic one, so scoring and validation stay shared.
+const MINI_KIND = {tocar:'tocar',ordenar:'ordenar',pocion:'ordenar',clasificar:'clasificar',seleccionar:'seleccionar',atrapar:'seleccionar',linterna:'seleccionar',conectar:'conectar',defender:'conectar'};
 const ROOM_IDLE_MS = 12 * 60 * 60 * 1000;
 const rateWindow = new Map();
 function allowRate(key, max, windowMs) {
@@ -42,6 +50,7 @@ function addresses() {
   }
   return data;
 }
+function stageDuration(room,stage=room.stage) { return PACES[room.pace][stage]||0; }
 function advance(room, action='next') {
   if(action==='reset') {
     room.stage='lobby'; room.caseIndex=0; room.endsAt=0;
@@ -51,16 +60,16 @@ function advance(room, action='next') {
   switch(room.stage) {
     case 'lobby':
       if(room.players.length<MIN_PLAYERS) throw error('Esperá que ingrese al menos un investigador.');
-      room.caseIndex=0; room.stage='detect'; room.endsAt=Date.now()+DETECT_MS; room.submissions={}; break;
+      room.caseIndex=0; room.stage='detect'; room.endsAt=Date.now()+stageDuration(room); room.submissions={}; break;
     case 'detect': room.stage='detect_reveal'; room.endsAt=0; scoreDetect(room); break;
-    case 'detect_reveal': room.stage='decide'; room.endsAt=Date.now()+DECIDE_MS; break;
+    case 'detect_reveal': room.stage='decide'; room.endsAt=Date.now()+stageDuration(room); break;
     case 'decide': room.stage='decide_reveal'; room.endsAt=0; scoreDecide(room); break;
-    case 'decide_reveal': room.stage='mini'; room.endsAt=Date.now()+MINI_MS; break;
+    case 'decide_reveal': room.stage='mini'; room.endsAt=Date.now()+stageDuration(room); break;
     case 'mini': room.stage='mini_reveal'; room.endsAt=0; scoreMini(room); break;
     case 'mini_reveal': room.stage='leaderboard'; room.endsAt=0; break;
     case 'leaderboard':
-      if(room.caseIndex+1>=cases.length) { room.stage='final'; room.endsAt=0; }
-      else { room.caseIndex++; room.stage='detect'; room.endsAt=Date.now()+DETECT_MS; room.submissions={}; }
+      if(room.caseIndex+1>=room.caseCount) { room.stage='final'; room.endsAt=0; }
+      else { room.caseIndex++; room.stage='detect'; room.endsAt=Date.now()+stageDuration(room); room.submissions={}; }
       break;
     case 'final': if(action==='reset') return advance(room, 'reset'); else throw error('La partida terminó. Elegí «Volver a comenzar».');
   }
@@ -80,24 +89,34 @@ function scoreDecide(room) {
   }
 }
 function scoreMini(room) {
-  const mini=cases[room.caseIndex].miniJuego;
+  const mini=cases[room.caseIndex].miniJuego,kind=MINI_KIND[mini.tipo];
   for(const p of room.players) {
     const sub=room.submissions[p.id]?.mini;
     if(!sub || sub.scored) continue;
     let correct=false;
-    if(mini.tipo==='tocar') correct=sub.selection===mini.respuesta;
-    if(mini.tipo==='ordenar') correct=Array.isArray(sub.sequence) && sub.sequence.join('|')===mini.ordenCorrecto.join('|');
-    if(mini.tipo==='clasificar') correct=Object.keys(mini.clasificacion).every(id=>sub.groups?.[id]===mini.clasificacion[id]);
+    if(kind==='tocar') correct=sub.selection===mini.respuesta;
+    if(kind==='ordenar') correct=Array.isArray(sub.sequence) && sub.sequence.join('|')===mini.ordenCorrecto.join('|');
+    if(kind==='clasificar') correct=Object.keys(mini.clasificacion).every(id=>sub.groups?.[id]===mini.clasificacion[id]);
+    if(kind==='seleccionar') correct=Array.isArray(sub.selections) && sub.selections.length===mini.correctas.length && sub.selections.every(id=>mini.correctas.includes(id));
+    if(kind==='conectar') correct=Object.keys(mini.soluciones).every(id=>sub.matches?.[id]===mini.soluciones[id]);
     if(correct) p.score+=300;
     sub.scored=true;
   }
 }
 function miniForClient(mini,reveal) {
-  const out={tipo:mini.tipo,titulo:mini.titulo,instruccion:mini.instruccion};
-  if(mini.tipo==='tocar') {out.opciones=mini.opciones.map(v=>({id:v.id,icono:v.icono,texto:v.texto})); if(reveal) out.respuesta=mini.respuesta;}
-  if(mini.tipo==='ordenar') {out.pasos=mini.pasos.map(v=>({id:v.id,icono:v.icono,texto:v.texto})); if(reveal) out.ordenCorrecto=mini.ordenCorrecto;}
-  if(mini.tipo==='clasificar') {out.tarjetas=mini.tarjetas.map(v=>({id:v.id,icono:v.icono,texto:v.texto})); if(reveal) out.clasificacion=mini.clasificacion;}
-  if(reveal) out.explicacion=mini.explicacion;
+  const card=v=>({id:v.id,icono:v.icono,texto:v.texto,...(v.textoCorto?{textoCorto:v.textoCorto}:{})});
+  const kind=MINI_KIND[mini.tipo];
+  const out={tipo:mini.tipo,titulo:mini.titulo,instruccion:mini.instruccion,...(mini.instruccionCorta?{instruccionCorta:mini.instruccionCorta}:{})};
+  if(kind==='tocar') {out.opciones=mini.opciones.map(card); if(reveal) out.respuesta=mini.respuesta;}
+  if(kind==='ordenar') {out.pasos=mini.pasos.map(card); if(reveal) out.ordenCorrecto=mini.ordenCorrecto;}
+  if(kind==='clasificar') {out.tarjetas=mini.tarjetas.map(card); if(reveal) out.clasificacion=mini.clasificacion;}
+  if(kind==='seleccionar') {out.opciones=mini.opciones.map(card); if(reveal) out.correctas=mini.correctas;}
+  if(kind==='conectar') {
+    out.situaciones=mini.situaciones.map(card);
+    out.acciones=mini.acciones.map(card);
+    if(reveal) out.soluciones=mini.soluciones;
+  }
+  if(reveal) {out.explicacion=mini.explicacion;if(mini.explicacionCorta)out.explicacionCorta=mini.explicacionCorta;}
   return out;
 }
 function currentCase(room) {
@@ -105,10 +124,10 @@ function currentCase(room) {
   if(!c) return null;
   const reveal=['detect_reveal','decide','decide_reveal','mini','mini_reveal','leaderboard','final'].includes(room.stage);
   return {
-    id:c.id, titulo:c.titulo, categoria:c.categoria, personaje:c.personaje, relato:c.relato,
-    pistas:c.pistas.map(p=>({id:p.id,texto:p.texto,icono:p.icono,...(reveal?{correcta:p.correcta}:{})})),
+    id:c.id, titulo:c.titulo, categoria:c.categoria, personaje:c.personaje,...(c.insignia?{insignia:c.insignia}:{}), relato:c.relato,...(c.relatoCorto?{relatoCorto:c.relatoCorto}:{}),
+    pistas:c.pistas.map(p=>({id:p.id,texto:p.texto,icono:p.icono,...(p.textoCorto?{textoCorto:p.textoCorto}:{}),...(reveal?{correcta:p.correcta}:{})})),
     pregunta:c.pregunta, opciones:c.opciones,
-    ...(['decide_reveal','mini','mini_reveal','leaderboard','final'].includes(room.stage)?{respuesta:c.respuesta,explicacion:c.explicacion}:{}),
+    ...(['decide_reveal','mini','mini_reveal','leaderboard','final'].includes(room.stage)?{respuesta:c.respuesta,explicacion:c.explicacion,...(c.consejoCorto?{consejoCorto:c.consejoCorto}:{})}:{}),
     ...(c.miniJuego?{miniJuego:miniForClient(c.miniJuego,['mini_reveal','leaderboard','final'].includes(room.stage))}:{})
   };
 }
@@ -120,9 +139,11 @@ function state(room,token) {
   const now=Date.now();
   const part=['detect','decide','mini'].includes(room.stage)?room.stage:null;
   const submitted=part?room.players.filter(p=>room.submissions[p.id]?.[part]).length:0;
-  return {code:room.code,stage:room.stage,caseIndex:room.caseIndex,totalCases:cases.length,
+  return {code:room.code,stage:room.stage,caseIndex:room.caseIndex,totalCases:room.caseCount,
+    pace:room.pace,stageDurationMs:stageDuration(room),
     case:currentCase(room),endsAt:room.endsAt,serverNow:now,maxPlayers:room.maxPlayers,
-    players:room.players.map(p=>({id:p.id,name:p.name,avatar:p.avatar,score:p.score})),
+    // Who already answered this stage (never what they answered), so the big screen can light up their avatars.
+    players:room.players.map(p=>({id:p.id,name:p.name,avatar:p.avatar,score:p.score,answered:!!(part&&room.submissions[p.id]?.[part])})),
     ranking,submitted,part,
     personal:me?{id:me.id,name:me.name,avatar:me.avatar,score:me.score,
       answers:room.submissions[me.id]||{}}:null,
@@ -171,7 +192,7 @@ function getQR(text) {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${n+8} ${n+8}" shape-rendering="crispEdges"><rect width="100%" height="100%" fill="white"/><g fill="black">${cells}</g></svg>`;
 }
 function sendStatic(req,res,url) {
-  const paths={'/':'index.html','/organizador':'index.html','/jugar':'index.html','/estilos.css':'estilos.css','/app.js':'app.js','/favicon.svg':'favicon.svg'};
+  const paths={'/':'index.html','/organizador':'index.html','/jugar':'index.html','/estilos.css':'estilos.css','/infantil.css':'infantil.css','/organizador.css':'organizador.css','/app.js':'app.js','/favicon.svg':'favicon.svg'};
   const fname=paths[url.pathname];if(!fname) throw error('Página no encontrada.',404);
   const types={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'application/javascript; charset=utf-8','.svg':'image/svg+xml'};
   const full=path.join(PUBLIC,fname);
@@ -184,6 +205,10 @@ const server=http.createServer(async(req,res)=>{
  try {
    const u=new URL(req.url,'http://localhost');
    if (req.method==='GET' && u.pathname==='/healthz') return json(res,{ok:true,app:'Detectives Digitales',version:'2.0.0'});
+   if (req.method==='GET' && u.pathname==='/api/catalogo') return json(res,{
+     caseCount:cases.length,miniTypes:[...new Set(cases.map(c=>c.miniJuego.tipo))],paces:PACES,
+     missions:cases.map(c=>({id:c.id,titulo:c.titulo,categoria:c.categoria,personaje:c.personaje,tipo:c.miniJuego.tipo}))
+   });
    if(req.method==='POST') {
      const origin=req.headers.origin;
      const forwardedHost=req.headers['x-forwarded-host'];
@@ -204,12 +229,17 @@ const server=http.createServer(async(req,res)=>{
    }
    if(req.method==='POST'&&u.pathname==='/api/crear') {
      const data=await bodyJSON(req);
+     const requestedCount=data.caseCount===undefined?'all':data.caseCount;
+     if(![3,6,9,'all'].includes(requestedCount)) throw error('Elegí una partida de 3, 6, 9 casos o todos los casos.');
+     const pace=data.pace===undefined?'calm':data.pace;
+     if(typeof pace!=='string' || !Object.hasOwn(PACES,pace)) throw error('Elegí un ritmo tranquilo o clásico.');
+     const caseCount=requestedCount==='all'?cases.length:Math.min(requestedCount,cases.length);
      allowRate('create:'+clientIP,6,60_000);
      if(rooms.size>=MAX_ROOMS) throw error('Se alcanzó el límite de salas activas. Cerrá una sala anterior o intentá más tarde.');
      const maxPlayers=Math.min(30,Math.max(MIN_PLAYERS,Number(data.maxPlayers)||6));
-     const room={code:uniqueCode(),hostToken:newToken(),stage:'lobby',caseIndex:0,endsAt:0,maxPlayers,players:[],submissions:{},clients:new Set(),lastActivity:Date.now()};
+     const room={code:uniqueCode(),hostToken:newToken(),stage:'lobby',caseIndex:0,endsAt:0,maxPlayers,caseCount,pace,players:[],submissions:{},clients:new Set(),lastActivity:Date.now()};
      rooms.set(room.code,room);
-     return json(res,{code:room.code,hostToken:room.hostToken,maxPlayers});
+     return json(res,{code:room.code,hostToken:room.hostToken,maxPlayers,totalCases:caseCount,pace});
    }
    if(req.method==='POST'&&u.pathname==='/api/ingresar') {allowRate('join:'+clientIP,40,60_000);const data=await bodyJSON(req);return json(res,join(findRoom(data.code),data));}
    if(req.method==='POST'&&u.pathname==='/api/accion') {
@@ -235,23 +265,41 @@ const server=http.createServer(async(req,res)=>{
        if(!cases[room.caseIndex].opciones.some(v=>v.id===data.selection)) throw error('Seleccioná una respuesta válida.');
        answer.decide={selection:data.selection,scored:false};
      } else {
-       const mini=cases[room.caseIndex].miniJuego;
-       if(mini.tipo==='tocar') {
+       const mini=cases[room.caseIndex].miniJuego,kind=MINI_KIND[mini.tipo];
+       if(!kind) throw error('Este mini juego no está disponible.');
+       if(kind==='tocar') {
          if(!mini.opciones.some(v=>v.id===data.selection)) throw error('Elegí una tarjeta válida.');
          answer.mini={selection:data.selection,scored:false};
        }
-       if(mini.tipo==='ordenar') {
+       if(kind==='ordenar') {
          if(!Array.isArray(data.sequence) || data.sequence.length!==mini.pasos.length) throw error('Completá todos los pasos.');
          const sequence=data.sequence.map(String); const valid=new Set(mini.pasos.map(v=>v.id));
          if(new Set(sequence).size!==mini.pasos.length || sequence.some(v=>!valid.has(v))) throw error('El orden no es válido.');
          answer.mini={sequence,scored:false};
        }
-       if(mini.tipo==='clasificar') {
+       if(kind==='clasificar') {
          if(!data.groups || typeof data.groups!=='object' || Array.isArray(data.groups)) throw error('Clasificá todas las tarjetas.');
          const valid=new Set(mini.tarjetas.map(v=>v.id)); const groups={};
          for(const id of valid) { if(!['safe','danger'].includes(data.groups[id])) throw error('Clasificá todas las tarjetas.'); groups[id]=data.groups[id]; }
          if(Object.keys(data.groups).some(id=>!valid.has(id))) throw error('La tarjeta no es válida.');
          answer.mini={groups,scored:false};
+       }
+       if(kind==='seleccionar') {
+         if(!Array.isArray(data.selections)) throw error('Seleccioná las tarjetas que correspondan.');
+         const valid=new Set(mini.opciones.map(v=>v.id)); const selections=data.selections.map(String);
+         if(new Set(selections).size!==selections.length || selections.some(id=>!valid.has(id))) throw error('La selección no es válida.');
+         answer.mini={selections,scored:false};
+       }
+       if(kind==='conectar') {
+         if(!data.matches || typeof data.matches!=='object' || Array.isArray(data.matches)) throw error('Conectá cada situación con una acción.');
+         const validSituations=new Set(mini.situaciones.map(v=>v.id)); const validActions=new Set(mini.acciones.map(v=>v.id));
+         const matches={};
+         for(const id of validSituations) {
+           if(!validActions.has(data.matches[id])) throw error('Conectá todas las situaciones con una acción válida.');
+           matches[id]=data.matches[id];
+         }
+         if(Object.keys(data.matches).some(id=>!validSituations.has(id))) throw error('La situación no es válida.');
+         answer.mini={matches,scored:false};
        }
      }
      touch(room);room.submissions[p.id]=answer;push(room);return json(res,{ok:true});

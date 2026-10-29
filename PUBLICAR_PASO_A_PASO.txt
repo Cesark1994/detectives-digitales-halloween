@@ -13,11 +13,28 @@ DETECTIVES DIGITALES - PUBLICACIÓN EN GITHUB + RENDER
 6) Confirmá el archivo render.yaml y desplegá el servicio.
 7) Al terminar, Render te dará una URL HTTPS propia.
 8) Abrila con /organizador al final.
-9) Creá sala, compartí QR y probá con dos celulares.
+9) Elegí 3, 6 o 9 misiones, ritmo tranquilo o clásico y cupo.
+   Creá la aventura, compartí el QR y probá con dos celulares.
 
 ALTERNATIVA A BLUEPRINT:
 New > Web Service; Runtime Node; Build: npm install --ignore-scripts;
 Start: npm start; Health check: /healthz.
+Variable de entorno: NODE_ENV=production.
+Root Directory queda vacío si package.json está en la raíz;
+si está dentro de una carpeta, escribí la ruta de esa carpeta.
+
+ACTUALIZAR UN SERVICIO EXISTENTE:
+1) Terminá las partidas y descargá los rankings que quieras conservar.
+   Un nuevo despliegue reinicia el servidor y elimina las salas.
+2) Actualizá los archivos en el repositorio de GitHub conectado a Render,
+   conservando las rutas de server.js, casos.json y public/.
+3) Guardá los cambios en la rama de publicación, normalmente main.
+4) Esperá el despliegue automático. Si está desactivado, abrí el servicio
+   en Render y elegí Manual Deploy > Deploy latest commit.
+5) Cuando diga Live, abrí la misma URL pública con /organizador,
+   creá una sala nueva y probá desde un celular.
+
+Editar solamente la carpeta local no cambia la versión publicada.
 
 MUY IMPORTANTE:
 * NO es una web estática: GitHub Pages NO ejecuta este servidor.
@@ -32,7 +49,11 @@ MUY IMPORTANTE:
 PROBAR ANTES DE UN EVENTO:
 - Abrir el enlace en computadora y dos celulares.
 - Iniciar, detectar, decidir, consultar ranking.
-- Probar todos los casos y descargar CSV.
+- Probar los nueve casos y descargar CSV. Verificar los nueve minijuegos:
+  tocar, ordenar, clasificar, seleccionar, conectar, Cazafantasmas,
+  Linterna detective, Poción anti-rumores y Defendé tu cuenta.
+- Probar ambos ritmos: tranquilo (45/30/60 s) y clásico (30/20/35 s).
+- Probar Escuchar y Detener lectura si el navegador admite voces.
 - Volver a ingresar desde un celular (misma pestaña/navegador).
 - Tener un plan de respaldo local si falla Internet.
 
