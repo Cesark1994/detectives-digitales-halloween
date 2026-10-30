@@ -137,7 +137,7 @@ test('catálogo, ritmo y cantidad de casos son configurables y se conservan al r
   const catalog=await request(base,'/api/catalogo');
   const content=JSON.parse(fs.readFileSync(path.resolve(__dirname,'../casos.json'),'utf8'));
   assert.equal(catalog.status,200);assert.equal(catalog.data.caseCount,content.length);
-  assert.deepEqual(new Set(catalog.data.miniTypes),new Set(['tocar','ordenar','clasificar','seleccionar','conectar','atrapar','linterna','pocion','defender']));
+  assert.deepEqual(new Set(catalog.data.miniTypes),new Set(['tocar','ordenar','clasificar','seleccionar','conectar','atrapar','linterna','pocion','defender','chat','feed']));
   assert.deepEqual(Object.keys(catalog.data).sort(),['caseCount','miniTypes','missions','paces']);
   assert.equal(catalog.data.missions.length,content.length);
   for(const mission of catalog.data.missions) assert.deepEqual(Object.keys(mission).sort(),['categoria','id','personaje','tipo','titulo']);
@@ -239,3 +239,4 @@ test('todos los minijuegos validan respuestas, ocultan soluciones y puntúan exa
   assert.equal((await getState()).stage,'final');
  } finally {await server.stop()}
 });
+

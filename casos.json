@@ -47,24 +47,31 @@
     "opciones": [
       {
         "id": "a",
-        "icono": "📸",
+        "icono": "💬",
         "texto": "Mandar foto",
         "textoCorto": "Mandar la foto",
         "porque": "Una foto puede circular y no se puede recuperar. Podés decir que no."
       },
       {
         "id": "b",
-        "icono": "🤐",
+        "icono": "🧭",
         "texto": "Guardar el secreto y seguir chateando",
         "textoCorto": "Guardar el secreto",
         "porque": "Un secreto que te incomoda es una alerta: contáselo a alguien que te cuide."
       },
       {
         "id": "c",
-        "icono": "🛡️",
+        "icono": "💡",
         "texto": "Dejar el chat y pedir ayuda a una persona adulta de confianza",
         "textoCorto": "Salir y pedir ayuda adulta",
         "porque": "Salir del chat y contarle a una persona adulta de confianza te protege."
+      },
+      {
+        "id": "alternativa-extra",
+        "texto": "Consultar solo a quien insiste",
+        "textoCorto": "Consultar solo a quien insiste",
+        "icono": "💭",
+        "porque": "Quien insiste puede seguir presionando. Buscá a una persona adulta de confianza."
       }
     ],
     "respuesta": "c",
@@ -151,22 +158,29 @@
             "id": "bien",
             "texto": "Cortar y buscar ayuda adulta",
             "textoCorto": "Cortar y buscar ayuda adulta",
-            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
-            "icono": "🛡️"
+            "porque": "Podés cortar el contacto y pedir ayuda. Nadie tiene derecho a presionarte para mostrar tu imagen.",
+            "icono": "💬"
           },
           {
             "id": "riesgo1",
             "texto": "Seguir para ganar el torneo",
             "textoCorto": "Seguir para ganar el torneo",
-            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
-            "icono": "🎃"
+            "porque": "Compartir imágenes o guardar un secreto por presión no elimina el pedido. Podés frenar y buscar apoyo.",
+            "icono": "🧭"
           },
           {
             "id": "riesgo2",
             "texto": "Prometer que no lo contará",
             "textoCorto": "Prometer que no lo contará",
-            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
-            "icono": "🎃"
+            "porque": "Compartir imágenes o guardar un secreto por presión no elimina el pedido. Podés frenar y buscar apoyo.",
+            "icono": "💡"
+          },
+          {
+            "id": "alternativa-extra",
+            "texto": "Consultar solo a quien insiste",
+            "textoCorto": "Consultar solo a quien insiste",
+            "icono": "💭",
+            "porque": "Quien insiste puede seguir presionando. Buscá a una persona adulta de confianza."
           }
         ],
         "respuesta": "bien",
@@ -252,33 +266,40 @@
             "id": "bien",
             "texto": "No mandar y consultar en casa",
             "textoCorto": "No mandar y consultar en casa",
-            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
-            "icono": "🛡️"
+            "porque": "Podés cortar el contacto y pedir ayuda. Nadie tiene derecho a presionarte para mostrar tu imagen.",
+            "icono": "💬"
           },
           {
             "id": "riesgo1",
             "texto": "Tapar su cara y mandar igual",
             "textoCorto": "Tapar su cara y mandar igual",
-            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
-            "icono": "🎃"
+            "porque": "Compartir imágenes o guardar un secreto por presión no elimina el pedido. Podés frenar y buscar apoyo.",
+            "icono": "🧭"
           },
           {
             "id": "riesgo2",
             "texto": "Mandar fotos de un compañero",
             "textoCorto": "Mandar fotos de un compañero",
-            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
-            "icono": "🎃"
+            "porque": "Compartir imágenes o guardar un secreto por presión no elimina el pedido. Podés frenar y buscar apoyo.",
+            "icono": "💡"
+          },
+          {
+            "id": "alternativa-extra",
+            "texto": "Consultar solo a quien insiste",
+            "textoCorto": "Consultar solo a quien insiste",
+            "icono": "💭",
+            "porque": "Quien insiste puede seguir presionando. Buscá a una persona adulta de confianza."
           }
         ],
         "respuesta": "bien",
         "explicacion": "La situación merece una pausa. No mandar y consultar en casa. Buscá el apoyo de una persona adulta de confianza.",
         "consejoCorto": "Podés frenar y pedir ayuda. No tenés que resolver el problema en soledad.",
         "miniJuego": {
-          "tipo": "clasificar",
-          "titulo": "El estudio de las imágenes",
+          "tipo": "feed",
+          "titulo": "Feed: El estudio de las imágenes",
           "contexto": "Preparás una galería virtual. Revisá qué imágenes se pueden compartir.",
-          "instruccion": "Revisá cada tarjeta y separá lo que cuida de lo que necesita atención.",
-          "instruccionCorta": "En cada tarjeta: ¿me cuida o necesita atención?",
+          "instruccion": "Revisá cada publicación: deslizá a Me cuida o Atención, o usá los botones.",
+          "instruccionCorta": "Revisá el feed: ¿me cuida o necesita atención?",
           "explicacion": "Un paisaje sin datos personales puede compartirse tras revisarlo. La imagen de otra persona necesita su permiso. Una dirección visible revela dónde vivís. Un personaje inventado sin datos personales no expone tu imagen.",
           "explicacionCorta": "Revisá la situación antes de actuar. Si tenés dudas, pedí ayuda adulta.",
           "tarjetas": [
@@ -287,28 +308,28 @@
               "texto": "Un paisaje sin personas",
               "textoCorto": "Un paisaje sin personas",
               "porque": "Un paisaje sin datos personales puede compartirse tras revisarlo.",
-              "icono": "🛡️"
+              "icono": "📱"
             },
             {
               "id": "1",
               "texto": "Una amiga sin su permiso",
               "textoCorto": "Una amiga sin su permiso",
               "porque": "La imagen de otra persona necesita su permiso.",
-              "icono": "👻"
+              "icono": "📱"
             },
             {
               "id": "2",
               "texto": "Una foto con mi dirección",
               "textoCorto": "Una foto con mi dirección",
               "porque": "Una dirección visible revela dónde vivís.",
-              "icono": "👻"
+              "icono": "📱"
             },
             {
               "id": "3",
               "texto": "Un monstruo inventado",
               "textoCorto": "Un monstruo inventado",
               "porque": "Un personaje inventado sin datos personales no expone tu imagen.",
-              "icono": "🛡️"
+              "icono": "📱"
             }
           ],
           "clasificacion": {
@@ -370,24 +391,31 @@
     "opciones": [
       {
         "id": "a",
-        "icono": "🎁",
+        "icono": "💬",
         "texto": "Abrir rápido",
         "textoCorto": "Abrir rápido",
         "porque": "Abrir el enlace puede llevarte a un sitio que roba tu clave."
       },
       {
         "id": "b",
-        "icono": "🛡️",
+        "icono": "🧭",
         "texto": "No abrir y mostrar el mensaje a una persona adulta",
         "textoCorto": "No abrir y pedir ayuda",
         "porque": "No abrir y mostrárselo a una persona adulta es la forma segura de revisar."
       },
       {
         "id": "c",
-        "icono": "📤",
+        "icono": "💡",
         "texto": "Reenviar el mensaje a sus amigos para que también ganen",
         "textoCorto": "Reenviarlo a sus amigos",
         "porque": "Reenviar una trampa pone en riesgo a tus amigos también."
+      },
+      {
+        "id": "alternativa-extra",
+        "texto": "Compartir el enlace con amigos",
+        "textoCorto": "Compartir el enlace con amigos",
+        "icono": "💭",
+        "porque": "Reenviar el enlace puede llevar la trampa a otras personas."
       }
     ],
     "respuesta": "b",
@@ -478,22 +506,29 @@
             "id": "bien",
             "texto": "Consultar desde la app oficial",
             "textoCorto": "Consultar desde la app oficial",
-            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
-            "icono": "🛡️"
+            "porque": "Abrir el servicio oficial por tu cuenta evita depender del enlace que ofrece el supuesto regalo.",
+            "icono": "💬"
           },
           {
             "id": "riesgo1",
             "texto": "Dar el código antes del cierre",
             "textoCorto": "Dar el código antes del cierre",
-            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
-            "icono": "🎃"
+            "porque": "Un regalo no justifica entrar desde un enlace dudoso ni compartir claves o códigos de acceso.",
+            "icono": "🧭"
           },
           {
             "id": "riesgo2",
             "texto": "Probar con la cuenta de otro",
             "textoCorto": "Probar con la cuenta de otro",
-            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
-            "icono": "🎃"
+            "porque": "Un regalo no justifica entrar desde un enlace dudoso ni compartir claves o códigos de acceso.",
+            "icono": "💡"
+          },
+          {
+            "id": "alternativa-extra",
+            "texto": "Compartir el enlace con amigos",
+            "textoCorto": "Compartir el enlace con amigos",
+            "icono": "💭",
+            "porque": "Reenviar el enlace puede llevar la trampa a otras personas."
           }
         ],
         "respuesta": "bien",
@@ -583,54 +618,61 @@
             "id": "bien",
             "texto": "En el juego oficial con ayuda",
             "textoCorto": "En el juego oficial con ayuda",
-            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
-            "icono": "🛡️"
+            "porque": "Abrir el servicio oficial por tu cuenta evita depender del enlace que ofrece el supuesto regalo.",
+            "icono": "💬"
           },
           {
             "id": "riesgo1",
             "texto": "En el enlace del anuncio",
             "textoCorto": "En el enlace del anuncio",
-            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
-            "icono": "🎃"
+            "porque": "Un regalo no justifica entrar desde un enlace dudoso ni compartir claves o códigos de acceso.",
+            "icono": "🧭"
           },
           {
             "id": "riesgo2",
             "texto": "En otro enlace del vendedor",
             "textoCorto": "En otro enlace del vendedor",
-            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
-            "icono": "🎃"
+            "porque": "Un regalo no justifica entrar desde un enlace dudoso ni compartir claves o códigos de acceso.",
+            "icono": "💡"
+          },
+          {
+            "id": "alternativa-extra",
+            "texto": "Compartir el enlace con amigos",
+            "textoCorto": "Compartir el enlace con amigos",
+            "icono": "💭",
+            "porque": "Reenviar el enlace puede llevar la trampa a otras personas."
           }
         ],
         "respuesta": "bien",
         "explicacion": "La situación merece una pausa. En el juego oficial con ayuda. Buscá el apoyo de una persona adulta de confianza.",
         "consejoCorto": "Podés frenar y pedir ayuda. No tenés que resolver el problema en soledad.",
         "miniJuego": {
-          "tipo": "conectar",
-          "titulo": "El laboratorio de enlaces",
+          "tipo": "chat",
+          "titulo": "Chat: El laboratorio de enlaces",
           "contexto": "Llegaron tres mensajes a la mesa de revisión. Elegí cómo investigar cada uno.",
-          "instruccion": "Uní cada situación con la acción que corresponde. Usá cada acción una vez.",
-          "instruccionCorta": "Elegí una ayuda para cada situación.",
+          "instruccion": "Leé cada mensaje y elegí la respuesta que corresponde. Podés reintentar con una explicación.",
+          "instruccionCorta": "Leé el mensaje y elegí cómo responder.",
           "situaciones": [
             {
               "id": "s0",
-              "texto": "Una tienda pide mi clave",
-              "textoCorto": "Una tienda pide mi clave",
+              "texto": "Mensaje recibido: «Para comprar, pasame tu clave»",
+              "textoCorto": "Para comprar, pasame tu clave",
               "porque": "Una tienda no necesita la contraseña de tu juego.",
-              "icono": "🎃"
+              "icono": "💬"
             },
             {
               "id": "s1",
-              "texto": "Un premio llega por chat",
-              "textoCorto": "Un premio llega por chat",
+              "texto": "Mensaje recibido: «Ganaste: reclamá tu premio por acá»",
+              "textoCorto": "Ganaste: reclamá tu premio por acá",
               "porque": "Las promociones se comprueban desde el servicio oficial con ayuda.",
-              "icono": "🎃"
+              "icono": "💬"
             },
             {
               "id": "s2",
-              "texto": "Un enlace engaña a otros",
-              "textoCorto": "Un enlace engaña a otros",
+              "texto": "Mensaje recibido: «Difundamos un enlace para engañar»",
+              "textoCorto": "Difundamos un enlace para engañar",
               "porque": "Reportar un engaño con ayuda puede proteger a otras personas.",
-              "icono": "🎃"
+              "icono": "💬"
             }
           ],
           "acciones": [
@@ -716,24 +758,31 @@
     "opciones": [
       {
         "id": "a",
-        "icono": "😡",
+        "icono": "💬",
         "texto": "Responder mal",
         "textoCorto": "Responder con insultos",
         "porque": "Responder con enojo puede empeorar las cosas."
       },
       {
         "id": "b",
-        "icono": "🛡️",
+        "icono": "🧭",
         "texto": "Contarlo a una persona adulta y guardar los mensajes con su ayuda",
         "textoCorto": "Contar y guardar mensajes acompañada",
         "porque": "Contar y guardar las pruebas con ayuda permite frenar las burlas."
       },
       {
         "id": "c",
-        "icono": "🗑️",
+        "icono": "💡",
         "texto": "Borrar todos los mensajes y no contarle a nadie",
         "textoCorto": "Borrar todo y callarse",
         "porque": "Callar deja a Luna sola, y borrar todo elimina las pruebas."
+      },
+      {
+        "id": "alternativa-extra",
+        "texto": "Esperar sin contar lo que pasa",
+        "textoCorto": "Esperar sin contar lo que pasa",
+        "icono": "💭",
+        "porque": "Si una situación te lastima, contarla permite que alguien te acompañe."
       }
     ],
     "respuesta": "b",
@@ -824,49 +873,56 @@
             "id": "bien",
             "texto": "Escucharla y buscar ayuda juntos",
             "textoCorto": "Escucharla y buscar ayuda juntos",
-            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
-            "icono": "🛡️"
+            "porque": "Escuchar y pedir apoyo ayuda a frenar el maltrato sin sumar nuevas agresiones.",
+            "icono": "💬"
           },
           {
             "id": "riesgo1",
             "texto": "Pedirle que aguante las burlas",
             "textoCorto": "Pedirle que aguante las burlas",
-            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
-            "icono": "🎃"
+            "porque": "Ceder a la presión o responder con agresiones puede aumentar el daño. Buscá apoyo de confianza.",
+            "icono": "🧭"
           },
           {
             "id": "riesgo2",
             "texto": "Responder con más insultos",
             "textoCorto": "Responder con más insultos",
-            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
-            "icono": "🎃"
+            "porque": "Ceder a la presión o responder con agresiones puede aumentar el daño. Buscá apoyo de confianza.",
+            "icono": "💡"
+          },
+          {
+            "id": "alternativa-extra",
+            "texto": "Esperar sin contar lo que pasa",
+            "textoCorto": "Esperar sin contar lo que pasa",
+            "icono": "💭",
+            "porque": "Si una situación te lastima, contarla permite que alguien te acompañe."
           }
         ],
         "respuesta": "bien",
         "explicacion": "La situación merece una pausa. Escucharla y buscar ayuda juntos. Buscá el apoyo de una persona adulta de confianza.",
         "consejoCorto": "Podés frenar y pedir ayuda. No tenés que resolver el problema en soledad.",
         "miniJuego": {
-          "tipo": "clasificar",
-          "titulo": "El patio que acompaña",
-          "instruccion": "Para cada tarjeta, elegí si ayuda a cuidarnos o necesita una alerta.",
+          "tipo": "feed",
+          "titulo": "Feed: El patio que acompaña",
+          "instruccion": "Revisá cada publicación: deslizá a Me cuida o Atención, o usá los botones.",
           "tarjetas": [
             {
               "id": "clave",
-              "icono": "🔐",
+              "icono": "📱",
               "texto": "Acompañar a quien recibe burlas",
               "textoCorto": "Acompañar a quien recibe burlas",
               "porque": "Acompañar ayuda a que nadie enfrente las burlas en soledad."
             },
             {
               "id": "link",
-              "icono": "🔗",
+              "icono": "📱",
               "texto": "Sumarse a los insultos",
               "textoCorto": "Sumarse a los insultos",
               "porque": "Los insultos lastiman y hacen crecer el problema."
             },
             {
               "id": "adulto",
-              "icono": "🧑‍🏫",
+              "icono": "📱",
               "texto": "Contar las burlas a un adulto",
               "textoCorto": "Contar las burlas a un adulto",
               "porque": "Una persona adulta puede ayudar a frenar las burlas."
@@ -878,7 +934,7 @@
             "adulto": "safe"
           },
           "explicacion": "Acompañar ayuda a que nadie enfrente las burlas en soledad. Los insultos lastiman y hacen crecer el problema. Una persona adulta puede ayudar a frenar las burlas.",
-          "instruccionCorta": "En cada tarjeta elegí: ¿me cuida o necesita atención?",
+          "instruccionCorta": "Revisá el feed: ¿me cuida o necesita atención?",
           "explicacionCorta": "Acompañar y pedir ayuda protege. Sumarse a los insultos hace daño.",
           "contexto": "Aparecen tres acciones en el patio virtual. Separá las que acompañan de las que hacen daño."
         }
@@ -929,22 +985,29 @@
             "id": "bien",
             "texto": "No hacerlo y buscar apoyo",
             "textoCorto": "No hacerlo y buscar apoyo",
-            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
-            "icono": "🛡️"
+            "porque": "Escuchar y pedir apoyo ayuda a frenar el maltrato sin sumar nuevas agresiones.",
+            "icono": "💬"
           },
           {
             "id": "riesgo1",
             "texto": "Hacerlo para que lo acepten",
             "textoCorto": "Hacerlo para que lo acepten",
-            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
-            "icono": "🎃"
+            "porque": "Ceder a la presión o responder con agresiones puede aumentar el daño. Buscá apoyo de confianza.",
+            "icono": "🧭"
           },
           {
             "id": "riesgo2",
             "texto": "Proponer humillar a otra persona",
             "textoCorto": "Proponer humillar a otra persona",
-            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
-            "icono": "🎃"
+            "porque": "Ceder a la presión o responder con agresiones puede aumentar el daño. Buscá apoyo de confianza.",
+            "icono": "💡"
+          },
+          {
+            "id": "alternativa-extra",
+            "texto": "Esperar sin contar lo que pasa",
+            "textoCorto": "Esperar sin contar lo que pasa",
+            "icono": "💭",
+            "porque": "Si una situación te lastima, contarla permite que alguien te acompañe."
           }
         ],
         "respuesta": "bien",
@@ -1039,24 +1102,31 @@
     "opciones": [
       {
         "id": "a",
-        "icono": "♻️",
+        "icono": "💬",
         "texto": "Repetir una clave corta para recordarla",
         "textoCorto": "Repetir una clave corta",
         "porque": "Una clave corta y repetida es fácil de adivinar."
       },
       {
         "id": "b",
-        "icono": "📨",
+        "icono": "🧭",
         "texto": "Mandar la contraseña al grupo",
         "textoCorto": "Mandar la clave al grupo",
         "porque": "En un grupo, tu clave la pueden ver y usar muchas personas."
       },
       {
         "id": "c",
-        "icono": "🔐",
+        "icono": "💡",
         "texto": "Crear con su familia una clave larga y distinta, sin compartirla en chats",
         "textoCorto": "Crear claves largas con mi familia",
         "porque": "Una clave larga, distinta y secreta es mucho más difícil de adivinar."
+      },
+      {
+        "id": "alternativa-extra",
+        "texto": "Guardar la clave en mi perfil",
+        "textoCorto": "Guardar la clave en mi perfil",
+        "icono": "💭",
+        "porque": "Una clave visible en tu perfil permite que otros entren a tu cuenta."
       }
     ],
     "respuesta": "c",
@@ -1153,22 +1223,29 @@
             "id": "bien",
             "texto": "Cambiar esa clave con ayuda",
             "textoCorto": "Cambiar esa clave con ayuda",
-            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
-            "icono": "🛡️"
+            "porque": "Una contraseña que otra persona pudo ver necesita cambiarse con ayuda para volver a ser privada.",
+            "icono": "💬"
           },
           {
             "id": "riesgo1",
             "texto": "Solo borrar la nota",
             "textoCorto": "Solo borrar la nota",
-            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
-            "icono": "🎃"
+            "porque": "Si alguien ya conoce tu clave, borrar una nota o pedir silencio no impide que use la cuenta.",
+            "icono": "🧭"
           },
           {
             "id": "riesgo2",
             "texto": "Pedir que nadie la recuerde",
             "textoCorto": "Pedir que nadie la recuerde",
-            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
-            "icono": "🎃"
+            "porque": "Si alguien ya conoce tu clave, borrar una nota o pedir silencio no impide que use la cuenta.",
+            "icono": "💡"
+          },
+          {
+            "id": "alternativa-extra",
+            "texto": "Guardar la clave en mi perfil",
+            "textoCorto": "Guardar la clave en mi perfil",
+            "icono": "💭",
+            "porque": "Una clave visible en tu perfil permite que otros entren a tu cuenta."
           }
         ],
         "respuesta": "bien",
@@ -1264,22 +1341,29 @@
             "id": "bien",
             "texto": "Cambiar la clave con ayuda",
             "textoCorto": "Cambiar la clave con ayuda",
-            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
-            "icono": "🛡️"
+            "porque": "Una contraseña que otra persona pudo ver necesita cambiarse con ayuda para volver a ser privada.",
+            "icono": "💬"
           },
           {
             "id": "riesgo1",
             "texto": "Dejar la cuenta abierta",
             "textoCorto": "Dejar la cuenta abierta",
-            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
-            "icono": "🎃"
+            "porque": "Si alguien ya conoce tu clave, borrar una nota o pedir silencio no impide que use la cuenta.",
+            "icono": "🧭"
           },
           {
             "id": "riesgo2",
             "texto": "Mandar la clave al grupo",
             "textoCorto": "Mandar la clave al grupo",
-            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
-            "icono": "🎃"
+            "porque": "Si alguien ya conoce tu clave, borrar una nota o pedir silencio no impide que use la cuenta.",
+            "icono": "💡"
+          },
+          {
+            "id": "alternativa-extra",
+            "texto": "Guardar la clave en mi perfil",
+            "textoCorto": "Guardar la clave en mi perfil",
+            "icono": "💭",
+            "porque": "Una clave visible en tu perfil permite que otros entren a tu cuenta."
           }
         ],
         "respuesta": "bien",
@@ -1397,24 +1481,31 @@
     "opciones": [
       {
         "id": "a",
-        "icono": "🚀",
+        "icono": "💬",
         "texto": "Publicar ya porque la foto es linda",
         "textoCorto": "Publicar ya",
         "porque": "Que la foto sea linda no borra los datos que muestra."
       },
       {
         "id": "b",
-        "icono": "🛡️",
+        "icono": "🧭",
         "texto": "Quitar la dirección, preguntar a su amiga y revisar con su familia quién la verá",
         "textoCorto": "Quitar datos, pedir permiso y revisar",
         "porque": "Quitar datos, pedir permiso y revisar con la familia cuida a todos."
       },
       {
         "id": "c",
-        "icono": "🙈",
+        "icono": "💡",
         "texto": "Publicar sin avisarle a su amiga",
         "textoCorto": "Publicar sin avisar",
         "porque": "Su amiga tiene derecho a decidir si sale en la foto."
+      },
+      {
+        "id": "alternativa-extra",
+        "texto": "Publicar y borrar los datos después",
+        "textoCorto": "Publicar y borrar los datos después",
+        "icono": "💭",
+        "porque": "Una publicación puede copiarse antes de que la borres. Revisá los datos antes de subirla."
       }
     ],
     "respuesta": "b",
@@ -1527,22 +1618,29 @@
             "id": "bien",
             "texto": "Retirarla y consultar en casa",
             "textoCorto": "Retirarla y consultar en casa",
-            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
-            "icono": "🛡️"
+            "porque": "Revisar antes de publicar evita que una imagen exponga datos que luego podrían copiarse.",
+            "icono": "💬"
           },
           {
             "id": "riesgo1",
             "texto": "Agregar su número de teléfono",
             "textoCorto": "Agregar su número de teléfono",
-            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
-            "icono": "🎃"
+            "porque": "Mostrar más datos o dejar alguno visible puede permitir que otras personas te identifiquen o ubiquen.",
+            "icono": "🧭"
           },
           {
             "id": "riesgo2",
             "texto": "Dejar solo la dirección visible",
             "textoCorto": "Dejar solo la dirección visible",
-            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
-            "icono": "🎃"
+            "porque": "Mostrar más datos o dejar alguno visible puede permitir que otras personas te identifiquen o ubiquen.",
+            "icono": "💡"
+          },
+          {
+            "id": "alternativa-extra",
+            "texto": "Publicar y borrar los datos después",
+            "textoCorto": "Publicar y borrar los datos después",
+            "icono": "💭",
+            "porque": "Una publicación puede copiarse antes de que la borres. Revisá los datos antes de subirla."
           }
         ],
         "respuesta": "bien",
@@ -1654,22 +1752,29 @@
             "id": "bien",
             "texto": "Que no queden datos personales",
             "textoCorto": "Que no queden datos personales",
-            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
-            "icono": "🛡️"
+            "porque": "Revisar antes de publicar evita que una imagen exponga datos que luego podrían copiarse.",
+            "icono": "💬"
           },
           {
             "id": "riesgo1",
             "texto": "Que la credencial se lea mejor",
             "textoCorto": "Que la credencial se lea mejor",
-            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
-            "icono": "🎃"
+            "porque": "Mostrar más datos o dejar alguno visible puede permitir que otras personas te identifiquen o ubiquen.",
+            "icono": "🧭"
           },
           {
             "id": "riesgo2",
             "texto": "Que se vea también su domicilio",
             "textoCorto": "Que se vea también su domicilio",
-            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
-            "icono": "🎃"
+            "porque": "Mostrar más datos o dejar alguno visible puede permitir que otras personas te identifiquen o ubiquen.",
+            "icono": "💡"
+          },
+          {
+            "id": "alternativa-extra",
+            "texto": "Publicar y borrar los datos después",
+            "textoCorto": "Publicar y borrar los datos después",
+            "icono": "💭",
+            "porque": "Una publicación puede copiarse antes de que la borres. Revisá los datos antes de subirla."
           }
         ],
         "respuesta": "bien",
@@ -1771,24 +1876,31 @@
     "opciones": [
       {
         "id": "a",
-        "icono": "📨",
+        "icono": "💬",
         "texto": "Reenviar la burla para que otros la vean",
         "textoCorto": "Reenviar la burla",
         "porque": "Reenviar la burla la difunde y lastima más a Alex."
       },
       {
         "id": "b",
-        "icono": "😡",
+        "icono": "🧭",
         "texto": "Responder con otra burla",
         "textoCorto": "Burlarse también",
         "porque": "Responder con otra burla agranda el problema."
       },
       {
         "id": "c",
-        "icono": "💚",
+        "icono": "💡",
         "texto": "No reenviar, acompañar a Alex y pedir ayuda a una persona adulta",
         "textoCorto": "No reenviar y acompañarlo con ayuda",
         "porque": "Frenar, acompañar y pedir ayuda protege a Alex."
+      },
+      {
+        "id": "alternativa-extra",
+        "texto": "Reenviar para pedir que no reenvíen",
+        "textoCorto": "Reenviar para pedir que no reenvíen",
+        "icono": "💭",
+        "porque": "Aunque pidas que paren, reenviar vuelve a difundir el contenido que lastima."
       }
     ],
     "respuesta": "c",
@@ -1899,51 +2011,58 @@
             "id": "bien",
             "texto": "No reenviar y acompañar",
             "textoCorto": "No reenviar y acompañar",
-            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
-            "icono": "🛡️"
+            "porque": "No reenviar corta la difusión. Acompañar ayuda a que la persona no enfrente el daño sola.",
+            "icono": "💬"
           },
           {
             "id": "riesgo1",
             "texto": "Reenviar solo a sus amigos",
             "textoCorto": "Reenviar solo a sus amigos",
-            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
-            "icono": "🎃"
+            "porque": "Participar o reenviar ayuda a que la burla llegue a más personas, aunque no hayas creado el contenido.",
+            "icono": "🧭"
           },
           {
             "id": "riesgo2",
             "texto": "Editar el audio para más risas",
             "textoCorto": "Editar el audio para más risas",
-            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
-            "icono": "🎃"
+            "porque": "Participar o reenviar ayuda a que la burla llegue a más personas, aunque no hayas creado el contenido.",
+            "icono": "💡"
+          },
+          {
+            "id": "alternativa-extra",
+            "texto": "Reenviar para pedir que no reenvíen",
+            "textoCorto": "Reenviar para pedir que no reenvíen",
+            "icono": "💭",
+            "porque": "Aunque pidas que paren, reenviar vuelve a difundir el contenido que lastima."
           }
         ],
         "respuesta": "bien",
         "explicacion": "La situación merece una pausa. No reenviar y acompañar. Buscá el apoyo de una persona adulta de confianza.",
         "consejoCorto": "Podés frenar y pedir ayuda. No tenés que resolver el problema en soledad.",
         "miniJuego": {
-          "tipo": "conectar",
-          "titulo": "La red de compañía",
-          "instruccion": "Uní cada situación con una acción que acompaña. Usá cada acción una vez.",
+          "tipo": "chat",
+          "titulo": "Chat: La red de compañía",
+          "instruccion": "Leé cada mensaje y elegí la respuesta que corresponde. Podés reintentar con una explicación.",
           "situaciones": [
             {
               "id": "imagen",
-              "icono": "🖼️",
-              "texto": "Me envían un audio de burlas",
-              "textoCorto": "Me envían un audio de burlas",
+              "icono": "💬",
+              "texto": "Mensaje recibido: «Reenviá este audio para reírnos»",
+              "textoCorto": "Reenviá este audio para reírnos",
               "porque": "No reenviar un audio hiriente ayuda a frenar su difusión."
             },
             {
               "id": "amigo",
-              "icono": "😢",
-              "texto": "Una compañera quedó fuera del grupo",
-              "textoCorto": "Una compañera quedó fuera del grupo",
+              "icono": "💬",
+              "texto": "Mensaje recibido: «Me dejaron afuera, estoy triste»",
+              "textoCorto": "Me dejaron afuera, estoy triste",
               "porque": "Escuchar y acompañar ayuda a quien queda fuera del grupo."
             },
             {
               "id": "continua",
-              "icono": "🔁",
-              "texto": "Los insultos aparecen cada día",
-              "textoCorto": "Los insultos aparecen cada día",
+              "icono": "💬",
+              "texto": "Mensaje recibido: «Otra vez están insultándome»",
+              "textoCorto": "Otra vez están insultándome",
               "porque": "Si los insultos se repiten, buscá ayuda adulta para frenarlos."
             }
           ],
@@ -1973,7 +2092,7 @@
             "continua": "adulto"
           },
           "explicacion": "No reenviar un audio hiriente ayuda a frenar su difusión. Escuchar y acompañar ayuda a quien queda fuera del grupo. Si los insultos se repiten, buscá ayuda adulta para frenarlos.",
-          "instruccionCorta": "Elegí una ayuda para cada situación. Usá cada acción una vez.",
+          "instruccionCorta": "Leé el mensaje y elegí cómo responder.",
           "explicacionCorta": "Acompañá sin reenviar las burlas. Pedir ayuda está bien en cualquier momento.",
           "contexto": "En otro grupo circula un audio hiriente y una compañera queda afuera. Conectá las ayudas."
         }
@@ -2024,33 +2143,40 @@
             "id": "bien",
             "texto": "Frenar la difusión y pedir ayuda",
             "textoCorto": "Frenar la difusión y pedir ayuda",
-            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
-            "icono": "🛡️"
+            "porque": "No reenviar corta la difusión. Acompañar ayuda a que la persona no enfrente el daño sola.",
+            "icono": "💬"
           },
           {
             "id": "riesgo1",
             "texto": "Votar para no quedar afuera",
             "textoCorto": "Votar para no quedar afuera",
-            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
-            "icono": "🎃"
+            "porque": "Participar o reenviar ayuda a que la burla llegue a más personas, aunque no hayas creado el contenido.",
+            "icono": "🧭"
           },
           {
             "id": "riesgo2",
             "texto": "Mandar las capturas a otro grupo",
             "textoCorto": "Mandar las capturas a otro grupo",
-            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
-            "icono": "🎃"
+            "porque": "Participar o reenviar ayuda a que la burla llegue a más personas, aunque no hayas creado el contenido.",
+            "icono": "💡"
+          },
+          {
+            "id": "alternativa-extra",
+            "texto": "Reenviar para pedir que no reenvíen",
+            "textoCorto": "Reenviar para pedir que no reenvíen",
+            "icono": "💭",
+            "porque": "Aunque pidas que paren, reenviar vuelve a difundir el contenido que lastima."
           }
         ],
         "respuesta": "bien",
         "explicacion": "La situación merece una pausa. Frenar la difusión y pedir ayuda. Buscá el apoyo de una persona adulta de confianza.",
         "consejoCorto": "Podés frenar y pedir ayuda. No tenés que resolver el problema en soledad.",
         "miniJuego": {
-          "tipo": "clasificar",
-          "titulo": "El correo del buen trato",
+          "tipo": "feed",
+          "titulo": "Feed: El correo del buen trato",
           "contexto": "Al castillo llegan mensajes. Separá los que acompañan de los que lastiman.",
-          "instruccion": "Revisá cada tarjeta y separá lo que cuida de lo que necesita atención.",
-          "instruccionCorta": "En cada tarjeta: ¿me cuida o necesita atención?",
+          "instruccion": "Revisá cada publicación: deslizá a Me cuida o Atención, o usá los botones.",
+          "instruccionCorta": "Revisá el feed: ¿me cuida o necesita atención?",
           "explicacion": "Ofrecer compañía puede ayudar a quien está pasando un mal momento. Reenviar una burla hace que el daño alcance a más personas. Pedir ayuda juntos evita enfrentar el problema en soledad. Amenazar a alguien por expresar tristeza es una forma de maltrato.",
           "explicacionCorta": "Revisá la situación antes de actuar. Si tenés dudas, pedí ayuda adulta.",
           "tarjetas": [
@@ -2059,28 +2185,28 @@
               "texto": "¿Querés que te acompañe?",
               "textoCorto": "¿Querés que te acompañe?",
               "porque": "Ofrecer compañía puede ayudar a quien está pasando un mal momento.",
-              "icono": "🛡️"
+              "icono": "📱"
             },
             {
               "id": "1",
               "texto": "Reenviemos esta burla",
               "textoCorto": "Reenviemos esta burla",
               "porque": "Reenviar una burla hace que el daño alcance a más personas.",
-              "icono": "👻"
+              "icono": "📱"
             },
             {
               "id": "2",
               "texto": "Busquemos ayuda juntos",
               "textoCorto": "Busquemos ayuda juntos",
               "porque": "Pedir ayuda juntos evita enfrentar el problema en soledad.",
-              "icono": "🛡️"
+              "icono": "📱"
             },
             {
               "id": "3",
               "texto": "Si llorás, te echamos",
               "textoCorto": "Si llorás, te echamos",
               "porque": "Amenazar a alguien por expresar tristeza es una forma de maltrato.",
-              "icono": "👻"
+              "icono": "📱"
             }
           ],
           "clasificacion": {
@@ -2142,24 +2268,31 @@
     "opciones": [
       {
         "id": "a",
-        "icono": "✅",
+        "icono": "💬",
         "texto": "Aceptar todo sin leer",
         "textoCorto": "Aceptar sin leer",
         "porque": "Sin leer, podés darle tus datos a una app que no los necesita."
       },
       {
         "id": "b",
-        "icono": "🔎",
+        "icono": "🧭",
         "texto": "No dar esos permisos y revisar la app con una persona adulta",
         "textoCorto": "Frenar y revisar con ayuda adulta",
         "porque": "Negar lo que no hace falta y revisar con ayuda cuida tus datos."
       },
       {
         "id": "c",
-        "icono": "📨",
+        "icono": "💡",
         "texto": "Enviar sus contactos a la app",
         "textoCorto": "Enviar los contactos",
         "porque": "Tus contactos son datos de otras personas: no se regalan."
+      },
+      {
+        "id": "alternativa-extra",
+        "texto": "Aceptar y revisar los permisos después",
+        "textoCorto": "Aceptar y revisar los permisos después",
+        "icono": "💭",
+        "porque": "El acceso puede empezar enseguida. Revisá cada permiso antes de aceptarlo."
       }
     ],
     "respuesta": "b",
@@ -2256,22 +2389,29 @@
             "id": "bien",
             "texto": "Revisarlos con ayuda antes de aceptar",
             "textoCorto": "Revisarlos con ayuda antes de aceptar",
-            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
-            "icono": "🛡️"
+            "porque": "Un permiso debe servir para la tarea. Con ayuda podés rechazar accesos que no hacen falta.",
+            "icono": "💬"
           },
           {
             "id": "riesgo1",
             "texto": "Aceptar todo para probar",
             "textoCorto": "Aceptar todo para probar",
-            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
-            "icono": "🎃"
+            "porque": "Aceptar accesos innecesarios expone información que la app no necesita para cumplir su función.",
+            "icono": "🧭"
           },
           {
             "id": "riesgo2",
             "texto": "Dar también acceso a mensajes",
             "textoCorto": "Dar también acceso a mensajes",
-            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
-            "icono": "🎃"
+            "porque": "Aceptar accesos innecesarios expone información que la app no necesita para cumplir su función.",
+            "icono": "💡"
+          },
+          {
+            "id": "alternativa-extra",
+            "texto": "Aceptar y revisar los permisos después",
+            "textoCorto": "Aceptar y revisar los permisos después",
+            "icono": "💭",
+            "porque": "El acceso puede empezar enseguida. Revisá cada permiso antes de aceptarlo."
           }
         ],
         "respuesta": "bien",
@@ -2367,22 +2507,29 @@
             "id": "bien",
             "texto": "Rechazarlo y revisar con ayuda",
             "textoCorto": "Rechazarlo y revisar con ayuda",
-            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
-            "icono": "🛡️"
+            "porque": "Un permiso debe servir para la tarea. Con ayuda podés rechazar accesos que no hacen falta.",
+            "icono": "💬"
           },
           {
             "id": "riesgo1",
             "texto": "Dejar que escuche siempre",
             "textoCorto": "Dejar que escuche siempre",
-            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
-            "icono": "🎃"
+            "porque": "Aceptar accesos innecesarios expone información que la app no necesita para cumplir su función.",
+            "icono": "🧭"
           },
           {
             "id": "riesgo2",
             "texto": "Activar también la cámara",
             "textoCorto": "Activar también la cámara",
-            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
-            "icono": "🎃"
+            "porque": "Aceptar accesos innecesarios expone información que la app no necesita para cumplir su función.",
+            "icono": "💡"
+          },
+          {
+            "id": "alternativa-extra",
+            "texto": "Aceptar y revisar los permisos después",
+            "textoCorto": "Aceptar y revisar los permisos después",
+            "icono": "💭",
+            "porque": "El acceso puede empezar enseguida. Revisá cada permiso antes de aceptarlo."
           }
         ],
         "respuesta": "bien",
@@ -2498,24 +2645,31 @@
     "opciones": [
       {
         "id": "a",
-        "icono": "🔎",
+        "icono": "💬",
         "texto": "Frena el reenvío y busca la fuente con ayuda",
         "textoCorto": "Frenar y comprobar con ayuda",
         "porque": "Frenar y buscar la fuente evita que el rumor siga creciendo."
       },
       {
         "id": "b",
-        "icono": "📨",
+        "icono": "🧭",
         "texto": "Reenvía porque la imagen parece real",
         "textoCorto": "Reenviar porque parece real",
         "porque": "Una imagen puede estar armada o sacada de otro lugar."
       },
       {
         "id": "c",
-        "icono": "👍",
+        "icono": "💡",
         "texto": "Lo cree porque tiene muchos me gusta",
         "textoCorto": "Creer por los me gusta",
         "porque": "Muchos me gusta no prueban que algo sea cierto."
+      },
+      {
+        "id": "alternativa-extra",
+        "texto": "Reenviar diciendo que no está confirmado",
+        "textoCorto": "Reenviar diciendo que no está confirmado",
+        "icono": "💭",
+        "porque": "Aunque aclares que no está confirmado, ayudás a circular información que podría ser falsa."
       }
     ],
     "respuesta": "a",
@@ -2606,22 +2760,29 @@
             "id": "bien",
             "texto": "Consultar el canal oficial con ayuda",
             "textoCorto": "Consultar el canal oficial con ayuda",
-            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
-            "icono": "🛡️"
+            "porque": "La fuente, la fecha y el contexto ayudan a comprobar un aviso antes de compartirlo.",
+            "icono": "💬"
           },
           {
             "id": "riesgo1",
             "texto": "Reenviarla como confirmada",
             "textoCorto": "Reenviarla como confirmada",
-            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
-            "icono": "🎃"
+            "porque": "La urgencia, un logo o quien lo reenvía no confirman que sea cierto. Revisá la fuente y la fecha.",
+            "icono": "🧭"
           },
           {
             "id": "riesgo2",
             "texto": "Creerla por tener un logo",
             "textoCorto": "Creerla por tener un logo",
-            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
-            "icono": "🎃"
+            "porque": "La urgencia, un logo o quien lo reenvía no confirman que sea cierto. Revisá la fuente y la fecha.",
+            "icono": "💡"
+          },
+          {
+            "id": "alternativa-extra",
+            "texto": "Reenviar diciendo que no está confirmado",
+            "textoCorto": "Reenviar diciendo que no está confirmado",
+            "icono": "💭",
+            "porque": "Aunque aclares que no está confirmado, ayudás a circular información que podría ser falsa."
           }
         ],
         "respuesta": "bien",
@@ -2711,54 +2872,61 @@
             "id": "bien",
             "texto": "Buscar contexto con ayuda adulta",
             "textoCorto": "Buscar contexto con ayuda adulta",
-            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
-            "icono": "🛡️"
+            "porque": "La fuente, la fecha y el contexto ayudan a comprobar un aviso antes de compartirlo.",
+            "icono": "💬"
           },
           {
             "id": "riesgo1",
             "texto": "Compartir el recorte enseguida",
             "textoCorto": "Compartir el recorte enseguida",
-            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
-            "icono": "🎃"
+            "porque": "La urgencia, un logo o quien lo reenvía no confirman que sea cierto. Revisá la fuente y la fecha.",
+            "icono": "🧭"
           },
           {
             "id": "riesgo2",
             "texto": "Agregar un título más alarmante",
             "textoCorto": "Agregar un título más alarmante",
-            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
-            "icono": "🎃"
+            "porque": "La urgencia, un logo o quien lo reenvía no confirman que sea cierto. Revisá la fuente y la fecha.",
+            "icono": "💡"
+          },
+          {
+            "id": "alternativa-extra",
+            "texto": "Reenviar diciendo que no está confirmado",
+            "textoCorto": "Reenviar diciendo que no está confirmado",
+            "icono": "💭",
+            "porque": "Aunque aclares que no está confirmado, ayudás a circular información que podría ser falsa."
           }
         ],
         "respuesta": "bien",
         "explicacion": "La situación merece una pausa. Buscar contexto con ayuda adulta. Buscá el apoyo de una persona adulta de confianza.",
         "consejoCorto": "Podés frenar y pedir ayuda. No tenés que resolver el problema en soledad.",
         "miniJuego": {
-          "tipo": "conectar",
-          "titulo": "El archivo de las noticias",
+          "tipo": "chat",
+          "titulo": "Chat: El archivo de las noticias",
           "contexto": "Tres noticias perdieron una pieza de información. Conectá cada duda con su búsqueda.",
-          "instruccion": "Uní cada situación con la acción que corresponde. Usá cada acción una vez.",
-          "instruccionCorta": "Elegí una ayuda para cada situación.",
+          "instruccion": "Leé cada mensaje y elegí la respuesta que corresponde. Podés reintentar con una explicación.",
+          "instruccionCorta": "Leé el mensaje y elegí cómo responder.",
           "situaciones": [
             {
               "id": "s0",
-              "texto": "No sé cuándo ocurrió",
-              "textoCorto": "No sé cuándo ocurrió",
+              "texto": "Mensaje recibido: «¿Esta noticia es de hoy?»",
+              "textoCorto": "¿Esta noticia es de hoy?",
               "porque": "La fecha permite saber si una noticia es actual o antigua.",
-              "icono": "🎃"
+              "icono": "💬"
             },
             {
               "id": "s1",
-              "texto": "No sé quién lo publicó",
-              "textoCorto": "No sé quién lo publicó",
+              "texto": "Mensaje recibido: «¿Quién publicó este aviso?»",
+              "textoCorto": "¿Quién publicó este aviso?",
               "porque": "La fuente permite revisar de dónde viene la información.",
-              "icono": "🎃"
+              "icono": "💬"
             },
             {
               "id": "s2",
-              "texto": "No sé si está completo",
-              "textoCorto": "No sé si está completo",
+              "texto": "Mensaje recibido: «¿Qué pasó antes del recorte?»",
+              "textoCorto": "¿Qué pasó antes del recorte?",
               "porque": "El contexto permite entender qué pasó antes y después del recorte.",
-              "icono": "🎃"
+              "icono": "💬"
             }
           ],
           "acciones": [
@@ -2844,24 +3012,31 @@
     "opciones": [
       {
         "id": "a",
-        "icono": "📨",
+        "icono": "💬",
         "texto": "Enviar el código porque reconoce la foto",
         "textoCorto": "Enviar porque reconoce la foto",
         "porque": "Una foto conocida no prueba quién escribe: la cuenta puede ser falsa."
       },
       {
         "id": "b",
-        "icono": "🔐",
+        "icono": "🧭",
         "texto": "No enviar el código y revisar el pedido con una persona adulta",
         "textoCorto": "No enviar y pedir ayuda adulta",
         "porque": "No enviar el código y revisar con ayuda protege tu cuenta."
       },
       {
         "id": "c",
-        "icono": "🌍",
+        "icono": "💡",
         "texto": "Publicar el código para preguntar qué es",
         "textoCorto": "Publicar el código",
         "porque": "Si publicás el código, cualquiera puede usarlo para entrar."
+      },
+      {
+        "id": "alternativa-extra",
+        "texto": "Enviar una parte del código privado",
+        "textoCorto": "Enviar una parte del código privado",
+        "icono": "💭",
+        "porque": "Los códigos se mantienen privados. No hace falta compartir ninguna parte para verificar quién escribe."
       }
     ],
     "respuesta": "b",
@@ -2972,22 +3147,29 @@
             "id": "bien",
             "texto": "Desde la app oficial con ayuda",
             "textoCorto": "Desde la app oficial con ayuda",
-            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
-            "icono": "🛡️"
+            "porque": "Verificar por otro medio y desde la app oficial protege tu cuenta sin compartir códigos privados.",
+            "icono": "💬"
           },
           {
             "id": "riesgo1",
             "texto": "Desde el enlace del chat",
             "textoCorto": "Desde el enlace del chat",
-            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
-            "icono": "🎃"
+            "porque": "La foto y el nombre no prueban quién escribe. Un código compartido puede abrir tu cuenta a otra persona.",
+            "icono": "🧭"
           },
           {
             "id": "riesgo2",
             "texto": "Mandando el código al contacto",
             "textoCorto": "Mandando el código al contacto",
-            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
-            "icono": "🎃"
+            "porque": "La foto y el nombre no prueban quién escribe. Un código compartido puede abrir tu cuenta a otra persona.",
+            "icono": "💡"
+          },
+          {
+            "id": "alternativa-extra",
+            "texto": "Enviar una parte del código privado",
+            "textoCorto": "Enviar una parte del código privado",
+            "icono": "💭",
+            "porque": "Los códigos se mantienen privados. No hace falta compartir ninguna parte para verificar quién escribe."
           }
         ],
         "respuesta": "bien",
@@ -3097,22 +3279,29 @@
             "id": "bien",
             "texto": "Llamar por otro medio con ayuda",
             "textoCorto": "Llamar por otro medio con ayuda",
-            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
-            "icono": "🛡️"
+            "porque": "Verificar por otro medio y desde la app oficial protege tu cuenta sin compartir códigos privados.",
+            "icono": "💬"
           },
           {
             "id": "riesgo1",
             "texto": "Confiar solo en la foto",
             "textoCorto": "Confiar solo en la foto",
-            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
-            "icono": "🎃"
+            "porque": "La foto y el nombre no prueban quién escribe. Un código compartido puede abrir tu cuenta a otra persona.",
+            "icono": "🧭"
           },
           {
             "id": "riesgo2",
             "texto": "Compartir el código y preguntar después",
             "textoCorto": "Compartir el código y preguntar después",
-            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
-            "icono": "🎃"
+            "porque": "La foto y el nombre no prueban quién escribe. Un código compartido puede abrir tu cuenta a otra persona.",
+            "icono": "💡"
+          },
+          {
+            "id": "alternativa-extra",
+            "texto": "Enviar una parte del código privado",
+            "textoCorto": "Enviar una parte del código privado",
+            "icono": "💭",
+            "porque": "Los códigos se mantienen privados. No hace falta compartir ninguna parte para verificar quién escribe."
           }
         ],
         "respuesta": "bien",

@@ -20,7 +20,7 @@ for(const stages of Object.values(PACES)) for(const stage of Object.keys(stages)
   if(Number.isFinite(seconds) && seconds>0) stages[stage]=Math.max(1000,seconds*1000);
 }
 // Arcade formats reuse the answer shape of a classic one, so scoring and validation stay shared.
-const MINI_KIND = {tocar:'tocar',ordenar:'ordenar',pocion:'ordenar',clasificar:'clasificar',seleccionar:'seleccionar',atrapar:'seleccionar',linterna:'seleccionar',conectar:'conectar',defender:'conectar'};
+const MINI_KIND = {tocar:'tocar',ordenar:'ordenar',pocion:'ordenar',clasificar:'clasificar',feed:'clasificar',seleccionar:'seleccionar',atrapar:'seleccionar',linterna:'seleccionar',conectar:'conectar',chat:'conectar',defender:'conectar'};
 const ROOM_IDLE_MS = 12 * 60 * 60 * 1000;
 const rateWindow = new Map();
 function allowRate(key, max, windowMs) {
@@ -119,7 +119,7 @@ function checkMiniItem(mini,answer,data) {
     if(!checks[item]) checks[item]={value,correct};
     if(correct) Object.assign(checks[item],{solved:true,placed:value});
     const complete=mini.situaciones.every(v=>checks[v.id]?.solved)?{matches:Object.fromEntries(mini.situaciones.map(v=>[v.id,checks[v.id].value])),scored:false}:null;
-    return {correct,porque:correct?situation.porque:'',complete};
+    return {correct,porque:correct?situation.porque:`${situation.porque} Probá una acción que responda a esta situación.`,complete};
   }
   if(kind==='ordenar') {
     const step=find(mini.pasos,item),position=Number(value);
@@ -304,7 +304,7 @@ const server=http.createServer(async(req,res)=>{
    const u=new URL(req.url,'http://localhost');
    if (req.method==='GET' && u.pathname==='/healthz') return json(res,{ok:true,app:'Detectives Digitales',version:'2.0.0'});
    if (req.method==='GET' && u.pathname==='/api/catalogo') return json(res,{
-     caseCount:cases.length,miniTypes:[...new Set(cases.map(c=>c.miniJuego.tipo))],paces:PACES,
+     caseCount:cases.length,miniTypes:[...new Set(cases.flatMap(c=>[c,...(c.variantes||[])].map(v=>v.miniJuego.tipo)))],paces:PACES,
      missions:cases.map(c=>({id:c.id,titulo:c.titulo,categoria:c.categoria,personaje:c.personaje,tipo:c.miniJuego.tipo}))
    });
    if(req.method==='POST') {

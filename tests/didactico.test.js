@@ -109,7 +109,7 @@ test('27 escenarios: historias nuevas, avance al decidir y retos independientes 
     assert.notEqual(mini.contexto,deciding.relato);
     kinds.add(mini.tipo);
     const m=actual.miniJuego;
-    const kind={pocion:'ordenar',defender:'conectar',atrapar:'seleccionar',linterna:'seleccionar'}[m.tipo]||m.tipo;
+    const kind={pocion:'ordenar',defender:'conectar',chat:'conectar',feed:'clasificar',atrapar:'seleccionar',linterna:'seleccionar'}[m.tipo]||m.tipo;
     const answer={tocar:{selection:m.respuesta},ordenar:{sequence:m.ordenCorrecto},conectar:{matches:m.soluciones},clasificar:{groups:m.clasificacion},seleccionar:{selections:m.correctas}}[kind];
     assert.equal((await submit({stage:'mini',...answer})).status,200);
     await r.next();expected+=clues.length*100+500+300;
@@ -118,7 +118,7 @@ test('27 escenarios: historias nuevas, avance al decidir y retos independientes 
    }
    if(game<2)assert.equal((await request(server.base,'/api/accion',{code:r.code,token:r.hostToken,action:'reset'})).status,200);
   }
-  assert.equal(seen.size,27);assert.equal(kinds.size,9);
+  assert.equal(seen.size,27);assert.equal(kinds.size,11);
  }finally{await server.stop()}
 });
 
@@ -196,7 +196,9 @@ test('minijuego clasificar y conectar: cada tarjeta cuenta la primera vez',async
   const s=await r.view();assert.equal(s.case.miniJuego.tipo,'conectar');
   const solutions=cases[5].miniJuego.soluciones,situations=Object.keys(solutions);
   const wrong=cases[5].miniJuego.acciones.find(a=>a.id!==solutions[situations[0]]).id;
-  res=await r.check(r.players[0],situations[0],wrong);assert.equal(res.data.correct,false);assert.equal(res.data.porque,'','Un error en conectar no revela la respuesta.');
+  res=await r.check(r.players[0],situations[0],wrong);assert.equal(res.data.correct,false);
+  assert.ok(res.data.porque.includes(cases[5].miniJuego.situaciones[0].porque),'El error explica el criterio para esa situación.');
+  assert.equal('soluciones' in res.data,false,'La explicación no publica el mapa de soluciones.');
   for(const id of situations)res=await r.check(r.players[0],id,solutions[id]);
   assert.ok(res.data.answers.mini);
   assert.equal(res.data.answers.mini.matches[situations[0]],wrong,'La respuesta final guarda el primer intento.');

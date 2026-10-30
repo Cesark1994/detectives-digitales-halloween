@@ -28,7 +28,7 @@ test('contenido infantil: historias y tarjetas breves conservan una opción de l
 test('contenido didáctico: cada pista, opción y tarjeta de minijuego explica por qué',()=>{
  const reasoned={tocar:'opciones',seleccionar:'opciones',atrapar:'opciones',linterna:'opciones',ordenar:'pasos',pocion:'pasos',clasificar:'tarjetas',conectar:'situaciones',defender:'situaciones'};
  for(const c of cases){
-  assert.ok(c.opciones.length>=3,`${c.id}: al menos tres opciones para decidir`);
+  assert.ok(c.opciones.length>=4,`${c.id}: al menos cuatro opciones para decidir`);
   for(const card of [...c.pistas,...c.opciones,...c.miniJuego[reasoned[c.miniJuego.tipo]]]){
    assert.ok(card.porque?.length>=15&&card.porque.length<=110,`${c.id}/${card.id}: porqué de ${card.porque?.length} caracteres`);
   }
@@ -49,7 +49,8 @@ test('variantes: cada tema incluye historias completas y otras formas de jugar',
    assert.ok(!challenges.has(v.miniJuego.contexto),'Los retos deben tener contextos distintos.');
    challenges.add(v.miniJuego.contexto);
    assert.ok(v.pistas.filter(p=>p.correcta).length>=2);
-   assert.ok(v.opciones.length>=3);
+   assert.ok(v.opciones.length>=4);
+   for(const o of v.opciones)assert.ok(o.porque?.length>=15,'Cada opción explica por qué.');
    assert.ok(v.opciones.some(o=>o.id===v.respuesta));
    for(const key of ['opciones','pasos','tarjetas','situaciones','acciones'])for(const card of v.miniJuego[key]||[]){
     assert.ok(card.textoCorto.length<=45,`${v.titulo}: ${card.textoCorto}`);

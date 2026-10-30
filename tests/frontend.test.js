@@ -78,6 +78,32 @@ test('pantalla del jugador: muestra la pregunta del escenario y el contexto prop
  assert.ok(!html.includes(c.relato),'El minijuego presenta su propia situación.');
 });
 
+test('explicaciones visibles: tanto un acierto como un error muestran el motivo sin tocar otra tarjeta',()=>{
+ const app=frontend();
+ for(const correct of [true,false]){
+  app.set({lastFeedback:{correct,text:'Tu código es privado y no se envía por chat.'}});
+  const html=app.evaluate('feedbackPanel()');
+  assert.ok(html.includes('Tu código es privado'));
+  assert.ok(html.includes(correct?'¡Bien pensado!':'Aprendemos y seguimos'));
+  assert.ok(html.includes('role="status"'));
+ }
+ const row={item:{id:'x',texto:'Mandar el código',porque:'Compartirlo permite entrar a tu cuenta.'},status:'mistake'};
+ app.set({sampleRows:[row]});
+ assert.ok(app.evaluate('verdictRows(sampleRows)').includes('<small class="verdict-explanation">Compartirlo permite entrar a tu cuenta.</small>'));
+});
+
+for(const type of ['chat','feed'])test(`juego ${type}: presenta mensajes o publicaciones y admite el formato de respuesta correcto`,()=>{
+ const app=frontend();
+ const m=cases.flatMap(c=>c.variantes).map(v=>v.miniJuego).find(m=>m.tipo===type);
+ assert.ok(m);
+ app.set({sampleMini:m,current:{code:'TEST',stage:'mini',caseIndex:0,endsAt:app.now+30000,personal:{answers:{}}}});
+ const html=app.evaluate('miniGame(sampleMini,null)');
+ assert.ok(html.includes(type==='chat'?'chat-simulator':'feed-simulator'));
+ assert.ok(!html.includes('undefined'));
+ assert.ok(html.includes(type==='chat'?'data-match-item':'data-group'));
+ assert.equal(app.evaluate('miniKind(sampleMini)'),type==='chat'?'conectar':'clasificar');
+});
+
 const formats = [
   { type: 'tocar', complete: { selection: 'escudo' }, incomplete: {}, wrong: { selection: 'camara' }, payloadKey: 'selection' },
   { type: 'ordenar', complete: { sequence: ['guardar', 'bloquear', 'contar'] }, incomplete: { sequence: ['guardar'] }, wrong: { sequence: ['contar', 'guardar', 'bloquear'] }, payloadKey: 'sequence' },
