@@ -14,7 +14,8 @@ const childMiniTitles={tocar:'¡Encendé una calabaza!',clasificar:'¿Dulce o tr
 const rarities=[['comun','Común'],['rara','Rara'],['epica','Épica'],['legendaria','Legendaria']];
 // Short synthesized effects as [frequency, seconds, glide-to] notes: no audio files to download.
 // Minor arpeggios and ghostly glides keep them spooky but friendly.
-const sounds={tap:[[523,.05]],pick:[[587,.05],[880,.08]],send:[[440,.07],[659,.13]],win:[[440,.09],[523,.09],[659,.09],[880,.26]],learn:[[392,.1],[466,.2]],pop:[[988,.04],[1319,.07]],zap:[[220,.05],[440,.05],[880,.1]],chest:[[330,.08],[392,.08],[466,.08],[587,.08],[932,.32]],whoosh:[[300,.3,620]],boo:[[540,.5,250]]};
+const sounds={tap:[[523,.05]],pick:[[587,.05],[880,.08]],send:[[440,.07],[659,.13]],win:[[440,.09],[523,.09],[659,.09],[880,.26]],learn:[[392,.1],[466,.2]],pop:[[988,.04],[1319,.07]],zap:[[220,.05],[440,.05],[880,.1]],chest:[[330,.08],[392,.08],[466,.08],[587,.08],[932,.32]],whoosh:[[300,.3,620]],boo:[[540,.5,250]],pumpkin:[[262,.08],[330,.08],[392,.16]],magic:[[660,.08],[880,.1],[1175,.2]],bubble:[[196,.12,280],[247,.12,330],[294,.18,440]],flash:[[1047,.04],[1568,.12]],shield:[[196,.09],[294,.09],[440,.2]],ghost:[[494,.32,196],[392,.25,147]]};
+const miniSounds={tocar:'pumpkin',seleccionar:'pumpkin',ordenar:'magic',clasificar:'pop',conectar:'magic',atrapar:'ghost',linterna:'flash',pocion:'bubble',defender:'shield',chat:'pop',feed:'pop'};
 const confettiPieces=['🍬','🎃','🦇','👻','🍭','⭐'];
 const monsters=['👻','🦇','🧛'];
 const stageNames={lobby:'Sala de espera',detect:'Buscá las pistas',detect_reveal:'Pistas descubiertas',decide:'Elegí qué harías',decide_reveal:'Una decisión segura',mini:'Desafío extra',mini_reveal:'Lo que aprendimos',leaderboard:'Nuestro equipo',final:'¡Aventura completada!'};
@@ -46,6 +47,12 @@ function sfx(name){
  try{if(typeof navigator!=='undefined'&&navigator.vibrate&&name!=='tap')navigator.vibrate(['win','chest'].includes(name)?[18,40,18]:12)}catch(_){}
 }
 function listenLabel(playing){return HOST_MODE?'🔊 Escuchar':playing?'⏹':'🔊'}
+function stageSfx(){
+ if(current?.stage==='mini')return miniSounds[current.case?.miniJuego?.tipo]||'magic';
+ return current?.stage==='detect'?'boo':'tap';
+}
+function soundButton(className='child-sound',label=true){return `<button type="button" class="button ghost btn-small ${className}" data-sound-toggle aria-pressed="${soundOn}" aria-label="${soundOn?'Apagar sonidos':'Activar sonidos'}">${soundOn?'&#128266;':'&#128263;'}${label?` <span>Sonido: ${soundOn?'sí':'no'}</span>`:''}</button>`}
+function bindSoundToggle(){document.querySelectorAll('[data-sound-toggle]').forEach(button=>button.onclick=()=>{soundOn=!soundOn;try{localStorage.setItem('dd_sound',soundOn?'on':'off')}catch(_){}if(soundOn)sfx('pick');render()})}
 function stopSpeech(){if('speechSynthesis' in window)window.speechSynthesis.cancel();speechPlaying=false;const button=document.getElementById('listen');if(button){button.textContent=listenLabel(false);button.setAttribute('aria-pressed','false')}}
 function speechControls(text){
  if(!('speechSynthesis' in window)||typeof window.SpeechSynthesisUtterance!=='function')return '';
@@ -69,7 +76,7 @@ function show(content){
  if(!sameScreen)stopSpeech();
  app.className=`app ${HOST_MODE?`host-app${current?' tv-live':''}`:'player-app'}${!HOST_MODE&&['detect','decide','mini'].includes(current?.stage)?' child-playing':!HOST_MODE&&current?.stage?.endsWith('_reveal')?' child-review':''}${sameScreen?'':' screen-enter'}`;
  app.innerHTML=brand()+content+footer()+(sameScreen?'':stageSplash());screenKey=nextKey;
- bindSpeech();updateTimers();
+ bindSpeech();bindSoundToggle();updateTimers();
  if(sameScreen){
   const target=focusId?document.getElementById(focusId):null;
   if(target&&!target.disabled){target.focus({preventScroll:true});if(selection&&typeof target.setSelectionRange==='function')try{target.setSelectionRange(selection.start,selection.end)}catch(_){}}
@@ -78,7 +85,7 @@ function show(content){
   window.scrollTo(0,0);
   const heading=app.querySelector('.child-task h2, .child-panel h2, .question-heading h2, .waiting-card h2, .ranking-panel h2, .question-panel h2, .lobby-players h2');
   if(heading){heading.setAttribute('tabindex','-1');heading.focus({preventScroll:true})}
-  if(app.querySelector('.stage-splash'))sfx('boo');
+  if(app.querySelector('.stage-splash'))sfx(stageSfx());
  }
  return !sameScreen;
 }
@@ -289,7 +296,17 @@ function childMove(m,delta){
  const heading=document.getElementById('child-task-title');if(heading){heading.setAttribute('tabindex','-1');heading.focus({preventScroll:true})}
  const card=document.getElementById('child-item');if(card)card.classList.add(delta<0?'child-item-back':'child-item-in');
 }
-function childTop(s){return childHud(s,true)}
+const easyGameHints={
+ tocar:'Tocá una tarjeta: elegí la que cuida.',ordenar:'Pensá: primero frenar, después pedir ayuda.',pocion:'Primero frená; después revisá con ayuda.',
+ clasificar:'Una por vez: ¿cuida o necesita atención?',feed:'Una por vez: ¿cuida o necesita atención?',seleccionar:'Marcá solo las ideas que cuidan.',
+ conectar:'Leé una situación y elegí una ayuda.',chat:'Leé un mensaje y elegí una ayuda.',atrapar:'Atrapá solo los datos personales.',
+ linterna:'Marcá solo pedidos que no tienen sentido.',defender:'Elegí una carta por vez para cuidar el castillo.'
+};
+function easyCue(s){
+ const text=s.stage==='detect'?'Pista: buscá pedidos de secreto, datos personales o apuro.':s.stage==='decide'?'Pista: elegí lo que te cuide: frenar, no compartir y pedir ayuda.':s.stage==='mini'?easyGameHints[s.case?.miniJuego?.tipo]:'';
+ return text?`<p class="child-easy-cue" role="note"><span aria-hidden="true">&#129302;</span> ${text}</p>`:'';
+}
+function childTop(s){return `<div class="child-top">${childHud(s,true)}${soundButton('child-sound-quick',false)}${easyCue(s)}</div>`}
 function childWaiting(){return '<div class="child-feedback child-sent" role="status"><span class="child-sent-badge" aria-hidden="true">✓<i>👻</i></span><h2>¡Enviado!</h2><p>Ahora descubrimos juntos.</p><div class="waiting-dots" aria-hidden="true"><i></i><i></i><i></i></div></div>'}
 function childBubble(text,cls){return `<div class="child-story"><span class="child-story-face" aria-hidden="true">🦉</span><p class="${cls}">${esc(text)}</p></div>`}
 function childBurst(icon){return `<div class="child-burst" aria-hidden="true"><span class="child-result-icon">${icon}</span></div>`}
@@ -303,7 +320,30 @@ function choiceCard(item,index,{name,type,selected,disabled,verdict=''}){
  return `<label class="choice choice-${index%4} ${selected?'selected':''} ${disabled?'locked':''} ${verdict?'verdict-'+verdict:''}" for="${name}-${index}"><input id="${name}-${index}" type="${type}" name="${name}" value="${esc(item.id)}" ${selected?'checked':''} ${disabled?'disabled':'data-answer-control'}><span class="choice-emoji" aria-hidden="true">${esc(item.icono||['💬','🧭','🛡️','🌟'][index%4])}</span><strong class="choice-text">${esc(shortText(item))}</strong><span class="choice-check" aria-hidden="true">${verdict==='bad'?'✗':selected?'✓':'+'}</span></label>`;
 }
 function bindChoices(name,onChange){document.querySelectorAll(`input[name="${name}"]`).forEach(input=>input.onchange=()=>{onChange(input);document.querySelectorAll(`input[name="${name}"]`).forEach(control=>{control.closest('.choice').classList.toggle('selected',control.checked);control.closest('.choice').querySelector('.choice-check').textContent=control.checked?'✓':'+'});if(input.checked)bump(input.closest('.choice'));sfx(input.checked?'pick':'tap');updateTimers()})}
-function miniGame(m,submitted){
+const miniStyle={
+ tocar:['&#127919;','Encontrá la señal'],ordenar:['&#129513;','Camino de pistas'],pocion:['&#129514;','Poción de cuidado'],
+ clasificar:['&#127852;','Dulce o truco'],seleccionar:['&#127875;','Bolsa de ideas'],conectar:['&#128302;','Bola de cristal'],
+ atrapar:['&#128123;','Cazafantasmas'],linterna:['&#128294;','Linterna detective'],defender:['&#127984;','Castillo seguro'],
+ chat:['&#128172;','Chat de práctica'],feed:['&#128241;','Feed de práctica']
+};
+function miniAmbience(m){
+ const icons={tocar:['&#127875;','&#10024;','&#127875;'],seleccionar:['&#127852;','&#10024;','&#127852;'],ordenar:['&#10024;','&#128302;','&#10024;'],clasificar:['&#127852;','&#128123;','&#10024;'],conectar:['&#128302;','&#10024;','&#128302;'],atrapar:['&#128123;','&#129503;','&#10024;'],linterna:['&#128294;','&#10024;','&#128293;'],pocion:['&#129514;','&#128167;','&#10024;'],defender:['&#128737;&#65039;','&#10024;','&#127984;'],chat:['&#128172;','&#10024;','&#128172;'],feed:['&#128241;','&#10024;','&#128172;']}[m.tipo]||['&#10024;','&#127922;','&#10024;'];
+ return `<div class="mini-ambience mini-ambience-${esc(m.tipo)}" aria-hidden="true">${icons.map(icon=>`<i>${icon}</i>`).join('')}</div>`;
+}
+function miniRound(m,submitted){
+ const kind=miniKind(m),checks=checksNow();
+ const items=kind==='ordenar'?m.pasos||[]:kind==='clasificar'?m.tarjetas||[]:kind==='conectar'?m.situaciones||[]:m.opciones||[];
+ const completed=kind==='ordenar'?placedSteps(m).length:items.filter(item=>checks[item.id]).length;
+ const total=items.length||1,round=submitted?total:Math.min(completed,total);
+ return {round,total,percent:Math.round(round*100/total)};
+}
+function miniFrame(m,submitted,content){
+ const [icon,label]=miniStyle[m.tipo]||['&#127918;','Desafío detective'];
+ const {round,total,percent}=miniRound(m,submitted);
+ return `<section class="mini-arena mini-arena-${esc(m.tipo)}" data-mini-kind="${esc(m.tipo)}"><header class="mini-arena-head"><span class="mini-orb" aria-hidden="true">${icon}</span><div><small>${label} <span>&#127922; Barajado</span></small><b>Ronda ${round}/${total}</b></div><div class="mini-progress" role="progressbar" aria-label="Progreso del minijuego" aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${round}"><i style="width:${percent}%"></i></div></header>${miniAmbience(m)}<div class="mini-arena-stage">${content}</div><p class="mini-arena-note"><span aria-hidden="true">&#127922;</span> Las tarjetas y respuestas cambian de lugar en cada aventura.</p></section>`;
+}
+function miniGame(m,submitted){return miniFrame(m,submitted,miniGameBody(m,submitted))}
+function miniGameBody(m,submitted){
  const checks=checksNow();
  if(m.tipo==='tocar'||m.tipo==='seleccionar'){
   const multi=m.tipo==='seleccionar';
@@ -397,9 +437,14 @@ function potionGame(m,submitted){
 function resetArcade(){arcade=null;lamp=null;lastThreat='';cardHold=null;wrongTried={};if(ghostTick.timer){clearInterval(ghostTick.timer);ghostTick.timer=0}}
 function arcadeKey(){return `${current?.code}:${current?.caseIndex}:mini`}
 function ghostState(){return arcade?.key===arcadeKey()?arcade:null}
+function shuffleArcade(items){
+ const deck=[...items];
+ for(let i=deck.length-1;i>0;i--){const at=Math.floor(Math.random()*(i+1));[deck[i],deck[at]]=[deck[at],deck[i]]}
+ return deck;
+}
 function ghostSchedule(items){
  const order=[];
- for(let round=0;round<2;round++){const deck=[...items].sort(()=>Math.random()-.5);if(order.length&&deck[0].id===order[order.length-1].id)deck.push(deck.shift());order.push(...deck)}
+ for(let round=0;round<2;round++){const deck=shuffleArcade(items);if(order.length&&deck[0].id===order[order.length-1].id)deck.push(deck.shift());order.push(...deck)}
  const pops=[];
  order.forEach((item,i)=>{const t0=700+i*1000,taken=pops.filter(pop=>pop.t0<=t0&&pop.t1>t0).map(pop=>pop.hole),free=[0,1,2,3,4,5].filter(hole=>!taken.includes(hole)&&hole!==pops[i-1]?.hole);pops.push({id:item.id,hole:free[Math.floor(Math.random()*free.length)],t0,t1:t0+2100})});
  return pops;

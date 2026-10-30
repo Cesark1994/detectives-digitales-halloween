@@ -2,7 +2,7 @@
 
 Juego educativo multijugador sobre seguridad digital, pensado para una **computadora organizadora** (se puede proyectar en TV) y **celulares de los participantes**. Implementado con HTML, CSS y JavaScript + servidor **Node.js**, sin dependencias externas en tiempo de ejecución.
 
-El contenido y las consignas están orientados a chicos de **8 a 12 años**, con acompañamiento de una persona adulta. Es una orientación editorial que puede adaptarse al grupo; no supone una certificación por edades.
+El contenido y las consignas están orientados a chicos de **9 a 12 años**, con acompañamiento de una persona adulta. Las preguntas usan textos breves, pistas de juego y opciones concretas; es una orientación editorial que puede adaptarse al grupo.
 
 ## ✅ Qué funciona
 
@@ -14,11 +14,12 @@ El contenido y las consignas están orientados a chicos de **8 a 12 años**, con
 - **Decidir**: seleccionar una acción segura.
 - **Opciones y explicaciones**: cuatro respuestas por decisión, mezcladas en cada partida. Los resultados muestran el motivo debajo de cada opción. En minijuegos, cada jugada conserva una explicación visible de acierto o error, además del aviso breve.
 - **Chat de práctica y feed**: responder mensajes simulados y revisar publicaciones deslizando tarjetas. Aparecen entre los retos alternativos del modo al azar; no conectan con redes sociales reales.
-- **18 temas y 54 escenarios completos**: cada tema tiene tres historias con sus propias pistas, preguntas y opciones. En modo **Al azar**, la sala continúa con los temas pendientes al volver a jugar y no repite un tema en la misma partida. Las variantes de cada tema también se sortean sin reemplazo. Al decidir aparece un dato nuevo y el minijuego plantea una situación independiente.
+- **18 temas y 64 escenarios completos**: cada tema tiene al menos tres historias con sus propias pistas, preguntas y opciones. Incluye diez situaciones nuevas para prevenir el grooming: datos para ubicar, pedidos de secreto, imágenes, presión, perfiles no verificables, encuentros y acompañamiento. En modo **Al azar**, la sala continúa con los temas pendientes al volver a jugar y no repite un tema en la misma partida. Las variantes de cada tema también se sortean sin reemplazo. Al decidir aparece un dato nuevo y el minijuego plantea una situación independiente.
 - **Nueve temas nuevos**: prevención de captación para trata, encuentros secretos, amenazas y chantaje, límites personales, redes de ayuda, engaños con IA, descanso digital, retos riesgosos y publicidad/compras. Son escenas ficticias sin contenido gráfico, con explicaciones de cuidado y sin culpabilizar. Las fuentes y la orientación docente están en `FUENTES_EDUCATIVAS.md`.
 - **Partidas distintas y didácticas**: las misiones pueden salir al azar (distintas en cada partida) y las pistas, opciones y tarjetas se mezclan siempre. Cada pista, opción y tarjeta tiene su **porqué**: en los minijuegos cada jugada responde al instante con la explicación (cuenta el primer intento y se puede reintentar para aprender), y en cada resultado el chico ve qué acertó, qué se le pasó y por qué. Cuando todo el equipo respondió, el resultado aparece solo.
 - **Nueve minijuegos de Halloween, uno distinto por misión**: **Encendé una calabaza** (tocar la opción que ayuda), **Camino embrujado** (ordenar pasos sobre lápidas), **¿Dulce o truco?** (deslizar cada carta: dulce = me cuida, truco = atención), **Llená tu calabaza** (seleccionar las ideas que cuidan), **Cazafantasmas** (atrapar los datos privados que asoman por las ventanas de una casa embrujada), **Bola de cristal** (conectar situaciones con acciones), **Linterna detective** (iluminar una habitación oscura y marcar permisos sospechosos), **Poción anti-rumores** (echar los pasos al caldero en orden) y **Defendé tu cuenta** (frenar a fantasmas, murciélagos y vampiros con cartas de la mano). +300 puntos por superar cada reto.
-- **Recompensas de juego móvil con temática de Halloween**: los puntos se muestran como dulces 🍬, cada misión y minijuego se presenta con murciélagos, hay racha 🔥 de aciertos, tres calabazas 🎃 que se encienden por misión y una calabaza sorpresa con una carta de superpoder cuya rareza depende de las calabazas. Al final, cada chico ve su colección de cartas. Fondo con luna, murciélagos y telarañas. Sonidos cortos de Halloween y vibración opcionales (se apagan desde la sala de espera).
+- **Ritmo amable para 9 a 12 años**: las preguntas incluyen una pista breve, los retos avanzan de a una tarjeta cuando corresponde y equivocarse no quita puntos: permite aprender y seguir jugando.
+- **Recompensas de juego móvil con temática de Halloween**: los puntos se muestran como dulces 🍬, cada misión y minijuego se presenta con murciélagos, hay racha 🔥 de aciertos, tres calabazas 🎃 que se encienden por misión y una calabaza sorpresa con una carta de superpoder cuya rareza depende de las calabazas. Al final, cada chico ve su colección de cartas. Fondo con luna, murciélagos y telarañas. Sonidos cortos de Halloween y vibración opcionales (se apagan desde la sala de espera o durante la partida).
 - **Ritmo tranquilo** para dar más tiempo de lectura y **ritmo clásico** para partidas más rápidas.
 - **Manual de usuario** para docentes con una guía de una página para los chicos: se abre desde el juego en **/manual** (botón «📖 Manual», funciona sin Internet) y también está en `MANUAL_DE_USUARIO.pdf` para imprimir. Si se edita `public/manual.html`, `npm run manual` vuelve a generar el PDF.
 - **Cartel con QR para imprimir**: en la sala de espera, «🖨️ Cartel con QR» arma una hoja A4 con el QR de la sala, el código, el nombre del Wi-Fi, cuatro pasos con dibujos y la dirección para escribir a mano.
@@ -31,16 +32,16 @@ El contenido y las consignas están orientados a chicos de **8 a 12 años**, con
 - Panel de proyección en pantalla completa.
 - Exportación del ranking en CSV.
 - Reinicio de partida sin perder los jugadores o cierre de la sala.
-- Nueve casos de demostración editables en `casos.json`: privacidad e imagen, contraseñas, permisos de aplicaciones, enlaces inesperados, premios engañosos, rumores y convivencia digital.
+- 18 temas y 64 escenarios editables en `casos.json`: privacidad e imagen, contraseñas, permisos de aplicaciones, enlaces inesperados, convivencia digital, prevención del grooming, redes de apoyo y otros cuidados digitales.
 
 | Ritmo | Detectar | Decidir | Minijuego |
 | --- | --- | --- | --- |
-| Tranquilo | 45 segundos | 30 segundos | 60 segundos |
-| Clásico | 30 segundos | 20 segundos | 35 segundos |
+| Tranquilo | 60 segundos | 45 segundos | 75 segundos |
+| Clásico | 45 segundos | 30 segundos | 50 segundos |
 
 La lectura en voz alta depende de las voces y capacidades del dispositivo; no amplía ni detiene el cronómetro. El organizador puede esperar en las pantallas de resultados para conversar con el grupo antes de avanzar.
 
-**Puntos:** Detectar = +100 por señal correcta marcada, −100 por señal falsa marcada; Decidir = +500 si acierta, −500 si falla; Mini juego = +300 si supera el reto. No responder no suma ni resta. Los puntajes pueden ser negativos.
+**Puntos:** Detectar = +100 por señal correcta marcada; Decidir = +500 si acierta; Mini juego = +300 si supera el reto. Equivocarse o no responder no quita puntos: se puede aprender y seguir.
 
 ## 🧰 Ejecutar en Windows sin Internet durante el juego
 
@@ -117,7 +118,7 @@ npm run check
 npm test
 ```
 
-Las pruebas cubren: creación e ingreso de jugadores, quién respondió cada etapa, permisos, selección y bloqueo de respuestas, puntos positivos/negativos, avance de etapas, cierre/reinicio, QR, cabeceras y vencimiento del cronómetro. `GET /healthz` responde al chequeo de alojamiento. `GET /api/catalogo` informa la cantidad de casos, los tipos de minijuego y los ritmos disponibles sin incluir soluciones.
+Las pruebas cubren: creación e ingreso de jugadores, quién respondió cada etapa, permisos, selección y bloqueo de respuestas, puntos, avance de etapas, cierre/reinicio, QR, cabeceras y vencimiento del cronómetro. `GET /healthz` responde al chequeo de alojamiento. `GET /api/catalogo` informa la cantidad de casos, los tipos de minijuego y los ritmos disponibles sin incluir soluciones.
 
 ## 📁 Estructura
 
@@ -152,5 +153,5 @@ Modificar el archivo `casos.json` conservando la estructura, IDs únicos, la opc
 
 ## 👥 Alcance del material original
 
-El diseño conserva las etapas **Detectar / Decidir**, el ranking y la temática Halloween. Los nueve casos son material de demostración y deben ser revisados por el área responsable antes de una actividad institucional. Las referencias educativas y los criterios de adaptación se encuentran en `FUENTES_EDUCATIVAS.md`.
+El diseño conserva las etapas **Detectar / Decidir**, el ranking y la temática Halloween. Los 18 temas y sus escenarios son material de demostración y deben ser revisados por el área responsable antes de una actividad institucional. Las referencias educativas y los criterios de adaptación se encuentran en `FUENTES_EDUCATIVAS.md`.
 

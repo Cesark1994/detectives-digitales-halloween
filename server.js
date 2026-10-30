@@ -11,8 +11,9 @@ const QRErrorCorrectLevel = require('./vendor/QRCode/QRErrorCorrectLevel');
 const cases = JSON.parse(fs.readFileSync(path.join(__dirname, 'casos.json'), 'utf8'));
 const PORT = Number(process.env.PORT) || 3000;
 const PACES = {
-  calm: {detect:45000,decide:30000,mini:60000},
-  classic: {detect:30000,decide:20000,mini:35000}
+  // Ages 9–12 need enough time to read, think and ask before choosing.
+  calm: {detect:60000,decide:45000,mini:75000},
+  classic: {detect:45000,decide:30000,mini:50000}
 };
 // Keep deployment/test overrides available for both classroom rhythms.
 for(const stages of Object.values(PACES)) for(const stage of Object.keys(stages)) {
@@ -138,14 +139,15 @@ function scoreDetect(room) {
   const c=caseOf(room); const good=new Set(c.pistas.filter(v=>v.correcta).map(v=>v.id));
   for(const p of room.players) {
     const sub=room.submissions[p.id]?.detect;
-    if(sub && !sub.scored) { p.score += sub.selections.reduce((n,id)=> n+(good.has(id)?100:-100),0); sub.scored=true; }
+    // A wrong try is a chance to learn; never take points away from a child.
+    if(sub && !sub.scored) { p.score += sub.selections.reduce((n,id)=> n+(good.has(id)?100:0),0); sub.scored=true; }
   }
 }
 function scoreDecide(room) {
   const c=caseOf(room);
   for(const p of room.players) {
     const sub=room.submissions[p.id]?.decide;
-    if(sub && !sub.scored) { p.score+=(sub.selection===c.respuesta?500:-500); sub.scored=true; }
+    if(sub && !sub.scored) { p.score+=(sub.selection===c.respuesta?500:0); sub.scored=true; }
   }
 }
 function scoreMini(room) {
@@ -169,8 +171,13 @@ function miniForClient(mini,reveal,mix=list=>list) {
   const out={tipo:mini.tipo,titulo:mini.titulo,instruccion:mini.instruccion,...(mini.contexto?{contexto:mini.contexto}:{}),...(mini.instruccionCorta?{instruccionCorta:mini.instruccionCorta}:{})};
   if(kind==='tocar') {out.opciones=mix(mini.opciones,3).map(card); if(reveal) out.respuesta=mini.respuesta;}
   if(kind==='ordenar') {
-    // Never deal the steps already in the right order.
-    let pasos=mix(mini.pasos,4); if(pasos.map(v=>v.id).join('|')===mini.ordenCorrecto.join('|')) pasos=[...pasos.slice(1),pasos[0]];
+    // Never deal the steps already ordered, or in the editorial order.
+    const sameOrder=(items,order)=>items.length===order.length&&items.every((item,index)=>item.id===order[index]);
+    let pasos=mix(mini.pasos,4);
+    if(sameOrder(pasos,mini.ordenCorrecto)) pasos=[...pasos.slice(1),pasos[0]];
+    // A rotation used to avoid the solution can coincidentally restore the source order.
+    if(pasos.length>2&&sameOrder(pasos,mini.pasos)) pasos=[...pasos.slice(1),pasos[0]];
+    if(sameOrder(pasos,mini.ordenCorrecto)) [pasos[0],pasos[1]]=[pasos[1],pasos[0]];
     out.pasos=pasos.map(card); if(reveal) out.ordenCorrecto=mini.ordenCorrecto;
   }
   if(kind==='clasificar') {out.tarjetas=mix(mini.tarjetas,5).map(card); if(reveal) out.clasificacion=mini.clasificacion;}
@@ -193,6 +200,13 @@ function shuffled(list,seed) {
   for(let i=out.length-1;i>0;i--) {const j=Math.floor(random()*(i+1));[out[i],out[j]]=[out[j],out[i]];}
   return out;
 }
+// Cards, clues and responses are always dealt in a non-original order. This avoids
+// teaching the position of the correct answer while retaining one shared layout for the team.
+function shuffledForPlay(list,seed) {
+  const out=shuffled(list,seed);
+  if(out.length>1&&out.every((item,index)=>item===list[index])) [out[0],out[1]]=[out[1],out[0]];
+  return out;
+}
 function newSeed() { return crypto.randomInt(1,2147483647); }
 function missionOrder(room) {
   const all=cases.map((_,i)=>i);
@@ -201,7 +215,7 @@ function missionOrder(room) {
   room.missionDeck??=[];
   const selected=[],themes=new Set();
   while(selected.length<room.caseCount) {
-    if(!room.missionDeck.length)room.missionDeck=shuffled(all,room.seed+selected.length*7919);
+    if(!room.missionDeck.length)room.missionDeck=shuffledForPlay(all,room.seed+selected.length*7919);
     const at=room.missionDeck.findIndex(i=>!themes.has(cases[i].tema||cases[i].categoria));
     if(at<0)break;
     const [index]=room.missionDeck.splice(at,1);
@@ -213,7 +227,7 @@ function drawVariant(room,c) {
   room.variantDecks??={};
   let deck=room.variantDecks[c.id];
   if(!deck?.length) {
-    deck=shuffled(Array.from({length:1+(c.variantes?.length||0)},(_,i)=>i),room.seed+cases.indexOf(c)*104729+3571);
+    deck=shuffledForPlay(Array.from({length:1+(c.variantes?.length||0)},(_,i)=>i),room.seed+cases.indexOf(c)*104729+3571);
     if(deck.length>1&&deck[0]===room.variantChoices?.[c.id]) [deck[0],deck[1]]=[deck[1],deck[0]];
     room.variantDecks[c.id]=deck;
   }
@@ -231,7 +245,7 @@ function caseOf(room) {
 function currentCase(room) {
   const c=caseOf(room);
   if(!c) return null;
-  const mix=(list,salt)=>room.seed===undefined?list:shuffled(list,room.seed+salt*7919+room.caseIndex*104729);
+  const mix=(list,salt)=>room.seed===undefined?list:shuffledForPlay(list,room.seed+salt*7919+room.caseIndex*104729);
   const reveal=['detect_reveal','decide','decide_reveal','mini','mini_reveal','leaderboard','final'].includes(room.stage);
   const decided=['decide_reveal','mini','mini_reveal','leaderboard','final'].includes(room.stage);
   const deciding=['decide','decide_reveal'].includes(room.stage);

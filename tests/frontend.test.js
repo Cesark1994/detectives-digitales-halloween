@@ -101,6 +101,26 @@ test('explicaciones visibles: tanto un acierto como un error muestran el motivo 
  assert.ok(app.evaluate('verdictRows(sampleRows)').includes('<small class="verdict-explanation">Compartirlo permite entrar a tu cuenta.</small>'));
 });
 
+test('arena de minijuegos: muestra progreso y avisa que las respuestas fueron barajadas',()=>{
+ const app=frontend(),mini=cases[0].miniJuego;
+ app.set({current:{code:'TEST',stage:'mini',caseIndex:0,personal:{answers:{checks:{}}}}});
+ let html=app.evaluate(`miniGame(${JSON.stringify(mini)},null)`);
+ assert.ok(html.includes('mini-arena'));
+ assert.ok(html.includes('mini-ambience'),'Cada arena suma una ambientación animada propia.');
+ assert.ok(html.includes('Barajado'));
+ assert.ok(html.includes(`Ronda 0/${mini.opciones.length}`));
+ app.set({current:{code:'TEST',stage:'mini',caseIndex:0,personal:{answers:{checks:{[mini.opciones[0].id]:{correct:true}}}}}});
+ html=app.evaluate(`miniGame(${JSON.stringify(mini)},null)`);
+ assert.ok(html.includes(`Ronda 1/${mini.opciones.length}`));
+});
+
+test('ambientación: los minijuegos tienen sonidos propios y un control para silenciarlos',()=>{
+ assert.match(source,/const miniSounds=/,'Cada tipo de reto debe poder elegir su efecto de sonido.');
+ assert.match(source,/atrapar:'ghost'/,'La caza de fantasmas debe tener un sonido temático.');
+ assert.match(source,/pocion:'bubble'/,'La poción debe tener un sonido de burbujas.');
+ assert.match(source,/data-sound-toggle/,'El jugador debe poder apagar el sonido.');
+});
+
 for(const type of ['chat','feed'])test(`juego ${type}: presenta mensajes o publicaciones y admite el formato de respuesta correcto`,()=>{
  const app=frontend();
  const m=cases.flatMap(c=>c.variantes).map(v=>v.miniJuego).find(m=>m.tipo===type);

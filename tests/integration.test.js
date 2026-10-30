@@ -44,13 +44,13 @@ test('partida multijugador: crear, responder, puntuar, reiniciar y cerrar',async
   assert.equal((await request(base,'/api/accion',{...host,action:'next'})).status,200);
   r=await request(base,'/api/estado?'+q({codigo:code,token:hostToken}));
   assert.equal(r.data.stage,'detect_reveal');assert.equal(r.data.ranking.find(p=>p.name==='Ana').score,200);
-  assert.equal(r.data.ranking.find(p=>p.name==='Juan').score,0);
+  assert.equal(r.data.ranking.find(p=>p.name==='Juan').score,100);
   assert.equal((await request(base,'/api/accion',{...host,action:'next'})).status,200);
   assert.equal((await request(base,'/api/responder',{...player1,stage:'decide',selection:'c'})).status,200);
   assert.equal((await request(base,'/api/responder',{...player2,stage:'decide',selection:'a'})).status,200);
   assert.equal((await request(base,'/api/accion',{...host,action:'next'})).status,200);
   r=await request(base,'/api/estado?'+q({codigo:code,token:hostToken}));
-  assert.equal(r.data.stage,'decide_reveal');assert.equal(r.data.ranking[0].score,700);assert.equal(r.data.ranking[1].score,-500);
+  assert.equal(r.data.stage,'decide_reveal');assert.equal(r.data.ranking[0].score,700);assert.equal(r.data.ranking[1].score,100);
   assert.equal((await request(base,'/api/accion',{...host,action:'next'})).status,200);
   r=await request(base,'/api/estado?'+q({codigo:code,token:player1.token}));
   assert.equal(r.data.stage,'mini');assert.equal(r.data.case.miniJuego.tipo,'tocar');assert.ok(!('respuesta'in r.data.case.miniJuego));
@@ -58,7 +58,7 @@ test('partida multijugador: crear, responder, puntuar, reiniciar y cerrar',async
   assert.equal((await request(base,'/api/responder',{...player2,stage:'mini',selection:'camara'})).status,200);
   assert.equal((await request(base,'/api/accion',{...host,action:'next'})).status,200);
   r=await request(base,'/api/estado?'+q({codigo:code,token:hostToken}));
-  assert.equal(r.data.stage,'mini_reveal');assert.equal(r.data.ranking[0].score,1000);assert.equal(r.data.ranking[1].score,-500);
+  assert.equal(r.data.stage,'mini_reveal');assert.equal(r.data.ranking[0].score,1000);assert.equal(r.data.ranking[1].score,100);
   assert.equal((await request(base,'/api/accion',{...host,action:'next'})).status,200);
   r=await request(base,'/api/estado?'+q({codigo:code,token:hostToken}));assert.equal(r.data.stage,'leaderboard');
   assert.equal((await request(base,'/api/accion',{...host,action:'reset'})).status,200);
@@ -141,8 +141,8 @@ test('catálogo, ritmo y cantidad de casos son configurables y se conservan al r
   assert.deepEqual(Object.keys(catalog.data).sort(),['caseCount','miniTypes','missions','paces']);
   assert.equal(catalog.data.missions.length,content.length);
   for(const mission of catalog.data.missions) assert.deepEqual(Object.keys(mission).sort(),['categoria','id','personaje','tipo','titulo']);
-  assert.deepEqual(catalog.data.paces.calm,{detect:45000,decide:30000,mini:60000});
-  assert.deepEqual(catalog.data.paces.classic,{detect:30000,decide:20000,mini:35000});
+  assert.deepEqual(catalog.data.paces.calm,{detect:60000,decide:45000,mini:75000});
+  assert.deepEqual(catalog.data.paces.classic,{detect:45000,decide:30000,mini:50000});
   for(const options of [{caseCount:0},{caseCount:4},{caseCount:'3'},{pace:'__proto__'},{pace:{toString:'bad'}}]) {
    assert.equal((await request(base,'/api/crear',options)).status,400);
   }
@@ -156,9 +156,9 @@ test('catálogo, ritmo y cantidad de casos son configurables y se conservan al r
   await next();
   for(let i=0;i<3;i++) {
    s=await getState();assert.equal(s.stage,'detect');assert.equal(s.caseIndex,i);
-   assert.equal(s.stageDurationMs,45000);assert.ok(s.endsAt-s.serverNow>43000);
-   await next();await next();s=await getState();assert.equal(s.stageDurationMs,30000);
-   await next();await next();s=await getState();assert.equal(s.stageDurationMs,60000);
+   assert.equal(s.stageDurationMs,60000);assert.ok(s.endsAt-s.serverNow>58000);
+   await next();await next();s=await getState();assert.equal(s.stageDurationMs,45000);
+   await next();await next();s=await getState();assert.equal(s.stageDurationMs,75000);
    await next();await next();await next();
   }
   s=await getState();assert.equal(s.stage,'final');assert.equal(s.totalCases,3);
@@ -169,7 +169,7 @@ test('catálogo, ritmo y cantidad de casos son configurables y se conservan al r
   await request(base,'/api/ingresar',{code:classic.code,name:'Velocista'});
   await request(base,'/api/accion',{code:classic.code,token:classic.hostToken,action:'next'});
   s=(await request(base,'/api/estado?'+q({codigo:classic.code,token:classic.hostToken}))).data;
-  assert.equal(s.stageDurationMs,30000);assert.equal(s.pace,'classic');
+  assert.equal(s.stageDurationMs,45000);assert.equal(s.pace,'classic');
   const defaults=(await request(base,'/api/crear',{})).data;
   assert.equal(defaults.totalCases,content.length);assert.equal(defaults.pace,'calm');
  } finally {await server.stop()}

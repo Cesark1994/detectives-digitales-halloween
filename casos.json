@@ -339,6 +339,48 @@
             "3": "safe"
           }
         }
+      },
+      {
+        "titulo": "Monedas por una foto",
+        "categoria": "Cuidar mi imagen",
+        "tema": "Cuidar mi imagen",
+        "personaje": "Mateo · Un caso de práctica",
+        "relato": "En un juego, alguien ofrece monedas a Mateo si le envía una foto personal. Las monedas no hacen seguro el pedido. Mateo puede frenar el chat y hablar con una persona adulta de confianza.",
+        "relatoCorto": "En un juego, ofrecen monedas a Mateo por una foto personal.",
+        "relatoDecidir": "Las monedas no hacen seguro el pedido. Mateo puede frenar el chat y pedir ayuda.",
+        "pistas": [
+          {"id":"p1","texto":"Piden una foto personal","textoCorto":"Piden una foto personal","porque":"Nadie necesita una foto personal para dar monedas o premios dentro de un juego.","icono":"💬","correcta":true},
+          {"id":"p2","texto":"Ofrecen una recompensa por enviarla","textoCorto":"Ofrecen una recompensa","porque":"Un premio no justifica compartir imágenes personales ni responder a una presión.","icono":"🎁","correcta":true},
+          {"id":"p3","texto":"El mensaje llega mientras juega","textoCorto":"Llega mientras juega","porque":"Estar en un juego no vuelve seguro un pedido; importa qué quieren que hagas.","icono":"🎮","correcta":false},
+          {"id":"p4","texto":"Las monedas tienen un dibujo","textoCorto":"Las monedas tienen dibujo","porque":"El dibujo de una moneda no indica por sí solo que exista un riesgo.","icono":"🪙","correcta":false}
+        ],
+        "pregunta": "¿Qué puede hacer Mateo?",
+        "opciones": [
+          {"id":"o0","texto":"No enviar la foto y pedir ayuda","textoCorto":"No enviar y pedir ayuda","porque":"Frenar el pedido y hablar con alguien de confianza ayuda a no manejar la presión a solas.","icono":"🧭"},
+          {"id":"o1","texto":"Enviar la foto por las monedas","textoCorto":"Enviar la foto por monedas","porque":"Una recompensa no vuelve seguro compartir una foto personal con alguien que no conocés.","icono":"💬"},
+          {"id":"o2","texto":"Pedir más monedas antes de enviarla","textoCorto":"Pedir más monedas","porque":"Negociar una foto personal mantiene una situación que puede incomodar o poner en riesgo.","icono":"💡"},
+          {"id":"o3","texto":"Mandarla una sola vez","textoCorto":"Mandarla una vez","porque":"No hace falta enviar nada para merecer ayuda o seguir jugando con seguridad.","icono":"💭"}
+        ],
+        "respuesta":"o0",
+        "explicacion":"Las monedas o premios no hacen seguro un pedido de fotos personales. Mateo puede no enviar nada, frenar la conversación y pedir ayuda a una persona adulta de confianza. Si algo ya pasó, también merece apoyo sin culpas.",
+        "consejoCorto":"No envíes fotos por premios. Frená y hablá con alguien de confianza.",
+        "miniJuego": {
+          "tipo":"seleccionar",
+          "titulo":"Calabaza: Premios que cuidan",
+          "contexto":"En una sala de práctica aparecen ideas para responder a pedidos de fotos y premios. Elegí las que cuidan.",
+          "instruccion":"Elegí las ideas que ayudan ante un pedido de foto por una recompensa.",
+          "instruccionCorta":"Elegí las ideas que cuidan.",
+          "opciones":[
+            {"id":"m0","texto":"No enviar una foto personal","textoCorto":"No enviar foto personal","porque":"No enviar la foto corta la presión sin tener que negociar con quien la pidió.","icono":"🎃"},
+            {"id":"m1","texto":"Contárselo a una persona adulta","textoCorto":"Contarlo a un adulto","porque":"Una persona adulta de confianza puede acompañar sin culpar a quien recibió el pedido.","icono":"🎃"},
+            {"id":"m2","texto":"Cambiar la foto por más monedas","textoCorto":"Pedir más monedas","porque":"Una recompensa no vuelve seguro compartir una foto personal.","icono":"🎃"},
+            {"id":"m3","texto":"Prometer guardar el secreto","textoCorto":"Guardar el secreto","porque":"Los secretos que aíslan dificultan recibir ayuda cuando algo incomoda.","icono":"🎃"}
+          ],
+          "correctas":["m0","m1"],
+          "explicacion":"Los premios no justifican pedir fotos personales. Frenar y buscar apoyo protege sin culpar a quien recibe el mensaje.",
+          "explicacionCorta":"Los premios no justifican pedir fotos personales."
+        },
+        "insignia":{"icono":"📷","nombre":"Imagen protegida"}
       }
     ],
     "relatoDecidir": "Mila ya cerró el chat, pero llegan nuevos pedidos desde otra cuenta. Puede pedir ayuda sin responder.",
@@ -4130,6 +4172,222 @@
           "icono": "🧭",
           "nombre": "Encuentro cuidado"
         }
+      },
+      {
+        "titulo":"La escuela no se comparte",
+        "categoria":"Encuentros y contactos en línea",
+        "tema":"encuentros-presenciales",
+        "personaje":"Tomás · Un caso de práctica",
+        "relato":"Mientras juega en línea, Tomás conoce a alguien que le pregunta en qué escuela estudia y a qué hora sale. La persona parece simpática, pero esos datos permiten ubicarlo. Tomás puede no responder y hablar con una persona adulta de confianza.",
+        "relatoCorto":"En un juego, alguien pregunta la escuela y el horario de salida de Tomás.",
+        "relatoDecidir":"Que una persona parezca simpática no vuelve seguro compartir datos para ubicar a Tomás.",
+        "pistas":[
+          {"id":"p1","texto":"Pregunta en qué escuela estudia","textoCorto":"Pregunta su escuela","porque":"La escuela es un dato que puede ayudar a ubicar a una persona y no hace falta compartirlo en un juego.","icono":"💬","correcta":true},
+          {"id":"p2","texto":"Pregunta a qué hora sale","textoCorto":"Pregunta su horario","porque":"Los horarios también sirven para ubicar a alguien y conviene mantenerlos privados.","icono":"⏰","correcta":true},
+          {"id":"p3","texto":"El chat ocurre en un juego","textoCorto":"El chat ocurre en juego","porque":"Un juego puede tener chats seguros o no; importa qué información se pide.","icono":"🎮","correcta":false},
+          {"id":"p4","texto":"La persona usa un saludo amable","textoCorto":"Usa saludo amable","porque":"Un saludo amable no confirma quién es alguien ni hace seguro el pedido.","icono":"👋","correcta":false}
+        ],
+        "pregunta":"¿Qué debería hacer Tomás?",
+        "opciones":[
+          {"id":"o0","texto":"No compartir esos datos y pedir ayuda","textoCorto":"No compartir y pedir ayuda","porque":"No compartir datos para ubicarlo y consultar con alguien de confianza es una respuesta segura.","icono":"🧭"},
+          {"id":"o1","texto":"Contarlos porque parece amable","textoCorto":"Contarlos porque es amable","porque":"La amabilidad de un perfil no permite saber quién está detrás del chat.","icono":"💬"},
+          {"id":"o2","texto":"Decir la escuela pero no el apellido","textoCorto":"Decir solo la escuela","porque":"El nombre de una escuela también puede ayudar a ubicar a una persona.","icono":"💡"},
+          {"id":"o3","texto":"Mandar el horario para seguir jugando","textoCorto":"Mandar el horario","porque":"No hace falta dar datos personales para participar de un juego o una charla.","icono":"💭"}
+        ],
+        "respuesta":"o0",
+        "explicacion":"La escuela y los horarios son datos que pueden ayudar a ubicar a alguien. No compartirlos y hablar con una persona adulta de confianza permite decidir acompañado. Que alguien parezca amable no confirma su identidad.",
+        "consejoCorto":"La escuela y los horarios se cuidan: no hace falta compartirlos.",
+        "miniJuego":{
+          "tipo":"chat",
+          "titulo":"Chat: Datos bajo llave",
+          "contexto":"En un chat de práctica aparecen preguntas sobre escuela, horarios y secretos. Elegí cómo responder con cuidado.",
+          "instruccion":"Leé cada mensaje y elegí la respuesta que ayuda. Podés reintentar.",
+          "instruccionCorta":"Elegí cómo responder con cuidado.",
+          "situaciones":[
+            {"id":"s0","texto":"¿A qué hora salís de la escuela?","textoCorto":"¿A qué hora salís?","porque":"Los horarios ayudan a ubicar a una persona y no se comparten con desconocidos.","icono":"💬"},
+            {"id":"s1","texto":"Decime el nombre de tu escuela","textoCorto":"Decime tu escuela","porque":"La escuela es un dato personal que no hace falta compartir en un chat de juego.","icono":"💬"},
+            {"id":"s2","texto":"No le cuentes este chat a nadie","textoCorto":"No cuentes este chat","porque":"Los pedidos de secreto pueden aislarte de quien podría acompañarte.","icono":"💬"}
+          ],
+          "acciones":[
+            {"id":"a0","texto":"No compartir ese horario","textoCorto":"No compartir horario","porque":"Los horarios ayudan a ubicar a una persona y no se comparten con desconocidos.","icono":"🧭"},
+            {"id":"a1","texto":"Guardar ese dato como privado","textoCorto":"Mantenerlo privado","porque":"La escuela es un dato personal que no hace falta compartir en un chat de juego.","icono":"🧭"},
+            {"id":"a2","texto":"Contarlo a un adulto confiable","textoCorto":"Contarlo a un adulto","porque":"Los pedidos de secreto pueden aislarte de quien podría acompañarte.","icono":"🧭"}
+          ],
+          "soluciones":{"s0":"a0","s1":"a1","s2":"a2"},
+          "explicacion":"Los datos que ayudan a ubicar a alguien se cuidan. Una persona adulta de confianza puede acompañar ante un pedido que incomoda.",
+          "explicacionCorta":"Los datos para ubicarte se cuidan."
+        },
+        "insignia":{"icono":"🔒","nombre":"Datos bajo llave"}
+      },
+      {
+        "titulo":"El mensaje que conoce su casa",
+        "categoria":"Encuentros y contactos en línea",
+        "tema":"encuentros-presenciales",
+        "personaje":"Joaquín · Un caso de práctica",
+        "relato":"A Joaquín le llega un mensaje de una persona desconocida que dice saber dónde vive y le pide encontrarse. El mensaje lo asusta. Joaquín no tiene que responder ni ir: puede avisar a una persona adulta y buscar ayuda si se siente amenazado.",
+        "relatoCorto":"Un desconocido dice saber dónde vive Joaquín y pide verlo.",
+        "relatoDecidir":"Joaquín no tiene que responder ni ir. Puede avisar a un adulto y pedir ayuda.",
+        "pistas":[
+          {"id":"p1","texto":"Dice saber dónde vive","textoCorto":"Dice saber dónde vive","porque":"Decir que conoce una dirección busca asustar o presionar y merece apoyo de una persona adulta.","icono":"💬","correcta":true},
+          {"id":"p2","texto":"Pide un encuentro","textoCorto":"Pide encontrarse","porque":"Un desconocido no debe presionar para encontrarse, menos aún después de causar miedo.","icono":"📍","correcta":true},
+          {"id":"p3","texto":"El mensaje tiene letras","textoCorto":"El mensaje tiene letras","porque":"Usar letras en un mensaje no indica por sí solo un riesgo.","icono":"💬","correcta":false},
+          {"id":"p4","texto":"Joaquín estaba usando un celular","textoCorto":"Usaba un celular","porque":"El dispositivo no define el riesgo; importan las presiones y los pedidos.","icono":"📱","correcta":false}
+        ],
+        "pregunta":"¿Qué puede hacer Joaquín?",
+        "opciones":[
+          {"id":"o0","texto":"No encontrarse, avisar y pedir ayuda","textoCorto":"No ir, avisar y pedir ayuda","porque":"No ir al encuentro y avisar a una persona adulta permite buscar apoyo sin enfrentar el miedo a solas.","icono":"🧭"},
+          {"id":"o1","texto":"Ir con un amigo para comprobarlo","textoCorto":"Ir con un amigo","porque":"Ir al encuentro sigue exponiendo a Joaquín a una situación que lo asusta.","icono":"💬"},
+          {"id":"o2","texto":"Enviar su ubicación para confirmar","textoCorto":"Enviar su ubicación","porque":"No hace falta enviar más datos a alguien que intenta presionar o asustar.","icono":"💡"},
+          {"id":"o3","texto":"Responder solo para que se calme","textoCorto":"Responder para calmarlo","porque":"Responder o negociar no es una obligación cuando un mensaje causa miedo.","icono":"💭"}
+        ],
+        "respuesta":"o0",
+        "explicacion":"Si un mensaje da miedo, no hace falta manejarlo en soledad. Joaquín puede no encontrarse, avisar a una persona adulta de confianza y buscar apoyo. En una situación urgente o amenazante, esa persona adulta puede pedir la ayuda correspondiente.",
+        "consejoCorto":"No vayas ni envíes ubicación. Avisá y buscá apoyo.",
+        "miniJuego":{
+          "tipo":"ordenar",
+          "titulo":"Ruta: No estás solo",
+          "contexto":"Un personaje recibe un mensaje que lo asusta. Prepará una ruta de cuidado sin responder al desconocido.",
+          "instruccion":"Primero no responder ni ir, después avisar a un adulto y al final buscar ayuda si hay amenaza.",
+          "instruccionCorta":"Ordená una ruta de cuidado.",
+          "pasos":[
+            {"id":"r0","texto":"No responder ni ir al encuentro","textoCorto":"No responder ni ir","porque":"No responder ni ir evita seguir una presión que puede asustar o poner en riesgo.","icono":"🧩"},
+            {"id":"r1","texto":"Avisar a una persona adulta","textoCorto":"Avisar a un adulto","porque":"Contarlo permite que una persona adulta acompañe y ayude a decidir qué hacer.","icono":"🧩"},
+            {"id":"r2","texto":"Buscar ayuda ante una amenaza","textoCorto":"Buscar ayuda ante amenaza","porque":"Cuando algo se siente amenazante, pedir ayuda es más seguro que enfrentarlo a solas.","icono":"🧩"}
+          ],
+          "ordenCorrecto":["r0","r1","r2"],
+          "explicacion":"No hay que ir ni responder a un encuentro que da miedo. Avisar y buscar ayuda permite cuidar a la persona acompañada.",
+          "explicacionCorta":"No respondas ni vayas: avisá y buscá apoyo."
+        },
+        "insignia":{"icono":"🧭","nombre":"Encuentro seguro"}
+      },
+      {
+        "titulo":"La foto no demuestra quién es",
+        "categoria":"Encuentros y contactos en línea",
+        "tema":"encuentros-presenciales",
+        "personaje":"Franco · Un caso de práctica",
+        "relato":"Franco recibe un perfil con foto de una persona que dice tener su misma edad. No la conoce fuera de internet y le pide una charla secreta. Una foto de perfil no confirma quién escribe. Franco puede mantener sus límites y hablar con alguien de confianza.",
+        "relatoCorto":"Un perfil dice tener la edad de Franco y pide hablar en secreto.",
+        "relatoDecidir":"Una foto y una edad escrita no confirman quién está detrás del perfil.",
+        "pistas":[
+          {"id":"p1","texto":"No la conoce fuera de internet","textoCorto":"No la conoce en persona","porque":"No conocer a alguien fuera de internet invita a cuidar los datos y no aceptar pedidos secretos.","icono":"💬","correcta":true},
+          {"id":"p2","texto":"Pide una conversación secreta","textoCorto":"Pide conversación secreta","porque":"Pedir secreto puede aislar a Franco de una persona que podría acompañarlo.","icono":"🤫","correcta":true},
+          {"id":"p3","texto":"Tiene una foto de perfil","textoCorto":"Tiene foto de perfil","porque":"Una foto de perfil no prueba quién es realmente una persona.","icono":"🖼️","correcta":false},
+          {"id":"p4","texto":"Dice tener su misma edad","textoCorto":"Dice tener su edad","porque":"La edad escrita en un perfil no confirma la identidad de quien conversa.","icono":"💬","correcta":false}
+        ],
+        "pregunta":"¿Qué debe tener en cuenta Franco?",
+        "opciones":[
+          {"id":"o0","texto":"Una foto no confirma la identidad","textoCorto":"La foto no confirma identidad","porque":"Una imagen o una edad escrita no comprueban quién es alguien detrás de una cuenta.","icono":"🧭"},
+          {"id":"o1","texto":"La foto confirma que es real","textoCorto":"La foto lo confirma","porque":"Una foto puede pertenecer a otra persona o no mostrar quién está escribiendo.","icono":"💬"},
+          {"id":"o2","texto":"Puede confiar por tener su edad","textoCorto":"Confiar por su edad","porque":"La edad escrita no permite verificar quién maneja un perfil.","icono":"💡"},
+          {"id":"o3","texto":"Debe guardar el secreto pedido","textoCorto":"Guardar el secreto","porque":"Un pedido de secreto no es una prueba de amistad y puede impedir pedir ayuda.","icono":"💭"}
+        ],
+        "respuesta":"o0",
+        "explicacion":"Una foto, un nombre o una edad escrita no verifican una identidad. Si un perfil desconocido pide secretos, Franco puede no seguir la charla y consultar con alguien de confianza.",
+        "consejoCorto":"Una foto de perfil no confirma quién escribe.",
+        "miniJuego":{
+          "tipo":"feed",
+          "titulo":"Feed: Perfil con lupa",
+          "contexto":"En un feed de práctica aparecen ideas sobre perfiles, identidades y pedidos de secreto. Revisá cada tarjeta.",
+          "instruccion":"Revisá cada publicación: ¿me cuida o necesita atención?",
+          "instruccionCorta":"¿Me cuida o necesita atención?",
+          "tarjetas":[
+            {"id":"f0","texto":"Una foto no confirma una identidad","textoCorto":"La foto no confirma","porque":"Una foto de perfil no permite saber quién maneja una cuenta.","icono":"📱"},
+            {"id":"f1","texto":"Si dice mi edad, ya es seguro","textoCorto":"Mi edad lo hace seguro","porque":"La edad escrita en un perfil no comprueba quién está detrás.","icono":"📱"},
+            {"id":"f2","texto":"Puedo hablar de un pedido secreto","textoCorto":"Puedo contar el secreto","porque":"Contar un pedido que incomoda permite recibir acompañamiento.","icono":"📱"},
+            {"id":"f3","texto":"Debo probar amistad con datos","textoCorto":"Probar amistad con datos","porque":"Una amistad respetuosa no exige datos personales ni secretos.","icono":"📱"}
+          ],
+          "clasificacion":{"f0":"safe","f1":"danger","f2":"safe","f3":"danger"},
+          "explicacion":"Las fotos y las edades escritas no verifican identidades. Los pedidos de secreto o de datos se pueden conversar con alguien de confianza.",
+          "explicacionCorta":"Una foto no confirma quién escribe."
+        },
+        "insignia":{"icono":"🔎","nombre":"Perfil con lupa"}
+      },
+      {
+        "titulo":"El chat que se vuelve secreto",
+        "categoria":"Encuentros y contactos en línea",
+        "tema":"encuentros-presenciales",
+        "personaje":"Martina · Un caso de práctica",
+        "relato":"A Martina le proponen pasar de un chat grupal a uno privado. Después le hacen preguntas íntimas y le piden que no se lo cuente a nadie. Las preguntas y el secreto son señales para frenar. Martina puede salir del chat y buscar apoyo.",
+        "relatoCorto":"En un chat privado, le hacen preguntas íntimas a Martina y piden secreto.",
+        "relatoDecidir":"Las preguntas íntimas y el secreto son razones para frenar y pedir apoyo.",
+        "pistas":[
+          {"id":"p1","texto":"Le hacen preguntas íntimas","textoCorto":"Hacen preguntas íntimas","porque":"Las preguntas íntimas de alguien conocido solo en línea merecen frenar y pedir acompañamiento.","icono":"💬","correcta":true},
+          {"id":"p2","texto":"Le piden que no lo cuente","textoCorto":"Piden que no cuente","porque":"El secreto puede aislar a Martina de quien podría ayudarla.","icono":"🤫","correcta":true},
+          {"id":"p3","texto":"Usan mensajes escritos","textoCorto":"Usan mensajes escritos","porque":"Que un mensaje sea escrito no determina por sí solo el riesgo.","icono":"✉️","correcta":false},
+          {"id":"p4","texto":"Hablaron antes en un grupo","textoCorto":"Hablaron antes en grupo","porque":"Un chat grupal previo no vuelve seguros los pedidos posteriores.","icono":"👥","correcta":false}
+        ],
+        "pregunta":"¿Qué debería llamar su atención?",
+        "opciones":[
+          {"id":"o0","texto":"Las preguntas íntimas y el secreto","textoCorto":"Preguntas y secreto","porque":"Esas presiones son señales para frenar y buscar acompañamiento.","icono":"🧭"},
+          {"id":"o1","texto":"Que la charla sea por internet","textoCorto":"Que sea por internet","porque":"Internet no es la señal por sí sola; importan las preguntas y la presión.","icono":"💬"},
+          {"id":"o2","texto":"Que use mensajes escritos","textoCorto":"Que use mensajes escritos","porque":"El formato escrito no vuelve riesgoso un mensaje por sí mismo.","icono":"💡"},
+          {"id":"o3","texto":"Seguir para no quedar mal","textoCorto":"Seguir para no quedar mal","porque":"No hace falta continuar una charla incómoda para ser amable.","icono":"💭"}
+        ],
+        "respuesta":"o0",
+        "explicacion":"Las preguntas íntimas y los pedidos de secreto son señales para frenar. Martina puede terminar la conversación, no responder y buscar apoyo en una persona adulta de confianza.",
+        "consejoCorto":"Preguntas íntimas y secretos: frená y buscá apoyo.",
+        "miniJuego":{
+          "tipo":"chat",
+          "titulo":"Chat: Salida segura",
+          "contexto":"En una práctica aparecen mensajes que invaden la privacidad o piden secreto. Elegí una salida que cuide.",
+          "instruccion":"Leé cada mensaje y elegí la respuesta que ayuda. Podés reintentar.",
+          "instruccionCorta":"Elegí una salida que cuide.",
+          "situaciones":[
+            {"id":"s0","texto":"Contame algo íntimo, nadie lo sabrá","textoCorto":"Contame algo íntimo","porque":"Pedir información íntima y secreto puede presionar o incomodar; no hace falta responder.","icono":"💬"},
+            {"id":"s1","texto":"Pasemos al chat privado ahora","textoCorto":"Pasemos al chat privado","porque":"Pasar de chat no es peligroso por sí solo, pero se puede frenar si la conversación incomoda.","icono":"💬"},
+            {"id":"s2","texto":"Si contás, se termina nuestra amistad","textoCorto":"No cuentes o termina","porque":"Una amistad respetuosa no usa amenazas para impedir que alguien pida ayuda.","icono":"💬"}
+          ],
+          "acciones":[
+            {"id":"a0","texto":"No responder y pedir apoyo","textoCorto":"No responder y pedir apoyo","porque":"Pedir información íntima y secreto puede presionar o incomodar; no hace falta responder.","icono":"🧭"},
+            {"id":"a1","texto":"Elegir si quiero seguir hablando","textoCorto":"Elegir si sigo hablando","porque":"Pasar de chat no es peligroso por sí solo, pero se puede frenar si la conversación incomoda.","icono":"🧭"},
+            {"id":"a2","texto":"Contarlo a alguien confiable","textoCorto":"Contarlo a alguien confiable","porque":"Una amistad respetuosa no usa amenazas para impedir que alguien pida ayuda.","icono":"🧭"}
+          ],
+          "soluciones":{"s0":"a0","s1":"a1","s2":"a2"},
+          "explicacion":"Una conversación que pide intimidad o secreto se puede frenar. Pedir apoyo es una decisión de cuidado, no una traición.",
+          "explicacionCorta":"Las preguntas íntimas y el secreto se pueden frenar."
+        },
+        "insignia":{"icono":"🚪","nombre":"Salida segura"}
+      },
+      {
+        "titulo":"La cita que no acepta un no",
+        "categoria":"Encuentros y contactos en línea",
+        "tema":"encuentros-presenciales",
+        "personaje":"Una adolescente · Un caso de práctica",
+        "relato":"Una adolescente descubre que la persona con quien hablaba no era quien decía ser. Esa persona le pide encontrarse a solas y se enoja cuando ella se niega. No tiene que ir para calmarla. Puede no acudir, guardar pruebas solo si es seguro y buscar ayuda.",
+        "relatoCorto":"Un perfil mintió sobre su identidad y exige una cita a solas.",
+        "relatoDecidir":"Enojarse ante un no no obliga a aceptar una cita. Puede buscar ayuda.",
+        "pistas":[
+          {"id":"p1","texto":"Mintió sobre su identidad","textoCorto":"Mintió sobre identidad","porque":"Descubrir una identidad falsa es una razón para frenar y no aceptar nuevos pedidos.","icono":"💬","correcta":true},
+          {"id":"p2","texto":"Exige una cita a solas","textoCorto":"Exige cita a solas","porque":"Nadie debe presionar para un encuentro ni usar enojo cuando recibe un no.","icono":"📍","correcta":true},
+          {"id":"p3","texto":"La charla fue por internet","textoCorto":"La charla fue en internet","porque":"El medio no basta para evaluar una situación; importan el engaño y la presión.","icono":"📱","correcta":false},
+          {"id":"p4","texto":"La persona usa una cuenta","textoCorto":"Usa una cuenta","porque":"Tener una cuenta no demuestra una identidad ni una intención.","icono":"👤","correcta":false}
+        ],
+        "pregunta":"¿Cuál es la mejor decisión?",
+        "opciones":[
+          {"id":"o0","texto":"No acudir y buscar ayuda","textoCorto":"No acudir y buscar ayuda","porque":"No ir y buscar apoyo permite responder al engaño y la presión sin estar a solas.","icono":"🧭"},
+          {"id":"o1","texto":"Aceptar para que no se enoje","textoCorto":"Aceptar para calmarlo","porque":"El enojo de otra persona no obliga a aceptar un encuentro.","icono":"💬"},
+          {"id":"o2","texto":"Ir pero no contarlo","textoCorto":"Ir sin contarlo","porque":"El secreto y el encuentro a solas aumentan el aislamiento ante una situación preocupante.","icono":"💡"},
+          {"id":"o3","texto":"Enviar más datos para comprobarlo","textoCorto":"Enviar más datos","porque":"No hace falta dar más datos a quien ya mintió y presiona.","icono":"💭"}
+        ],
+        "respuesta":"o0",
+        "explicacion":"El engaño y la presión son razones para no acudir a una cita. Si es seguro hacerlo, se pueden conservar pruebas; lo importante es buscar ayuda de una persona adulta de confianza y no enfrentar la situación a solas.",
+        "consejoCorto":"No vayas para calmar a alguien: buscá apoyo.",
+        "miniJuego":{
+          "tipo":"ordenar",
+          "titulo":"Ruta: Un no alcanza",
+          "contexto":"Un personaje descubre que un perfil mintió y presiona por una cita. Ordená una ruta de cuidado.",
+          "instruccion":"Primero no aceptar la cita, después hablar con un adulto y al final revisar pruebas si es seguro.",
+          "instruccionCorta":"Ordená una ruta de cuidado.",
+          "pasos":[
+            {"id":"r0","texto":"No aceptar el encuentro","textoCorto":"No aceptar encuentro","porque":"Un no es suficiente: nadie tiene que aceptar una cita para calmar a otra persona.","icono":"🧩"},
+            {"id":"r1","texto":"Hablar con una persona adulta","textoCorto":"Hablar con un adulto","porque":"Buscar apoyo evita manejar el engaño y la presión en soledad.","icono":"🧩"},
+            {"id":"r2","texto":"Revisar pruebas si es seguro","textoCorto":"Revisar pruebas si es seguro","porque":"Las pruebas pueden ser útiles, pero la seguridad y el acompañamiento van primero.","icono":"🧩"}
+          ],
+          "ordenCorrecto":["r0","r1","r2"],
+          "explicacion":"Un no alcanza. No ir, pedir acompañamiento y priorizar la seguridad ayuda ante una identidad falsa o una cita presionada.",
+          "explicacionCorta":"Un no alcanza: no vayas y buscá apoyo."
+        },
+        "insignia":{"icono":"✋","nombre":"Un no alcanza"}
       }
     ]
   },
@@ -4518,6 +4776,48 @@
           "icono": "🛡️",
           "nombre": "Escudo sin culpa"
         }
+      },
+      {
+        "titulo":"Acompañar sin culpar",
+        "categoria":"Amenazas y chantaje",
+        "tema":"amenazas-chantaje",
+        "personaje":"Pedro y un compañero · Un caso de práctica",
+        "relato":"Un compañero le cuenta a Pedro que alguien amenaza con publicar una imagen si no envía otra. El compañero necesita apoyo, no reproches. Pedro puede escucharlo sin juzgarlo y acompañarlo a pedir ayuda a una persona adulta de confianza.",
+        "relatoCorto":"Amenazan a un compañero de Pedro con publicar una imagen.",
+        "relatoDecidir":"El compañero necesita escucha sin culpas y compañía para pedir ayuda.",
+        "pistas":[
+          {"id":"p1","texto":"Amenazan con publicar una imagen","textoCorto":"Amenazan con publicar imagen","porque":"Amenazar con difundir una imagen es una presión que no debe enfrentarse a solas.","icono":"💬","correcta":true},
+          {"id":"p2","texto":"Piden enviar otra imagen","textoCorto":"Piden enviar otra imagen","porque":"Enviar más material no asegura que una amenaza termine y puede aumentar la presión.","icono":"🖼️","correcta":true},
+          {"id":"p3","texto":"El compañero eligió hablar","textoCorto":"Eligió hablar","porque":"Pedir ayuda es una acción de cuidado, no una señal de culpa.","icono":"🤝","correcta":false},
+          {"id":"p4","texto":"El mensaje llegó por internet","textoCorto":"Llegó por internet","porque":"El medio no es la señal por sí sola; la amenaza y la presión sí lo son.","icono":"📱","correcta":false}
+        ],
+        "pregunta":"¿Cómo puede ayudar Pedro?",
+        "opciones":[
+          {"id":"o0","texto":"Escuchar sin juzgar y acompañar","textoCorto":"Escuchar y acompañar","porque":"Escuchar sin culpar y acompañar a pedir ayuda permite que la persona no enfrente la amenaza sola.","icono":"🧭"},
+          {"id":"o1","texto":"Publicar la amenaza para mostrarla","textoCorto":"Publicar la amenaza","porque":"Difundir el problema puede exponer más a quien ya está siendo amenazado.","icono":"💬"},
+          {"id":"o2","texto":"Decir que fue su culpa","textoCorto":"Decir que fue su culpa","porque":"Nadie es responsable de que otra persona decida amenazar o presionar.","icono":"💡"},
+          {"id":"o3","texto":"Pedir que mande otra imagen","textoCorto":"Pedir otra imagen","porque":"Enviar más material no garantiza terminar una amenaza.","icono":"💭"}
+        ],
+        "respuesta":"o0",
+        "explicacion":"Ante una amenaza, escuchar sin culpar importa. Pedro puede acompañar a su compañero a pedir ayuda a una persona adulta de confianza. Haber enviado algo antes nunca quita el derecho a recibir apoyo.",
+        "consejoCorto":"Escuchá sin culpar y acompañá a pedir ayuda.",
+        "miniJuego":{
+          "tipo":"feed",
+          "titulo":"Feed: Red sin culpas",
+          "contexto":"En un feed de práctica aparecen formas de acompañar a alguien que recibe amenazas. Revisá cada tarjeta.",
+          "instruccion":"Revisá cada publicación: ¿me cuida o necesita atención?",
+          "instruccionCorta":"¿Me cuida o necesita atención?",
+          "tarjetas":[
+            {"id":"f0","texto":"Escuchar antes de opinar","textoCorto":"Escuchar antes de opinar","porque":"Escuchar ayuda a que la persona pueda contar lo que pasa sin sentir culpa.","icono":"📱"},
+            {"id":"f1","texto":"Decir que se lo buscó","textoCorto":"Decir que se lo buscó","porque":"Culpar a quien recibe una amenaza puede alejarlo de la ayuda que necesita.","icono":"📱"},
+            {"id":"f2","texto":"Acompañar a pedir ayuda","textoCorto":"Acompañar a pedir ayuda","porque":"Ir acompañado puede hacer más fácil contar una situación que da vergüenza o miedo.","icono":"📱"},
+            {"id":"f3","texto":"Difundir para dar una lección","textoCorto":"Difundir para dar lección","porque":"Compartir una amenaza puede ampliar la exposición de quien necesita protección.","icono":"📱"}
+          ],
+          "clasificacion":{"f0":"safe","f1":"danger","f2":"safe","f3":"danger"},
+          "explicacion":"Acompañar significa escuchar sin culpar, cuidar la privacidad y buscar apoyo con una persona adulta de confianza.",
+          "explicacionCorta":"Escuchá sin culpar y acompañá a pedir ayuda."
+        },
+        "insignia":{"icono":"🤝","nombre":"Red sin culpas"}
       }
     ]
   },
@@ -4906,6 +5206,89 @@
           "icono": "✋",
           "nombre": "Mi derecho a elegir"
         }
+      },
+      {
+        "titulo":"La cámara no se negocia",
+        "categoria":"Límites y vínculos respetuosos",
+        "tema":"limites-control",
+        "personaje":"Sofía · Un caso de práctica",
+        "relato":"Sofía conversa con alguien que conoció en una red social. Esa persona le pide encender la cámara y mostrar partes privadas de su cuerpo. Promete no grabar. Sofía puede negarse, cortar la conversación y pedir ayuda a una persona adulta de confianza.",
+        "relatoCorto":"Un contacto pide a Sofía cámara y mostrar partes privadas de su cuerpo.",
+        "relatoDecidir":"Una promesa de no grabar no vuelve seguro un pedido que cruza sus límites.",
+        "pistas":[
+          {"id":"p1","texto":"Pide activar la cámara","textoCorto":"Pide activar cámara","porque":"Nadie debe presionar para encender una cámara o mostrar el cuerpo.","icono":"📹","correcta":true},
+          {"id":"p2","texto":"Pide mostrar partes privadas","textoCorto":"Pide mostrar partes privadas","porque":"Un pedido de mostrar partes privadas cruza límites y requiere frenar y buscar apoyo.","icono":"💬","correcta":true},
+          {"id":"p3","texto":"Dice que no va a grabar","textoCorto":"Promete no grabar","porque":"Una promesa no elimina la presión ni vuelve seguro un pedido que incomoda.","icono":"🤞","correcta":false},
+          {"id":"p4","texto":"La charla fue en una red social","textoCorto":"Fue en red social","porque":"La red social no es la señal por sí sola; el pedido y la presión sí importan.","icono":"📱","correcta":false}
+        ],
+        "pregunta":"¿Qué debería hacer Sofía?",
+        "opciones":[
+          {"id":"o0","texto":"Negarse, cortar y pedir ayuda","textoCorto":"Negarse, cortar y pedir ayuda","porque":"Puede decir no, terminar la charla y buscar acompañamiento sin justificar su decisión.","icono":"🧭"},
+          {"id":"o1","texto":"Aceptar si promete no grabar","textoCorto":"Aceptar por la promesa","porque":"Una promesa no hace seguro un pedido que presiona o cruza límites.","icono":"💬"},
+          {"id":"o2","texto":"Hacerlo una sola vez","textoCorto":"Hacerlo una vez","porque":"No hace falta aceptar una situación incómoda una sola vez ni para demostrar confianza.","icono":"💡"},
+          {"id":"o3","texto":"Seguir para no ofenderlo","textoCorto":"Seguir para no ofender","porque":"La incomodidad de otra persona no vale más que los límites de Sofía.","icono":"💭"}
+        ],
+        "respuesta":"o0",
+        "explicacion":"Sofía tiene derecho a decir no y no necesita justificar sus límites. Puede terminar la conversación y pedir ayuda. Las promesas de alguien que presiona no vuelven seguro el pedido.",
+        "consejoCorto":"Tus límites importan: podés decir no, cortar y pedir ayuda.",
+        "miniJuego":{
+          "tipo":"feed",
+          "titulo":"Feed: Mis límites cuentan",
+          "contexto":"En un feed de práctica aparecen pedidos de cámara, privacidad y límites. Revisá cada tarjeta.",
+          "instruccion":"Revisá cada publicación: ¿me cuida o necesita atención?",
+          "instruccionCorta":"¿Me cuida o necesita atención?",
+          "tarjetas":[
+            {"id":"f0","texto":"Puedo decir no sin explicar","textoCorto":"Puedo decir no","porque":"Decir no es suficiente cuando algo incomoda o cruza un límite.","icono":"📱"},
+            {"id":"f1","texto":"Una promesa hace seguro todo","textoCorto":"La promesa lo hace seguro","porque":"Una promesa no elimina la presión ni garantiza que un pedido sea respetuoso.","icono":"📱"},
+            {"id":"f2","texto":"Cortar y hablar con alguien","textoCorto":"Cortar y hablar","porque":"Terminar la conversación y pedir apoyo protege ante un pedido que incomoda.","icono":"📱"},
+            {"id":"f3","texto":"Debo hacerlo para no ofender","textoCorto":"Debo hacerlo para no ofender","porque":"Nadie tiene que cruzar un límite para cuidar los sentimientos de otra persona.","icono":"📱"}
+          ],
+          "clasificacion":{"f0":"safe","f1":"danger","f2":"safe","f3":"danger"},
+          "explicacion":"Los límites personales se respetan. Nadie debe presionar para usar la cámara o mostrar partes privadas del cuerpo.",
+          "explicacionCorta":"Tus límites cuentan: podés decir no y pedir ayuda."
+        },
+        "insignia":{"icono":"✋","nombre":"Mis límites cuentan"}
+      },
+      {
+        "titulo":"La confianza no pide imágenes",
+        "categoria":"Límites y vínculos respetuosos",
+        "tema":"limites-control",
+        "personaje":"Valentina · Un caso de práctica",
+        "relato":"Valentina conoce a alguien en una red social. Con el tiempo, esa persona le pide imágenes íntimas y dice que, si de verdad confía, debe enviarlas. Usar la confianza para presionar es manipular. Valentina puede no enviar nada y buscar apoyo.",
+        "relatoCorto":"Un contacto presiona a Valentina para enviar imágenes íntimas por confianza.",
+        "relatoDecidir":"La confianza no se demuestra enviando imágenes ni obedeciendo una presión.",
+        "pistas":[
+          {"id":"p1","texto":"Pide imágenes íntimas","textoCorto":"Pide imágenes íntimas","porque":"Pedir imágenes íntimas a alguien conocido solo en línea es una razón para frenar y buscar apoyo.","icono":"💬","correcta":true},
+          {"id":"p2","texto":"Usa la confianza para presionar","textoCorto":"Presiona con confianza","porque":"La confianza no debe usarse para obligar a alguien a hacer algo que no quiere.","icono":"🤝","correcta":true},
+          {"id":"p3","texto":"Hablaron durante semanas","textoCorto":"Hablaron varias semanas","porque":"El tiempo de conversación no convierte en seguro un pedido que presiona.","icono":"📅","correcta":false},
+          {"id":"p4","texto":"La charla es por mensajes","textoCorto":"La charla es por mensajes","porque":"El formato del chat no indica por sí solo el riesgo.","icono":"✉️","correcta":false}
+        ],
+        "pregunta":"¿Qué intenta hacer esa persona?",
+        "opciones":[
+          {"id":"o0","texto":"Presionar y manipular para obtener imágenes","textoCorto":"Presionar por imágenes","porque":"Usar la confianza como condición es una forma de presión y manipulación.","icono":"🧭"},
+          {"id":"o1","texto":"Demostrar una amistad respetuosa","textoCorto":"Demostrar amistad","porque":"Una amistad respetuosa acepta un no y no exige imágenes íntimas.","icono":"💬"},
+          {"id":"o2","texto":"Ayudar a la confianza de Valentina","textoCorto":"Ayudar su confianza","porque":"La confianza no se construye con presiones ni pedidos de imágenes íntimas.","icono":"💡"},
+          {"id":"o3","texto":"Pedir una prueba de cariño","textoCorto":"Pedir prueba de cariño","porque":"El cariño no es una deuda y no obliga a enviar imágenes.","icono":"💭"}
+        ],
+        "respuesta":"o0",
+        "explicacion":"La confianza no se demuestra enviando imágenes íntimas. Presionar, condicionar el cariño o insistir son formas de manipulación. Valentina puede no enviar nada, cortar la charla y buscar apoyo sin culpas.",
+        "consejoCorto":"La confianza no exige imágenes: frená y buscá apoyo.",
+        "miniJuego":{
+          "tipo":"ordenar",
+          "titulo":"Ruta: Confianza sin presión",
+          "contexto":"Un personaje recibe un pedido de imágenes con presión. Armá una ruta que respete sus límites.",
+          "instruccion":"Primero no enviar nada, después cortar la presión y al final hablar con alguien de confianza.",
+          "instruccionCorta":"Ordená una ruta sin presión.",
+          "pasos":[
+            {"id":"r0","texto":"No enviar imágenes ni datos","textoCorto":"No enviar nada","porque":"No enviar nada evita seguir una presión que busca obtener material personal.","icono":"🧩"},
+            {"id":"r1","texto":"Cortar o frenar la conversación","textoCorto":"Frenar la conversación","porque":"No hace falta continuar una conversación que insiste o incomoda.","icono":"🧩"},
+            {"id":"r2","texto":"Hablar con alguien de confianza","textoCorto":"Hablar con alguien confiable","porque":"Buscar apoyo ayuda a no llevar una presión o amenaza a solas.","icono":"🧩"}
+          ],
+          "ordenCorrecto":["r0","r1","r2"],
+          "explicacion":"La confianza no se prueba enviando imágenes. Frenar la presión y buscar apoyo protege los límites personales.",
+          "explicacionCorta":"La confianza no exige imágenes ni secretos."
+        },
+        "insignia":{"icono":"🛡️","nombre":"Confianza sin presión"}
       }
     ]
   },
@@ -5294,6 +5677,52 @@
           "icono": "🤝",
           "nombre": "Red que escucha"
         }
+      },
+      {
+        "titulo":"El secreto que pesa",
+        "categoria":"Derecho a pedir ayuda",
+        "tema":"redes-apoyo",
+        "personaje":"Lucía · Un caso de práctica",
+        "relato":"Lucía recibe un mensaje de alguien que conoció en un juego: «Sos muy especial. No le cuentes a nadie que hablamos». Un pedido de secreto puede aislarla. Lucía puede hablar con una persona adulta de confianza sobre ese mensaje.",
+        "relatoCorto":"Alguien del juego le pide a Lucía que guarde su conversación en secreto.",
+        "relatoDecidir":"Un pedido de secreto no es una prueba de amistad y se puede contar.",
+        "pistas":[
+          {"id":"p1","texto":"Pide que no se lo cuente a nadie","textoCorto":"Pide no contarlo","porque":"Pedir secreto puede aislar a Lucía de quienes podrían acompañarla.","icono":"🤫","correcta":true},
+          {"id":"p2","texto":"Dice que es algo especial","textoCorto":"Dice que es especial","porque":"Usar halagos junto con un secreto puede ser una forma de presión.","icono":"💬","correcta":true},
+          {"id":"p3","texto":"Se conocieron en un juego","textoCorto":"Se conocieron en juego","porque":"Conocerse en un juego no es por sí solo una señal; importa lo que se pide.","icono":"🎮","correcta":false},
+          {"id":"p4","texto":"El mensaje tiene un saludo","textoCorto":"El mensaje saluda","porque":"Un saludo no confirma que una conversación sea segura o respetuosa.","icono":"👋","correcta":false}
+        ],
+        "pregunta":"¿Qué señal aparece en este caso?",
+        "opciones":[
+          {"id":"o0","texto":"Una alerta: pide guardar secretos","textoCorto":"Pide guardar secretos","porque":"Un pedido de secreto puede impedir que Lucía consulte con alguien que la cuide.","icono":"🧭"},
+          {"id":"o1","texto":"Una amistad que debe ocultarse","textoCorto":"Amistad que se oculta","porque":"Una amistad respetuosa no exige esconder conversaciones que incomodan.","icono":"💬"},
+          {"id":"o2","texto":"No hay riesgo si es amable","textoCorto":"Es amable, no hay riesgo","porque":"La amabilidad o los halagos no vuelven seguro un pedido de secreto.","icono":"💡"},
+          {"id":"o3","texto":"Debe cumplir para no perderlo","textoCorto":"Debe cumplir para no perderlo","porque":"No hace falta guardar un secreto para sostener una amistad.","icono":"💭"}
+        ],
+        "respuesta":"o0",
+        "explicacion":"Los pedidos de secreto pueden aislar a una persona de su red de ayuda, especialmente cuando vienen con halagos o presión. Lucía puede contar el mensaje a una persona adulta de confianza y pedir acompañamiento.",
+        "consejoCorto":"Un secreto que incomoda se puede contar a alguien de confianza.",
+        "miniJuego":{
+          "tipo":"conectar",
+          "titulo":"Conectá: Red que acompaña",
+          "contexto":"Tres personajes reciben mensajes que piden secreto o los hacen sentir solos. Uní cada uno con una ayuda posible.",
+          "instruccion":"Conectá cada mensaje con una respuesta que cuide. Podés reintentar.",
+          "instruccionCorta":"Uní cada mensaje con una ayuda.",
+          "situaciones":[
+            {"id":"s0","texto":"No le cuentes a nadie que hablamos","textoCorto":"No cuentes que hablamos","porque":"Los pedidos de secreto se pueden contar a alguien que cuide y acompañe.","icono":"💬"},
+            {"id":"s1","texto":"Si hablás, ya no seremos amigos","textoCorto":"Si hablás, no amigos","porque":"Una amistad respetuosa no amenaza para impedir que alguien pida ayuda.","icono":"💬"},
+            {"id":"s2","texto":"Me da vergüenza contar este chat","textoCorto":"Me da vergüenza contar","porque":"No hace falta tener las palabras perfectas para pedir compañía y apoyo.","icono":"💬"}
+          ],
+          "acciones":[
+            {"id":"a0","texto":"Hablar con un adulto confiable","textoCorto":"Hablar con un adulto","porque":"Los pedidos de secreto se pueden contar a alguien que cuide y acompañe.","icono":"🧭"},
+            {"id":"a1","texto":"Recordar que no es una amistad","textoCorto":"No es amistad respetuosa","porque":"Una amistad respetuosa no amenaza para impedir que alguien pida ayuda.","icono":"🧭"},
+            {"id":"a2","texto":"Pedir ayuda con una frase corta","textoCorto":"Pedir ayuda con frase","porque":"No hace falta tener las palabras perfectas para pedir compañía y apoyo.","icono":"🧭"}
+          ],
+          "soluciones":{"s0":"a0","s1":"a1","s2":"a2"},
+          "explicacion":"Los secretos que incomodan se pueden contar. Una persona adulta de confianza puede escuchar, cuidar la privacidad y acompañar.",
+          "explicacionCorta":"Un secreto que pesa se puede contar."
+        },
+        "insignia":{"icono":"🤝","nombre":"Red que acompaña"}
       }
     ]
   },

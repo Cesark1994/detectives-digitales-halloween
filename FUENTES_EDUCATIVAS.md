@@ -1,6 +1,6 @@
 # Fuentes y criterios educativos
 
-Consulta: 28 de octubre de 2026. Los nueve casos y sus retos son originales; no se copian niveles, imágenes ni textos de otros juegos. Las fuentes orientan los conceptos de seguridad digital. El material es una propuesta para trabajar aproximadamente de los 8 a los 12 años, con acompañamiento adulto; esa edad es una decisión de diseño, no una certificación pedagógica.
+Consulta: 28 de octubre de 2026. Los 18 temas y sus retos son originales; no se copian niveles, imágenes ni textos de otros juegos. Las fuentes orientan los conceptos de seguridad digital. El material es una propuesta para trabajar aproximadamente de los 8 a los 12 años, con acompañamiento adulto; esa edad es una decisión de diseño, no una certificación pedagógica.
 
 ## Fuentes primarias consultadas
 
@@ -20,7 +20,7 @@ Consulta: 28 de octubre de 2026. Los nueve casos y sus retos son originales; no 
 - [Argentina.gob.ar — Uso de pantallas y pérdida de control](https://www.argentina.gob.ar/node/517050): cuidar descanso, vínculos y actividades. No se hacen diagnósticos ni se puntúa el tiempo de pantalla real del participante.
 - [Argentina.gob.ar — Cómo usar las pantallas de una manera saludable](https://www.argentina.gob.ar/capital-humano/familia/bienestar-emocional/soy-nino/como-usar-las-pantallas-de-una-manera-saludable): acompañamiento y decisiones de cuidado. Aplicado a pausas y compras con consulta familiar.
 
-Los casos 10 a 18 añaden nueve ejes: ofertas y trata, encuentros secretos, amenazas y chantaje, límites y control, redes de ayuda, IA y suplantación, descanso digital, retos riesgosos y publicidad/compras. Cada eje tiene tres situaciones ficticias, cuatro respuestas explicadas y retos alternativos.
+Los casos 10 a 18 añaden nueve ejes: ofertas y trata, encuentros secretos, amenazas y chantaje, límites y control, redes de ayuda, IA y suplantación, descanso digital, retos riesgosos y publicidad/compras. Cada eje tiene al menos tres situaciones ficticias, cuatro respuestas explicadas y retos alternativos. Se suman diez escenarios de prevención del grooming: pedidos de datos para ubicar, secretos, imágenes, perfiles no verificables, encuentros presionados, amenazas, límites y redes de apoyo.
 
 Orientación para quien organiza: revisar el contenido según la edad del grupo, permitir no participar y no pedir experiencias personales. Si alguien cuenta algo que le pasó, escuchar sin culpar ni interrogar ante el grupo, cuidar su privacidad y buscar acompañamiento adecuado. En Argentina, la [Línea 145](https://www.argentina.gob.ar/node/292262) brinda orientación sobre trata y explotación. Los casos no enseñan a realizar denuncias ficticias ni convierten un pedido de ayuda real en un juego.
 

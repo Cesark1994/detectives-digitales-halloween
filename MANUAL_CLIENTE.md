@@ -2,9 +2,9 @@
 
 > Versión para imprimir, con una guía de una página para los chicos: `MANUAL_DE_USUARIO.pdf`, o el botón **📖 Manual** del organizador (dirección `/manual`).
 
-Versión de demostración: juego educativo multijugador con nueve casos de seguridad digital y nueve minijuegos distintos, uno por misión.
+Versión de demostración: juego educativo multijugador con 18 temas, 64 escenarios de seguridad digital y minijuegos de Halloween más prácticas de chat y feed.
 
-Las misiones están pensadas para chicos de **8 a 12 años**, con una persona adulta que organice, lea o converse con el grupo cuando sea necesario. La edad es una orientación del contenido; podés adaptar el acompañamiento a cada grupo.
+Las misiones están pensadas para chicos de **9 a 12 años**, con una persona adulta que organice, lea o converse con el grupo cuando sea necesario. Las consignas dan una pista breve y equivocarse no resta puntos, para que puedan probar y aprender. La edad es una orientación del contenido; podés adaptar el acompañamiento a cada grupo.
 
 ## 1. Acceso
 
@@ -47,8 +47,8 @@ Cuando todo el equipo respondió, el resultado aparece solo a los pocos segundos
 
 | Ritmo elegido por el organizador | Detectar | Decidir | Minijuego |
 | --- | --- | --- | --- |
-| Tranquilo | 45 segundos | 30 segundos | 60 segundos |
-| Clásico | 30 segundos | 20 segundos | 35 segundos |
+| Tranquilo | 60 segundos | 45 segundos | 75 segundos |
+| Clásico | 45 segundos | 30 segundos | 50 segundos |
 
 Los nueve minijuegos son:
 
@@ -64,7 +64,7 @@ Los nueve minijuegos son:
 
 Las misiones pueden salir **al azar** (opción recomendada al crear la sala): cada partida elige misiones distintas y las pistas, opciones y tarjetas se mezclan siempre.
 
-Los puntos se muestran como dulces 🍬. Al terminar cada misión, cada chico ve tres calabazas 🎃 (se enciende una por etapa acertada) y una calabaza sorpresa. Al tocarla aparece la carta de superpoder de esa misión: común, rara, épica o legendaria según las calabazas encendidas. En el podio final se muestra la colección completa. El sonido y la vibración se apagan desde la sala de espera con **Sonido: sí / no**.
+Los puntos se muestran como dulces 🍬. Las respuestas equivocadas no restan puntos: se explican para que cada chico pueda aprender y seguir. Al terminar cada misión, cada chico ve tres calabazas 🎃 (se enciende una por etapa acertada) y una calabaza sorpresa. Al tocarla aparece la carta de superpoder de esa misión: común, rara, épica o legendaria según las calabazas encendidas. En el podio final se muestra la colección completa. El sonido y la vibración se apagan desde la sala de espera o durante la partida con **Sonido: sí / no**.
 
 Cuando esté disponible la opción **Escuchar**, podés usarla para oír la consigna. El mismo botón cambia a **Parar** para interrumpirla. La voz depende del navegador y del dispositivo. El cronómetro continúa mientras escuchás; el ritmo tranquilo deja más tiempo para leer y pensar.
 
@@ -95,7 +95,7 @@ Las salas y los resultados son temporales: si se reinicia el servidor, se pierde
 4. Verificá que una respuesta confirmada quede bloqueada y que los puntajes se actualicen.
 5. Revisá el ranking y descargá el CSV.
 6. Probá volver a comenzar y cerrar la sala.
-7. Creá una partida de nueve casos para probar los nueve minijuegos. Comprobá también el ritmo tranquilo y la opción de escuchar, si está disponible.
+7. Creá una partida de 18 casos al azar para recorrer todos los temas. Comprobá también el ritmo tranquilo y la opción de escuchar, si está disponible.
 
 Para informar un problema, enviá al proveedor: paso realizado, resultado esperado, resultado observado, dispositivo y navegador. Adjuntá una captura si es posible, sin enlaces privados de administración.
 

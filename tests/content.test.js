@@ -26,6 +26,18 @@ test('contenido infantil: historias y tarjetas breves conservan una opción de l
  }
 });
 
+test('perfil 9 a 12: preguntas, relatos y consignas mantienen una dificultad amable',()=>{
+ for(const theme of cases)for(const scenario of [theme,...theme.variantes]){
+  assert.ok(scenario.pregunta.split(/\s+/).length<=8,`${scenario.titulo}: pregunta demasiado larga`);
+  assert.ok(scenario.relatoCorto.split(/\s+/).length<=22,`${scenario.titulo}: relato corto demasiado largo`);
+  assert.ok(scenario.miniJuego.instruccionCorta.split(/\s+/).length<=11,`${scenario.titulo}: consigna demasiado larga`);
+  assert.equal(scenario.opciones.length,4,`${scenario.titulo}: cuatro opciones concretas para elegir`);
+ }
+ assert.match(source,/calm: \{detect:60000,decide:45000,mini:75000\}/,'El ritmo tranquilo da tiempo para leer.');
+ assert.match(source,/good\.has\(id\)\?100:0/,'Una pista incorrecta no descuenta puntos.');
+ assert.match(source,/sub\.selection===c\.respuesta\?500:0/,'Una decisión incorrecta no descuenta puntos.');
+});
+
 test('contenido didáctico: cada pista, opción y tarjeta de minijuego explica por qué',()=>{
  const reasoned={tocar:'opciones',seleccionar:'opciones',atrapar:'opciones',linterna:'opciones',ordenar:'pasos',pocion:'pasos',clasificar:'tarjetas',feed:'tarjetas',conectar:'situaciones',chat:'situaciones',defender:'situaciones'};
  for(const c of cases){
@@ -40,7 +52,7 @@ test('variantes: cada tema incluye historias completas y otras formas de jugar',
  const titles=new Set();
  const challenges=new Set();
  for(const c of cases){
-  assert.equal(c.variantes.length,2);
+  assert.ok(c.variantes.length>=2,`${c.id}: al menos dos variantes`);
   const variants=[c,...c.variantes];
   assert.ok(new Set(variants.map(v=>v.miniJuego.tipo)).size>=2,`${c.id}: cambiar la mecánica`);
   for(const v of variants){
@@ -59,7 +71,7 @@ test('variantes: cada tema incluye historias completas y otras formas de jugar',
    }
   }
  }
- assert.equal(titles.size,cases.length*3);
+ assert.equal(titles.size,cases.reduce((total,c)=>total+1+c.variantes.length,0));
 });
 
 test('contenido infantil: cada misión entrega una carta con nombre breve y un minijuego distinto',()=>{

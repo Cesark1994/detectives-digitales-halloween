@@ -56,6 +56,26 @@ test('al azar: cada partida elige otras misiones, y las opciones se mezclan igua
  }finally{await server.stop()}
 });
 
+test('barajado: las pistas, decisiones y tarjetas no conservan posiciones del archivo',async()=>{
+ const server=await startServer();
+ try{
+  const r=await room(server.base,{random:true,caseCount:3});
+  await r.next();
+  const detected=(await r.view()).case;
+  const base=cases.find(c=>c.id===detected.id),actual=[base,...base.variantes].find(c=>c.titulo===detected.titulo);
+  const ids=list=>list.map(item=>item.id);
+  assert.notDeepEqual(ids(detected.pistas),ids(actual.pistas),'Las pistas no deben conservar su orden editorial.');
+  await r.next();await r.next();
+  const deciding=(await r.view()).case;
+  assert.notDeepEqual(ids(deciding.opciones),ids(actual.opciones),'Las decisiones no deben conservar posiciones fijas.');
+  await r.next();await r.next();
+  const mini=(await r.view()).case.miniJuego,source=actual.miniJuego;
+  const key=['opciones','pasos','tarjetas','situaciones'].find(name=>mini[name]);
+  assert.ok(key,'El reto tiene tarjetas para barajar.');
+  assert.notDeepEqual(ids(mini[key]),ids(source[key]),'Las tarjetas del reto tampoco conservan su orden editorial.');
+ }finally{await server.stop()}
+});
+
 test('al azar: todas las misiones cambian preguntas y tarjetas al volver a jugar',async()=>{
  const server=await startServer();
  try{
