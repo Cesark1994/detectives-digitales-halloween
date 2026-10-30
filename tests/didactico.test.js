@@ -81,6 +81,47 @@ test('al azar: las nueve misiones cambian preguntas y tarjetas al volver a jugar
  }finally{await server.stop()}
 });
 
+test('27 escenarios: historias nuevas, avance al decidir y retos independientes con puntuación correcta',async()=>{
+ const server=await startServer();
+ try{
+  const r=await room(server.base,{random:true,caseCount:9});
+  const seen=new Set(),kinds=new Set();
+  const submit=body=>request(server.base,'/api/responder',{code:r.code,token:r.players[0].token,...body});
+  for(let game=0;game<3;game++){
+   await r.next();let expected=0;
+   for(let i=0;i<9;i++){
+    const detected=(await r.view()).case;
+    const base=cases.find(c=>c.id===detected.id);
+    const actual=[base,...base.variantes].find(c=>c.titulo===detected.titulo);
+    assert.ok(actual);
+    assert.ok(!seen.has(actual.titulo),'No se repiten escenarios hasta agotar el banco.');seen.add(actual.titulo);
+    const clues=actual.pistas.filter(p=>p.correcta).map(p=>p.id);
+    assert.equal((await submit({stage:'detect',selections:clues})).status,200);
+    await r.next();await r.next();
+    const deciding=(await r.view()).case;
+    assert.notEqual(deciding.relato,detected.relato,'La historia avanza al decidir.');
+    assert.equal(deciding.relato,actual.relatoDecidir);
+    assert.equal((await submit({stage:'decide',selection:actual.respuesta})).status,200);
+    await r.next();await r.next();
+    const mini=(await r.view()).case.miniJuego;
+    assert.equal(mini.contexto,actual.miniJuego.contexto);
+    assert.notEqual(mini.contexto,detected.relato,'El reto plantea una situación independiente.');
+    assert.notEqual(mini.contexto,deciding.relato);
+    kinds.add(mini.tipo);
+    const m=actual.miniJuego;
+    const kind={pocion:'ordenar',defender:'conectar',atrapar:'seleccionar',linterna:'seleccionar'}[m.tipo]||m.tipo;
+    const answer={tocar:{selection:m.respuesta},ordenar:{sequence:m.ordenCorrecto},conectar:{matches:m.soluciones},clasificar:{groups:m.clasificacion},seleccionar:{selections:m.correctas}}[kind];
+    assert.equal((await submit({stage:'mini',...answer})).status,200);
+    await r.next();expected+=clues.length*100+500+300;
+    assert.equal((await r.view()).personal.score,expected,'La corrección usa el escenario sorteado.');
+    await r.next();await r.next();
+   }
+   if(game<2)assert.equal((await request(server.base,'/api/accion',{code:r.code,token:r.hostToken,action:'reset'})).status,200);
+  }
+  assert.equal(seen.size,27);assert.equal(kinds.size,9);
+ }finally{await server.stop()}
+});
+
 test('al azar: los pasos para ordenar nunca llegan ya ordenados',async()=>{
  const server=await startServer();
  try{

@@ -238,7 +238,8 @@ function renderHost(){
  if(s.stage==='decide_reveal')content=`${tvRibbon('🧭','Una decisión que nos cuida')}${answerList(c,true)}${owlBubble(c.explicacion)}`;
  if(s.stage==='mini')content=`${tvRibbon(miniIcons[m.tipo]||'🎮',m.titulo,m.instruccion,`${miniNames[m.tipo]||'Minijuego'} · +300 puntos`)}${miniList(m)}${progress(s)}`;
  if(s.stage==='mini_reveal')content=`${tvRibbon('🎓',m.titulo,'','Aprendemos juntos')}${miniResult(m)}${owlBubble(m.explicacionCorta||m.explicacion)}`;
- show(`<section class="tv-stage tv-${s.stage}"><div class="tv-hud">${missionProgress(s)}<h2 class="tv-stage-name">${esc(stageNames[s.stage])}</h2>${active?countdown():'<span class="tv-talk">💬 Para conversar en equipo</span>'}</div><div class="screen host-play-grid tv-grid">${storyCard(c)}<section class="panel question-panel tv-board">${content}<div class="tv-actions"><span class="tv-team-total">👥 ${s.players.length} ${s.players.length===1?'detective':'detectives'}</span><button class="button ghost btn-small" id="fullscreen" aria-label="Pantalla completa">⛶</button><button class="button primary" id="next">${buttonNext[s.stage]}</button></div></section></div></section>`);
+ const challengeStory=s.stage.startsWith('mini')&&m.contexto?{...c,titulo:m.titulo,personaje:'Nuevo desafío · '+c.categoria,relato:m.contexto}:c;
+ show(`<section class="tv-stage tv-${s.stage}"><div class="tv-hud">${missionProgress(s)}<h2 class="tv-stage-name">${esc(stageNames[s.stage])}</h2>${active?countdown():'<span class="tv-talk">💬 Para conversar en equipo</span>'}</div><div class="screen host-play-grid tv-grid">${storyCard(challengeStory)}<section class="panel question-panel tv-board">${content}<div class="tv-actions"><span class="tv-team-total">👥 ${s.players.length} ${s.players.length===1?'detective':'detectives'}</span><button class="button ghost btn-small" id="fullscreen" aria-label="Pantalla completa">⛶</button><button class="button primary" id="next">${buttonNext[s.stage]}</button></div></section></div></section>`);
  document.getElementById('next').onclick=()=>hostAction('next');document.getElementById('fullscreen').onclick=toggleFullscreen;
 }
 async function refreshNetwork(){if(!LOCAL_HOST)return;try{const result=await api('/api/red');network=result.ips||[];if(!network.some(item=>item.ip===selectedIP))selectedIP=network[0]?.ip||location.hostname;if(current?.stage==='lobby')render()}catch(error){toast(error.message)}}
@@ -398,7 +399,7 @@ function ghostSchedule(items){
  order.forEach((item,i)=>{const t0=700+i*1000,taken=pops.filter(pop=>pop.t0<=t0&&pop.t1>t0).map(pop=>pop.hole),free=[0,1,2,3,4,5].filter(hole=>!taken.includes(hole)&&hole!==pops[i-1]?.hole);pops.push({id:item.id,hole:free[Math.floor(Math.random()*free.length)],t0,t1:t0+2100})});
  return pops;
 }
-function ghostJar(m){const caught=Object.entries(checksNow());return caught.length?caught.map(([id,check])=>{const item=m.opciones.find(option=>option.id===id);return `<span class="ghost-chip ${check.correct?'good':'bad'}" title="${esc(shortText(item))}"><span aria-hidden="true">${esc(item?.icono)}</span><span class="sr-only">${esc(shortText(item))}: ${check.correct?'dato privado':'no era privado'}</span></span>`}).join(''):'<span class="ghost-jar-empty">Ninguno todavía</span>'}
+function ghostJar(m){const caught=Object.entries(checksNow());return caught.length?caught.map(([id,check])=>{const item=m.opciones.find(option=>option.id===id);return `<span class="ghost-chip ${check.correct?'good':'bad'}" title="${esc(shortText(item))}"><span aria-hidden="true">${esc(item?.icono)}</span><span class="sr-only">${esc(shortText(item))}: ${check.correct?'necesita atención':'podía pasar'}</span></span>`}).join(''):'<span class="ghost-jar-empty">Ninguno todavía</span>'}
 function ghostGame(m){
  const game=ghostState();
  const overlay=!game?'<div class="arena-overlay"><span aria-hidden="true">👻</span><button type="button" class="button primary" id="ghost-start" data-answer-control>▶ ¡Empezar!</button></div>':draftMini.done?'<div class="arena-overlay arena-done"><b>¡Ronda terminada!</b><button type="button" class="button ghost btn-small" id="ghost-again" data-answer-control>↻ Otra vez</button></div>':'';
@@ -439,7 +440,7 @@ function bindGhosts(m){
   game.caught[i]=Date.now()-game.start;sfx('pop');ghostTick();
   const result=await checkItem(game.pops[i].id,undefined,{concurrent:true});if(!result)return;
   game.verdict[i]=result.correct;
-  coach(result.correct,result.correct?'¡Atrapado! Es un dato privado':'¡Ese era inofensivo!',result.porque,2200);
+  coach(result.correct,result.correct?'¡Atrapado! Necesita atención':'¡Ese podía pasar!',result.porque,2200);
   if(!result.correct)sfx('learn');
   syncChecks(m);const jar=document.getElementById('ghost-jar');if(jar)jar.innerHTML=ghostJar(m);updateTimers();
  };
@@ -481,7 +482,7 @@ function bindRoom(m){
    reveal(item);if(checksNow()[id])return;
    bump(item);
    const result=await checkItem(id);if(!result)return;
-   coach(result.correct,result.correct?'¡Bien visto! Es sospechoso 🚨':'Este permiso tiene sentido',result.porque);
+   coach(result.correct,result.correct?'¡Bien visto! Necesita atención 🚨':'Esta tarjeta podía quedar sin marcar',result.porque);
    sfx(result.correct?'pick':'learn');syncChecks(m);render();
   };
  });
@@ -644,7 +645,7 @@ function renderPlayer(){
  if(['detect','decide','mini'].includes(s.stage))scoreMark={key:`${s.caseIndex}:${s.stage}`,score:me.score};
  if(s.stage==='detect'||s.stage==='decide'){
   initDraft();const detect=s.stage==='detect',sub=stateAnswerFor(s.stage),items=detect?c.pistas:c.opciones;
-  const title=detect?'Buscá las pistas':'¿Qué harías?',context=c.relatoCorto||c.relato,hint=detect?'Elegí varias':'Elegí una';
+  const title=detect?'Buscá las pistas':c.pregunta,context=c.relatoCorto||c.relato,hint=detect?'Elegí varias':'Elegí una';
   const speech=`${context}. ${title}. ${hint}. ${items.map(shortText).join('. ')}`;
   const choices=items.map((item,i)=>choiceCard(item,i,{name:detect?'pista':'decision',type:detect?'checkbox':'radio',selected:detect?draftDetect.includes(item.id):draftDecide===item.id,disabled:!!sub})).join('');
   show(`<section class="child-screen">${childTop(s)}<section class="panel child-panel child-question ${detect?'child-detect':'child-decide'}">${sub?childWaiting():`<div class="child-task"><div><h2 id="child-task-title">${esc(title)}</h2><p class="child-prompt">${hint}</p></div>${speechControls(speech)}</div>${childBubble(context,'child-context')}<div class="child-options choice-grid">${choices}</div>${submitArea(null,'Enviar')}`}</section></section>`);
@@ -654,11 +655,11 @@ function renderPlayer(){
   initDraft();const m=c.miniJuego,sub=stateAnswerFor('mini'),wizard=childWizard(m),item=childItems(m)[childStep];
   // The last answered card stays on screen a moment before the "sent" badge.
   syncChecks(m);const playing=!sub||holdActive();
-  const title=childMiniTitles[m.tipo]||m.titulo;
+  const title=m.titulo;
   const instruction=m.instruccionCorta||m.instruccion;
   const cards=m.tipo==='defender'?[...m.situaciones,...m.acciones]:(m.opciones||m.pasos||[]);
-  const speech=`${title}. ${instruction}. ${wizard?shortText(item)+'. '+(m.tipo==='conectar'?m.acciones.map(shortText).join('. '):'Dulce: me cuida. Truco: atención.'):cards.map(shortText).join('. ')}`;
-  show(`<section class="child-screen">${childTop(s)}<section class="panel child-panel child-mini child-mini-${m.tipo}">${playing?`<div class="child-task"><h2 id="child-task-title">${esc(title)}</h2>${speechControls(speech)}</div><p class="child-prompt">${esc(instruction)}</p>${miniGame(m,null)}${childMiniActions(m,null)}`:childWaiting()}</section></section>`);
+  const speech=`${title}. ${m.contexto||''} ${instruction}. ${wizard?shortText(item)+'. '+(m.tipo==='conectar'?m.acciones.map(shortText).join('. '):'Dulce: me cuida. Truco: atención.'):cards.map(shortText).join('. ')}`;
+  show(`<section class="child-screen">${childTop(s)}<section class="panel child-panel child-mini child-mini-${m.tipo}">${playing?`<div class="child-task"><h2 id="child-task-title">${esc(title)}</h2>${speechControls(speech)}</div>${m.contexto?childBubble(m.contexto,'child-context'):''}<p class="child-prompt">${esc(instruction)}</p>${miniGame(m,null)}${childMiniActions(m,null)}`:childWaiting()}</section></section>`);
   if(playing){bindMini(m);const submit=document.getElementById('submit-answer');if(submit)submit.onclick=()=>submitMini(m)}return;
  }
  if(s.stage.endsWith('_reveal')){

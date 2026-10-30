@@ -35,6 +35,31 @@ test('contenido didáctico: cada pista, opción y tarjeta de minijuego explica p
  }
 });
 
+test('variantes: cada tema incluye historias completas y otras formas de jugar',()=>{
+ const titles=new Set();
+ const challenges=new Set();
+ for(const c of cases){
+  assert.equal(c.variantes.length,2);
+  const variants=[c,...c.variantes];
+  assert.ok(new Set(variants.map(v=>v.miniJuego.tipo)).size>=2,`${c.id}: cambiar la mecánica`);
+  for(const v of variants){
+   assert.ok(!titles.has(v.titulo));titles.add(v.titulo);
+   assert.ok(v.relatoDecidir&&v.relatoDecidir!==v.relato);
+   assert.ok(v.miniJuego.contexto&&v.miniJuego.contexto!==v.relato);
+   assert.ok(!challenges.has(v.miniJuego.contexto),'Los retos deben tener contextos distintos.');
+   challenges.add(v.miniJuego.contexto);
+   assert.ok(v.pistas.filter(p=>p.correcta).length>=2);
+   assert.ok(v.opciones.length>=3);
+   assert.ok(v.opciones.some(o=>o.id===v.respuesta));
+   for(const key of ['opciones','pasos','tarjetas','situaciones','acciones'])for(const card of v.miniJuego[key]||[]){
+    assert.ok(card.textoCorto.length<=45,`${v.titulo}: ${card.textoCorto}`);
+    assert.ok(card.textoCorto.split(/\s+/).length<=6,`${v.titulo}: ${card.textoCorto}`);
+   }
+  }
+ }
+ assert.equal(titles.size,27);
+});
+
 test('contenido infantil: cada misión entrega una carta con nombre breve y un minijuego distinto',()=>{
  for(const c of cases){
   assert.ok(c.insignia?.icono?.trim(),`${c.id}: falta el ícono de la carta`);

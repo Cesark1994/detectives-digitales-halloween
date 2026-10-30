@@ -59,6 +59,25 @@ function frontend() {
   };
 }
 
+test('pantalla del jugador: muestra la pregunta del escenario y el contexto propio del reto',()=>{
+ const app=frontend();
+ const c={...cases[0],...cases[0].variantes[1]};
+ app.set({current:{code:'TEST',stage:'decide',caseIndex:0,totalCases:3,endsAt:app.now+30000,case:c,personal:{score:0,answers:{}}}});
+ app.evaluate(`
+  var captured='';
+  show=html=>{captured=html;return true};
+  childTop=()=>'';speechControls=()=>'';bindChoices=()=>{};resetArcade=()=>{};
+  document.getElementById=()=>({});
+  renderPlayer();
+ `);
+ assert.ok(app.evaluate('captured').includes(c.pregunta),'La pregunta específica debe aparecer en el celular.');
+ app.evaluate(`current.stage='mini'; bindMini=()=>{}; renderPlayer();`);
+ const html=app.evaluate('captured');
+ assert.ok(html.includes(c.miniJuego.titulo));
+ assert.ok(html.includes(c.miniJuego.contexto));
+ assert.ok(!html.includes(c.relato),'El minijuego presenta su propia situación.');
+});
+
 const formats = [
   { type: 'tocar', complete: { selection: 'escudo' }, incomplete: {}, wrong: { selection: 'camara' }, payloadKey: 'selection' },
   { type: 'ordenar', complete: { sequence: ['guardar', 'bloquear', 'contar'] }, incomplete: { sequence: ['guardar'] }, wrong: { sequence: ['contar', 'guardar', 'bloquear'] }, payloadKey: 'sequence' },
@@ -358,3 +377,4 @@ test('respuesta y eventos: una consulta posterior al último SSE sí actualiza l
   assert.equal(app.timer.textContent, '⏱ 00:30');
   assert.equal(app.evaluate('busy'), false);
 });
+

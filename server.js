@@ -63,10 +63,10 @@ function advance(room, action='next') {
   if(action==='reset') {
     room.stage='lobby'; room.caseIndex=0; room.endsAt=0;
     room.submissions={}; for(const p of room.players) p.score=0;
-    // Replaying a mission draws a different question and challenge from the last game.
-    for(const c of cases) if(room.variantChoices?.[c.id]!==undefined)
-      room.variantChoices[c.id]=(room.variantChoices[c.id]+1)%(1+(c.variantes?.length||0));
     room.seed=newSeed(); room.order=missionOrder(room);
+    // Draw without replacement, and avoid repeating the last scenario when refilling.
+    for(const c of cases) if(room.variantChoices?.[c.id]!==undefined)
+      room.variantChoices[c.id]=drawVariant(room,c);
     return;
   }
   switch(room.stage) {
@@ -166,7 +166,7 @@ function scoreMini(room) {
 function miniForClient(mini,reveal,mix=list=>list) {
   const card=v=>({id:v.id,icono:v.icono,texto:v.texto,...(v.textoCorto?{textoCorto:v.textoCorto}:{}),...(reveal&&v.porque?{porque:v.porque}:{})});
   const kind=MINI_KIND[mini.tipo];
-  const out={tipo:mini.tipo,titulo:mini.titulo,instruccion:mini.instruccion,...(mini.instruccionCorta?{instruccionCorta:mini.instruccionCorta}:{})};
+  const out={tipo:mini.tipo,titulo:mini.titulo,instruccion:mini.instruccion,...(mini.contexto?{contexto:mini.contexto}:{}),...(mini.instruccionCorta?{instruccionCorta:mini.instruccionCorta}:{})};
   if(kind==='tocar') {out.opciones=mix(mini.opciones,3).map(card); if(reveal) out.respuesta=mini.respuesta;}
   if(kind==='ordenar') {
     // Never deal the steps already in the right order.
@@ -195,14 +195,24 @@ function shuffled(list,seed) {
 }
 function newSeed() { return crypto.randomInt(1,2147483647); }
 function missionOrder(room) { const all=cases.map((_,i)=>i); return (room.random?shuffled(all,room.seed):all).slice(0,room.caseCount); }
+function drawVariant(room,c) {
+  room.variantDecks??={};
+  let deck=room.variantDecks[c.id];
+  if(!deck?.length) {
+    deck=shuffled(Array.from({length:1+(c.variantes?.length||0)},(_,i)=>i),room.seed+cases.indexOf(c)*104729+3571);
+    if(deck.length>1&&deck[0]===room.variantChoices?.[c.id]) [deck[0],deck[1]]=[deck[1],deck[0]];
+    room.variantDecks[c.id]=deck;
+  }
+  return deck.shift();
+}
 function caseOf(room) {
   const c=cases[room.order?room.order[room.caseIndex]:room.caseIndex];
   if(!c || !room.random || room.seed===undefined || !c.variantes?.length) return c;
   const variants=[c,...c.variantes];
   room.variantChoices??={};
-  room.variantChoices[c.id]??=Math.floor(seeded(room.seed+room.caseIndex*104729+3571)()*variants.length);
+  room.variantChoices[c.id]??=drawVariant(room,c);
   const variant=variants[room.variantChoices[c.id]];
-  return variant===c?c:{...c,...variant,miniJuego:{...c.miniJuego,...variant.miniJuego}};
+  return variant===c?c:{...c,...variant,miniJuego:variant.miniJuego||c.miniJuego};
 }
 function currentCase(room) {
   const c=caseOf(room);
@@ -210,8 +220,9 @@ function currentCase(room) {
   const mix=(list,salt)=>room.seed===undefined?list:shuffled(list,room.seed+salt*7919+room.caseIndex*104729);
   const reveal=['detect_reveal','decide','decide_reveal','mini','mini_reveal','leaderboard','final'].includes(room.stage);
   const decided=['decide_reveal','mini','mini_reveal','leaderboard','final'].includes(room.stage);
+  const deciding=['decide','decide_reveal'].includes(room.stage);
   return {
-    id:c.id, titulo:c.titulo, categoria:c.categoria, personaje:c.personaje,...(c.insignia?{insignia:c.insignia}:{}), relato:c.relato,...(c.relatoCorto?{relatoCorto:c.relatoCorto}:{}),
+    id:c.id, titulo:c.titulo, categoria:c.categoria, personaje:c.personaje,...(c.insignia?{insignia:c.insignia}:{}), relato:deciding&&c.relatoDecidir?c.relatoDecidir:c.relato,...(c.relatoCorto?{relatoCorto:deciding&&c.relatoDecidir?c.relatoDecidir:c.relatoCorto}:{}),
     pistas:mix(c.pistas,1).map(p=>({id:p.id,texto:p.texto,icono:p.icono,...(p.textoCorto?{textoCorto:p.textoCorto}:{}),...(reveal?{correcta:p.correcta,porque:p.porque}:{})})),
     pregunta:c.pregunta, opciones:mix(c.opciones,2).map(o=>({id:o.id,icono:o.icono,texto:o.texto,...(o.textoCorto?{textoCorto:o.textoCorto}:{}),...(decided?{porque:o.porque}:{})})),
     ...(decided?{respuesta:c.respuesta,explicacion:c.explicacion,...(c.consejoCorto?{consejoCorto:c.consejoCorto}:{})}:{}),

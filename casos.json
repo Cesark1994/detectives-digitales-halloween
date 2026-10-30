@@ -72,7 +72,7 @@
     "miniJuego": {
       "tipo": "tocar",
       "titulo": "Activá tu escudo",
-      "instruccion": "Tocá la acción que ayuda a Mila.",
+      "instruccion": "Elegí la acción que protege en esta nueva situación.",
       "opciones": [
         {
           "id": "escudo",
@@ -98,42 +98,84 @@
       ],
       "respuesta": "escudo",
       "explicacion": "El escudo es pedir ayuda a una persona adulta de confianza.",
-      "instruccionCorta": "Elegí qué puede ayudar a Mila.",
-      "explicacionCorta": "Si algo te incomoda, contáselo a una persona adulta de confianza. No tenés que resolverlo solo."
+      "instruccionCorta": "Elegí la acción que protege.",
+      "explicacionCorta": "Si algo te incomoda, contáselo a una persona adulta de confianza. No tenés que resolverlo solo.",
+      "contexto": "Un desconocido ofrece una misión secreta a otro jugador y le pide una foto. Activá un escudo para protegerlo."
     },
     "relatoCorto": "Alguien que Mila no conoce le pide una foto y dice: «No se lo cuentes a nadie».",
     "consejoCorto": "Podés decir que no y pedir ayuda a una persona adulta de confianza. Si ya enviaste algo, también podés contar.",
     "variantes": [
       {
-        "pregunta": "¿Qué puede hacer Mila si siguen pidiéndole fotos?",
-        "opciones": [
+        "titulo": "La cámara del torneo",
+        "personaje": "Luz · Un caso nuevo",
+        "relato": "A Luz le prometen entrar a un torneo si prende la cámara. Le dicen que no avise a su familia.",
+        "relatoCorto": "A Luz le prometen entrar a un torneo si prende la cámara. Le dicen que no avise a su familia.",
+        "relatoDecidir": "Luz ya prendió la cámara unos segundos y ahora se siente incómoda. La persona insiste en que siga.",
+        "pistas": [
           {
-            "id": "a",
-            "icono": "💬",
-            "texto": "Enviar otra foto",
-            "textoCorto": "Enviar otra foto",
-            "porque": "Esta acción puede aumentar el riesgo. Frená y pedí ayuda de confianza."
+            "id": "alerta1",
+            "texto": "Exigen prender la cámara",
+            "textoCorto": "Exigen prender la cámara",
+            "porque": "Esta señal merece atención y una consulta con ayuda adulta.",
+            "icono": "🎃",
+            "correcta": true
           },
           {
-            "id": "b",
-            "icono": "🎮",
-            "texto": "No contárselo a nadie",
-            "textoCorto": "No contárselo a nadie",
-            "porque": "Esta acción puede aumentar el riesgo. Frená y pedí ayuda de confianza."
+            "id": "alerta2",
+            "texto": "Piden ocultarlo a la familia",
+            "textoCorto": "Piden ocultarlo a la familia",
+            "porque": "Esta parte de la situación puede poner en riesgo a alguien.",
+            "icono": "🎃",
+            "correcta": true
           },
           {
-            "id": "c",
-            "icono": "🛡️",
-            "texto": "Cerrar el chat y buscar ayuda",
-            "textoCorto": "Cerrar el chat y buscar ayuda",
-            "porque": "Esta acción protege y permite buscar ayuda de confianza."
+            "id": "neutral1",
+            "texto": "Se habla de un torneo",
+            "textoCorto": "Se habla de un torneo",
+            "porque": "Este detalle por sí solo no indica que alguien esté en riesgo.",
+            "icono": "🎃",
+            "correcta": false
+          },
+          {
+            "id": "neutral2",
+            "texto": "Luz juega en línea",
+            "textoCorto": "Luz juega en línea",
+            "porque": "Esta parte es habitual; conviene mirar qué se pide y cómo se trata a las personas.",
+            "icono": "🎃",
+            "correcta": false
           }
         ],
-        "respuesta": "c",
+        "pregunta": "¿Qué puede hacer Luz ahora?",
+        "opciones": [
+          {
+            "id": "bien",
+            "texto": "Cortar y buscar ayuda adulta",
+            "textoCorto": "Cortar y buscar ayuda adulta",
+            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
+            "icono": "🛡️"
+          },
+          {
+            "id": "riesgo1",
+            "texto": "Seguir para ganar el torneo",
+            "textoCorto": "Seguir para ganar el torneo",
+            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
+            "icono": "🎃"
+          },
+          {
+            "id": "riesgo2",
+            "texto": "Prometer que no lo contará",
+            "textoCorto": "Prometer que no lo contará",
+            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
+            "icono": "🎃"
+          }
+        ],
+        "respuesta": "bien",
+        "explicacion": "La situación merece una pausa. Cortar y buscar ayuda adulta. Buscá el apoyo de una persona adulta de confianza.",
+        "consejoCorto": "Podés frenar y pedir ayuda. No tenés que resolver el problema en soledad.",
         "miniJuego": {
           "tipo": "tocar",
-          "titulo": "Activá tu escudo",
-          "instruccion": "Tocá la acción que ayuda a Mila.",
+          "titulo": "La salida del chat secreto",
+          "instruccion": "Elegí la acción que protege en esta nueva situación.",
           "opciones": [
             {
               "id": "escudo",
@@ -159,11 +201,126 @@
           ],
           "respuesta": "escudo",
           "explicacion": "Bloquear con ayuda frena nuevos pedidos de esa cuenta. Mostrarte por cámara también comparte tu imagen. Podés pedir ayuda antes de borrar mensajes que permitan entender lo ocurrido.",
-          "instruccionCorta": "Elegí qué puede ayudar a Mila.",
-          "explicacionCorta": "Si algo te incomoda, contáselo a una persona adulta de confianza. No tenés que resolverlo solo."
+          "instruccionCorta": "Elegí la acción que protege.",
+          "explicacionCorta": "Si algo te incomoda, contáselo a una persona adulta de confianza. No tenés que resolverlo solo.",
+          "contexto": "En otra sala, un avatar pide una videollamada privada y que nadie se entere. Elegí una salida que cuide."
+        }
+      },
+      {
+        "titulo": "El álbum del equipo",
+        "personaje": "Nico · Un caso nuevo",
+        "relato": "Un jugador pide a Nico una selfie para un álbum. No lo conoce y le pide también una foto del uniforme.",
+        "relatoCorto": "Un jugador pide a Nico una selfie para un álbum. No lo conoce y le pide también una foto del uniforme.",
+        "relatoDecidir": "Nico descubre que en su uniforme se ve el nombre de la escuela. Todavía no mandó las fotos.",
+        "pistas": [
+          {
+            "id": "alerta1",
+            "texto": "Un desconocido pide una selfie",
+            "textoCorto": "Un desconocido pide una selfie",
+            "porque": "Esta señal merece atención y una consulta con ayuda adulta.",
+            "icono": "🎃",
+            "correcta": true
+          },
+          {
+            "id": "alerta2",
+            "texto": "Pide una foto del uniforme",
+            "textoCorto": "Pide una foto del uniforme",
+            "porque": "Esta parte de la situación puede poner en riesgo a alguien.",
+            "icono": "🎃",
+            "correcta": true
+          },
+          {
+            "id": "neutral1",
+            "texto": "Quieren armar un álbum",
+            "textoCorto": "Quieren armar un álbum",
+            "porque": "Este detalle por sí solo no indica que alguien esté en riesgo.",
+            "icono": "🎃",
+            "correcta": false
+          },
+          {
+            "id": "neutral2",
+            "texto": "Nico tiene un uniforme",
+            "textoCorto": "Nico tiene un uniforme",
+            "porque": "Esta parte es habitual; conviene mirar qué se pide y cómo se trata a las personas.",
+            "icono": "🎃",
+            "correcta": false
+          }
+        ],
+        "pregunta": "¿Cómo cuida Nico su imagen?",
+        "opciones": [
+          {
+            "id": "bien",
+            "texto": "No mandar y consultar en casa",
+            "textoCorto": "No mandar y consultar en casa",
+            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
+            "icono": "🛡️"
+          },
+          {
+            "id": "riesgo1",
+            "texto": "Tapar su cara y mandar igual",
+            "textoCorto": "Tapar su cara y mandar igual",
+            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
+            "icono": "🎃"
+          },
+          {
+            "id": "riesgo2",
+            "texto": "Mandar fotos de un compañero",
+            "textoCorto": "Mandar fotos de un compañero",
+            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
+            "icono": "🎃"
+          }
+        ],
+        "respuesta": "bien",
+        "explicacion": "La situación merece una pausa. No mandar y consultar en casa. Buscá el apoyo de una persona adulta de confianza.",
+        "consejoCorto": "Podés frenar y pedir ayuda. No tenés que resolver el problema en soledad.",
+        "miniJuego": {
+          "tipo": "clasificar",
+          "titulo": "El estudio de las imágenes",
+          "contexto": "Preparás una galería virtual. Revisá qué imágenes se pueden compartir.",
+          "instruccion": "Revisá cada tarjeta y separá lo que cuida de lo que necesita atención.",
+          "instruccionCorta": "En cada tarjeta: ¿me cuida o necesita atención?",
+          "explicacion": "Un paisaje sin datos personales puede compartirse tras revisarlo. La imagen de otra persona necesita su permiso. Una dirección visible revela dónde vivís. Un personaje inventado sin datos personales no expone tu imagen.",
+          "explicacionCorta": "Revisá la situación antes de actuar. Si tenés dudas, pedí ayuda adulta.",
+          "tarjetas": [
+            {
+              "id": "0",
+              "texto": "Un paisaje sin personas",
+              "textoCorto": "Un paisaje sin personas",
+              "porque": "Un paisaje sin datos personales puede compartirse tras revisarlo.",
+              "icono": "🛡️"
+            },
+            {
+              "id": "1",
+              "texto": "Una amiga sin su permiso",
+              "textoCorto": "Una amiga sin su permiso",
+              "porque": "La imagen de otra persona necesita su permiso.",
+              "icono": "👻"
+            },
+            {
+              "id": "2",
+              "texto": "Una foto con mi dirección",
+              "textoCorto": "Una foto con mi dirección",
+              "porque": "Una dirección visible revela dónde vivís.",
+              "icono": "👻"
+            },
+            {
+              "id": "3",
+              "texto": "Un monstruo inventado",
+              "textoCorto": "Un monstruo inventado",
+              "porque": "Un personaje inventado sin datos personales no expone tu imagen.",
+              "icono": "🛡️"
+            }
+          ],
+          "clasificacion": {
+            "0": "safe",
+            "1": "danger",
+            "2": "danger",
+            "3": "safe"
+          }
         }
       }
-    ]
+    ],
+    "relatoDecidir": "Mila ya cerró el chat, pero llegan nuevos pedidos desde otra cuenta. Puede pedir ayuda sin responder."
   },
   {
     "id": "caso-02",
@@ -269,40 +426,82 @@
       ],
       "explicacion": "Esta ruta propone frenar, buscar ayuda y usar bloqueo y reporte. No hace falta abrir el enlace para investigar.",
       "instruccionCorta": "Primero frená, después pedí ayuda y al final bloqueá con ayuda.",
-      "explicacionCorta": "No hace falta abrir el enlace. Podés pedir ayuda y bloquear con una persona adulta."
+      "explicacionCorta": "No hace falta abrir el enlace. Podés pedir ayuda y bloquear con una persona adulta.",
+      "contexto": "Un anuncio de monedas gratis abre un sitio desconocido. Ordená la ruta de revisión con ayuda adulta."
     },
     "relatoCorto": "Teo recibe «¡Monedas gratis!». Le piden entrar a otro sitio y dar su clave.",
     "consejoCorto": "No abras el enlace. Mostráselo a una persona adulta de confianza.",
     "variantes": [
       {
-        "pregunta": "¿Cómo comprueba el personaje si el premio es real?",
-        "opciones": [
+        "titulo": "El código del regalo",
+        "personaje": "Cami · Un caso nuevo",
+        "relato": "A Cami le ofrecen una mascota virtual gratis. Un sitio ajeno al juego pide su código de acceso.",
+        "relatoCorto": "A Cami le ofrecen una mascota virtual gratis. Un sitio ajeno al juego pide su código de acceso.",
+        "relatoDecidir": "El regalo tiene una cuenta regresiva. Cami puede cerrar la página sin perder su cuenta.",
+        "pistas": [
           {
-            "id": "a",
-            "icono": "💬",
-            "texto": "Entrar al enlace y probar",
-            "textoCorto": "Entrar al enlace y probar",
-            "porque": "Esta acción puede aumentar el riesgo. Frená y pedí ayuda de confianza."
+            "id": "alerta1",
+            "texto": "Un sitio ajeno ofrece regalos",
+            "textoCorto": "Un sitio ajeno ofrece regalos",
+            "porque": "Esta señal merece atención y una consulta con ayuda adulta.",
+            "icono": "🎃",
+            "correcta": true
           },
           {
-            "id": "b",
-            "icono": "🛡️",
-            "texto": "Consultar sin abrir el enlace",
-            "textoCorto": "Consultar sin abrir el enlace",
-            "porque": "Esta acción protege y permite buscar ayuda de confianza."
+            "id": "alerta2",
+            "texto": "Pide un código de acceso",
+            "textoCorto": "Pide un código de acceso",
+            "porque": "Esta parte de la situación puede poner en riesgo a alguien.",
+            "icono": "🎃",
+            "correcta": true
           },
           {
-            "id": "c",
-            "icono": "📱",
-            "texto": "Dar su clave para reclamarlo",
-            "textoCorto": "Dar su clave para reclamarlo",
-            "porque": "Esta acción puede aumentar el riesgo. Frená y pedí ayuda de confianza."
+            "id": "neutral1",
+            "texto": "La mascota es virtual",
+            "textoCorto": "La mascota es virtual",
+            "porque": "Este detalle por sí solo no indica que alguien esté en riesgo.",
+            "icono": "🎃",
+            "correcta": false
+          },
+          {
+            "id": "neutral2",
+            "texto": "Cami juega en una app",
+            "textoCorto": "Cami juega en una app",
+            "porque": "Esta parte es habitual; conviene mirar qué se pide y cómo se trata a las personas.",
+            "icono": "🎃",
+            "correcta": false
           }
         ],
-        "respuesta": "b",
+        "pregunta": "¿Cómo revisa Cami el regalo?",
+        "opciones": [
+          {
+            "id": "bien",
+            "texto": "Consultar desde la app oficial",
+            "textoCorto": "Consultar desde la app oficial",
+            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
+            "icono": "🛡️"
+          },
+          {
+            "id": "riesgo1",
+            "texto": "Dar el código antes del cierre",
+            "textoCorto": "Dar el código antes del cierre",
+            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
+            "icono": "🎃"
+          },
+          {
+            "id": "riesgo2",
+            "texto": "Probar con la cuenta de otro",
+            "textoCorto": "Probar con la cuenta de otro",
+            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
+            "icono": "🎃"
+          }
+        ],
+        "respuesta": "bien",
+        "explicacion": "La situación merece una pausa. Consultar desde la app oficial. Buscá el apoyo de una persona adulta de confianza.",
+        "consejoCorto": "Podés frenar y pedir ayuda. No tenés que resolver el problema en soledad.",
         "miniJuego": {
           "tipo": "ordenar",
-          "titulo": "Ruta contra las trampas",
+          "titulo": "El anuncio bajo la lupa",
           "instruccion": "Armá esta ruta: primero frenar, después consultar y al final bloquear con ayuda.",
           "pasos": [
             {
@@ -334,10 +533,140 @@
           ],
           "explicacion": "Primero frenás: un premio inesperado puede ser una trampa. Después revisás el anuncio con una persona adulta de confianza. Al final podés reportar el anuncio engañoso con ayuda adulta.",
           "instruccionCorta": "Primero frená, después pedí ayuda y al final bloqueá con ayuda.",
-          "explicacionCorta": "No hace falta abrir el enlace. Podés pedir ayuda y bloquear con una persona adulta."
+          "explicacionCorta": "No hace falta abrir el enlace. Podés pedir ayuda y bloquear con una persona adulta.",
+          "contexto": "Una ventana ofrece un premio sorpresa fuera del juego. Construí la ruta para revisar el anuncio sin caer."
+        }
+      },
+      {
+        "titulo": "La tienda duplicada",
+        "personaje": "Fran · Un caso nuevo",
+        "relato": "Fran encuentra una tienda que imita a su juego. Ofrece trajes baratos y pide la clave del juego.",
+        "relatoCorto": "Fran encuentra una tienda que imita a su juego. Ofrece trajes baratos y pide la clave del juego.",
+        "relatoDecidir": "La dirección de la tienda tiene letras cambiadas. Fran todavía no escribió su contraseña.",
+        "pistas": [
+          {
+            "id": "alerta1",
+            "texto": "La tienda imita al juego",
+            "textoCorto": "La tienda imita al juego",
+            "porque": "Esta señal merece atención y una consulta con ayuda adulta.",
+            "icono": "🎃",
+            "correcta": true
+          },
+          {
+            "id": "alerta2",
+            "texto": "Pide la clave del juego",
+            "textoCorto": "Pide la clave del juego",
+            "porque": "Esta parte de la situación puede poner en riesgo a alguien.",
+            "icono": "🎃",
+            "correcta": true
+          },
+          {
+            "id": "neutral1",
+            "texto": "La tienda ofrece trajes",
+            "textoCorto": "La tienda ofrece trajes",
+            "porque": "Este detalle por sí solo no indica que alguien esté en riesgo.",
+            "icono": "🎃",
+            "correcta": false
+          },
+          {
+            "id": "neutral2",
+            "texto": "Fran está jugando",
+            "textoCorto": "Fran está jugando",
+            "porque": "Esta parte es habitual; conviene mirar qué se pide y cómo se trata a las personas.",
+            "icono": "🎃",
+            "correcta": false
+          }
+        ],
+        "pregunta": "¿Dónde busca Fran la tienda real?",
+        "opciones": [
+          {
+            "id": "bien",
+            "texto": "En el juego oficial con ayuda",
+            "textoCorto": "En el juego oficial con ayuda",
+            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
+            "icono": "🛡️"
+          },
+          {
+            "id": "riesgo1",
+            "texto": "En el enlace del anuncio",
+            "textoCorto": "En el enlace del anuncio",
+            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
+            "icono": "🎃"
+          },
+          {
+            "id": "riesgo2",
+            "texto": "En otro enlace del vendedor",
+            "textoCorto": "En otro enlace del vendedor",
+            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
+            "icono": "🎃"
+          }
+        ],
+        "respuesta": "bien",
+        "explicacion": "La situación merece una pausa. En el juego oficial con ayuda. Buscá el apoyo de una persona adulta de confianza.",
+        "consejoCorto": "Podés frenar y pedir ayuda. No tenés que resolver el problema en soledad.",
+        "miniJuego": {
+          "tipo": "conectar",
+          "titulo": "El laboratorio de enlaces",
+          "contexto": "Llegaron tres mensajes a la mesa de revisión. Elegí cómo investigar cada uno.",
+          "instruccion": "Uní cada situación con la acción que corresponde. Usá cada acción una vez.",
+          "instruccionCorta": "Elegí una ayuda para cada situación.",
+          "situaciones": [
+            {
+              "id": "s0",
+              "texto": "Una tienda pide mi clave",
+              "textoCorto": "Una tienda pide mi clave",
+              "porque": "Una tienda no necesita la contraseña de tu juego.",
+              "icono": "🎃"
+            },
+            {
+              "id": "s1",
+              "texto": "Un premio llega por chat",
+              "textoCorto": "Un premio llega por chat",
+              "porque": "Las promociones se comprueban desde el servicio oficial con ayuda.",
+              "icono": "🎃"
+            },
+            {
+              "id": "s2",
+              "texto": "Un enlace engaña a otros",
+              "textoCorto": "Un enlace engaña a otros",
+              "porque": "Reportar un engaño con ayuda puede proteger a otras personas.",
+              "icono": "🎃"
+            }
+          ],
+          "acciones": [
+            {
+              "id": "a0",
+              "texto": "No ingresar mi contraseña",
+              "textoCorto": "No ingresar mi contraseña",
+              "porque": "Una tienda no necesita la contraseña de tu juego.",
+              "icono": "🎃"
+            },
+            {
+              "id": "a1",
+              "texto": "Revisar la promoción oficial",
+              "textoCorto": "Revisar la promoción oficial",
+              "porque": "Las promociones se comprueban desde el servicio oficial con ayuda.",
+              "icono": "🎃"
+            },
+            {
+              "id": "a2",
+              "texto": "Reportarlo con ayuda adulta",
+              "textoCorto": "Reportarlo con ayuda adulta",
+              "porque": "Reportar un engaño con ayuda puede proteger a otras personas.",
+              "icono": "🎃"
+            }
+          ],
+          "soluciones": {
+            "s0": "a0",
+            "s1": "a1",
+            "s2": "a2"
+          },
+          "explicacion": "Una tienda no necesita la contraseña de tu juego. Las promociones se comprueban desde el servicio oficial con ayuda. Reportar un engaño con ayuda puede proteger a otras personas.",
+          "explicacionCorta": "Cada situación necesita una respuesta. Una persona adulta puede acompañarte."
         }
       }
-    ]
+    ],
+    "relatoDecidir": "Teo no abrió el enlace. Ahora quiere saber dónde consultar si existe esa promoción."
   },
   {
     "id": "caso-03",
@@ -443,40 +772,82 @@
       },
       "explicacion": "Cuidar la clave y pedir ayuda son escudos. Un enlace desconocido que pide la clave es una alerta.",
       "instruccionCorta": "En cada tarjeta elegí: ¿me cuida o necesita atención?",
-      "explicacionCorta": "Cuidar tu clave y pedir ayuda te protege. Frená ante un enlace que pide tu clave."
+      "explicacionCorta": "Cuidar tu clave y pedir ayuda te protege. Frená ante un enlace que pide tu clave.",
+      "contexto": "La feria digital tiene tarjetas de acciones. Decidí cuáles protegen y cuáles necesitan atención."
     },
     "relatoCorto": "En el chat se burlan de Luna y le dicen: «No le cuentes a nadie».",
     "consejoCorto": "No es culpa de Luna. Contarle a una persona adulta de confianza puede ayudarla.",
     "variantes": [
       {
-        "pregunta": "¿Qué ayuda cuando aparecen burlas en el juego?",
-        "opciones": [
+        "titulo": "El apodo que duele",
+        "personaje": "Sol · Un caso nuevo",
+        "relato": "En una partida llaman a Sol con un apodo que le molesta. Cuando pide que paren, se ríen más.",
+        "relatoCorto": "En una partida llaman a Sol con un apodo que le molesta. Cuando pide que paren, se ríen más.",
+        "relatoDecidir": "Sol sale del chat. Un compañero le escribe por privado para saber si necesita compañía.",
+        "pistas": [
           {
-            "id": "a",
-            "icono": "💬",
-            "texto": "Sumarse a las burlas",
-            "textoCorto": "Sumarse a las burlas",
-            "porque": "Esta acción puede aumentar el riesgo. Frená y pedí ayuda de confianza."
+            "id": "alerta1",
+            "texto": "Un apodo hace sentir mal",
+            "textoCorto": "Un apodo hace sentir mal",
+            "porque": "Esta señal merece atención y una consulta con ayuda adulta.",
+            "icono": "🎃",
+            "correcta": true
           },
           {
-            "id": "b",
-            "icono": "🛡️",
-            "texto": "Acompañar y pedir ayuda",
-            "textoCorto": "Acompañar y pedir ayuda",
-            "porque": "Esta acción protege y permite buscar ayuda de confianza."
+            "id": "alerta2",
+            "texto": "Siguen después de pedir basta",
+            "textoCorto": "Siguen después de pedir basta",
+            "porque": "Esta parte de la situación puede poner en riesgo a alguien.",
+            "icono": "🎃",
+            "correcta": true
           },
           {
-            "id": "c",
-            "icono": "📱",
-            "texto": "Callarse aunque le duela",
-            "textoCorto": "Callarse aunque le duela",
-            "porque": "Esta acción puede aumentar el riesgo. Frená y pedí ayuda de confianza."
+            "id": "neutral1",
+            "texto": "Es una partida en línea",
+            "textoCorto": "Es una partida en línea",
+            "porque": "Este detalle por sí solo no indica que alguien esté en riesgo.",
+            "icono": "🎃",
+            "correcta": false
+          },
+          {
+            "id": "neutral2",
+            "texto": "Sol usa un chat",
+            "textoCorto": "Sol usa un chat",
+            "porque": "Esta parte es habitual; conviene mirar qué se pide y cómo se trata a las personas.",
+            "icono": "🎃",
+            "correcta": false
           }
         ],
-        "respuesta": "b",
+        "pregunta": "¿Cómo puede acompañarla ese compañero?",
+        "opciones": [
+          {
+            "id": "bien",
+            "texto": "Escucharla y buscar ayuda juntos",
+            "textoCorto": "Escucharla y buscar ayuda juntos",
+            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
+            "icono": "🛡️"
+          },
+          {
+            "id": "riesgo1",
+            "texto": "Pedirle que aguante las burlas",
+            "textoCorto": "Pedirle que aguante las burlas",
+            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
+            "icono": "🎃"
+          },
+          {
+            "id": "riesgo2",
+            "texto": "Responder con más insultos",
+            "textoCorto": "Responder con más insultos",
+            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
+            "icono": "🎃"
+          }
+        ],
+        "respuesta": "bien",
+        "explicacion": "La situación merece una pausa. Escucharla y buscar ayuda juntos. Buscá el apoyo de una persona adulta de confianza.",
+        "consejoCorto": "Podés frenar y pedir ayuda. No tenés que resolver el problema en soledad.",
         "miniJuego": {
           "tipo": "clasificar",
-          "titulo": "Escudo o alerta",
+          "titulo": "El patio que acompaña",
           "instruccion": "Para cada tarjeta, elegí si ayuda a cuidarnos o necesita una alerta.",
           "tarjetas": [
             {
@@ -508,10 +879,117 @@
           },
           "explicacion": "Acompañar ayuda a que nadie enfrente las burlas en soledad. Los insultos lastiman y hacen crecer el problema. Una persona adulta puede ayudar a frenar las burlas.",
           "instruccionCorta": "En cada tarjeta elegí: ¿me cuida o necesita atención?",
-          "explicacionCorta": "Acompañar y pedir ayuda protege. Sumarse a los insultos hace daño."
+          "explicacionCorta": "Acompañar y pedir ayuda protege. Sumarse a los insultos hace daño.",
+          "contexto": "Aparecen tres acciones en el patio virtual. Separá las que acompañan de las que hacen daño."
+        }
+      },
+      {
+        "titulo": "El reto de la vergüenza",
+        "personaje": "Ian · Un caso nuevo",
+        "relato": "Un grupo exige a Ian hacer un reto humillante para seguir en el equipo. Amenazan con echarlo.",
+        "relatoCorto": "Un grupo exige a Ian hacer un reto humillante para seguir en el equipo. Amenazan con echarlo.",
+        "relatoDecidir": "Ian no quiere hacer el reto. Aunque los demás insistan, puede decidir salir de ese grupo.",
+        "pistas": [
+          {
+            "id": "alerta1",
+            "texto": "Exigen un reto humillante",
+            "textoCorto": "Exigen un reto humillante",
+            "porque": "Esta señal merece atención y una consulta con ayuda adulta.",
+            "icono": "🎃",
+            "correcta": true
+          },
+          {
+            "id": "alerta2",
+            "texto": "Amenazan con echarlo del equipo",
+            "textoCorto": "Amenazan con echarlo del equipo",
+            "porque": "Esta parte de la situación puede poner en riesgo a alguien.",
+            "icono": "🎃",
+            "correcta": true
+          },
+          {
+            "id": "neutral1",
+            "texto": "Ian pertenece a un equipo",
+            "textoCorto": "Ian pertenece a un equipo",
+            "porque": "Este detalle por sí solo no indica que alguien esté en riesgo.",
+            "icono": "🎃",
+            "correcta": false
+          },
+          {
+            "id": "neutral2",
+            "texto": "El equipo tiene un grupo",
+            "textoCorto": "El equipo tiene un grupo",
+            "porque": "Esta parte es habitual; conviene mirar qué se pide y cómo se trata a las personas.",
+            "icono": "🎃",
+            "correcta": false
+          }
+        ],
+        "pregunta": "¿Qué ayuda a Ian ante la presión?",
+        "opciones": [
+          {
+            "id": "bien",
+            "texto": "No hacerlo y buscar apoyo",
+            "textoCorto": "No hacerlo y buscar apoyo",
+            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
+            "icono": "🛡️"
+          },
+          {
+            "id": "riesgo1",
+            "texto": "Hacerlo para que lo acepten",
+            "textoCorto": "Hacerlo para que lo acepten",
+            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
+            "icono": "🎃"
+          },
+          {
+            "id": "riesgo2",
+            "texto": "Proponer humillar a otra persona",
+            "textoCorto": "Proponer humillar a otra persona",
+            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
+            "icono": "🎃"
+          }
+        ],
+        "respuesta": "bien",
+        "explicacion": "La situación merece una pausa. No hacerlo y buscar apoyo. Buscá el apoyo de una persona adulta de confianza.",
+        "consejoCorto": "Podés frenar y pedir ayuda. No tenés que resolver el problema en soledad.",
+        "miniJuego": {
+          "tipo": "ordenar",
+          "titulo": "El puente del buen trato",
+          "contexto": "Un personaje del juego recibe insultos. Construí un camino para acompañarlo.",
+          "instruccion": "Armá la ruta: Frenar sin sumarme a insultos, después Escuchar a quien está triste, después Buscar juntos ayuda adulta.",
+          "instruccionCorta": "Armá la ruta en el orden indicado.",
+          "pasos": [
+            {
+              "id": "0",
+              "texto": "Frenar sin sumarme a insultos",
+              "textoCorto": "Frenar sin sumarme a insultos",
+              "porque": "Primero evitás hacer crecer las agresiones.",
+              "icono": "🎃"
+            },
+            {
+              "id": "1",
+              "texto": "Escuchar a quien está triste",
+              "textoCorto": "Escuchar a quien está triste",
+              "porque": "Después escuchás cómo se siente y qué necesita.",
+              "icono": "🎃"
+            },
+            {
+              "id": "2",
+              "texto": "Buscar juntos ayuda adulta",
+              "textoCorto": "Buscar juntos ayuda adulta",
+              "porque": "Al final buscás apoyo para frenar las agresiones.",
+              "icono": "🎃"
+            }
+          ],
+          "ordenCorrecto": [
+            "0",
+            "1",
+            "2"
+          ],
+          "explicacion": "Primero evitás hacer crecer las agresiones. Después escuchás cómo se siente y qué necesita. Al final buscás apoyo para frenar las agresiones.",
+          "explicacionCorta": "Frenar y buscar ayuda permite revisar el problema paso a paso."
         }
       }
-    ]
+    ],
+    "relatoDecidir": "El personaje se alejó del chat de burlas. Un compañero quiere acompañarlo sin sumarse a las agresiones."
   },
   {
     "id": "caso-04",
@@ -623,40 +1101,82 @@
       ],
       "explicacion": "La bóveda se equipa con claves largas y diferentes. Las contraseñas reales quedan fuera del juego y de los chats.",
       "instruccionCorta": "Marcá las ideas que cuidan una cuenta.",
-      "explicacionCorta": "Elegí claves largas y distintas con ayuda familiar. Nunca escribas claves reales en este juego."
+      "explicacionCorta": "Elegí claves largas y distintas con ayuda familiar. Nunca escribas claves reales en este juego.",
+      "contexto": "Un equipo está creando cuentas nuevas. Equipá su bóveda sin escribir ninguna contraseña real."
     },
     "relatoCorto": "A Nico le dicen: «Usá 1234 en todos tus juegos y pasame tu clave».",
     "consejoCorto": "Usá claves largas y distintas. Pedí ayuda a tu familia y no las mandes por chat.",
     "variantes": [
       {
-        "pregunta": "¿Qué conviene hacer si alguien pide la contraseña?",
-        "opciones": [
+        "titulo": "La clave en la pantalla",
+        "personaje": "Eva · Un caso nuevo",
+        "relato": "Eva comparte su pantalla para mostrar un dibujo. Se ve una nota con su contraseña y alguien la copia.",
+        "relatoCorto": "Eva comparte su pantalla para mostrar un dibujo. Se ve una nota con su contraseña y alguien la copia.",
+        "relatoDecidir": "Eva cierra la pantalla compartida. La contraseña ya pudo quedar en una captura.",
+        "pistas": [
           {
-            "id": "a",
-            "icono": "💬",
-            "texto": "Mandarla solo a sus amigos",
-            "textoCorto": "Mandarla solo a sus amigos",
-            "porque": "Esta acción puede aumentar el riesgo. Frená y pedí ayuda de confianza."
+            "id": "alerta1",
+            "texto": "Se ve una contraseña",
+            "textoCorto": "Se ve una contraseña",
+            "porque": "Esta señal merece atención y una consulta con ayuda adulta.",
+            "icono": "🎃",
+            "correcta": true
           },
           {
-            "id": "b",
-            "icono": "🎮",
-            "texto": "Publicarla para no olvidarla",
-            "textoCorto": "Publicarla para no olvidarla",
-            "porque": "Esta acción puede aumentar el riesgo. Frená y pedí ayuda de confianza."
+            "id": "alerta2",
+            "texto": "Otra persona la copia",
+            "textoCorto": "Otra persona la copia",
+            "porque": "Esta parte de la situación puede poner en riesgo a alguien.",
+            "icono": "🎃",
+            "correcta": true
           },
           {
-            "id": "c",
-            "icono": "🛡️",
-            "texto": "Mantenerla privada y pedir ayuda",
-            "textoCorto": "Mantenerla privada y pedir ayuda",
-            "porque": "Esta acción protege y permite buscar ayuda de confianza."
+            "id": "neutral1",
+            "texto": "Eva muestra un dibujo",
+            "textoCorto": "Eva muestra un dibujo",
+            "porque": "Este detalle por sí solo no indica que alguien esté en riesgo.",
+            "icono": "🎃",
+            "correcta": false
+          },
+          {
+            "id": "neutral2",
+            "texto": "La pantalla se puede compartir",
+            "textoCorto": "La pantalla se puede compartir",
+            "porque": "Esta parte es habitual; conviene mirar qué se pide y cómo se trata a las personas.",
+            "icono": "🎃",
+            "correcta": false
           }
         ],
-        "respuesta": "c",
+        "pregunta": "¿Qué protege ahora la cuenta de Eva?",
+        "opciones": [
+          {
+            "id": "bien",
+            "texto": "Cambiar esa clave con ayuda",
+            "textoCorto": "Cambiar esa clave con ayuda",
+            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
+            "icono": "🛡️"
+          },
+          {
+            "id": "riesgo1",
+            "texto": "Solo borrar la nota",
+            "textoCorto": "Solo borrar la nota",
+            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
+            "icono": "🎃"
+          },
+          {
+            "id": "riesgo2",
+            "texto": "Pedir que nadie la recuerde",
+            "textoCorto": "Pedir que nadie la recuerde",
+            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
+            "icono": "🎃"
+          }
+        ],
+        "respuesta": "bien",
+        "explicacion": "La situación merece una pausa. Cambiar esa clave con ayuda. Buscá el apoyo de una persona adulta de confianza.",
+        "consejoCorto": "Podés frenar y pedir ayuda. No tenés que resolver el problema en soledad.",
         "miniJuego": {
           "tipo": "seleccionar",
-          "titulo": "Equipá la bóveda",
+          "titulo": "Las reglas de la bóveda",
           "instruccion": "Elegí todas las ideas que protegen una cuenta. No escribas ninguna contraseña.",
           "opciones": [
             {
@@ -694,10 +1214,140 @@
           ],
           "explicacion": "Una frase larga y difícil de adivinar ayuda a proteger tu cuenta. Tu nombre es fácil de conocer y adivinar. Si una clave se compartió, cambiala con ayuda adulta. Un comentario puede quedar visible para muchas personas.",
           "instruccionCorta": "Marcá las ideas que cuidan una cuenta.",
-          "explicacionCorta": "Elegí claves largas y distintas con ayuda familiar. Nunca escribas claves reales en este juego."
+          "explicacionCorta": "Elegí claves largas y distintas con ayuda familiar. Nunca escribas claves reales en este juego.",
+          "contexto": "Una bóveda nueva necesita reglas de seguridad. Elegí las ideas que la protegen."
+        }
+      },
+      {
+        "titulo": "La cuenta prestada",
+        "personaje": "Leo · Un caso nuevo",
+        "relato": "Leo presta su cuenta para que le pasen un nivel. Su amigo le pide dejar la misma clave para siempre.",
+        "relatoCorto": "Leo presta su cuenta para que le pasen un nivel. Su amigo le pide dejar la misma clave para siempre.",
+        "relatoDecidir": "Leo quiere recuperar el control. Tener amistad no obliga a compartir contraseñas.",
+        "pistas": [
+          {
+            "id": "alerta1",
+            "texto": "Presta el acceso a su cuenta",
+            "textoCorto": "Presta el acceso a su cuenta",
+            "porque": "Esta señal merece atención y una consulta con ayuda adulta.",
+            "icono": "🎃",
+            "correcta": true
+          },
+          {
+            "id": "alerta2",
+            "texto": "Piden conservar la misma clave",
+            "textoCorto": "Piden conservar la misma clave",
+            "porque": "Esta parte de la situación puede poner en riesgo a alguien.",
+            "icono": "🎃",
+            "correcta": true
+          },
+          {
+            "id": "neutral1",
+            "texto": "Hay un nivel por pasar",
+            "textoCorto": "Hay un nivel por pasar",
+            "porque": "Este detalle por sí solo no indica que alguien esté en riesgo.",
+            "icono": "🎃",
+            "correcta": false
+          },
+          {
+            "id": "neutral2",
+            "texto": "Leo tiene un amigo",
+            "textoCorto": "Leo tiene un amigo",
+            "porque": "Esta parte es habitual; conviene mirar qué se pide y cómo se trata a las personas.",
+            "icono": "🎃",
+            "correcta": false
+          }
+        ],
+        "pregunta": "¿Cómo recupera Leo el control?",
+        "opciones": [
+          {
+            "id": "bien",
+            "texto": "Cambiar la clave con ayuda",
+            "textoCorto": "Cambiar la clave con ayuda",
+            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
+            "icono": "🛡️"
+          },
+          {
+            "id": "riesgo1",
+            "texto": "Dejar la cuenta abierta",
+            "textoCorto": "Dejar la cuenta abierta",
+            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
+            "icono": "🎃"
+          },
+          {
+            "id": "riesgo2",
+            "texto": "Mandar la clave al grupo",
+            "textoCorto": "Mandar la clave al grupo",
+            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
+            "icono": "🎃"
+          }
+        ],
+        "respuesta": "bien",
+        "explicacion": "La situación merece una pausa. Cambiar la clave con ayuda. Buscá el apoyo de una persona adulta de confianza.",
+        "consejoCorto": "Podés frenar y pedir ayuda. No tenés que resolver el problema en soledad.",
+        "miniJuego": {
+          "tipo": "defender",
+          "titulo": "El taller de llaves",
+          "contexto": "Tres puertas de cuentas necesitan una reparación distinta. Uní cada problema con su arreglo.",
+          "instruccion": "Uní cada situación con la acción que corresponde. Usá cada acción una vez.",
+          "instruccionCorta": "Elegí una ayuda para cada situación.",
+          "situaciones": [
+            {
+              "id": "s0",
+              "texto": "La clave apareció en un chat",
+              "textoCorto": "La clave apareció en un chat",
+              "porque": "Una clave que se compartió deja de ser privada.",
+              "icono": "🎃"
+            },
+            {
+              "id": "s1",
+              "texto": "Dos cuentas usan igual clave",
+              "textoCorto": "Dos cuentas usan igual clave",
+              "porque": "Claves distintas evitan que un problema afecte a todas tus cuentas.",
+              "icono": "🎃"
+            },
+            {
+              "id": "s2",
+              "texto": "La sesión quedó en equipo ajeno",
+              "textoCorto": "La sesión quedó en equipo ajeno",
+              "porque": "Cerrar sesión evita que otra persona use tu cuenta en ese equipo.",
+              "icono": "🎃"
+            }
+          ],
+          "acciones": [
+            {
+              "id": "a0",
+              "texto": "Cambiar esa clave con ayuda",
+              "textoCorto": "Cambiar esa clave con ayuda",
+              "porque": "Una clave que se compartió deja de ser privada.",
+              "icono": "🎃"
+            },
+            {
+              "id": "a1",
+              "texto": "Crear claves diferentes",
+              "textoCorto": "Crear claves diferentes",
+              "porque": "Claves distintas evitan que un problema afecte a todas tus cuentas.",
+              "icono": "🎃"
+            },
+            {
+              "id": "a2",
+              "texto": "Cerrar esa sesión con ayuda",
+              "textoCorto": "Cerrar esa sesión con ayuda",
+              "porque": "Cerrar sesión evita que otra persona use tu cuenta en ese equipo.",
+              "icono": "🎃"
+            }
+          ],
+          "soluciones": {
+            "s0": "a0",
+            "s1": "a1",
+            "s2": "a2"
+          },
+          "explicacion": "Una clave que se compartió deja de ser privada. Claves distintas evitan que un problema afecte a todas tus cuentas. Cerrar sesión evita que otra persona use tu cuenta en ese equipo.",
+          "explicacionCorta": "Cada situación necesita una respuesta. Una persona adulta puede acompañarte."
         }
       }
-    ]
+    ],
+    "relatoDecidir": "Alguien pudo ver la clave en un mensaje. La cuenta todavía se puede proteger con ayuda adulta."
   },
   {
     "id": "caso-05",
@@ -825,40 +1475,82 @@
       ],
       "explicacion": "La dirección, el teléfono y la ubicación revelan datos personales, y la imagen de otra persona necesita su permiso. Revisá las publicaciones con una persona adulta antes de compartirlas.",
       "instruccionCorta": "Atrapá los datos privados. ¡Dejá ir los demás!",
-      "explicacionCorta": "No publiques dirección, teléfono ni ubicación, ni a otras personas sin permiso. Revisá con una persona adulta."
+      "explicacionCorta": "No publiques dirección, teléfono ni ubicación, ni a otras personas sin permiso. Revisá con una persona adulta.",
+      "contexto": "Los fantasmas quieren llevarse tarjetas para una publicación abierta. Atrapá los datos que no deben salir."
     },
     "relatoCorto": "Uma publicará para todos una foto con su dirección y su amiga. Su amiga no dio permiso.",
     "consejoCorto": "Quitá datos privados y pedí permiso. Revisá con tu familia quién verá la foto.",
     "variantes": [
       {
-        "pregunta": "¿Qué revisamos antes de publicar una imagen?",
-        "opciones": [
+        "titulo": "La invitación pública",
+        "personaje": "Alma · Un caso nuevo",
+        "relato": "Alma publica una invitación de cumpleaños. Se ven su dirección y la hora en que estará en casa.",
+        "relatoCorto": "Alma publica una invitación de cumpleaños. Se ven su dirección y la hora en que estará en casa.",
+        "relatoDecidir": "Alma nota que la invitación es pública. Sus invitados pueden recibirla por un canal privado familiar.",
+        "pistas": [
           {
-            "id": "a",
-            "icono": "💬",
-            "texto": "Que tenga muchos colores",
-            "textoCorto": "Que tenga muchos colores",
-            "porque": "Esta acción puede aumentar el riesgo. Frená y pedí ayuda de confianza."
+            "id": "alerta1",
+            "texto": "La dirección queda pública",
+            "textoCorto": "La dirección queda pública",
+            "porque": "Esta señal merece atención y una consulta con ayuda adulta.",
+            "icono": "🎃",
+            "correcta": true
           },
           {
-            "id": "b",
-            "icono": "🛡️",
-            "texto": "Los datos personales y los permisos",
-            "textoCorto": "Los datos personales y los permisos",
-            "porque": "Esta acción protege y permite buscar ayuda de confianza."
+            "id": "alerta2",
+            "texto": "Se publica un horario personal",
+            "textoCorto": "Se publica un horario personal",
+            "porque": "Esta parte de la situación puede poner en riesgo a alguien.",
+            "icono": "🎃",
+            "correcta": true
           },
           {
-            "id": "c",
-            "icono": "📱",
-            "texto": "Que reciba muchos corazones",
-            "textoCorto": "Que reciba muchos corazones",
-            "porque": "Esta acción puede aumentar el riesgo. Frená y pedí ayuda de confianza."
+            "id": "neutral1",
+            "texto": "Se organiza un cumpleaños",
+            "textoCorto": "Se organiza un cumpleaños",
+            "porque": "Este detalle por sí solo no indica que alguien esté en riesgo.",
+            "icono": "🎃",
+            "correcta": false
+          },
+          {
+            "id": "neutral2",
+            "texto": "Alma hace una invitación",
+            "textoCorto": "Alma hace una invitación",
+            "porque": "Esta parte es habitual; conviene mirar qué se pide y cómo se trata a las personas.",
+            "icono": "🎃",
+            "correcta": false
           }
         ],
-        "respuesta": "b",
+        "pregunta": "¿Qué cambia Alma en la publicación?",
+        "opciones": [
+          {
+            "id": "bien",
+            "texto": "Retirarla y consultar en casa",
+            "textoCorto": "Retirarla y consultar en casa",
+            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
+            "icono": "🛡️"
+          },
+          {
+            "id": "riesgo1",
+            "texto": "Agregar su número de teléfono",
+            "textoCorto": "Agregar su número de teléfono",
+            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
+            "icono": "🎃"
+          },
+          {
+            "id": "riesgo2",
+            "texto": "Dejar solo la dirección visible",
+            "textoCorto": "Dejar solo la dirección visible",
+            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
+            "icono": "🎃"
+          }
+        ],
+        "respuesta": "bien",
+        "explicacion": "La situación merece una pausa. Retirarla y consultar en casa. Buscá el apoyo de una persona adulta de confianza.",
+        "consejoCorto": "Podés frenar y pedir ayuda. No tenés que resolver el problema en soledad.",
         "miniJuego": {
           "tipo": "atrapar",
-          "titulo": "Cazafantasmas de datos",
+          "titulo": "Fantasmas del perfil público",
           "instruccion": "Atrapá los fantasmas que llevan datos que no van en una publicación pública. Dejá ir los demás.",
           "opciones": [
             {
@@ -912,10 +1604,124 @@
           ],
           "explicacion": "El nombre de tu escuela permite saber dónde encontrarte. Un cuento inventado sin datos personales no cuenta dónde encontrarte. Tu correo personal permite que otras personas te contacten. Tus horarios permiten saber dónde y cuándo encontrarte. Antes de publicar la imagen de otra persona necesitás su permiso. Un fantasma inventado sin datos personales no expone tu privacidad.",
           "instruccionCorta": "Atrapá los datos privados. ¡Dejá ir los demás!",
-          "explicacionCorta": "Cuidá tu escuela, correo y horarios. Para publicar fotos ajenas, pedí permiso."
+          "explicacionCorta": "Cuidá tu escuela, correo y horarios. Para publicar fotos ajenas, pedí permiso.",
+          "contexto": "Los fantasmas traen datos para un perfil público. Atrapá los que deben quedar privados."
+        }
+      },
+      {
+        "titulo": "La medalla con datos",
+        "personaje": "Paz · Un caso nuevo",
+        "relato": "Paz quiere subir una foto de su medalla. En la credencial aparecen su nombre completo y su escuela.",
+        "relatoCorto": "Paz quiere subir una foto de su medalla. En la credencial aparecen su nombre completo y su escuela.",
+        "relatoDecidir": "Una persona adulta propone recortar la credencial antes de compartir la foto con la familia.",
+        "pistas": [
+          {
+            "id": "alerta1",
+            "texto": "Aparece el nombre completo",
+            "textoCorto": "Aparece el nombre completo",
+            "porque": "Esta señal merece atención y una consulta con ayuda adulta.",
+            "icono": "🎃",
+            "correcta": true
+          },
+          {
+            "id": "alerta2",
+            "texto": "Se ve el nombre de escuela",
+            "textoCorto": "Se ve el nombre de escuela",
+            "porque": "Esta parte de la situación puede poner en riesgo a alguien.",
+            "icono": "🎃",
+            "correcta": true
+          },
+          {
+            "id": "neutral1",
+            "texto": "Paz ganó una medalla",
+            "textoCorto": "Paz ganó una medalla",
+            "porque": "Este detalle por sí solo no indica que alguien esté en riesgo.",
+            "icono": "🎃",
+            "correcta": false
+          },
+          {
+            "id": "neutral2",
+            "texto": "Hay una foto de la medalla",
+            "textoCorto": "Hay una foto de la medalla",
+            "porque": "Esta parte es habitual; conviene mirar qué se pide y cómo se trata a las personas.",
+            "icono": "🎃",
+            "correcta": false
+          }
+        ],
+        "pregunta": "¿Qué revisa Paz antes de compartir?",
+        "opciones": [
+          {
+            "id": "bien",
+            "texto": "Que no queden datos personales",
+            "textoCorto": "Que no queden datos personales",
+            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
+            "icono": "🛡️"
+          },
+          {
+            "id": "riesgo1",
+            "texto": "Que la credencial se lea mejor",
+            "textoCorto": "Que la credencial se lea mejor",
+            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
+            "icono": "🎃"
+          },
+          {
+            "id": "riesgo2",
+            "texto": "Que se vea también su domicilio",
+            "textoCorto": "Que se vea también su domicilio",
+            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
+            "icono": "🎃"
+          }
+        ],
+        "respuesta": "bien",
+        "explicacion": "La situación merece una pausa. Que no queden datos personales. Buscá el apoyo de una persona adulta de confianza.",
+        "consejoCorto": "Podés frenar y pedir ayuda. No tenés que resolver el problema en soledad.",
+        "miniJuego": {
+          "tipo": "linterna",
+          "titulo": "La mochila de privacidad",
+          "contexto": "Una mochila tiene tarjetas para un perfil público. Iluminá y marcá las que exponen datos.",
+          "instruccion": "Marcá todas las tarjetas que necesitan atención.",
+          "instruccionCorta": "Marcá todas las tarjetas que necesitan atención.",
+          "explicacion": "Tu recorrido permite saber por dónde te movés. Una calabaza inventada no revela tus datos personales. Una credencial puede mostrar tu identidad y tu escuela. Un número de documento es un dato personal que hay que cuidar.",
+          "explicacionCorta": "Revisá la situación antes de actuar. Si tenés dudas, pedí ayuda adulta.",
+          "opciones": [
+            {
+              "id": "0",
+              "texto": "Mi recorrido hasta la escuela",
+              "textoCorto": "Mi recorrido hasta la escuela",
+              "porque": "Tu recorrido permite saber por dónde te movés.",
+              "icono": "👻"
+            },
+            {
+              "id": "1",
+              "texto": "Una calabaza inventada",
+              "textoCorto": "Una calabaza inventada",
+              "porque": "Una calabaza inventada no revela tus datos personales.",
+              "icono": "🛡️"
+            },
+            {
+              "id": "2",
+              "texto": "Mi credencial con nombre",
+              "textoCorto": "Mi credencial con nombre",
+              "porque": "Una credencial puede mostrar tu identidad y tu escuela.",
+              "icono": "👻"
+            },
+            {
+              "id": "3",
+              "texto": "Mi número de documento",
+              "textoCorto": "Mi número de documento",
+              "porque": "Un número de documento es un dato personal que hay que cuidar.",
+              "icono": "👻"
+            }
+          ],
+          "correctas": [
+            "0",
+            "2",
+            "3"
+          ]
         }
       }
-    ]
+    ],
+    "relatoDecidir": "La publicación todavía no salió. Es el momento de revisar datos personales y permisos."
   },
   {
     "id": "caso-06",
@@ -1041,40 +1847,82 @@
       },
       "explicacion": "Podemos frenar reenvíos, acompañar y buscar ayuda. Estas acciones se complementan: pedir ayuda está bien en cualquier momento.",
       "instruccionCorta": "Elegí una ayuda para cada situación. Usá cada acción una vez.",
-      "explicacionCorta": "Acompañá sin reenviar las burlas. Pedir ayuda está bien en cualquier momento."
+      "explicacionCorta": "Acompañá sin reenviar las burlas. Pedir ayuda está bien en cualquier momento.",
+      "contexto": "Un compañero recibe una imagen humillante, otro está solo y las agresiones siguen. Conectá cada ayuda."
     },
     "relatoCorto": "Benja ve que comparten y reenvían una foto para burlarse de Alex. Piden dejarlo fuera del juego.",
     "consejoCorto": "No reenvíes lo que lastima. Escuchá a tu amigo y pedí ayuda a una persona adulta de confianza.",
     "variantes": [
       {
-        "pregunta": "¿Qué hacer con una imagen que se burla de alguien?",
-        "opciones": [
+        "titulo": "El audio que circula",
+        "personaje": "Emi · Un caso nuevo",
+        "relato": "A Emi le llega un audio que ridiculiza a un compañero. El grupo pide reenviarlo a otro curso.",
+        "relatoCorto": "A Emi le llega un audio que ridiculiza a un compañero. El grupo pide reenviarlo a otro curso.",
+        "relatoDecidir": "El compañero dice que el audio le hace daño. Emi todavía no lo reenvió.",
+        "pistas": [
           {
-            "id": "a",
-            "icono": "💬",
-            "texto": "Reenviarla al grupo",
-            "textoCorto": "Reenviarla al grupo",
-            "porque": "Esta acción puede aumentar el riesgo. Frená y pedí ayuda de confianza."
+            "id": "alerta1",
+            "texto": "El audio ridiculiza a alguien",
+            "textoCorto": "El audio ridiculiza a alguien",
+            "porque": "Esta señal merece atención y una consulta con ayuda adulta.",
+            "icono": "🎃",
+            "correcta": true
           },
           {
-            "id": "b",
-            "icono": "🛡️",
-            "texto": "Frenar el reenvío y acompañar",
-            "textoCorto": "Frenar el reenvío y acompañar",
-            "porque": "Esta acción protege y permite buscar ayuda de confianza."
+            "id": "alerta2",
+            "texto": "Piden llevarlo a otro curso",
+            "textoCorto": "Piden llevarlo a otro curso",
+            "porque": "Esta parte de la situación puede poner en riesgo a alguien.",
+            "icono": "🎃",
+            "correcta": true
           },
           {
-            "id": "c",
-            "icono": "📱",
-            "texto": "Agregar otra burla",
-            "textoCorto": "Agregar otra burla",
-            "porque": "Esta acción puede aumentar el riesgo. Frená y pedí ayuda de confianza."
+            "id": "neutral1",
+            "texto": "Emi está en un grupo",
+            "textoCorto": "Emi está en un grupo",
+            "porque": "Este detalle por sí solo no indica que alguien esté en riesgo.",
+            "icono": "🎃",
+            "correcta": false
+          },
+          {
+            "id": "neutral2",
+            "texto": "El archivo es un audio",
+            "textoCorto": "El archivo es un audio",
+            "porque": "Esta parte es habitual; conviene mirar qué se pide y cómo se trata a las personas.",
+            "icono": "🎃",
+            "correcta": false
           }
         ],
-        "respuesta": "b",
+        "pregunta": "¿Cómo corta Emi la difusión?",
+        "opciones": [
+          {
+            "id": "bien",
+            "texto": "No reenviar y acompañar",
+            "textoCorto": "No reenviar y acompañar",
+            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
+            "icono": "🛡️"
+          },
+          {
+            "id": "riesgo1",
+            "texto": "Reenviar solo a sus amigos",
+            "textoCorto": "Reenviar solo a sus amigos",
+            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
+            "icono": "🎃"
+          },
+          {
+            "id": "riesgo2",
+            "texto": "Editar el audio para más risas",
+            "textoCorto": "Editar el audio para más risas",
+            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
+            "icono": "🎃"
+          }
+        ],
+        "respuesta": "bien",
+        "explicacion": "La situación merece una pausa. No reenviar y acompañar. Buscá el apoyo de una persona adulta de confianza.",
+        "consejoCorto": "Podés frenar y pedir ayuda. No tenés que resolver el problema en soledad.",
         "miniJuego": {
           "tipo": "conectar",
-          "titulo": "Conectá la ayuda",
+          "titulo": "La red de compañía",
           "instruccion": "Uní cada situación con una acción que acompaña. Usá cada acción una vez.",
           "situaciones": [
             {
@@ -1126,10 +1974,125 @@
           },
           "explicacion": "No reenviar un audio hiriente ayuda a frenar su difusión. Escuchar y acompañar ayuda a quien queda fuera del grupo. Si los insultos se repiten, buscá ayuda adulta para frenarlos.",
           "instruccionCorta": "Elegí una ayuda para cada situación. Usá cada acción una vez.",
-          "explicacionCorta": "Acompañá sin reenviar las burlas. Pedir ayuda está bien en cualquier momento."
+          "explicacionCorta": "Acompañá sin reenviar las burlas. Pedir ayuda está bien en cualquier momento.",
+          "contexto": "En otro grupo circula un audio hiriente y una compañera queda afuera. Conectá las ayudas."
+        }
+      },
+      {
+        "titulo": "La votación injusta",
+        "personaje": "Zoe · Un caso nuevo",
+        "relato": "En el grupo arman una votación para excluir a Zoe. Comparten capturas privadas para burlarse de ella.",
+        "relatoCorto": "En el grupo arman una votación para excluir a Zoe. Comparten capturas privadas para burlarse de ella.",
+        "relatoDecidir": "Zoe pide que dejen de compartir las capturas. Un compañero puede apoyarla sin votar.",
+        "pistas": [
+          {
+            "id": "alerta1",
+            "texto": "Votan para excluir a alguien",
+            "textoCorto": "Votan para excluir a alguien",
+            "porque": "Esta señal merece atención y una consulta con ayuda adulta.",
+            "icono": "🎃",
+            "correcta": true
+          },
+          {
+            "id": "alerta2",
+            "texto": "Difunden capturas privadas",
+            "textoCorto": "Difunden capturas privadas",
+            "porque": "Esta parte de la situación puede poner en riesgo a alguien.",
+            "icono": "🎃",
+            "correcta": true
+          },
+          {
+            "id": "neutral1",
+            "texto": "Zoe participa en un grupo",
+            "textoCorto": "Zoe participa en un grupo",
+            "porque": "Este detalle por sí solo no indica que alguien esté en riesgo.",
+            "icono": "🎃",
+            "correcta": false
+          },
+          {
+            "id": "neutral2",
+            "texto": "El grupo puede hacer encuestas",
+            "textoCorto": "El grupo puede hacer encuestas",
+            "porque": "Esta parte es habitual; conviene mirar qué se pide y cómo se trata a las personas.",
+            "icono": "🎃",
+            "correcta": false
+          }
+        ],
+        "pregunta": "¿Qué puede hacer ese compañero?",
+        "opciones": [
+          {
+            "id": "bien",
+            "texto": "Frenar la difusión y pedir ayuda",
+            "textoCorto": "Frenar la difusión y pedir ayuda",
+            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
+            "icono": "🛡️"
+          },
+          {
+            "id": "riesgo1",
+            "texto": "Votar para no quedar afuera",
+            "textoCorto": "Votar para no quedar afuera",
+            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
+            "icono": "🎃"
+          },
+          {
+            "id": "riesgo2",
+            "texto": "Mandar las capturas a otro grupo",
+            "textoCorto": "Mandar las capturas a otro grupo",
+            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
+            "icono": "🎃"
+          }
+        ],
+        "respuesta": "bien",
+        "explicacion": "La situación merece una pausa. Frenar la difusión y pedir ayuda. Buscá el apoyo de una persona adulta de confianza.",
+        "consejoCorto": "Podés frenar y pedir ayuda. No tenés que resolver el problema en soledad.",
+        "miniJuego": {
+          "tipo": "clasificar",
+          "titulo": "El correo del buen trato",
+          "contexto": "Al castillo llegan mensajes. Separá los que acompañan de los que lastiman.",
+          "instruccion": "Revisá cada tarjeta y separá lo que cuida de lo que necesita atención.",
+          "instruccionCorta": "En cada tarjeta: ¿me cuida o necesita atención?",
+          "explicacion": "Ofrecer compañía puede ayudar a quien está pasando un mal momento. Reenviar una burla hace que el daño alcance a más personas. Pedir ayuda juntos evita enfrentar el problema en soledad. Amenazar a alguien por expresar tristeza es una forma de maltrato.",
+          "explicacionCorta": "Revisá la situación antes de actuar. Si tenés dudas, pedí ayuda adulta.",
+          "tarjetas": [
+            {
+              "id": "0",
+              "texto": "¿Querés que te acompañe?",
+              "textoCorto": "¿Querés que te acompañe?",
+              "porque": "Ofrecer compañía puede ayudar a quien está pasando un mal momento.",
+              "icono": "🛡️"
+            },
+            {
+              "id": "1",
+              "texto": "Reenviemos esta burla",
+              "textoCorto": "Reenviemos esta burla",
+              "porque": "Reenviar una burla hace que el daño alcance a más personas.",
+              "icono": "👻"
+            },
+            {
+              "id": "2",
+              "texto": "Busquemos ayuda juntos",
+              "textoCorto": "Busquemos ayuda juntos",
+              "porque": "Pedir ayuda juntos evita enfrentar el problema en soledad.",
+              "icono": "🛡️"
+            },
+            {
+              "id": "3",
+              "texto": "Si llorás, te echamos",
+              "textoCorto": "Si llorás, te echamos",
+              "porque": "Amenazar a alguien por expresar tristeza es una forma de maltrato.",
+              "icono": "👻"
+            }
+          ],
+          "clasificacion": {
+            "0": "safe",
+            "1": "danger",
+            "2": "safe",
+            "3": "danger"
+          }
         }
       }
-    ]
+    ],
+    "relatoDecidir": "La imagen sigue circulando. Un compañero quiere cortar la difusión y apoyar a quien aparece."
   },
   {
     "id": "caso-07",
@@ -1241,40 +2204,82 @@
       ],
       "explicacion": "Cámara para sacar una foto y micrófono para grabar tienen sentido. Eso no garantiza que la app sea confiable: también hay que revisarla con una persona adulta.",
       "instruccionCorta": "Iluminá y marcá los permisos que no tienen sentido.",
-      "explicacionCorta": "El permiso debe servir para esa tarea. Aunque tenga sentido, revisá la app con una persona adulta."
+      "explicacionCorta": "El permiso debe servir para esa tarea. Aunque tenga sentido, revisá la app con una persona adulta.",
+      "contexto": "Una habitación esconde cuatro pedidos de apps. Buscá los permisos que no corresponden a su tarea."
     },
     "relatoCorto": "Una linterna pide leer mensajes y contactos, y saber siempre dónde está Sol. No explica para qué.",
     "consejoCorto": "Si una app pide datos que no necesita, frená y revisala con una persona adulta.",
     "variantes": [
       {
-        "pregunta": "¿Qué hacemos ante un permiso que no tiene sentido?",
-        "opciones": [
+        "titulo": "El filtro curioso",
+        "personaje": "Uma · Un caso nuevo",
+        "relato": "Uma instala un filtro para dibujar. La app pide ubicación permanente y leer todos sus contactos.",
+        "relatoCorto": "Uma instala un filtro para dibujar. La app pide ubicación permanente y leer todos sus contactos.",
+        "relatoDecidir": "El filtro funciona sobre un dibujo guardado. No explica para qué necesita esos dos permisos.",
+        "pistas": [
           {
-            "id": "a",
-            "icono": "💬",
-            "texto": "Aceptarlo para jugar rápido",
-            "textoCorto": "Aceptarlo para jugar rápido",
-            "porque": "Esta acción puede aumentar el riesgo. Frená y pedí ayuda de confianza."
+            "id": "alerta1",
+            "texto": "Pide ubicación permanente",
+            "textoCorto": "Pide ubicación permanente",
+            "porque": "Esta señal merece atención y una consulta con ayuda adulta.",
+            "icono": "🎃",
+            "correcta": true
           },
           {
-            "id": "b",
-            "icono": "🛡️",
-            "texto": "Revisarlo con una persona adulta",
-            "textoCorto": "Revisarlo con una persona adulta",
-            "porque": "Esta acción protege y permite buscar ayuda de confianza."
+            "id": "alerta2",
+            "texto": "Quiere leer todos los contactos",
+            "textoCorto": "Quiere leer todos los contactos",
+            "porque": "Esta parte de la situación puede poner en riesgo a alguien.",
+            "icono": "🎃",
+            "correcta": true
           },
           {
-            "id": "c",
-            "icono": "📱",
-            "texto": "Dar acceso a todo",
-            "textoCorto": "Dar acceso a todo",
-            "porque": "Esta acción puede aumentar el riesgo. Frená y pedí ayuda de confianza."
+            "id": "neutral1",
+            "texto": "El filtro sirve para dibujar",
+            "textoCorto": "El filtro sirve para dibujar",
+            "porque": "Este detalle por sí solo no indica que alguien esté en riesgo.",
+            "icono": "🎃",
+            "correcta": false
+          },
+          {
+            "id": "neutral2",
+            "texto": "Uma instala una app",
+            "textoCorto": "Uma instala una app",
+            "porque": "Esta parte es habitual; conviene mirar qué se pide y cómo se trata a las personas.",
+            "icono": "🎃",
+            "correcta": false
           }
         ],
-        "respuesta": "b",
+        "pregunta": "¿Qué hace Uma con esos permisos?",
+        "opciones": [
+          {
+            "id": "bien",
+            "texto": "Revisarlos con ayuda antes de aceptar",
+            "textoCorto": "Revisarlos con ayuda antes de aceptar",
+            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
+            "icono": "🛡️"
+          },
+          {
+            "id": "riesgo1",
+            "texto": "Aceptar todo para probar",
+            "textoCorto": "Aceptar todo para probar",
+            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
+            "icono": "🎃"
+          },
+          {
+            "id": "riesgo2",
+            "texto": "Dar también acceso a mensajes",
+            "textoCorto": "Dar también acceso a mensajes",
+            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
+            "icono": "🎃"
+          }
+        ],
+        "respuesta": "bien",
+        "explicacion": "La situación merece una pausa. Revisarlos con ayuda antes de aceptar. Buscá el apoyo de una persona adulta de confianza.",
+        "consejoCorto": "Podés frenar y pedir ayuda. No tenés que resolver el problema en soledad.",
         "miniJuego": {
           "tipo": "linterna",
-          "titulo": "La linterna detective",
+          "titulo": "Las apps bajo la linterna",
           "instruccion": "Iluminá la habitación oscura, encontrá los permisos escondidos y marcá los que no tienen una razón clara.",
           "opciones": [
             {
@@ -1312,10 +2317,138 @@
           ],
           "explicacion": "Para escanear un dibujo, usar la cámara tiene una razón clara. Para grabar tu voz, el micrófono tiene una razón clara. Un rompecabezas no necesita leer tu lista de contactos. Mostrar la hora no requiere leer tus mensajes privados.",
           "instruccionCorta": "Iluminá y marcá los permisos que no tienen sentido.",
-          "explicacionCorta": "El permiso debe servir para esa tarea. Aunque tenga sentido, revisá la app con una persona adulta."
+          "explicacionCorta": "El permiso debe servir para esa tarea. Aunque tenga sentido, revisá la app con una persona adulta.",
+          "contexto": "En la habitación hay apps que piden permisos. Iluminá y revisá si cada permiso sirve para su tarea."
+        }
+      },
+      {
+        "titulo": "La mascota que escucha",
+        "personaje": "Ben · Un caso nuevo",
+        "relato": "Una app de mascota virtual pide a Ben grabar el micrófono aun cuando la app está cerrada.",
+        "relatoCorto": "Una app de mascota virtual pide a Ben grabar el micrófono aun cuando la app está cerrada.",
+        "relatoDecidir": "Ben solo quiere alimentar a la mascota tocando botones. No usa ninguna función de voz.",
+        "pistas": [
+          {
+            "id": "alerta1",
+            "texto": "Quiere grabar con app cerrada",
+            "textoCorto": "Quiere grabar con app cerrada",
+            "porque": "Esta señal merece atención y una consulta con ayuda adulta.",
+            "icono": "🎃",
+            "correcta": true
+          },
+          {
+            "id": "alerta2",
+            "texto": "No se usa ninguna función de voz",
+            "textoCorto": "No se usa ninguna función de voz",
+            "porque": "Esta parte de la situación puede poner en riesgo a alguien.",
+            "icono": "🎃",
+            "correcta": true
+          },
+          {
+            "id": "neutral1",
+            "texto": "La mascota es virtual",
+            "textoCorto": "La mascota es virtual",
+            "porque": "Este detalle por sí solo no indica que alguien esté en riesgo.",
+            "icono": "🎃",
+            "correcta": false
+          },
+          {
+            "id": "neutral2",
+            "texto": "Ben tiene una app de mascota",
+            "textoCorto": "Ben tiene una app de mascota",
+            "porque": "Esta parte es habitual; conviene mirar qué se pide y cómo se trata a las personas.",
+            "icono": "🎃",
+            "correcta": false
+          }
+        ],
+        "pregunta": "¿Qué conviene hacer con el micrófono?",
+        "opciones": [
+          {
+            "id": "bien",
+            "texto": "Rechazarlo y revisar con ayuda",
+            "textoCorto": "Rechazarlo y revisar con ayuda",
+            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
+            "icono": "🛡️"
+          },
+          {
+            "id": "riesgo1",
+            "texto": "Dejar que escuche siempre",
+            "textoCorto": "Dejar que escuche siempre",
+            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
+            "icono": "🎃"
+          },
+          {
+            "id": "riesgo2",
+            "texto": "Activar también la cámara",
+            "textoCorto": "Activar también la cámara",
+            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
+            "icono": "🎃"
+          }
+        ],
+        "respuesta": "bien",
+        "explicacion": "La situación merece una pausa. Rechazarlo y revisar con ayuda. Buscá el apoyo de una persona adulta de confianza.",
+        "consejoCorto": "Podés frenar y pedir ayuda. No tenés que resolver el problema en soledad.",
+        "miniJuego": {
+          "tipo": "atrapar",
+          "titulo": "El radar de permisos",
+          "contexto": "Cuatro fantasmas traen pedidos de apps. Atrapá los que no corresponden a su tarea.",
+          "instruccion": "Marcá todas las tarjetas que necesitan atención.",
+          "instruccionCorta": "Marcá todas las tarjetas que necesitan atención.",
+          "explicacion": "Anotar fechas no requiere leer tus mensajes privados. Grabar sonidos necesita el micrófono mientras lo usás. Iluminar con la pantalla no requiere saber siempre dónde estás. Usar la cámara para sacar una foto tiene una razón clara. Hacer cuentas no requiere acceder a tus contactos. Escanear una imagen requiere usar la cámara en ese momento.",
+          "explicacionCorta": "Revisá la situación antes de actuar. Si tenés dudas, pedí ayuda adulta.",
+          "opciones": [
+            {
+              "id": "0",
+              "texto": "Calendario quiere leer mensajes",
+              "textoCorto": "Calendario quiere leer mensajes",
+              "porque": "Anotar fechas no requiere leer tus mensajes privados.",
+              "icono": "👻"
+            },
+            {
+              "id": "1",
+              "texto": "Grabadora usa micrófono al grabar",
+              "textoCorto": "Grabadora usa micrófono al grabar",
+              "porque": "Grabar sonidos necesita el micrófono mientras lo usás.",
+              "icono": "🛡️"
+            },
+            {
+              "id": "2",
+              "texto": "Linterna pide ubicación permanente",
+              "textoCorto": "Linterna pide ubicación permanente",
+              "porque": "Iluminar con la pantalla no requiere saber siempre dónde estás.",
+              "icono": "👻"
+            },
+            {
+              "id": "3",
+              "texto": "Cámara al sacar una foto",
+              "textoCorto": "Cámara al sacar una foto",
+              "porque": "Usar la cámara para sacar una foto tiene una razón clara.",
+              "icono": "🛡️"
+            },
+            {
+              "id": "4",
+              "texto": "Calculadora quiere mis contactos",
+              "textoCorto": "Calculadora quiere mis contactos",
+              "porque": "Hacer cuentas no requiere acceder a tus contactos.",
+              "icono": "👻"
+            },
+            {
+              "id": "5",
+              "texto": "Escáner usa cámara al escanear",
+              "textoCorto": "Escáner usa cámara al escanear",
+              "porque": "Escanear una imagen requiere usar la cámara en ese momento.",
+              "icono": "🛡️"
+            }
+          ],
+          "correctas": [
+            "0",
+            "2",
+            "4"
+          ]
         }
       }
-    ]
+    ],
+    "relatoDecidir": "La app espera una respuesta. Todavía se pueden revisar los permisos antes de aceptarlos."
   },
   {
     "id": "caso-08",
@@ -1421,40 +2554,82 @@
       ],
       "explicacion": "Este plan ayuda a comprobar un mensaje. Si no se puede confirmar, podemos dejarlo sin compartir.",
       "instruccionCorta": "Primero frená, después buscá el origen y al final compará.",
-      "explicacionCorta": "Buscá quién lo publicó y cuándo. Compará con una fuente confiable y ayuda adulta antes de compartir."
+      "explicacionCorta": "Buscá quién lo publicó y cuándo. Compará con una fuente confiable y ayuda adulta antes de compartir.",
+      "contexto": "Una cadena urgente llegó al laboratorio de rumores. Prepará los pasos para verificarla."
     },
     "relatoCorto": "«¡Un dragón en la escuela! Reenviá ya». El mensaje no dice de dónde salió ni tiene fecha.",
     "consejoCorto": "Antes de compartir, buscá la fuente y la fecha. Pedí ayuda para comprobarlo.",
     "variantes": [
       {
-        "pregunta": "¿Qué hacemos si un mensaje exige compartirlo ya?",
-        "opciones": [
+        "titulo": "El aviso sin fecha",
+        "personaje": "Noa · Un caso nuevo",
+        "relato": "A Noa le llega una captura que dice que mañana no hay clases. No muestra fecha ni quién lo anunció.",
+        "relatoCorto": "A Noa le llega una captura que dice que mañana no hay clases. No muestra fecha ni quién lo anunció.",
+        "relatoDecidir": "En el canal oficial de la escuela todavía no hay aviso. Noa puede consultar con su familia.",
+        "pistas": [
           {
-            "id": "a",
-            "icono": "💬",
-            "texto": "Reenviarlo sin leer",
-            "textoCorto": "Reenviarlo sin leer",
-            "porque": "Esta acción puede aumentar el riesgo. Frená y pedí ayuda de confianza."
+            "id": "alerta1",
+            "texto": "La captura no tiene fecha",
+            "textoCorto": "La captura no tiene fecha",
+            "porque": "Esta señal merece atención y una consulta con ayuda adulta.",
+            "icono": "🎃",
+            "correcta": true
           },
           {
-            "id": "b",
-            "icono": "🛡️",
-            "texto": "Comprobar su origen con ayuda",
-            "textoCorto": "Comprobar su origen con ayuda",
-            "porque": "Esta acción protege y permite buscar ayuda de confianza."
+            "id": "alerta2",
+            "texto": "No muestra quién lo anunció",
+            "textoCorto": "No muestra quién lo anunció",
+            "porque": "Esta parte de la situación puede poner en riesgo a alguien.",
+            "icono": "🎃",
+            "correcta": true
           },
           {
-            "id": "c",
-            "icono": "📱",
-            "texto": "Creerlo porque lo mandó un amigo",
-            "textoCorto": "Creerlo porque lo mandó un amigo",
-            "porque": "Esta acción puede aumentar el riesgo. Frená y pedí ayuda de confianza."
+            "id": "neutral1",
+            "texto": "El mensaje trata de clases",
+            "textoCorto": "El mensaje trata de clases",
+            "porque": "Este detalle por sí solo no indica que alguien esté en riesgo.",
+            "icono": "🎃",
+            "correcta": false
+          },
+          {
+            "id": "neutral2",
+            "texto": "Noa recibe una captura",
+            "textoCorto": "Noa recibe una captura",
+            "porque": "Esta parte es habitual; conviene mirar qué se pide y cómo se trata a las personas.",
+            "icono": "🎃",
+            "correcta": false
           }
         ],
-        "respuesta": "b",
+        "pregunta": "¿Cómo comprueba Noa la captura?",
+        "opciones": [
+          {
+            "id": "bien",
+            "texto": "Consultar el canal oficial con ayuda",
+            "textoCorto": "Consultar el canal oficial con ayuda",
+            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
+            "icono": "🛡️"
+          },
+          {
+            "id": "riesgo1",
+            "texto": "Reenviarla como confirmada",
+            "textoCorto": "Reenviarla como confirmada",
+            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
+            "icono": "🎃"
+          },
+          {
+            "id": "riesgo2",
+            "texto": "Creerla por tener un logo",
+            "textoCorto": "Creerla por tener un logo",
+            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
+            "icono": "🎃"
+          }
+        ],
+        "respuesta": "bien",
+        "explicacion": "La situación merece una pausa. Consultar el canal oficial con ayuda. Buscá el apoyo de una persona adulta de confianza.",
+        "consejoCorto": "Podés frenar y pedir ayuda. No tenés que resolver el problema en soledad.",
         "miniJuego": {
           "tipo": "pocion",
-          "titulo": "Poción anti-rumores",
+          "titulo": "El audio del caldero",
           "instruccion": "Echá los ingredientes en el caldero: frenar, buscar el origen y comparar antes de compartir.",
           "pasos": [
             {
@@ -1486,10 +2661,140 @@
           ],
           "explicacion": "Primero frenás: un audio alarmante también puede difundir rumores. Después buscás el origen y la fecha del audio. Al final comparás con una fuente confiable y ayuda adulta.",
           "instruccionCorta": "Primero frená, después buscá el origen y al final compará.",
-          "explicacionCorta": "Buscá quién lo publicó y cuándo. Compará con una fuente confiable y ayuda adulta antes de compartir."
+          "explicacionCorta": "Buscá quién lo publicó y cuándo. Compará con una fuente confiable y ayuda adulta antes de compartir.",
+          "contexto": "Un audio alarmante llegó al caldero. Prepará la receta para comprobarlo antes de compartir."
+        }
+      },
+      {
+        "titulo": "El video recortado",
+        "personaje": "Gael · Un caso nuevo",
+        "relato": "Gael ve un video que anuncia un peligro. Solo muestra un recorte y pide compartirlo antes de borrarlo.",
+        "relatoCorto": "Gael ve un video que anuncia un peligro. Solo muestra un recorte y pide compartirlo antes de borrarlo.",
+        "relatoDecidir": "Gael encuentra el mismo video con una fecha antigua. Le falta conocer el contexto completo.",
+        "pistas": [
+          {
+            "id": "alerta1",
+            "texto": "Solo muestran un recorte",
+            "textoCorto": "Solo muestran un recorte",
+            "porque": "Esta señal merece atención y una consulta con ayuda adulta.",
+            "icono": "🎃",
+            "correcta": true
+          },
+          {
+            "id": "alerta2",
+            "texto": "Presionan para compartir rápido",
+            "textoCorto": "Presionan para compartir rápido",
+            "porque": "Esta parte de la situación puede poner en riesgo a alguien.",
+            "icono": "🎃",
+            "correcta": true
+          },
+          {
+            "id": "neutral1",
+            "texto": "Gael está viendo un video",
+            "textoCorto": "Gael está viendo un video",
+            "porque": "Este detalle por sí solo no indica que alguien esté en riesgo.",
+            "icono": "🎃",
+            "correcta": false
+          },
+          {
+            "id": "neutral2",
+            "texto": "El archivo se puede compartir",
+            "textoCorto": "El archivo se puede compartir",
+            "porque": "Esta parte es habitual; conviene mirar qué se pide y cómo se trata a las personas.",
+            "icono": "🎃",
+            "correcta": false
+          }
+        ],
+        "pregunta": "¿Qué hace Gael antes de reenviar?",
+        "opciones": [
+          {
+            "id": "bien",
+            "texto": "Buscar contexto con ayuda adulta",
+            "textoCorto": "Buscar contexto con ayuda adulta",
+            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
+            "icono": "🛡️"
+          },
+          {
+            "id": "riesgo1",
+            "texto": "Compartir el recorte enseguida",
+            "textoCorto": "Compartir el recorte enseguida",
+            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
+            "icono": "🎃"
+          },
+          {
+            "id": "riesgo2",
+            "texto": "Agregar un título más alarmante",
+            "textoCorto": "Agregar un título más alarmante",
+            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
+            "icono": "🎃"
+          }
+        ],
+        "respuesta": "bien",
+        "explicacion": "La situación merece una pausa. Buscar contexto con ayuda adulta. Buscá el apoyo de una persona adulta de confianza.",
+        "consejoCorto": "Podés frenar y pedir ayuda. No tenés que resolver el problema en soledad.",
+        "miniJuego": {
+          "tipo": "conectar",
+          "titulo": "El archivo de las noticias",
+          "contexto": "Tres noticias perdieron una pieza de información. Conectá cada duda con su búsqueda.",
+          "instruccion": "Uní cada situación con la acción que corresponde. Usá cada acción una vez.",
+          "instruccionCorta": "Elegí una ayuda para cada situación.",
+          "situaciones": [
+            {
+              "id": "s0",
+              "texto": "No sé cuándo ocurrió",
+              "textoCorto": "No sé cuándo ocurrió",
+              "porque": "La fecha permite saber si una noticia es actual o antigua.",
+              "icono": "🎃"
+            },
+            {
+              "id": "s1",
+              "texto": "No sé quién lo publicó",
+              "textoCorto": "No sé quién lo publicó",
+              "porque": "La fuente permite revisar de dónde viene la información.",
+              "icono": "🎃"
+            },
+            {
+              "id": "s2",
+              "texto": "No sé si está completo",
+              "textoCorto": "No sé si está completo",
+              "porque": "El contexto permite entender qué pasó antes y después del recorte.",
+              "icono": "🎃"
+            }
+          ],
+          "acciones": [
+            {
+              "id": "a0",
+              "texto": "Buscar la fecha original",
+              "textoCorto": "Buscar la fecha original",
+              "porque": "La fecha permite saber si una noticia es actual o antigua.",
+              "icono": "🎃"
+            },
+            {
+              "id": "a1",
+              "texto": "Buscar la fuente original",
+              "textoCorto": "Buscar la fuente original",
+              "porque": "La fuente permite revisar de dónde viene la información.",
+              "icono": "🎃"
+            },
+            {
+              "id": "a2",
+              "texto": "Comparar el contexto con ayuda",
+              "textoCorto": "Comparar el contexto con ayuda",
+              "porque": "El contexto permite entender qué pasó antes y después del recorte.",
+              "icono": "🎃"
+            }
+          ],
+          "soluciones": {
+            "s0": "a0",
+            "s1": "a1",
+            "s2": "a2"
+          },
+          "explicacion": "La fecha permite saber si una noticia es actual o antigua. La fuente permite revisar de dónde viene la información. El contexto permite entender qué pasó antes y después del recorte.",
+          "explicacionCorta": "Cada situación necesita una respuesta. Una persona adulta puede acompañarte."
         }
       }
-    ]
+    ],
+    "relatoDecidir": "El mensaje sigue sin confirmar. Es posible consultar su origen antes de compartirlo."
   },
   {
     "id": "caso-09",
@@ -1615,40 +2920,82 @@
       },
       "explicacion": "Cuidar los códigos, verificar quién escribe y revisar los avisos con ayuda protege las cuentas. En este juego nunca hay que ingresar códigos reales de acceso.",
       "instruccionCorta": "Lanzá la carta que frena cada amenaza.",
-      "explicacionCorta": "Un nombre o una foto no prueban quién escribe. Los códigos de acceso no se mandan por chat."
+      "explicacionCorta": "Un nombre o una foto no prueban quién escribe. Los códigos de acceso no se mandan por chat.",
+      "contexto": "El castillo detecta códigos pedidos por chat, mensajes extraños y accesos desconocidos. Elegí las defensas."
     },
     "relatoCorto": "Ivo recibe un código que no pidió. Una cuenta con la foto de su primo dice: «Mandame tu código privado, ¡ya!».",
     "consejoCorto": "No envíes códigos de acceso. Pedí ayuda adulta para revisar quién te escribe.",
     "variantes": [
       {
-        "pregunta": "¿Qué hacemos ante un pedido de un código privado?",
-        "opciones": [
+        "titulo": "La sesión desconocida",
+        "personaje": "Isa · Un caso nuevo",
+        "relato": "A Isa le llega un aviso de acceso desde otro dispositivo. Después un chat le pide el código de seguridad.",
+        "relatoCorto": "A Isa le llega un aviso de acceso desde otro dispositivo. Después un chat le pide el código de seguridad.",
+        "relatoDecidir": "Isa no inició esa sesión. Puede abrir la app oficial directamente sin usar el enlace del chat.",
+        "pistas": [
           {
-            "id": "a",
-            "icono": "💬",
-            "texto": "Enviarlo si reconocemos la foto",
-            "textoCorto": "Enviarlo si reconocemos la foto",
-            "porque": "Esta acción puede aumentar el riesgo. Frená y pedí ayuda de confianza."
+            "id": "alerta1",
+            "texto": "Hay un acceso no reconocido",
+            "textoCorto": "Hay un acceso no reconocido",
+            "porque": "Esta señal merece atención y una consulta con ayuda adulta.",
+            "icono": "🎃",
+            "correcta": true
           },
           {
-            "id": "b",
-            "icono": "🛡️",
-            "texto": "Mantenerlo privado y pedir ayuda",
-            "textoCorto": "Mantenerlo privado y pedir ayuda",
-            "porque": "Esta acción protege y permite buscar ayuda de confianza."
+            "id": "alerta2",
+            "texto": "El chat pide código de seguridad",
+            "textoCorto": "El chat pide código de seguridad",
+            "porque": "Esta parte de la situación puede poner en riesgo a alguien.",
+            "icono": "🎃",
+            "correcta": true
           },
           {
-            "id": "c",
-            "icono": "📱",
-            "texto": "Publicarlo en el grupo",
-            "textoCorto": "Publicarlo en el grupo",
-            "porque": "Esta acción puede aumentar el riesgo. Frená y pedí ayuda de confianza."
+            "id": "neutral1",
+            "texto": "Isa tiene una cuenta",
+            "textoCorto": "Isa tiene una cuenta",
+            "porque": "Este detalle por sí solo no indica que alguien esté en riesgo.",
+            "icono": "🎃",
+            "correcta": false
+          },
+          {
+            "id": "neutral2",
+            "texto": "El aviso llega a un dispositivo",
+            "textoCorto": "El aviso llega a un dispositivo",
+            "porque": "Esta parte es habitual; conviene mirar qué se pide y cómo se trata a las personas.",
+            "icono": "🎃",
+            "correcta": false
           }
         ],
-        "respuesta": "b",
+        "pregunta": "¿Desde dónde revisa Isa la cuenta?",
+        "opciones": [
+          {
+            "id": "bien",
+            "texto": "Desde la app oficial con ayuda",
+            "textoCorto": "Desde la app oficial con ayuda",
+            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
+            "icono": "🛡️"
+          },
+          {
+            "id": "riesgo1",
+            "texto": "Desde el enlace del chat",
+            "textoCorto": "Desde el enlace del chat",
+            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
+            "icono": "🎃"
+          },
+          {
+            "id": "riesgo2",
+            "texto": "Mandando el código al contacto",
+            "textoCorto": "Mandando el código al contacto",
+            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
+            "icono": "🎃"
+          }
+        ],
+        "respuesta": "bien",
+        "explicacion": "La situación merece una pausa. Desde la app oficial con ayuda. Buscá el apoyo de una persona adulta de confianza.",
+        "consejoCorto": "Podés frenar y pedir ayuda. No tenés que resolver el problema en soledad.",
         "miniJuego": {
           "tipo": "defender",
-          "titulo": "Defendé tu cuenta",
+          "titulo": "Las cartas de seguridad",
           "instruccion": "Las amenazas avanzan hacia tu castillo. Lanzá la carta que frena cada una.",
           "situaciones": [
             {
@@ -1700,10 +3047,117 @@
           },
           "explicacion": "Un supuesto premio no justifica compartir un código privado. Verificá por otro medio con ayuda si realmente escribe tu amigo. Una sesión que no reconocés merece una revisión con ayuda adulta.",
           "instruccionCorta": "Lanzá la carta que frena cada amenaza.",
-          "explicacionCorta": "Un nombre o una foto no prueban quién escribe. Los códigos de acceso no se mandan por chat."
+          "explicacionCorta": "Un nombre o una foto no prueban quién escribe. Los códigos de acceso no se mandan por chat.",
+          "contexto": "Llegan tres amenazas nuevas al castillo. Usá cada carta para frenar la amenaza correspondiente."
+        }
+      },
+      {
+        "titulo": "El amigo que cambió",
+        "personaje": "Tomi · Un caso nuevo",
+        "relato": "La cuenta de un amigo pide a Tomi un código privado. Escribe distinto y exige que lo mande ya.",
+        "relatoCorto": "La cuenta de un amigo pide a Tomi un código privado. Escribe distinto y exige que lo mande ya.",
+        "relatoDecidir": "Tomi puede llamar a su amigo con ayuda familiar. La foto del perfil podría estar siendo usada por otra persona.",
+        "pistas": [
+          {
+            "id": "alerta1",
+            "texto": "Piden un código privado",
+            "textoCorto": "Piden un código privado",
+            "porque": "Esta señal merece atención y una consulta con ayuda adulta.",
+            "icono": "🎃",
+            "correcta": true
+          },
+          {
+            "id": "alerta2",
+            "texto": "Presionan para mandarlo ya",
+            "textoCorto": "Presionan para mandarlo ya",
+            "porque": "Esta parte de la situación puede poner en riesgo a alguien.",
+            "icono": "🎃",
+            "correcta": true
+          },
+          {
+            "id": "neutral1",
+            "texto": "El perfil tiene una foto",
+            "textoCorto": "El perfil tiene una foto",
+            "porque": "Este detalle por sí solo no indica que alguien esté en riesgo.",
+            "icono": "🎃",
+            "correcta": false
+          },
+          {
+            "id": "neutral2",
+            "texto": "Tomi usa un chat",
+            "textoCorto": "Tomi usa un chat",
+            "porque": "Esta parte es habitual; conviene mirar qué se pide y cómo se trata a las personas.",
+            "icono": "🎃",
+            "correcta": false
+          }
+        ],
+        "pregunta": "¿Cómo verifica Tomi quién escribe?",
+        "opciones": [
+          {
+            "id": "bien",
+            "texto": "Llamar por otro medio con ayuda",
+            "textoCorto": "Llamar por otro medio con ayuda",
+            "porque": "Esta acción permite cuidarte y buscar apoyo de confianza.",
+            "icono": "🛡️"
+          },
+          {
+            "id": "riesgo1",
+            "texto": "Confiar solo en la foto",
+            "textoCorto": "Confiar solo en la foto",
+            "porque": "Esta acción puede aumentar el problema. Frená y buscá ayuda.",
+            "icono": "🎃"
+          },
+          {
+            "id": "riesgo2",
+            "texto": "Compartir el código y preguntar después",
+            "textoCorto": "Compartir el código y preguntar después",
+            "porque": "Esta acción no resuelve el riesgo. Revisalo con ayuda adulta.",
+            "icono": "🎃"
+          }
+        ],
+        "respuesta": "bien",
+        "explicacion": "La situación merece una pausa. Llamar por otro medio con ayuda. Buscá el apoyo de una persona adulta de confianza.",
+        "consejoCorto": "Podés frenar y pedir ayuda. No tenés que resolver el problema en soledad.",
+        "miniJuego": {
+          "tipo": "pocion",
+          "titulo": "El plan de recuperación",
+          "contexto": "Una cuenta muestra movimientos que su dueño no hizo. Prepará el plan con una persona adulta.",
+          "instruccion": "Armá la ruta: Frenar sin mandar ningún código, después Abrir la app oficial con ayuda, después Revisar y cerrar sesiones ajenas.",
+          "instruccionCorta": "Armá la ruta en el orden indicado.",
+          "pasos": [
+            {
+              "id": "0",
+              "texto": "Frenar sin mandar ningún código",
+              "textoCorto": "Frenar sin mandar ningún código",
+              "porque": "Primero no compartís códigos que darían acceso a otras personas.",
+              "icono": "🎃"
+            },
+            {
+              "id": "1",
+              "texto": "Abrir la app oficial con ayuda",
+              "textoCorto": "Abrir la app oficial con ayuda",
+              "porque": "Después revisás desde el servicio oficial y con ayuda adulta.",
+              "icono": "🎃"
+            },
+            {
+              "id": "2",
+              "texto": "Revisar y cerrar sesiones ajenas",
+              "textoCorto": "Revisar y cerrar sesiones ajenas",
+              "porque": "Al final seguís los pasos del servicio para proteger tu cuenta.",
+              "icono": "🎃"
+            }
+          ],
+          "ordenCorrecto": [
+            "0",
+            "1",
+            "2"
+          ],
+          "explicacion": "Primero no compartís códigos que darían acceso a otras personas. Después revisás desde el servicio oficial y con ayuda adulta. Al final seguís los pasos del servicio para proteger tu cuenta.",
+          "explicacionCorta": "Frenar y buscar ayuda permite revisar el problema paso a paso."
         }
       }
-    ]
+    ],
+    "relatoDecidir": "El código sigue privado. El personaje necesita revisar quién le escribe sin enviarlo."
   }
 ]
 
