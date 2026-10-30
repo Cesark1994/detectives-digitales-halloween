@@ -56,14 +56,14 @@ test('al azar: cada partida elige otras misiones, y las opciones se mezclan igua
  }finally{await server.stop()}
 });
 
-test('al azar: las nueve misiones cambian preguntas y tarjetas al volver a jugar',async()=>{
+test('al azar: todas las misiones cambian preguntas y tarjetas al volver a jugar',async()=>{
  const server=await startServer();
  try{
-  const r=await room(server.base,{random:true,caseCount:9},['Ana','Juan']);
+  const r=await room(server.base,{random:true,caseCount:'all'},['Ana','Juan']);
   const previous=new Map();
   for(let game=0;game<2;game++){
    await r.next();
-   for(let i=0;i<9;i++){
+   for(let i=0;i<cases.length;i++){
     const a=(await r.view(r.players[0].token)).case;
     const b=(await r.view(r.players[1].token)).case;
     assert.deepEqual(a,b,'Los participantes comparten el mismo sorteo.');
@@ -81,15 +81,34 @@ test('al azar: las nueve misiones cambian preguntas y tarjetas al volver a jugar
  }finally{await server.stop()}
 });
 
-test('27 escenarios: historias nuevas, avance al decidir y retos independientes con puntuación correcta',async()=>{
+test('al azar: completa las temáticas pendientes antes de repetir al reiniciar la sala',async()=>{
  const server=await startServer();
  try{
-  const r=await room(server.base,{random:true,caseCount:9});
+  const r=await room(server.base,{random:true,caseCount:6});
+  const used=new Set();
+  for(let game=0;game<4;game++){
+   await r.next();const round=new Set();
+   for(let i=0;i<6;i++){
+    const c=(await r.view()).case;
+    assert.ok(!round.has(c.categoria),'La misma temática no aparece dos veces en una partida.');round.add(c.categoria);
+    if(game<3){assert.ok(!used.has(c.categoria),'No se repiten los temas vistos hasta recorrer los 18.');used.add(c.categoria)}
+    for(let step=0;step<7;step++)await r.next();
+   }
+   if(game<3)await request(server.base,'/api/accion',{code:r.code,token:r.hostToken,action:'reset'});
+  }
+  assert.equal(used.size,cases.length);
+ }finally{await server.stop()}
+});
+
+test('todos los escenarios: historias nuevas, avance al decidir y retos independientes con puntuación correcta',async()=>{
+ const server=await startServer();
+ try{
+  const r=await room(server.base,{random:true,caseCount:'all'});
   const seen=new Set(),kinds=new Set();
   const submit=body=>request(server.base,'/api/responder',{code:r.code,token:r.players[0].token,...body});
   for(let game=0;game<3;game++){
    await r.next();let expected=0;
-   for(let i=0;i<9;i++){
+   for(let i=0;i<cases.length;i++){
     const detected=(await r.view()).case;
     const base=cases.find(c=>c.id===detected.id);
     const actual=[base,...base.variantes].find(c=>c.titulo===detected.titulo);
@@ -118,7 +137,7 @@ test('27 escenarios: historias nuevas, avance al decidir y retos independientes 
    }
    if(game<2)assert.equal((await request(server.base,'/api/accion',{code:r.code,token:r.hostToken,action:'reset'})).status,200);
   }
-  assert.equal(seen.size,27);assert.equal(kinds.size,11);
+  assert.equal(seen.size,cases.length*3);assert.equal(kinds.size,11);
  }finally{await server.stop()}
 });
 

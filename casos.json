@@ -341,7 +341,8 @@
         }
       }
     ],
-    "relatoDecidir": "Mila ya cerró el chat, pero llegan nuevos pedidos desde otra cuenta. Puede pedir ayuda sin responder."
+    "relatoDecidir": "Mila ya cerró el chat, pero llegan nuevos pedidos desde otra cuenta. Puede pedir ayuda sin responder.",
+    "tema": "Cuidar mi imagen"
   },
   {
     "id": "caso-02",
@@ -708,7 +709,8 @@
         }
       }
     ],
-    "relatoDecidir": "Teo no abrió el enlace. Ahora quiere saber dónde consultar si existe esa promoción."
+    "relatoDecidir": "Teo no abrió el enlace. Ahora quiere saber dónde consultar si existe esa promoción.",
+    "tema": "Links y premios"
   },
   {
     "id": "caso-03",
@@ -1052,7 +1054,8 @@
         }
       }
     ],
-    "relatoDecidir": "El personaje se alejó del chat de burlas. Un compañero quiere acompañarlo sin sumarse a las agresiones."
+    "relatoDecidir": "El personaje se alejó del chat de burlas. Un compañero quiere acompañarlo sin sumarse a las agresiones.",
+    "tema": "Ser buenos en línea"
   },
   {
     "id": "caso-04",
@@ -1431,7 +1434,8 @@
         }
       }
     ],
-    "relatoDecidir": "Alguien pudo ver la clave en un mensaje. La cuenta todavía se puede proteger con ayuda adulta."
+    "relatoDecidir": "Alguien pudo ver la clave en un mensaje. La cuenta todavía se puede proteger con ayuda adulta.",
+    "tema": "Proteger mis cuentas"
   },
   {
     "id": "caso-05",
@@ -1826,7 +1830,8 @@
         }
       }
     ],
-    "relatoDecidir": "La publicación todavía no salió. Es el momento de revisar datos personales y permisos."
+    "relatoDecidir": "La publicación todavía no salió. Es el momento de revisar datos personales y permisos.",
+    "tema": "Privacidad y consentimiento"
   },
   {
     "id": "caso-06",
@@ -2218,7 +2223,8 @@
         }
       }
     ],
-    "relatoDecidir": "La imagen sigue circulando. Un compañero quiere cortar la difusión y apoyar a quien aparece."
+    "relatoDecidir": "La imagen sigue circulando. Un compañero quiere cortar la difusión y apoyar a quien aparece.",
+    "tema": "Ayudar sin lastimar"
   },
   {
     "id": "caso-07",
@@ -2479,7 +2485,7 @@
           {
             "id": "alerta2",
             "texto": "No se usa ninguna función de voz",
-            "textoCorto": "No se usa ninguna función de voz",
+            "textoCorto": "No usa ninguna función de voz",
             "porque": "Esta parte de la situación puede poner en riesgo a alguien.",
             "icono": "🎃",
             "correcta": true
@@ -2595,7 +2601,8 @@
         }
       }
     ],
-    "relatoDecidir": "La app espera una respuesta. Todavía se pueden revisar los permisos antes de aceptarlos."
+    "relatoDecidir": "La app espera una respuesta. Todavía se pueden revisar los permisos antes de aceptarlos.",
+    "tema": "Permisos de aplicaciones"
   },
   {
     "id": "caso-08",
@@ -2962,7 +2969,8 @@
         }
       }
     ],
-    "relatoDecidir": "El mensaje sigue sin confirmar. Es posible consultar su origen antes de compartirlo."
+    "relatoDecidir": "El mensaje sigue sin confirmar. Es posible consultar su origen antes de compartirlo.",
+    "tema": "Pensar antes de compartir"
   },
   {
     "id": "caso-09",
@@ -3346,7 +3354,3500 @@
         }
       }
     ],
-    "relatoDecidir": "El código sigue privado. El personaje necesita revisar quién le escribe sin enviarlo."
+    "relatoDecidir": "El código sigue privado. El personaje necesita revisar quién le escribe sin enviarlo.",
+    "tema": "Verificar quién escribe"
+  },
+  {
+    "titulo": "La oferta sin dirección",
+    "categoria": "Trata: ofertas y captación",
+    "tema": "captacion-trata",
+    "personaje": "Un caso ficticio para aprender",
+    "relato": "Un anuncio promete mucho dinero. Pide viajar hoy, sin explicar la tarea ni dar una dirección verificable. Al consultar, quien publicó el aviso insiste en que no lo hablen con la familia. No hace falta responderle.",
+    "relatoCorto": "Un anuncio promete mucho dinero. Pide viajar hoy, sin explicar la tarea ni dar una dirección verificable.",
+    "relatoDecidir": "Al consultar, quien publicó el aviso insiste en que no lo hablen con la familia. No hace falta responderle.",
+    "pistas": [
+      {
+        "id": "p1",
+        "texto": "Pide viajar con urgencia",
+        "textoCorto": "Pide viajar con urgencia",
+        "porque": "Las promesas no justifican viajar a escondidas, entregar documentos ni aceptar presiones.",
+        "icono": "💬",
+        "correcta": true
+      },
+      {
+        "id": "p2",
+        "texto": "No explica la tarea ofrecida",
+        "textoCorto": "No explica la tarea ofrecida",
+        "porque": "Las promesas no justifican viajar a escondidas, entregar documentos ni aceptar presiones.",
+        "icono": "💬",
+        "correcta": true
+      },
+      {
+        "id": "p3",
+        "texto": "El nombre del personaje",
+        "textoCorto": "El nombre del personaje",
+        "porque": "Un nombre por sí solo no permite saber si una situación es segura.",
+        "icono": "💬",
+        "correcta": false
+      },
+      {
+        "id": "p4",
+        "texto": "El mensaje aparece en una pantalla",
+        "textoCorto": "El mensaje aparece en una pantalla",
+        "porque": "La pantalla no determina el riesgo; importa lo que se pide y cómo se trata a las personas.",
+        "icono": "💬",
+        "correcta": false
+      }
+    ],
+    "pregunta": "¿Qué hacemos con esta oferta?",
+    "opciones": [
+      {
+        "id": "o0",
+        "texto": "Revisarla con ayuda de confianza",
+        "textoCorto": "Revisarla con ayuda de confianza",
+        "porque": "Verificar una oferta por vías independientes y con ayuda evita depender de quien presiona.",
+        "icono": "🧭"
+      },
+      {
+        "id": "o1",
+        "texto": "Viajar para preguntar en persona",
+        "textoCorto": "Viajar para preguntar en persona",
+        "porque": "Las promesas no justifican viajar a escondidas, entregar documentos ni aceptar presiones.",
+        "icono": "💬"
+      },
+      {
+        "id": "o2",
+        "texto": "Enviar documentos para reservar",
+        "textoCorto": "Enviar documentos para reservar",
+        "porque": "Las promesas no justifican viajar a escondidas, entregar documentos ni aceptar presiones.",
+        "icono": "💡"
+      },
+      {
+        "id": "o3",
+        "texto": "Aceptarla por el dinero prometido",
+        "textoCorto": "Aceptarla por el dinero prometido",
+        "porque": "Las promesas no justifican viajar a escondidas, entregar documentos ni aceptar presiones.",
+        "icono": "💭"
+      }
+    ],
+    "respuesta": "o0",
+    "explicacion": "La trata busca captar o controlar a una persona para explotarla. Una oferta dudosa no prueba un delito. Verificar una oferta por vías independientes y con ayuda evita depender de quien presiona. Las promesas no justifican viajar a escondidas, entregar documentos ni aceptar presiones. Si algo ya pasó, también merecés ayuda.",
+    "consejoCorto": "Verificar una oferta por vías independientes y con ayuda evita depender de quien presiona.",
+    "miniJuego": {
+      "tipo": "feed",
+      "titulo": "Feed: Lupa de ofertas",
+      "contexto": "En una cartelera de práctica aparecen otras ideas sobre trata: ofertas y captación. Revisá cada tarjeta.",
+      "instruccion": "Revisá cada publicación: ¿me cuida o necesita atención?",
+      "instruccionCorta": "Revisá cada publicación: ¿me cuida o necesita atención?",
+      "tarjetas": [
+        {
+          "id": "f0",
+          "texto": "Verificar la organización con ayuda",
+          "textoCorto": "Verificar la organización con ayuda",
+          "porque": "Una verificación independiente permite revisar quién ofrece y qué condiciones propone.",
+          "icono": "📱"
+        },
+        {
+          "id": "f1",
+          "texto": "Viajar sin contarle a nadie",
+          "textoCorto": "Viajar sin contarle a nadie",
+          "porque": "El secreto y el aislamiento dificultan que alguien pueda acompañarte.",
+          "icono": "📱"
+        },
+        {
+          "id": "f2",
+          "texto": "Retener documentos de otra persona",
+          "textoCorto": "Retener documentos de otra persona",
+          "porque": "Que quieran retener documentos es una señal para frenar y buscar orientación.",
+          "icono": "📱"
+        },
+        {
+          "id": "f3",
+          "texto": "Pedir condiciones claras por escrito",
+          "textoCorto": "Pedir condiciones claras por escrito",
+          "porque": "Conocer las condiciones ayuda a revisar una oferta; no garantiza por sí solo que sea segura.",
+          "icono": "📱"
+        }
+      ],
+      "clasificacion": {
+        "f0": "safe",
+        "f1": "danger",
+        "f2": "danger",
+        "f3": "safe"
+      },
+      "explicacion": "La trata busca captar o controlar a una persona para explotarla. Una oferta dudosa no prueba un delito. Verificar una oferta por vías independientes y con ayuda evita depender de quien presiona. Las promesas no justifican viajar a escondidas, entregar documentos ni aceptar presiones. Si algo ya pasó, también merecés ayuda.",
+      "explicacionCorta": "Verificar una oferta por vías independientes y con ayuda evita depender de quien presiona."
+    },
+    "insignia": {
+      "icono": "🔎",
+      "nombre": "Lupa de ofertas"
+    },
+    "id": "caso-10",
+    "variantes": [
+      {
+        "titulo": "El casting a escondidas",
+        "categoria": "Trata: ofertas y captación",
+        "tema": "captacion-trata",
+        "personaje": "Un caso ficticio para aprender",
+        "relato": "Un perfil ofrece un casting. Exige ir sin acompañante y no permite consultar los datos de la organización. La invitación llega por un chat. Una persona adulta de confianza puede buscar la organización por otra vía.",
+        "relatoCorto": "Un perfil ofrece un casting. Exige ir sin acompañante y no permite consultar los datos de la organización.",
+        "relatoDecidir": "La invitación llega por un chat. Una persona adulta de confianza puede buscar la organización por otra vía.",
+        "pistas": [
+          {
+            "id": "p1",
+            "texto": "Exige ir sin acompañante",
+            "textoCorto": "Exige ir sin acompañante",
+            "porque": "Las promesas no justifican viajar a escondidas, entregar documentos ni aceptar presiones.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p2",
+            "texto": "No permite verificar la organización",
+            "textoCorto": "No permite verificar la organización",
+            "porque": "Las promesas no justifican viajar a escondidas, entregar documentos ni aceptar presiones.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p3",
+            "texto": "El nombre del personaje",
+            "textoCorto": "El nombre del personaje",
+            "porque": "Un nombre por sí solo no permite saber si una situación es segura.",
+            "icono": "💬",
+            "correcta": false
+          },
+          {
+            "id": "p4",
+            "texto": "El mensaje aparece en una pantalla",
+            "textoCorto": "El mensaje aparece en una pantalla",
+            "porque": "La pantalla no determina el riesgo; importa lo que se pide y cómo se trata a las personas.",
+            "icono": "💬",
+            "correcta": false
+          }
+        ],
+        "pregunta": "¿Cómo se revisa ese casting?",
+        "opciones": [
+          {
+            "id": "o0",
+            "texto": "Consultar por un canal independiente",
+            "textoCorto": "Consultar por un canal independiente",
+            "porque": "Verificar una oferta por vías independientes y con ayuda evita depender de quien presiona.",
+            "icono": "🧭"
+          },
+          {
+            "id": "o1",
+            "texto": "Ir sin avisar para no perderlo",
+            "textoCorto": "Ir sin avisar para no perderlo",
+            "porque": "Las promesas no justifican viajar a escondidas, entregar documentos ni aceptar presiones.",
+            "icono": "💬"
+          },
+          {
+            "id": "o2",
+            "texto": "Enviar fotos y decidir después",
+            "textoCorto": "Enviar fotos y decidir después",
+            "porque": "Las promesas no justifican viajar a escondidas, entregar documentos ni aceptar presiones.",
+            "icono": "💡"
+          },
+          {
+            "id": "o3",
+            "texto": "Confiar porque tiene seguidores",
+            "textoCorto": "Confiar porque tiene seguidores",
+            "porque": "Las promesas no justifican viajar a escondidas, entregar documentos ni aceptar presiones.",
+            "icono": "💭"
+          }
+        ],
+        "respuesta": "o0",
+        "explicacion": "La trata busca captar o controlar a una persona para explotarla. Una oferta dudosa no prueba un delito. Verificar una oferta por vías independientes y con ayuda evita depender de quien presiona. Las promesas no justifican viajar a escondidas, entregar documentos ni aceptar presiones. Si algo ya pasó, también merecés ayuda.",
+        "consejoCorto": "Verificar una oferta por vías independientes y con ayuda evita depender de quien presiona.",
+        "miniJuego": {
+          "tipo": "chat",
+          "titulo": "Chat: Lupa de ofertas",
+          "contexto": "Un buzón de orientación recibe consultas sobre ofertas, documentos y pedidos de secreto. Elegí cómo acompañar.",
+          "instruccion": "Leé cada mensaje y elegí la respuesta que corresponde. Podés reintentar.",
+          "instruccionCorta": "Leé el mensaje y elegí cómo responder.",
+          "situaciones": [
+            {
+              "id": "s0",
+              "texto": "Viajá hoy, después vemos la tarea",
+              "textoCorto": "Viajá hoy, después vemos la tarea",
+              "porque": "La urgencia y la falta de detalles merecen una revisión independiente.",
+              "icono": "💬"
+            },
+            {
+              "id": "s1",
+              "texto": "Dejame tus documentos a mí",
+              "textoCorto": "Dejame tus documentos a mí",
+              "porque": "No entregues tus documentos a quien te presiona para quedarse con ellos.",
+              "icono": "💬"
+            },
+            {
+              "id": "s2",
+              "texto": "No se lo cuentes a nadie",
+              "textoCorto": "No se lo cuentes a nadie",
+              "porque": "Aislarte de quienes te cuidan dificulta pedir apoyo.",
+              "icono": "💬"
+            }
+          ],
+          "acciones": [
+            {
+              "id": "a0",
+              "texto": "Frenar y consultar la oferta",
+              "textoCorto": "Frenar y consultar la oferta",
+              "porque": "La urgencia y la falta de detalles merecen una revisión independiente.",
+              "icono": "🧭"
+            },
+            {
+              "id": "a1",
+              "texto": "Conservarlos y buscar orientación",
+              "textoCorto": "Conservarlos y buscar orientación",
+              "porque": "No entregues tus documentos a quien te presiona para quedarse con ellos.",
+              "icono": "🧭"
+            },
+            {
+              "id": "a2",
+              "texto": "Hablar con alguien de confianza",
+              "textoCorto": "Hablar con alguien de confianza",
+              "porque": "Aislarte de quienes te cuidan dificulta pedir apoyo.",
+              "icono": "🧭"
+            }
+          ],
+          "soluciones": {
+            "s0": "a0",
+            "s1": "a1",
+            "s2": "a2"
+          },
+          "explicacion": "La trata busca captar o controlar a una persona para explotarla. Una oferta dudosa no prueba un delito. Verificar una oferta por vías independientes y con ayuda evita depender de quien presiona. Las promesas no justifican viajar a escondidas, entregar documentos ni aceptar presiones. Si algo ya pasó, también merecés ayuda.",
+          "explicacionCorta": "Verificar una oferta por vías independientes y con ayuda evita depender de quien presiona."
+        },
+        "insignia": {
+          "icono": "🔎",
+          "nombre": "Lupa de ofertas"
+        }
+      },
+      {
+        "titulo": "El viaje que exige documentos",
+        "categoria": "Trata: ofertas y captación",
+        "tema": "captacion-trata",
+        "personaje": "Un caso ficticio para aprender",
+        "relato": "Una supuesta agencia ofrece un viaje pagado. Quiere guardar los documentos y evita explicar las condiciones. La persona interesada todavía conserva sus documentos. Puede frenar y consultar sin reunirse con la agencia.",
+        "relatoCorto": "Una supuesta agencia ofrece un viaje pagado. Quiere guardar los documentos y evita explicar las condiciones.",
+        "relatoDecidir": "La persona interesada todavía conserva sus documentos. Puede frenar y consultar sin reunirse con la agencia.",
+        "pistas": [
+          {
+            "id": "p1",
+            "texto": "Quieren guardar documentos ajenos",
+            "textoCorto": "Quieren guardar documentos ajenos",
+            "porque": "Las promesas no justifican viajar a escondidas, entregar documentos ni aceptar presiones.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p2",
+            "texto": "Ocultan las condiciones del viaje",
+            "textoCorto": "Ocultan las condiciones del viaje",
+            "porque": "Las promesas no justifican viajar a escondidas, entregar documentos ni aceptar presiones.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p3",
+            "texto": "El nombre del personaje",
+            "textoCorto": "El nombre del personaje",
+            "porque": "Un nombre por sí solo no permite saber si una situación es segura.",
+            "icono": "💬",
+            "correcta": false
+          },
+          {
+            "id": "p4",
+            "texto": "El mensaje aparece en una pantalla",
+            "textoCorto": "El mensaje aparece en una pantalla",
+            "porque": "La pantalla no determina el riesgo; importa lo que se pide y cómo se trata a las personas.",
+            "icono": "💬",
+            "correcta": false
+          }
+        ],
+        "pregunta": "¿Qué protege ante esta propuesta?",
+        "opciones": [
+          {
+            "id": "o0",
+            "texto": "Conservar documentos y pedir orientación",
+            "textoCorto": "Conservar documentos y pedir orientación",
+            "porque": "Verificar una oferta por vías independientes y con ayuda evita depender de quien presiona.",
+            "icono": "🧭"
+          },
+          {
+            "id": "o1",
+            "texto": "Entregar documentos para asegurar lugar",
+            "textoCorto": "Entregar documentos para asegurar lugar",
+            "porque": "Las promesas no justifican viajar a escondidas, entregar documentos ni aceptar presiones.",
+            "icono": "💬"
+          },
+          {
+            "id": "o2",
+            "texto": "Ir primero y consultar después",
+            "textoCorto": "Ir primero y consultar después",
+            "porque": "Las promesas no justifican viajar a escondidas, entregar documentos ni aceptar presiones.",
+            "icono": "💡"
+          },
+          {
+            "id": "o3",
+            "texto": "Aceptar porque pagan el viaje",
+            "textoCorto": "Aceptar porque pagan el viaje",
+            "porque": "Las promesas no justifican viajar a escondidas, entregar documentos ni aceptar presiones.",
+            "icono": "💭"
+          }
+        ],
+        "respuesta": "o0",
+        "explicacion": "La trata busca captar o controlar a una persona para explotarla. Una oferta dudosa no prueba un delito. Verificar una oferta por vías independientes y con ayuda evita depender de quien presiona. Las promesas no justifican viajar a escondidas, entregar documentos ni aceptar presiones. Si algo ya pasó, también merecés ayuda.",
+        "consejoCorto": "Verificar una oferta por vías independientes y con ayuda evita depender de quien presiona.",
+        "miniJuego": {
+          "tipo": "ordenar",
+          "titulo": "Ruta: Lupa de ofertas",
+          "contexto": "Una amiga recibió una oferta sin datos claros. Quiere revisarla sin viajar ni entregar sus documentos.",
+          "instruccion": "En esta ruta: primero frenar sin entregar documentos, después consultar la oferta con ayuda y al final verificar condiciones por otra vía.",
+          "instruccionCorta": "Ordená esta ruta de cuidado. Podés pedir ayuda en cualquier momento.",
+          "pasos": [
+            {
+              "id": "r0",
+              "texto": "Frenar sin entregar documentos",
+              "textoCorto": "Frenar sin entregar documentos",
+              "porque": "Las promesas no justifican viajar a escondidas, entregar documentos ni aceptar presiones.",
+              "icono": "🧩"
+            },
+            {
+              "id": "r1",
+              "texto": "Consultar la oferta con ayuda",
+              "textoCorto": "Consultar la oferta con ayuda",
+              "porque": "Verificar una oferta por vías independientes y con ayuda evita depender de quien presiona.",
+              "icono": "🧩"
+            },
+            {
+              "id": "r2",
+              "texto": "Verificar condiciones por otra vía",
+              "textoCorto": "Verificar condiciones por otra vía",
+              "porque": "Revisar con ayuda permite decidir sin presión y sin enfrentar el problema en soledad.",
+              "icono": "🧩"
+            }
+          ],
+          "ordenCorrecto": [
+            "r0",
+            "r1",
+            "r2"
+          ],
+          "explicacion": "La trata busca captar o controlar a una persona para explotarla. Una oferta dudosa no prueba un delito. Verificar una oferta por vías independientes y con ayuda evita depender de quien presiona. Las promesas no justifican viajar a escondidas, entregar documentos ni aceptar presiones. Si algo ya pasó, también merecés ayuda.",
+          "explicacionCorta": "Verificar una oferta por vías independientes y con ayuda evita depender de quien presiona."
+        },
+        "insignia": {
+          "icono": "🔎",
+          "nombre": "Lupa de ofertas"
+        }
+      }
+    ]
+  },
+  {
+    "titulo": "La invitación fuera del juego",
+    "categoria": "Encuentros y contactos en línea",
+    "tema": "encuentros-presenciales",
+    "personaje": "Un caso ficticio para aprender",
+    "relato": "Un contacto del juego invita a Alex a encontrarse a solas. Pide no avisar a nadie y salir por una puerta lateral. Alex no tiene que ir para demostrar amistad. Puede contar la propuesta a una persona adulta de confianza.",
+    "relatoCorto": "Un contacto del juego invita a Alex a encontrarse a solas. Pide no avisar a nadie y salir por una puerta lateral.",
+    "relatoDecidir": "Alex no tiene que ir para demostrar amistad. Puede contar la propuesta a una persona adulta de confianza.",
+    "pistas": [
+      {
+        "id": "p1",
+        "texto": "Pide encontrarse a solas",
+        "textoCorto": "Pide encontrarse a solas",
+        "porque": "Las fotos y los regalos no comprueban una identidad ni vuelven seguro un encuentro secreto.",
+        "icono": "💬",
+        "correcta": true
+      },
+      {
+        "id": "p2",
+        "texto": "Pide no avisar a nadie",
+        "textoCorto": "Pide no avisar a nadie",
+        "porque": "Las fotos y los regalos no comprueban una identidad ni vuelven seguro un encuentro secreto.",
+        "icono": "💬",
+        "correcta": true
+      },
+      {
+        "id": "p3",
+        "texto": "El nombre del personaje",
+        "textoCorto": "El nombre del personaje",
+        "porque": "Un nombre por sí solo no permite saber si una situación es segura.",
+        "icono": "💬",
+        "correcta": false
+      },
+      {
+        "id": "p4",
+        "texto": "El mensaje aparece en una pantalla",
+        "textoCorto": "El mensaje aparece en una pantalla",
+        "porque": "La pantalla no determina el riesgo; importa lo que se pide y cómo se trata a las personas.",
+        "icono": "💬",
+        "correcta": false
+      }
+    ],
+    "pregunta": "¿Qué hace Alex con la invitación?",
+    "opciones": [
+      {
+        "id": "o0",
+        "texto": "No ir y buscar acompañamiento",
+        "textoCorto": "No ir y buscar acompañamiento",
+        "porque": "Un vínculo en línea no obliga a reunirte. Una persona adulta puede acompañarte a revisar la propuesta.",
+        "icono": "🧭"
+      },
+      {
+        "id": "o1",
+        "texto": "Ir solo unos minutos",
+        "textoCorto": "Ir solo unos minutos",
+        "porque": "Las fotos y los regalos no comprueban una identidad ni vuelven seguro un encuentro secreto.",
+        "icono": "💬"
+      },
+      {
+        "id": "o2",
+        "texto": "Mandar su ubicación al contacto",
+        "textoCorto": "Mandar su ubicación al contacto",
+        "porque": "Las fotos y los regalos no comprueban una identidad ni vuelven seguro un encuentro secreto.",
+        "icono": "💡"
+      },
+      {
+        "id": "o3",
+        "texto": "Ir para demostrar amistad",
+        "textoCorto": "Ir para demostrar amistad",
+        "porque": "Las fotos y los regalos no comprueban una identidad ni vuelven seguro un encuentro secreto.",
+        "icono": "💭"
+      }
+    ],
+    "respuesta": "o0",
+    "explicacion": "Un vínculo en línea no obliga a reunirte. Una persona adulta puede acompañarte a revisar la propuesta. Las fotos y los regalos no comprueban una identidad ni vuelven seguro un encuentro secreto. Si algo ya pasó, también merecés ayuda.",
+    "consejoCorto": "Un vínculo en línea no obliga a reunirte. Una persona adulta puede acompañarte a revisar la propuesta.",
+    "miniJuego": {
+      "tipo": "feed",
+      "titulo": "Feed: Encuentro cuidado",
+      "contexto": "En una cartelera de práctica aparecen otras ideas sobre encuentros y contactos en línea. Revisá cada tarjeta.",
+      "instruccion": "Revisá cada publicación: ¿me cuida o necesita atención?",
+      "instruccionCorta": "Revisá cada publicación: ¿me cuida o necesita atención?",
+      "tarjetas": [
+        {
+          "id": "f0",
+          "texto": "Puedo rechazar una invitación",
+          "textoCorto": "Puedo rechazar una invitación",
+          "porque": "Tenés derecho a decir que no aunque ya hayas hablado con esa persona.",
+          "icono": "📱"
+        },
+        {
+          "id": "f1",
+          "texto": "Un regalo obliga a encontrarse",
+          "textoCorto": "Un regalo obliga a encontrarse",
+          "porque": "Un regalo o una promesa no crean una obligación de reunirte.",
+          "icono": "📱"
+        },
+        {
+          "id": "f2",
+          "texto": "Lo cuento a quien me cuida",
+          "textoCorto": "Lo cuento a quien me cuida",
+          "porque": "Compartir una propuesta con alguien de confianza permite revisarla con apoyo.",
+          "icono": "📱"
+        },
+        {
+          "id": "f3",
+          "texto": "Una foto demuestra quién escribe",
+          "textoCorto": "Una foto demuestra quién escribe",
+          "porque": "Una foto puede copiarse; no verifica por sí sola la identidad.",
+          "icono": "📱"
+        }
+      ],
+      "clasificacion": {
+        "f0": "safe",
+        "f1": "danger",
+        "f2": "safe",
+        "f3": "danger"
+      },
+      "explicacion": "Un vínculo en línea no obliga a reunirte. Una persona adulta puede acompañarte a revisar la propuesta. Las fotos y los regalos no comprueban una identidad ni vuelven seguro un encuentro secreto. Si algo ya pasó, también merecés ayuda.",
+      "explicacionCorta": "Un vínculo en línea no obliga a reunirte. Una persona adulta puede acompañarte a revisar la propuesta."
+    },
+    "insignia": {
+      "icono": "🧭",
+      "nombre": "Encuentro cuidado"
+    },
+    "id": "caso-11",
+    "variantes": [
+      {
+        "titulo": "El regalo para retirar",
+        "categoria": "Encuentros y contactos en línea",
+        "tema": "encuentros-presenciales",
+        "personaje": "Un caso ficticio para aprender",
+        "relato": "Una cuenta ofrece auriculares a Jo. Para retirarlos exige ir sin compañía a un lugar que Jo no conoce. Jo puede dejar pasar el regalo. Nadie tiene que aceptar un encuentro para agradecer una promesa.",
+        "relatoCorto": "Una cuenta ofrece auriculares a Jo. Para retirarlos exige ir sin compañía a un lugar que Jo no conoce.",
+        "relatoDecidir": "Jo puede dejar pasar el regalo. Nadie tiene que aceptar un encuentro para agradecer una promesa.",
+        "pistas": [
+          {
+            "id": "p1",
+            "texto": "Exige retirar sin compañía",
+            "textoCorto": "Exige retirar sin compañía",
+            "porque": "Las fotos y los regalos no comprueban una identidad ni vuelven seguro un encuentro secreto.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p2",
+            "texto": "El lugar no es conocido",
+            "textoCorto": "El lugar no es conocido",
+            "porque": "Las fotos y los regalos no comprueban una identidad ni vuelven seguro un encuentro secreto.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p3",
+            "texto": "El nombre del personaje",
+            "textoCorto": "El nombre del personaje",
+            "porque": "Un nombre por sí solo no permite saber si una situación es segura.",
+            "icono": "💬",
+            "correcta": false
+          },
+          {
+            "id": "p4",
+            "texto": "El mensaje aparece en una pantalla",
+            "textoCorto": "El mensaje aparece en una pantalla",
+            "porque": "La pantalla no determina el riesgo; importa lo que se pide y cómo se trata a las personas.",
+            "icono": "💬",
+            "correcta": false
+          }
+        ],
+        "pregunta": "¿Qué puede decidir Jo?",
+        "opciones": [
+          {
+            "id": "o0",
+            "texto": "Rechazar la cita y pedir ayuda",
+            "textoCorto": "Rechazar la cita y pedir ayuda",
+            "porque": "Un vínculo en línea no obliga a reunirte. Una persona adulta puede acompañarte a revisar la propuesta.",
+            "icono": "🧭"
+          },
+          {
+            "id": "o1",
+            "texto": "Ir para no parecer desagradecido",
+            "textoCorto": "Ir para no parecer desagradecido",
+            "porque": "Las fotos y los regalos no comprueban una identidad ni vuelven seguro un encuentro secreto.",
+            "icono": "💬"
+          },
+          {
+            "id": "o2",
+            "texto": "Pedir que otro niño vaya solo",
+            "textoCorto": "Pedir que otro niño vaya solo",
+            "porque": "Las fotos y los regalos no comprueban una identidad ni vuelven seguro un encuentro secreto.",
+            "icono": "💡"
+          },
+          {
+            "id": "o3",
+            "texto": "Aceptar por el valor del regalo",
+            "textoCorto": "Aceptar por el valor del regalo",
+            "porque": "Las fotos y los regalos no comprueban una identidad ni vuelven seguro un encuentro secreto.",
+            "icono": "💭"
+          }
+        ],
+        "respuesta": "o0",
+        "explicacion": "Un vínculo en línea no obliga a reunirte. Una persona adulta puede acompañarte a revisar la propuesta. Las fotos y los regalos no comprueban una identidad ni vuelven seguro un encuentro secreto. Si algo ya pasó, también merecés ayuda.",
+        "consejoCorto": "Un vínculo en línea no obliga a reunirte. Una persona adulta puede acompañarte a revisar la propuesta.",
+        "miniJuego": {
+          "tipo": "chat",
+          "titulo": "Chat: Encuentro cuidado",
+          "contexto": "El club abrió un chat de consultas sobre invitaciones. Revisá la presión, los secretos y el acompañamiento.",
+          "instruccion": "Leé cada mensaje y elegí la respuesta que corresponde. Podés reintentar.",
+          "instruccionCorta": "Leé el mensaje y elegí cómo responder.",
+          "situaciones": [
+            {
+              "id": "s0",
+              "texto": "Venite solo, es nuestro secreto",
+              "textoCorto": "Venite solo, es nuestro secreto",
+              "porque": "Un encuentro secreto sin acompañamiento merece una pausa y ayuda.",
+              "icono": "💬"
+            },
+            {
+              "id": "s1",
+              "texto": "Si sos mi amigo, vení",
+              "textoCorto": "Si sos mi amigo, vení",
+              "porque": "La amistad no exige demostrar nada mediante una cita que te incomoda.",
+              "icono": "💬"
+            },
+            {
+              "id": "s2",
+              "texto": "¿Podemos revisar esta invitación?",
+              "textoCorto": "¿Podemos revisar esta invitación?",
+              "porque": "Revisar con ayuda permite decidir sin quedar a solas con la presión.",
+              "icono": "💬"
+            }
+          ],
+          "acciones": [
+            {
+              "id": "a0",
+              "texto": "No reunirme y pedir apoyo",
+              "textoCorto": "No reunirme y pedir apoyo",
+              "porque": "Un encuentro secreto sin acompañamiento merece una pausa y ayuda.",
+              "icono": "🧭"
+            },
+            {
+              "id": "a1",
+              "texto": "No aceptar esa presión",
+              "textoCorto": "No aceptar esa presión",
+              "porque": "La amistad no exige demostrar nada mediante una cita que te incomoda.",
+              "icono": "🧭"
+            },
+            {
+              "id": "a2",
+              "texto": "Buscar acompañamiento de confianza",
+              "textoCorto": "Buscar acompañamiento de confianza",
+              "porque": "Revisar con ayuda permite decidir sin quedar a solas con la presión.",
+              "icono": "🧭"
+            }
+          ],
+          "soluciones": {
+            "s0": "a0",
+            "s1": "a1",
+            "s2": "a2"
+          },
+          "explicacion": "Un vínculo en línea no obliga a reunirte. Una persona adulta puede acompañarte a revisar la propuesta. Las fotos y los regalos no comprueban una identidad ni vuelven seguro un encuentro secreto. Si algo ya pasó, también merecés ayuda.",
+          "explicacionCorta": "Un vínculo en línea no obliga a reunirte. Una persona adulta puede acompañarte a revisar la propuesta."
+        },
+        "insignia": {
+          "icono": "🧭",
+          "nombre": "Encuentro cuidado"
+        }
+      },
+      {
+        "titulo": "La foto que parece conocida",
+        "categoria": "Encuentros y contactos en línea",
+        "tema": "encuentros-presenciales",
+        "personaje": "Un caso ficticio para aprender",
+        "relato": "Una cuenta con foto de un compañero propone una cita secreta. Evita que lo llamen por otro medio. El compañero puede no saber nada de ese mensaje. La foto por sí sola no prueba quién está escribiendo.",
+        "relatoCorto": "Una cuenta con foto de un compañero propone una cita secreta. Evita que lo llamen por otro medio.",
+        "relatoDecidir": "El compañero puede no saber nada de ese mensaje. La foto por sí sola no prueba quién está escribiendo.",
+        "pistas": [
+          {
+            "id": "p1",
+            "texto": "Propone una cita secreta",
+            "textoCorto": "Propone una cita secreta",
+            "porque": "Las fotos y los regalos no comprueban una identidad ni vuelven seguro un encuentro secreto.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p2",
+            "texto": "Evita verificar por otro medio",
+            "textoCorto": "Evita verificar por otro medio",
+            "porque": "Las fotos y los regalos no comprueban una identidad ni vuelven seguro un encuentro secreto.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p3",
+            "texto": "El nombre del personaje",
+            "textoCorto": "El nombre del personaje",
+            "porque": "Un nombre por sí solo no permite saber si una situación es segura.",
+            "icono": "💬",
+            "correcta": false
+          },
+          {
+            "id": "p4",
+            "texto": "El mensaje aparece en una pantalla",
+            "textoCorto": "El mensaje aparece en una pantalla",
+            "porque": "La pantalla no determina el riesgo; importa lo que se pide y cómo se trata a las personas.",
+            "icono": "💬",
+            "correcta": false
+          }
+        ],
+        "pregunta": "¿Cómo se revisa quién invita?",
+        "opciones": [
+          {
+            "id": "o0",
+            "texto": "Consultar por otra vía con ayuda",
+            "textoCorto": "Consultar por otra vía con ayuda",
+            "porque": "Un vínculo en línea no obliga a reunirte. Una persona adulta puede acompañarte a revisar la propuesta.",
+            "icono": "🧭"
+          },
+          {
+            "id": "o1",
+            "texto": "Confiar solo en la foto",
+            "textoCorto": "Confiar solo en la foto",
+            "porque": "Las fotos y los regalos no comprueban una identidad ni vuelven seguro un encuentro secreto.",
+            "icono": "💬"
+          },
+          {
+            "id": "o2",
+            "texto": "Ir y preguntarle al llegar",
+            "textoCorto": "Ir y preguntarle al llegar",
+            "porque": "Las fotos y los regalos no comprueban una identidad ni vuelven seguro un encuentro secreto.",
+            "icono": "💡"
+          },
+          {
+            "id": "o3",
+            "texto": "Enviar la dirección de casa",
+            "textoCorto": "Enviar la dirección de casa",
+            "porque": "Las fotos y los regalos no comprueban una identidad ni vuelven seguro un encuentro secreto.",
+            "icono": "💭"
+          }
+        ],
+        "respuesta": "o0",
+        "explicacion": "Un vínculo en línea no obliga a reunirte. Una persona adulta puede acompañarte a revisar la propuesta. Las fotos y los regalos no comprueban una identidad ni vuelven seguro un encuentro secreto. Si algo ya pasó, también merecés ayuda.",
+        "consejoCorto": "Un vínculo en línea no obliga a reunirte. Una persona adulta puede acompañarte a revisar la propuesta.",
+        "miniJuego": {
+          "tipo": "ordenar",
+          "titulo": "Ruta: Encuentro cuidado",
+          "contexto": "Un personaje del club recibió una invitación secreta. Necesita un plan para no decidir a solas.",
+          "instruccion": "En esta ruta: primero no confirmar la cita secreta, después contar la invitación con ayuda y al final revisar quién invita por otra vía.",
+          "instruccionCorta": "Ordená esta ruta de cuidado. Podés pedir ayuda en cualquier momento.",
+          "pasos": [
+            {
+              "id": "r0",
+              "texto": "No confirmar la cita secreta",
+              "textoCorto": "No confirmar la cita secreta",
+              "porque": "Las fotos y los regalos no comprueban una identidad ni vuelven seguro un encuentro secreto.",
+              "icono": "🧩"
+            },
+            {
+              "id": "r1",
+              "texto": "Contar la invitación con ayuda",
+              "textoCorto": "Contar la invitación con ayuda",
+              "porque": "Un vínculo en línea no obliga a reunirte. Una persona adulta puede acompañarte a revisar la propuesta.",
+              "icono": "🧩"
+            },
+            {
+              "id": "r2",
+              "texto": "Revisar quién invita por otra vía",
+              "textoCorto": "Revisar quién invita por otra vía",
+              "porque": "Revisar con ayuda permite decidir sin presión y sin enfrentar el problema en soledad.",
+              "icono": "🧩"
+            }
+          ],
+          "ordenCorrecto": [
+            "r0",
+            "r1",
+            "r2"
+          ],
+          "explicacion": "Un vínculo en línea no obliga a reunirte. Una persona adulta puede acompañarte a revisar la propuesta. Las fotos y los regalos no comprueban una identidad ni vuelven seguro un encuentro secreto. Si algo ya pasó, también merecés ayuda.",
+          "explicacionCorta": "Un vínculo en línea no obliga a reunirte. Una persona adulta puede acompañarte a revisar la propuesta."
+        },
+        "insignia": {
+          "icono": "🧭",
+          "nombre": "Encuentro cuidado"
+        }
+      }
+    ]
+  },
+  {
+    "titulo": "El mensaje que exige obedecer",
+    "categoria": "Amenazas y chantaje",
+    "tema": "amenazas-chantaje",
+    "personaje": "Un caso ficticio para aprender",
+    "relato": "Una cuenta amenaza a Dani con difundir una conversación. Exige un regalo del juego y que no pida ayuda. Dani siente miedo. No tiene que pagar ni resolverlo solo: una persona adulta puede acompañarlo.",
+    "relatoCorto": "Una cuenta amenaza a Dani con difundir una conversación. Exige un regalo del juego y que no pida ayuda.",
+    "relatoDecidir": "Dani siente miedo. No tiene que pagar ni resolverlo solo: una persona adulta puede acompañarlo.",
+    "pistas": [
+      {
+        "id": "p1",
+        "texto": "Amenaza con difundir una conversación",
+        "textoCorto": "Amenaza con difundir una conversación",
+        "porque": "Pagar, obedecer o mandar más material no garantiza que una amenaza termine.",
+        "icono": "💬",
+        "correcta": true
+      },
+      {
+        "id": "p2",
+        "texto": "Exige regalos y silencio",
+        "textoCorto": "Exige regalos y silencio",
+        "porque": "Pagar, obedecer o mandar más material no garantiza que una amenaza termine.",
+        "icono": "💬",
+        "correcta": true
+      },
+      {
+        "id": "p3",
+        "texto": "El nombre del personaje",
+        "textoCorto": "El nombre del personaje",
+        "porque": "Un nombre por sí solo no permite saber si una situación es segura.",
+        "icono": "💬",
+        "correcta": false
+      },
+      {
+        "id": "p4",
+        "texto": "El mensaje aparece en una pantalla",
+        "textoCorto": "El mensaje aparece en una pantalla",
+        "porque": "La pantalla no determina el riesgo; importa lo que se pide y cómo se trata a las personas.",
+        "icono": "💬",
+        "correcta": false
+      }
+    ],
+    "pregunta": "¿Qué puede hacer Dani ahora?",
+    "opciones": [
+      {
+        "id": "o0",
+        "texto": "Contarlo y buscar apoyo adulto",
+        "textoCorto": "Contarlo y buscar apoyo adulto",
+        "porque": "Una amenaza no es tu culpa. Frenar y buscar ayuda permite no enfrentar la presión en soledad.",
+        "icono": "🧭"
+      },
+      {
+        "id": "o1",
+        "texto": "Pagar para que se calle",
+        "textoCorto": "Pagar para que se calle",
+        "porque": "Pagar, obedecer o mandar más material no garantiza que una amenaza termine.",
+        "icono": "💬"
+      },
+      {
+        "id": "o2",
+        "texto": "Enviar más regalos en secreto",
+        "textoCorto": "Enviar más regalos en secreto",
+        "porque": "Pagar, obedecer o mandar más material no garantiza que una amenaza termine.",
+        "icono": "💡"
+      },
+      {
+        "id": "o3",
+        "texto": "Amenazar para vengarse",
+        "textoCorto": "Amenazar para vengarse",
+        "porque": "Pagar, obedecer o mandar más material no garantiza que una amenaza termine.",
+        "icono": "💭"
+      }
+    ],
+    "respuesta": "o0",
+    "explicacion": "Una amenaza no es tu culpa. Frenar y buscar ayuda permite no enfrentar la presión en soledad. Pagar, obedecer o mandar más material no garantiza que una amenaza termine. Si algo ya pasó, también merecés ayuda.",
+    "consejoCorto": "Una amenaza no es tu culpa. Frenar y buscar ayuda permite no enfrentar la presión en soledad.",
+    "miniJuego": {
+      "tipo": "feed",
+      "titulo": "Feed: Escudo sin culpa",
+      "contexto": "En una cartelera de práctica aparecen otras ideas sobre amenazas y chantaje. Revisá cada tarjeta.",
+      "instruccion": "Revisá cada publicación: ¿me cuida o necesita atención?",
+      "instruccionCorta": "Revisá cada publicación: ¿me cuida o necesita atención?",
+      "tarjetas": [
+        {
+          "id": "f0",
+          "texto": "Puedo pedir ayuda aunque respondí",
+          "textoCorto": "Puedo pedir ayuda aunque respondí",
+          "porque": "Haber respondido antes no quita tu derecho a recibir apoyo.",
+          "icono": "📱"
+        },
+        {
+          "id": "f1",
+          "texto": "Pagar garantiza que todo termine",
+          "textoCorto": "Pagar garantiza que todo termine",
+          "porque": "Quien amenaza puede seguir exigiendo cosas después de un pago.",
+          "icono": "📱"
+        },
+        {
+          "id": "f2",
+          "texto": "Quien amenaza es responsable",
+          "textoCorto": "Quien amenaza es responsable",
+          "porque": "La responsabilidad de una amenaza es de quien la realiza.",
+          "icono": "📱"
+        },
+        {
+          "id": "f3",
+          "texto": "Mandar más para evitar la amenaza",
+          "textoCorto": "Mandar más para evitar la amenaza",
+          "porque": "Dar más material puede aumentar la presión. Buscá ayuda de confianza.",
+          "icono": "📱"
+        }
+      ],
+      "clasificacion": {
+        "f0": "safe",
+        "f1": "danger",
+        "f2": "safe",
+        "f3": "danger"
+      },
+      "explicacion": "Una amenaza no es tu culpa. Frenar y buscar ayuda permite no enfrentar la presión en soledad. Pagar, obedecer o mandar más material no garantiza que una amenaza termine. Si algo ya pasó, también merecés ayuda.",
+      "explicacionCorta": "Una amenaza no es tu culpa. Frenar y buscar ayuda permite no enfrentar la presión en soledad."
+    },
+    "insignia": {
+      "icono": "🛡️",
+      "nombre": "Escudo sin culpa"
+    },
+    "id": "caso-12",
+    "variantes": [
+      {
+        "titulo": "La presión después de una foto",
+        "categoria": "Amenazas y chantaje",
+        "tema": "amenazas-chantaje",
+        "personaje": "Un caso ficticio para aprender",
+        "relato": "A Ari le exigen otra foto y amenazan con compartir una anterior. Le dicen que todo sería culpa suya. Aunque Ari ya haya enviado una foto, merece ayuda. La responsabilidad es de quien amenaza.",
+        "relatoCorto": "A Ari le exigen otra foto y amenazan con compartir una anterior. Le dicen que todo sería culpa suya.",
+        "relatoDecidir": "Aunque Ari ya haya enviado una foto, merece ayuda. La responsabilidad es de quien amenaza.",
+        "pistas": [
+          {
+            "id": "p1",
+            "texto": "Exigen más fotos con amenazas",
+            "textoCorto": "Exigen más fotos con amenazas",
+            "porque": "Pagar, obedecer o mandar más material no garantiza que una amenaza termine.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p2",
+            "texto": "Intentan culpar a quien recibe presión",
+            "textoCorto": "Intentan culpar a quien recibe presión",
+            "porque": "Pagar, obedecer o mandar más material no garantiza que una amenaza termine.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p3",
+            "texto": "El nombre del personaje",
+            "textoCorto": "El nombre del personaje",
+            "porque": "Un nombre por sí solo no permite saber si una situación es segura.",
+            "icono": "💬",
+            "correcta": false
+          },
+          {
+            "id": "p4",
+            "texto": "El mensaje aparece en una pantalla",
+            "textoCorto": "El mensaje aparece en una pantalla",
+            "porque": "La pantalla no determina el riesgo; importa lo que se pide y cómo se trata a las personas.",
+            "icono": "💬",
+            "correcta": false
+          }
+        ],
+        "pregunta": "¿Qué ayuda a Ari?",
+        "opciones": [
+          {
+            "id": "o0",
+            "texto": "No mandar más y pedir ayuda",
+            "textoCorto": "No mandar más y pedir ayuda",
+            "porque": "Una amenaza no es tu culpa. Frenar y buscar ayuda permite no enfrentar la presión en soledad.",
+            "icono": "🧭"
+          },
+          {
+            "id": "o1",
+            "texto": "Mandar otra para calmar la cuenta",
+            "textoCorto": "Mandar otra para calmar la cuenta",
+            "porque": "Pagar, obedecer o mandar más material no garantiza que una amenaza termine.",
+            "icono": "💬"
+          },
+          {
+            "id": "o2",
+            "texto": "Creer que ya no merece ayuda",
+            "textoCorto": "Creer que ya no merece ayuda",
+            "porque": "Pagar, obedecer o mandar más material no garantiza que una amenaza termine.",
+            "icono": "💡"
+          },
+          {
+            "id": "o3",
+            "texto": "Enfrentar a la cuenta en soledad",
+            "textoCorto": "Enfrentar a la cuenta en soledad",
+            "porque": "Pagar, obedecer o mandar más material no garantiza que una amenaza termine.",
+            "icono": "💭"
+          }
+        ],
+        "respuesta": "o0",
+        "explicacion": "Una amenaza no es tu culpa. Frenar y buscar ayuda permite no enfrentar la presión en soledad. Pagar, obedecer o mandar más material no garantiza que una amenaza termine. Si algo ya pasó, también merecés ayuda.",
+        "consejoCorto": "Una amenaza no es tu culpa. Frenar y buscar ayuda permite no enfrentar la presión en soledad.",
+        "miniJuego": {
+          "tipo": "chat",
+          "titulo": "Chat: Escudo sin culpa",
+          "contexto": "Tres personajes buscan apoyo ante amenazas. Respondé sin culpar a quien pide ayuda.",
+          "instruccion": "Leé cada mensaje y elegí la respuesta que corresponde. Podés reintentar.",
+          "instruccionCorta": "Leé el mensaje y elegí cómo responder.",
+          "situaciones": [
+            {
+              "id": "s0",
+              "texto": "Dame monedas o difundo el chat",
+              "textoCorto": "Dame monedas o difundo el chat",
+              "porque": "Un pago no asegura que la amenaza termine; buscá acompañamiento.",
+              "icono": "💬"
+            },
+            {
+              "id": "s1",
+              "texto": "Si ya respondiste, es tu culpa",
+              "textoCorto": "Si ya respondiste, es tu culpa",
+              "porque": "Haber respondido no te hace responsable de las amenazas de otra persona.",
+              "icono": "💬"
+            },
+            {
+              "id": "s2",
+              "texto": "No sé cómo contarlo",
+              "textoCorto": "No sé cómo contarlo",
+              "porque": "Podés empezar diciendo que algo te da miedo y necesitás compañía.",
+              "icono": "💬"
+            }
+          ],
+          "acciones": [
+            {
+              "id": "a0",
+              "texto": "No pagar y pedir ayuda",
+              "textoCorto": "No pagar y pedir ayuda",
+              "porque": "Un pago no asegura que la amenaza termine; buscá acompañamiento.",
+              "icono": "🧭"
+            },
+            {
+              "id": "a1",
+              "texto": "Recordar que merezco ayuda",
+              "textoCorto": "Recordar que merezco ayuda",
+              "porque": "Haber respondido no te hace responsable de las amenazas de otra persona.",
+              "icono": "🧭"
+            },
+            {
+              "id": "a2",
+              "texto": "Buscar a alguien que escuche",
+              "textoCorto": "Buscar a alguien que escuche",
+              "porque": "Podés empezar diciendo que algo te da miedo y necesitás compañía.",
+              "icono": "🧭"
+            }
+          ],
+          "soluciones": {
+            "s0": "a0",
+            "s1": "a1",
+            "s2": "a2"
+          },
+          "explicacion": "Una amenaza no es tu culpa. Frenar y buscar ayuda permite no enfrentar la presión en soledad. Pagar, obedecer o mandar más material no garantiza que una amenaza termine. Si algo ya pasó, también merecés ayuda.",
+          "explicacionCorta": "Una amenaza no es tu culpa. Frenar y buscar ayuda permite no enfrentar la presión en soledad."
+        },
+        "insignia": {
+          "icono": "🛡️",
+          "nombre": "Escudo sin culpa"
+        }
+      },
+      {
+        "titulo": "El pago para borrar un rumor",
+        "categoria": "Amenazas y chantaje",
+        "tema": "amenazas-chantaje",
+        "personaje": "Un caso ficticio para aprender",
+        "relato": "Un perfil inventa un rumor sobre Luli. Pide dinero para borrarlo y amenaza con mostrarlo al curso. Luli puede mostrar el pedido a alguien de confianza. No necesita investigar ni negociar sola.",
+        "relatoCorto": "Un perfil inventa un rumor sobre Luli. Pide dinero para borrarlo y amenaza con mostrarlo al curso.",
+        "relatoDecidir": "Luli puede mostrar el pedido a alguien de confianza. No necesita investigar ni negociar sola.",
+        "pistas": [
+          {
+            "id": "p1",
+            "texto": "Piden dinero mediante una amenaza",
+            "textoCorto": "Piden dinero mediante una amenaza",
+            "porque": "Pagar, obedecer o mandar más material no garantiza que una amenaza termine.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p2",
+            "texto": "Usan un rumor para presionar",
+            "textoCorto": "Usan un rumor para presionar",
+            "porque": "Pagar, obedecer o mandar más material no garantiza que una amenaza termine.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p3",
+            "texto": "El nombre del personaje",
+            "textoCorto": "El nombre del personaje",
+            "porque": "Un nombre por sí solo no permite saber si una situación es segura.",
+            "icono": "💬",
+            "correcta": false
+          },
+          {
+            "id": "p4",
+            "texto": "El mensaje aparece en una pantalla",
+            "textoCorto": "El mensaje aparece en una pantalla",
+            "porque": "La pantalla no determina el riesgo; importa lo que se pide y cómo se trata a las personas.",
+            "icono": "💬",
+            "correcta": false
+          }
+        ],
+        "pregunta": "¿Cómo busca apoyo Luli?",
+        "opciones": [
+          {
+            "id": "o0",
+            "texto": "Mostrar el pedido a un adulto",
+            "textoCorto": "Mostrar el pedido a un adulto",
+            "porque": "Una amenaza no es tu culpa. Frenar y buscar ayuda permite no enfrentar la presión en soledad.",
+            "icono": "🧭"
+          },
+          {
+            "id": "o1",
+            "texto": "Pagar sin contarle a nadie",
+            "textoCorto": "Pagar sin contarle a nadie",
+            "porque": "Pagar, obedecer o mandar más material no garantiza que una amenaza termine.",
+            "icono": "💬"
+          },
+          {
+            "id": "o2",
+            "texto": "Negociar sola con quien amenaza",
+            "textoCorto": "Negociar sola con quien amenaza",
+            "porque": "Pagar, obedecer o mandar más material no garantiza que una amenaza termine.",
+            "icono": "💡"
+          },
+          {
+            "id": "o3",
+            "texto": "Difundir rumores para responder",
+            "textoCorto": "Difundir rumores para responder",
+            "porque": "Pagar, obedecer o mandar más material no garantiza que una amenaza termine.",
+            "icono": "💭"
+          }
+        ],
+        "respuesta": "o0",
+        "explicacion": "Una amenaza no es tu culpa. Frenar y buscar ayuda permite no enfrentar la presión en soledad. Pagar, obedecer o mandar más material no garantiza que una amenaza termine. Si algo ya pasó, también merecés ayuda.",
+        "consejoCorto": "Una amenaza no es tu culpa. Frenar y buscar ayuda permite no enfrentar la presión en soledad.",
+        "miniJuego": {
+          "tipo": "ordenar",
+          "titulo": "Ruta: Escudo sin culpa",
+          "contexto": "Un vecino del juego recibe amenazas. Prepará un plan de apoyo que no lo culpe ni le exija pagar.",
+          "instruccion": "En esta ruta: primero no ceder ni enviar más, después buscar ayuda sin culparme y al final revisar opciones de reporte juntos.",
+          "instruccionCorta": "Ordená esta ruta de cuidado. Podés pedir ayuda en cualquier momento.",
+          "pasos": [
+            {
+              "id": "r0",
+              "texto": "No ceder ni enviar más",
+              "textoCorto": "No ceder ni enviar más",
+              "porque": "Pagar, obedecer o mandar más material no garantiza que una amenaza termine.",
+              "icono": "🧩"
+            },
+            {
+              "id": "r1",
+              "texto": "Buscar ayuda sin culparme",
+              "textoCorto": "Buscar ayuda sin culparme",
+              "porque": "Una amenaza no es tu culpa. Frenar y buscar ayuda permite no enfrentar la presión en soledad.",
+              "icono": "🧩"
+            },
+            {
+              "id": "r2",
+              "texto": "Revisar opciones de reporte juntos",
+              "textoCorto": "Revisar opciones de reporte juntos",
+              "porque": "Revisar con ayuda permite decidir sin presión y sin enfrentar el problema en soledad.",
+              "icono": "🧩"
+            }
+          ],
+          "ordenCorrecto": [
+            "r0",
+            "r1",
+            "r2"
+          ],
+          "explicacion": "Una amenaza no es tu culpa. Frenar y buscar ayuda permite no enfrentar la presión en soledad. Pagar, obedecer o mandar más material no garantiza que una amenaza termine. Si algo ya pasó, también merecés ayuda.",
+          "explicacionCorta": "Una amenaza no es tu culpa. Frenar y buscar ayuda permite no enfrentar la presión en soledad."
+        },
+        "insignia": {
+          "icono": "🛡️",
+          "nombre": "Escudo sin culpa"
+        }
+      }
+    ]
+  },
+  {
+    "titulo": "La ubicación como prueba",
+    "categoria": "Límites y vínculos respetuosos",
+    "tema": "limites-control",
+    "personaje": "Un caso ficticio para aprender",
+    "relato": "Un contacto le exige a Ren compartir ubicación todo el día. Dice que, si no lo hace, no confía en él. Ren siente que lo vigilan. No tiene que mostrar dónde está para probar que quiere a alguien.",
+    "relatoCorto": "Un contacto le exige a Ren compartir ubicación todo el día. Dice que, si no lo hace, no confía en él.",
+    "relatoDecidir": "Ren siente que lo vigilan. No tiene que mostrar dónde está para probar que quiere a alguien.",
+    "pistas": [
+      {
+        "id": "p1",
+        "texto": "Exige ubicación todo el día",
+        "textoCorto": "Exige ubicación todo el día",
+        "porque": "El afecto no da derecho a vigilar, presionar ni impedir que hables con otras personas.",
+        "icono": "💬",
+        "correcta": true
+      },
+      {
+        "id": "p2",
+        "texto": "Usa el afecto para presionar",
+        "textoCorto": "Usa el afecto para presionar",
+        "porque": "El afecto no da derecho a vigilar, presionar ni impedir que hables con otras personas.",
+        "icono": "💬",
+        "correcta": true
+      },
+      {
+        "id": "p3",
+        "texto": "El nombre del personaje",
+        "textoCorto": "El nombre del personaje",
+        "porque": "Un nombre por sí solo no permite saber si una situación es segura.",
+        "icono": "💬",
+        "correcta": false
+      },
+      {
+        "id": "p4",
+        "texto": "El mensaje aparece en una pantalla",
+        "textoCorto": "El mensaje aparece en una pantalla",
+        "porque": "La pantalla no determina el riesgo; importa lo que se pide y cómo se trata a las personas.",
+        "icono": "💬",
+        "correcta": false
+      }
+    ],
+    "pregunta": "¿Qué límite puede poner Ren?",
+    "opciones": [
+      {
+        "id": "o0",
+        "texto": "Negarse y hablar con alguien confiable",
+        "textoCorto": "Negarse y hablar con alguien confiable",
+        "porque": "Un vínculo respetuoso acepta tus límites. Podés decir que no y buscar acompañamiento.",
+        "icono": "🧭"
+      },
+      {
+        "id": "o1",
+        "texto": "Activar ubicación para evitar discusiones",
+        "textoCorto": "Activar ubicación para evitar discusiones",
+        "porque": "El afecto no da derecho a vigilar, presionar ni impedir que hables con otras personas.",
+        "icono": "💬"
+      },
+      {
+        "id": "o2",
+        "texto": "Prometer mostrar cada movimiento",
+        "textoCorto": "Prometer mostrar cada movimiento",
+        "porque": "El afecto no da derecho a vigilar, presionar ni impedir que hables con otras personas.",
+        "icono": "💡"
+      },
+      {
+        "id": "o3",
+        "texto": "Pedir vigilar también al contacto",
+        "textoCorto": "Pedir vigilar también al contacto",
+        "porque": "El afecto no da derecho a vigilar, presionar ni impedir que hables con otras personas.",
+        "icono": "💭"
+      }
+    ],
+    "respuesta": "o0",
+    "explicacion": "Un vínculo respetuoso acepta tus límites. Podés decir que no y buscar acompañamiento. El afecto no da derecho a vigilar, presionar ni impedir que hables con otras personas. Si algo ya pasó, también merecés ayuda.",
+    "consejoCorto": "Un vínculo respetuoso acepta tus límites. Podés decir que no y buscar acompañamiento.",
+    "miniJuego": {
+      "tipo": "feed",
+      "titulo": "Feed: Mi derecho a elegir",
+      "contexto": "En una cartelera de práctica aparecen otras ideas sobre límites y vínculos respetuosos. Revisá cada tarjeta.",
+      "instruccion": "Revisá cada publicación: ¿me cuida o necesita atención?",
+      "instruccionCorta": "Revisá cada publicación: ¿me cuida o necesita atención?",
+      "tarjetas": [
+        {
+          "id": "f0",
+          "texto": "Puedo cambiar de opinión",
+          "textoCorto": "Puedo cambiar de opinión",
+          "porque": "Aceptar antes no obliga a seguir aceptando algo que ahora te incomoda.",
+          "icono": "📱"
+        },
+        {
+          "id": "f1",
+          "texto": "El cariño exige mostrar ubicación",
+          "textoCorto": "El cariño exige mostrar ubicación",
+          "porque": "El afecto no justifica vigilar ni exigir tu ubicación.",
+          "icono": "📱"
+        },
+        {
+          "id": "f2",
+          "texto": "Puedo hablar con otros apoyos",
+          "textoCorto": "Puedo hablar con otros apoyos",
+          "porque": "Un vínculo respetuoso no te aísla de quienes te cuidan.",
+          "icono": "📱"
+        },
+        {
+          "id": "f3",
+          "texto": "Una ayuda se paga con obediencia",
+          "textoCorto": "Una ayuda se paga con obediencia",
+          "porque": "Recibir ayuda no crea una deuda de obediencia o intimidad.",
+          "icono": "📱"
+        }
+      ],
+      "clasificacion": {
+        "f0": "safe",
+        "f1": "danger",
+        "f2": "safe",
+        "f3": "danger"
+      },
+      "explicacion": "Un vínculo respetuoso acepta tus límites. Podés decir que no y buscar acompañamiento. El afecto no da derecho a vigilar, presionar ni impedir que hables con otras personas. Si algo ya pasó, también merecés ayuda.",
+      "explicacionCorta": "Un vínculo respetuoso acepta tus límites. Podés decir que no y buscar acompañamiento."
+    },
+    "insignia": {
+      "icono": "✋",
+      "nombre": "Mi derecho a elegir"
+    },
+    "id": "caso-13",
+    "variantes": [
+      {
+        "titulo": "El grupo que decide por vos",
+        "categoria": "Límites y vínculos respetuosos",
+        "tema": "limites-control",
+        "personaje": "Un caso ficticio para aprender",
+        "relato": "Un grupo le dice a Emi con quién puede hablar. Amenaza con dejar de quererla si consulta a su familia. Emi puede mantener vínculos fuera del grupo. Pedir consejo no es una traición.",
+        "relatoCorto": "Un grupo le dice a Emi con quién puede hablar. Amenaza con dejar de quererla si consulta a su familia.",
+        "relatoDecidir": "Emi puede mantener vínculos fuera del grupo. Pedir consejo no es una traición.",
+        "pistas": [
+          {
+            "id": "p1",
+            "texto": "Controlan con quién puede hablar",
+            "textoCorto": "Controlan con quién puede hablar",
+            "porque": "El afecto no da derecho a vigilar, presionar ni impedir que hables con otras personas.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p2",
+            "texto": "Amenazan por consultar a la familia",
+            "textoCorto": "Amenazan por consultar a la familia",
+            "porque": "El afecto no da derecho a vigilar, presionar ni impedir que hables con otras personas.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p3",
+            "texto": "El nombre del personaje",
+            "textoCorto": "El nombre del personaje",
+            "porque": "Un nombre por sí solo no permite saber si una situación es segura.",
+            "icono": "💬",
+            "correcta": false
+          },
+          {
+            "id": "p4",
+            "texto": "El mensaje aparece en una pantalla",
+            "textoCorto": "El mensaje aparece en una pantalla",
+            "porque": "La pantalla no determina el riesgo; importa lo que se pide y cómo se trata a las personas.",
+            "icono": "💬",
+            "correcta": false
+          }
+        ],
+        "pregunta": "¿Qué protege los vínculos de Emi?",
+        "opciones": [
+          {
+            "id": "o0",
+            "texto": "Mantener apoyos y pedir consejo",
+            "textoCorto": "Mantener apoyos y pedir consejo",
+            "porque": "Un vínculo respetuoso acepta tus límites. Podés decir que no y buscar acompañamiento.",
+            "icono": "🧭"
+          },
+          {
+            "id": "o1",
+            "texto": "Alejarse de todos por el grupo",
+            "textoCorto": "Alejarse de todos por el grupo",
+            "porque": "El afecto no da derecho a vigilar, presionar ni impedir que hables con otras personas.",
+            "icono": "💬"
+          },
+          {
+            "id": "o2",
+            "texto": "Pedir permiso para cada amistad",
+            "textoCorto": "Pedir permiso para cada amistad",
+            "porque": "El afecto no da derecho a vigilar, presionar ni impedir que hables con otras personas.",
+            "icono": "💡"
+          },
+          {
+            "id": "o3",
+            "texto": "Aceptar para no perder al grupo",
+            "textoCorto": "Aceptar para no perder al grupo",
+            "porque": "El afecto no da derecho a vigilar, presionar ni impedir que hables con otras personas.",
+            "icono": "💭"
+          }
+        ],
+        "respuesta": "o0",
+        "explicacion": "Un vínculo respetuoso acepta tus límites. Podés decir que no y buscar acompañamiento. El afecto no da derecho a vigilar, presionar ni impedir que hables con otras personas. Si algo ya pasó, también merecés ayuda.",
+        "consejoCorto": "Un vínculo respetuoso acepta tus límites. Podés decir que no y buscar acompañamiento.",
+        "miniJuego": {
+          "tipo": "chat",
+          "titulo": "Chat: Mi derecho a elegir",
+          "contexto": "En un chat de vínculos aparecen pedidos de vigilancia y aislamiento. Practicá poner límites.",
+          "instruccion": "Leé cada mensaje y elegí la respuesta que corresponde. Podés reintentar.",
+          "instruccionCorta": "Leé el mensaje y elegí cómo responder.",
+          "situaciones": [
+            {
+              "id": "s0",
+              "texto": "Si me querés, mostrá dónde estás",
+              "textoCorto": "Si me querés, mostrá dónde estás",
+              "porque": "El cariño no debe usarse para exigir el control de tus movimientos.",
+              "icono": "💬"
+            },
+            {
+              "id": "s1",
+              "texto": "No hables con tu familia",
+              "textoCorto": "No hables con tu familia",
+              "porque": "Poder consultar a quienes te cuidan es parte de un vínculo respetuoso.",
+              "icono": "💬"
+            },
+            {
+              "id": "s2",
+              "texto": "Ya dijiste que sí antes",
+              "textoCorto": "Ya dijiste que sí antes",
+              "porque": "Tu decisión puede cambiar y merece ser respetada.",
+              "icono": "💬"
+            }
+          ],
+          "acciones": [
+            {
+              "id": "a0",
+              "texto": "No aceptar la vigilancia",
+              "textoCorto": "No aceptar la vigilancia",
+              "porque": "El cariño no debe usarse para exigir el control de tus movimientos.",
+              "icono": "🧭"
+            },
+            {
+              "id": "a1",
+              "texto": "Mantener mi red de apoyo",
+              "textoCorto": "Mantener mi red de apoyo",
+              "porque": "Poder consultar a quienes te cuidan es parte de un vínculo respetuoso.",
+              "icono": "🧭"
+            },
+            {
+              "id": "a2",
+              "texto": "Poder cambiar de opinión",
+              "textoCorto": "Poder cambiar de opinión",
+              "porque": "Tu decisión puede cambiar y merece ser respetada.",
+              "icono": "🧭"
+            }
+          ],
+          "soluciones": {
+            "s0": "a0",
+            "s1": "a1",
+            "s2": "a2"
+          },
+          "explicacion": "Un vínculo respetuoso acepta tus límites. Podés decir que no y buscar acompañamiento. El afecto no da derecho a vigilar, presionar ni impedir que hables con otras personas. Si algo ya pasó, también merecés ayuda.",
+          "explicacionCorta": "Un vínculo respetuoso acepta tus límites. Podés decir que no y buscar acompañamiento."
+        },
+        "insignia": {
+          "icono": "✋",
+          "nombre": "Mi derecho a elegir"
+        }
+      },
+      {
+        "titulo": "El no que no escuchan",
+        "categoria": "Límites y vínculos respetuosos",
+        "tema": "limites-control",
+        "personaje": "Un caso ficticio para aprender",
+        "relato": "Luz dice que no quiere una videollamada. El contacto insiste y dice que le debe ese favor por ayudarla. Haber recibido ayuda no obliga a encender una cámara. Luz puede terminar la conversación.",
+        "relatoCorto": "Luz dice que no quiere una videollamada. El contacto insiste y dice que le debe ese favor por ayudarla.",
+        "relatoDecidir": "Haber recibido ayuda no obliga a encender una cámara. Luz puede terminar la conversación.",
+        "pistas": [
+          {
+            "id": "p1",
+            "texto": "Insisten después de escuchar no",
+            "textoCorto": "Insisten después de escuchar no",
+            "porque": "El afecto no da derecho a vigilar, presionar ni impedir que hables con otras personas.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p2",
+            "texto": "Presentan la ayuda como una deuda",
+            "textoCorto": "Presentan la ayuda como una deuda",
+            "porque": "El afecto no da derecho a vigilar, presionar ni impedir que hables con otras personas.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p3",
+            "texto": "El nombre del personaje",
+            "textoCorto": "El nombre del personaje",
+            "porque": "Un nombre por sí solo no permite saber si una situación es segura.",
+            "icono": "💬",
+            "correcta": false
+          },
+          {
+            "id": "p4",
+            "texto": "El mensaje aparece en una pantalla",
+            "textoCorto": "El mensaje aparece en una pantalla",
+            "porque": "La pantalla no determina el riesgo; importa lo que se pide y cómo se trata a las personas.",
+            "icono": "💬",
+            "correcta": false
+          }
+        ],
+        "pregunta": "¿Qué puede hacer Luz?",
+        "opciones": [
+          {
+            "id": "o0",
+            "texto": "Sostener su no y buscar apoyo",
+            "textoCorto": "Sostener su no y buscar apoyo",
+            "porque": "Un vínculo respetuoso acepta tus límites. Podés decir que no y buscar acompañamiento.",
+            "icono": "🧭"
+          },
+          {
+            "id": "o1",
+            "texto": "Aceptar porque recibió un favor",
+            "textoCorto": "Aceptar porque recibió un favor",
+            "porque": "El afecto no da derecho a vigilar, presionar ni impedir que hables con otras personas.",
+            "icono": "💬"
+          },
+          {
+            "id": "o2",
+            "texto": "Prender la cámara para que pare",
+            "textoCorto": "Prender la cámara para que pare",
+            "porque": "El afecto no da derecho a vigilar, presionar ni impedir que hables con otras personas.",
+            "icono": "💡"
+          },
+          {
+            "id": "o3",
+            "texto": "Pedir disculpas por tener límites",
+            "textoCorto": "Pedir disculpas por tener límites",
+            "porque": "El afecto no da derecho a vigilar, presionar ni impedir que hables con otras personas.",
+            "icono": "💭"
+          }
+        ],
+        "respuesta": "o0",
+        "explicacion": "Un vínculo respetuoso acepta tus límites. Podés decir que no y buscar acompañamiento. El afecto no da derecho a vigilar, presionar ni impedir que hables con otras personas. Si algo ya pasó, también merecés ayuda.",
+        "consejoCorto": "Un vínculo respetuoso acepta tus límites. Podés decir que no y buscar acompañamiento.",
+        "miniJuego": {
+          "tipo": "ordenar",
+          "titulo": "Ruta: Mi derecho a elegir",
+          "contexto": "Un personaje quiere que respeten sus decisiones. Construí un camino para sostener sus límites.",
+          "instruccion": "En esta ruta: primero expresar que no quiero, después hablar con alguien que me cuide y al final revisar cómo sostener mis límites.",
+          "instruccionCorta": "Ordená esta ruta de cuidado. Podés pedir ayuda en cualquier momento.",
+          "pasos": [
+            {
+              "id": "r0",
+              "texto": "Expresar que no quiero",
+              "textoCorto": "Expresar que no quiero",
+              "porque": "El afecto no da derecho a vigilar, presionar ni impedir que hables con otras personas.",
+              "icono": "🧩"
+            },
+            {
+              "id": "r1",
+              "texto": "Hablar con alguien que me cuide",
+              "textoCorto": "Hablar con alguien que me cuide",
+              "porque": "Un vínculo respetuoso acepta tus límites. Podés decir que no y buscar acompañamiento.",
+              "icono": "🧩"
+            },
+            {
+              "id": "r2",
+              "texto": "Revisar cómo sostener mis límites",
+              "textoCorto": "Revisar cómo sostener mis límites",
+              "porque": "Revisar con ayuda permite decidir sin presión y sin enfrentar el problema en soledad.",
+              "icono": "🧩"
+            }
+          ],
+          "ordenCorrecto": [
+            "r0",
+            "r1",
+            "r2"
+          ],
+          "explicacion": "Un vínculo respetuoso acepta tus límites. Podés decir que no y buscar acompañamiento. El afecto no da derecho a vigilar, presionar ni impedir que hables con otras personas. Si algo ya pasó, también merecés ayuda.",
+          "explicacionCorta": "Un vínculo respetuoso acepta tus límites. Podés decir que no y buscar acompañamiento."
+        },
+        "insignia": {
+          "icono": "✋",
+          "nombre": "Mi derecho a elegir"
+        }
+      }
+    ]
+  },
+  {
+    "titulo": "La primera persona no escuchó",
+    "categoria": "Derecho a pedir ayuda",
+    "tema": "redes-apoyo",
+    "personaje": "Un caso ficticio para aprender",
+    "relato": "Mora cuenta un mensaje que la asusta. La persona adulta está ocupada y responde que no es importante. Mora sigue preocupada. Puede hablar con otra persona de confianza de su familia o de la escuela.",
+    "relatoCorto": "Mora cuenta un mensaje que la asusta. La persona adulta está ocupada y responde que no es importante.",
+    "relatoDecidir": "Mora sigue preocupada. Puede hablar con otra persona de confianza de su familia o de la escuela.",
+    "pistas": [
+      {
+        "id": "p1",
+        "texto": "El mensaje le provoca miedo",
+        "textoCorto": "El mensaje le provoca miedo",
+        "porque": "Guardar silencio o prometer un secreto puede dejarte sin apoyo cuando algo te preocupa.",
+        "icono": "💬",
+        "correcta": true
+      },
+      {
+        "id": "p2",
+        "texto": "Su preocupación no fue escuchada",
+        "textoCorto": "Su preocupación no fue escuchada",
+        "porque": "Guardar silencio o prometer un secreto puede dejarte sin apoyo cuando algo te preocupa.",
+        "icono": "💬",
+        "correcta": true
+      },
+      {
+        "id": "p3",
+        "texto": "El nombre del personaje",
+        "textoCorto": "El nombre del personaje",
+        "porque": "Un nombre por sí solo no permite saber si una situación es segura.",
+        "icono": "💬",
+        "correcta": false
+      },
+      {
+        "id": "p4",
+        "texto": "El mensaje aparece en una pantalla",
+        "textoCorto": "El mensaje aparece en una pantalla",
+        "porque": "La pantalla no determina el riesgo; importa lo que se pide y cómo se trata a las personas.",
+        "icono": "💬",
+        "correcta": false
+      }
+    ],
+    "pregunta": "¿Qué puede hacer Mora?",
+    "opciones": [
+      {
+        "id": "o0",
+        "texto": "Contarlo a otra persona confiable",
+        "textoCorto": "Contarlo a otra persona confiable",
+        "porque": "Merecés que te escuchen. Si la primera persona no ayuda, podés buscar otra de confianza.",
+        "icono": "🧭"
+      },
+      {
+        "id": "o1",
+        "texto": "Dejar de pedir ayuda para siempre",
+        "textoCorto": "Dejar de pedir ayuda para siempre",
+        "porque": "Guardar silencio o prometer un secreto puede dejarte sin apoyo cuando algo te preocupa.",
+        "icono": "💬"
+      },
+      {
+        "id": "o2",
+        "texto": "Responder sola al mensaje",
+        "textoCorto": "Responder sola al mensaje",
+        "porque": "Guardar silencio o prometer un secreto puede dejarte sin apoyo cuando algo te preocupa.",
+        "icono": "💡"
+      },
+      {
+        "id": "o3",
+        "texto": "Creer que su miedo no importa",
+        "textoCorto": "Creer que su miedo no importa",
+        "porque": "Guardar silencio o prometer un secreto puede dejarte sin apoyo cuando algo te preocupa.",
+        "icono": "💭"
+      }
+    ],
+    "respuesta": "o0",
+    "explicacion": "Merecés que te escuchen. Si la primera persona no ayuda, podés buscar otra de confianza. Guardar silencio o prometer un secreto puede dejarte sin apoyo cuando algo te preocupa. Si algo ya pasó, también merecés ayuda.",
+    "consejoCorto": "Merecés que te escuchen. Si la primera persona no ayuda, podés buscar otra de confianza.",
+    "miniJuego": {
+      "tipo": "feed",
+      "titulo": "Feed: Red que escucha",
+      "contexto": "En una cartelera de práctica aparecen otras ideas sobre derecho a pedir ayuda. Revisá cada tarjeta.",
+      "instruccion": "Revisá cada publicación: ¿me cuida o necesita atención?",
+      "instruccionCorta": "Revisá cada publicación: ¿me cuida o necesita atención?",
+      "tarjetas": [
+        {
+          "id": "f0",
+          "texto": "Puedo pedir ayuda más de una vez",
+          "textoCorto": "Puedo volver a pedir ayuda",
+          "porque": "Si una respuesta no alcanza, podés volver a pedir ayuda o buscar otra persona.",
+          "icono": "📱"
+        },
+        {
+          "id": "f1",
+          "texto": "Si me da vergüenza, debo callar",
+          "textoCorto": "Si me da vergüenza, debo callar",
+          "porque": "La vergüenza no quita tu derecho a recibir apoyo.",
+          "icono": "📱"
+        },
+        {
+          "id": "f2",
+          "texto": "Acompaño sin publicarlo al grupo",
+          "textoCorto": "Acompaño sin publicarlo al grupo",
+          "porque": "Cuidar la privacidad evita exponer a quien necesita ayuda.",
+          "icono": "📱"
+        },
+        {
+          "id": "f3",
+          "texto": "Ayudar es investigar en soledad",
+          "textoCorto": "Ayudar es investigar en soledad",
+          "porque": "Acompañar no exige enfrentar ni investigar a una persona que amenaza.",
+          "icono": "📱"
+        }
+      ],
+      "clasificacion": {
+        "f0": "safe",
+        "f1": "danger",
+        "f2": "safe",
+        "f3": "danger"
+      },
+      "explicacion": "Merecés que te escuchen. Si la primera persona no ayuda, podés buscar otra de confianza. Guardar silencio o prometer un secreto puede dejarte sin apoyo cuando algo te preocupa. Si algo ya pasó, también merecés ayuda.",
+      "explicacionCorta": "Merecés que te escuchen. Si la primera persona no ayuda, podés buscar otra de confianza."
+    },
+    "insignia": {
+      "icono": "🤝",
+      "nombre": "Red que escucha"
+    },
+    "id": "caso-14",
+    "variantes": [
+      {
+        "titulo": "El secreto de un amigo",
+        "categoria": "Derecho a pedir ayuda",
+        "tema": "redes-apoyo",
+        "personaje": "Un caso ficticio para aprender",
+        "relato": "Un amigo cuenta a Sam que recibe amenazas. Le pide prometer que nunca lo hablará con una persona adulta. Sam puede acompañar sin difundirlo al grupo. Buscar ayuda para proteger no es traicionar.",
+        "relatoCorto": "Un amigo cuenta a Sam que recibe amenazas. Le pide prometer que nunca lo hablará con una persona adulta.",
+        "relatoDecidir": "Sam puede acompañar sin difundirlo al grupo. Buscar ayuda para proteger no es traicionar.",
+        "pistas": [
+          {
+            "id": "p1",
+            "texto": "El amigo recibe amenazas",
+            "textoCorto": "El amigo recibe amenazas",
+            "porque": "Guardar silencio o prometer un secreto puede dejarte sin apoyo cuando algo te preocupa.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p2",
+            "texto": "Pide ocultarlo a toda persona adulta",
+            "textoCorto": "Pide ocultarlo a toda persona adulta",
+            "porque": "Guardar silencio o prometer un secreto puede dejarte sin apoyo cuando algo te preocupa.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p3",
+            "texto": "El nombre del personaje",
+            "textoCorto": "El nombre del personaje",
+            "porque": "Un nombre por sí solo no permite saber si una situación es segura.",
+            "icono": "💬",
+            "correcta": false
+          },
+          {
+            "id": "p4",
+            "texto": "El mensaje aparece en una pantalla",
+            "textoCorto": "El mensaje aparece en una pantalla",
+            "porque": "La pantalla no determina el riesgo; importa lo que se pide y cómo se trata a las personas.",
+            "icono": "💬",
+            "correcta": false
+          }
+        ],
+        "pregunta": "¿Cómo puede acompañar Sam?",
+        "opciones": [
+          {
+            "id": "o0",
+            "texto": "Buscar ayuda junto a su amigo",
+            "textoCorto": "Buscar ayuda junto a su amigo",
+            "porque": "Merecés que te escuchen. Si la primera persona no ayuda, podés buscar otra de confianza.",
+            "icono": "🧭"
+          },
+          {
+            "id": "o1",
+            "texto": "Prometer silencio aunque haya miedo",
+            "textoCorto": "Prometer silencio aunque haya miedo",
+            "porque": "Guardar silencio o prometer un secreto puede dejarte sin apoyo cuando algo te preocupa.",
+            "icono": "💬"
+          },
+          {
+            "id": "o2",
+            "texto": "Publicarlo para pedir opiniones",
+            "textoCorto": "Publicarlo para pedir opiniones",
+            "porque": "Guardar silencio o prometer un secreto puede dejarte sin apoyo cuando algo te preocupa.",
+            "icono": "💡"
+          },
+          {
+            "id": "o3",
+            "texto": "Enfrentar solo a quien amenaza",
+            "textoCorto": "Enfrentar solo a quien amenaza",
+            "porque": "Guardar silencio o prometer un secreto puede dejarte sin apoyo cuando algo te preocupa.",
+            "icono": "💭"
+          }
+        ],
+        "respuesta": "o0",
+        "explicacion": "Merecés que te escuchen. Si la primera persona no ayuda, podés buscar otra de confianza. Guardar silencio o prometer un secreto puede dejarte sin apoyo cuando algo te preocupa. Si algo ya pasó, también merecés ayuda.",
+        "consejoCorto": "Merecés que te escuchen. Si la primera persona no ayuda, podés buscar otra de confianza.",
+        "miniJuego": {
+          "tipo": "chat",
+          "titulo": "Chat: Red que escucha",
+          "contexto": "Una sala de escucha recibe a quienes no saben cómo pedir ayuda. Conectá cada mensaje con un apoyo.",
+          "instruccion": "Leé cada mensaje y elegí la respuesta que corresponde. Podés reintentar.",
+          "instruccionCorta": "Leé el mensaje y elegí cómo responder.",
+          "situaciones": [
+            {
+              "id": "s0",
+              "texto": "Intenté contarlo y no me escucharon",
+              "textoCorto": "Intenté contarlo y no me escucharon",
+              "porque": "Una primera respuesta que no ayuda no cierra tu derecho a recibir apoyo.",
+              "icono": "💬"
+            },
+            {
+              "id": "s1",
+              "texto": "Prometé ocultar mis amenazas",
+              "textoCorto": "Prometé ocultar mis amenazas",
+              "porque": "No hace falta prometer silencio ante algo que puede lastimar a una persona.",
+              "icono": "💬"
+            },
+            {
+              "id": "s2",
+              "texto": "Me cuesta decir qué pasó",
+              "textoCorto": "Me cuesta decir qué pasó",
+              "porque": "Podés pedir ayuda sin tener un relato perfecto ni contar todo de una vez.",
+              "icono": "💬"
+            }
+          ],
+          "acciones": [
+            {
+              "id": "a0",
+              "texto": "Buscar a otro adulto confiable",
+              "textoCorto": "Buscar a otro adulto confiable",
+              "porque": "Una primera respuesta que no ayuda no cierra tu derecho a recibir apoyo.",
+              "icono": "🧭"
+            },
+            {
+              "id": "a1",
+              "texto": "Buscar ayuda sin difundirlo",
+              "textoCorto": "Buscar ayuda sin difundirlo",
+              "porque": "No hace falta prometer silencio ante algo que puede lastimar a una persona.",
+              "icono": "🧭"
+            },
+            {
+              "id": "a2",
+              "texto": "Pedir compañía para empezar",
+              "textoCorto": "Pedir compañía para empezar",
+              "porque": "Podés pedir ayuda sin tener un relato perfecto ni contar todo de una vez.",
+              "icono": "🧭"
+            }
+          ],
+          "soluciones": {
+            "s0": "a0",
+            "s1": "a1",
+            "s2": "a2"
+          },
+          "explicacion": "Merecés que te escuchen. Si la primera persona no ayuda, podés buscar otra de confianza. Guardar silencio o prometer un secreto puede dejarte sin apoyo cuando algo te preocupa. Si algo ya pasó, también merecés ayuda.",
+          "explicacionCorta": "Merecés que te escuchen. Si la primera persona no ayuda, podés buscar otra de confianza."
+        },
+        "insignia": {
+          "icono": "🤝",
+          "nombre": "Red que escucha"
+        }
+      },
+      {
+        "titulo": "No encuentro las palabras",
+        "categoria": "Derecho a pedir ayuda",
+        "tema": "redes-apoyo",
+        "personaje": "Un caso ficticio para aprender",
+        "relato": "Pau quiere contar algo de un chat que le preocupa. Siente vergüenza y no sabe por dónde empezar. No hace falta explicar todo de golpe. Puede decir: «Necesito ayuda con algo que me pasó».",
+        "relatoCorto": "Pau quiere contar algo de un chat que le preocupa. Siente vergüenza y no sabe por dónde empezar.",
+        "relatoDecidir": "No hace falta explicar todo de golpe. Puede decir: «Necesito ayuda con algo que me pasó».",
+        "pistas": [
+          {
+            "id": "p1",
+            "texto": "Algo del chat le preocupa",
+            "textoCorto": "Algo del chat le preocupa",
+            "porque": "Guardar silencio o prometer un secreto puede dejarte sin apoyo cuando algo te preocupa.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p2",
+            "texto": "La vergüenza dificulta pedir apoyo",
+            "textoCorto": "La vergüenza dificulta pedir apoyo",
+            "porque": "Guardar silencio o prometer un secreto puede dejarte sin apoyo cuando algo te preocupa.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p3",
+            "texto": "El nombre del personaje",
+            "textoCorto": "El nombre del personaje",
+            "porque": "Un nombre por sí solo no permite saber si una situación es segura.",
+            "icono": "💬",
+            "correcta": false
+          },
+          {
+            "id": "p4",
+            "texto": "El mensaje aparece en una pantalla",
+            "textoCorto": "El mensaje aparece en una pantalla",
+            "porque": "La pantalla no determina el riesgo; importa lo que se pide y cómo se trata a las personas.",
+            "icono": "💬",
+            "correcta": false
+          }
+        ],
+        "pregunta": "¿Cómo puede empezar Pau?",
+        "opciones": [
+          {
+            "id": "o0",
+            "texto": "Pedir compañía a alguien confiable",
+            "textoCorto": "Pedir compañía a alguien confiable",
+            "porque": "Merecés que te escuchen. Si la primera persona no ayuda, podés buscar otra de confianza.",
+            "icono": "🧭"
+          },
+          {
+            "id": "o1",
+            "texto": "Esperar hasta saber explicarlo perfecto",
+            "textoCorto": "Esperar hasta saber explicarlo perfecto",
+            "porque": "Guardar silencio o prometer un secreto puede dejarte sin apoyo cuando algo te preocupa.",
+            "icono": "💬"
+          },
+          {
+            "id": "o2",
+            "texto": "Borrar todo y callarse",
+            "textoCorto": "Borrar todo y callarse",
+            "porque": "Guardar silencio o prometer un secreto puede dejarte sin apoyo cuando algo te preocupa.",
+            "icono": "💡"
+          },
+          {
+            "id": "o3",
+            "texto": "Contarlo a cualquier cuenta pública",
+            "textoCorto": "Contarlo a cualquier cuenta pública",
+            "porque": "Guardar silencio o prometer un secreto puede dejarte sin apoyo cuando algo te preocupa.",
+            "icono": "💭"
+          }
+        ],
+        "respuesta": "o0",
+        "explicacion": "Merecés que te escuchen. Si la primera persona no ayuda, podés buscar otra de confianza. Guardar silencio o prometer un secreto puede dejarte sin apoyo cuando algo te preocupa. Si algo ya pasó, también merecés ayuda.",
+        "consejoCorto": "Merecés que te escuchen. Si la primera persona no ayuda, podés buscar otra de confianza.",
+        "miniJuego": {
+          "tipo": "ordenar",
+          "titulo": "Ruta: Red que escucha",
+          "contexto": "En la biblioteca hay una estación de escucha. Armá un camino para quien busca ayuda por primera vez.",
+          "instruccion": "En esta ruta: primero pedir que alguien me escuche, después explicar que necesito apoyo y al final buscar otro apoyo si hace falta.",
+          "instruccionCorta": "Ordená esta ruta de cuidado. Podés pedir ayuda en cualquier momento.",
+          "pasos": [
+            {
+              "id": "r0",
+              "texto": "Pedir que alguien me escuche",
+              "textoCorto": "Pedir que alguien me escuche",
+              "porque": "Guardar silencio o prometer un secreto puede dejarte sin apoyo cuando algo te preocupa.",
+              "icono": "🧩"
+            },
+            {
+              "id": "r1",
+              "texto": "Explicar que necesito apoyo",
+              "textoCorto": "Explicar que necesito apoyo",
+              "porque": "Merecés que te escuchen. Si la primera persona no ayuda, podés buscar otra de confianza.",
+              "icono": "🧩"
+            },
+            {
+              "id": "r2",
+              "texto": "Buscar otro apoyo si hace falta",
+              "textoCorto": "Buscar otro apoyo si hace falta",
+              "porque": "Revisar con ayuda permite decidir sin presión y sin enfrentar el problema en soledad.",
+              "icono": "🧩"
+            }
+          ],
+          "ordenCorrecto": [
+            "r0",
+            "r1",
+            "r2"
+          ],
+          "explicacion": "Merecés que te escuchen. Si la primera persona no ayuda, podés buscar otra de confianza. Guardar silencio o prometer un secreto puede dejarte sin apoyo cuando algo te preocupa. Si algo ya pasó, también merecés ayuda.",
+          "explicacionCorta": "Merecés que te escuchen. Si la primera persona no ayuda, podés buscar otra de confianza."
+        },
+        "insignia": {
+          "icono": "🤝",
+          "nombre": "Red que escucha"
+        }
+      }
+    ]
+  },
+  {
+    "titulo": "El audio que imita una voz",
+    "categoria": "Inteligencia artificial y engaños",
+    "tema": "ia-suplantacion-voz",
+    "personaje": "Un caso ficticio para aprender",
+    "relato": "A Ciro le llega un audio con voz parecida a un familiar. Pide dinero urgente y exige no llamarlo. Ciro puede consultar a su familia por un número que ya conoce. El audio solo no verifica quién habla.",
+    "relatoCorto": "A Ciro le llega un audio con voz parecida a un familiar. Pide dinero urgente y exige no llamarlo.",
+    "relatoDecidir": "Ciro puede consultar a su familia por un número que ya conoce. El audio solo no verifica quién habla.",
+    "pistas": [
+      {
+        "id": "p1",
+        "texto": "Pide dinero con urgencia",
+        "textoCorto": "Pide dinero con urgencia",
+        "porque": "Reconocer una voz o una cara no basta para confirmar un pedido urgente de datos o dinero.",
+        "icono": "💬",
+        "correcta": true
+      },
+      {
+        "id": "p2",
+        "texto": "Impide confirmar con una llamada",
+        "textoCorto": "Impide confirmar con una llamada",
+        "porque": "Reconocer una voz o una cara no basta para confirmar un pedido urgente de datos o dinero.",
+        "icono": "💬",
+        "correcta": true
+      },
+      {
+        "id": "p3",
+        "texto": "El nombre del personaje",
+        "textoCorto": "El nombre del personaje",
+        "porque": "Un nombre por sí solo no permite saber si una situación es segura.",
+        "icono": "💬",
+        "correcta": false
+      },
+      {
+        "id": "p4",
+        "texto": "El mensaje aparece en una pantalla",
+        "textoCorto": "El mensaje aparece en una pantalla",
+        "porque": "La pantalla no determina el riesgo; importa lo que se pide y cómo se trata a las personas.",
+        "icono": "💬",
+        "correcta": false
+      }
+    ],
+    "pregunta": "¿Cómo revisa Ciro el audio?",
+    "opciones": [
+      {
+        "id": "o0",
+        "texto": "Confirmar por otro medio con ayuda",
+        "textoCorto": "Confirmar por otro medio con ayuda",
+        "porque": "Una voz o imagen puede imitarse. Confirmar por otro medio ayuda a revisar una identidad.",
+        "icono": "🧭"
+      },
+      {
+        "id": "o1",
+        "texto": "Confiar solo en la voz",
+        "textoCorto": "Confiar solo en la voz",
+        "porque": "Reconocer una voz o una cara no basta para confirmar un pedido urgente de datos o dinero.",
+        "icono": "💬"
+      },
+      {
+        "id": "o2",
+        "texto": "Mandar dinero antes de preguntar",
+        "textoCorto": "Mandar dinero antes de preguntar",
+        "porque": "Reconocer una voz o una cara no basta para confirmar un pedido urgente de datos o dinero.",
+        "icono": "💡"
+      },
+      {
+        "id": "o3",
+        "texto": "Reenviar el audio para alarmar",
+        "textoCorto": "Reenviar el audio para alarmar",
+        "porque": "Reconocer una voz o una cara no basta para confirmar un pedido urgente de datos o dinero.",
+        "icono": "💭"
+      }
+    ],
+    "respuesta": "o0",
+    "explicacion": "Una voz o imagen puede imitarse. Confirmar por otro medio ayuda a revisar una identidad. Reconocer una voz o una cara no basta para confirmar un pedido urgente de datos o dinero. Si algo ya pasó, también merecés ayuda.",
+    "consejoCorto": "Una voz o imagen puede imitarse. Confirmar por otro medio ayuda a revisar una identidad.",
+    "miniJuego": {
+      "tipo": "feed",
+      "titulo": "Feed: Verificador de voces",
+      "contexto": "En una cartelera de práctica aparecen otras ideas sobre inteligencia artificial y engaños. Revisá cada tarjeta.",
+      "instruccion": "Revisá cada publicación: ¿me cuida o necesita atención?",
+      "instruccionCorta": "Revisá cada publicación: ¿me cuida o necesita atención?",
+      "tarjetas": [
+        {
+          "id": "f0",
+          "texto": "Confirmar desde un canal conocido",
+          "textoCorto": "Confirmar desde un canal conocido",
+          "porque": "Otro canal conocido ayuda a comprobar un pedido sin depender del contenido recibido.",
+          "icono": "📱"
+        },
+        {
+          "id": "f1",
+          "texto": "Una voz conocida nunca se imita",
+          "textoCorto": "Una voz conocida nunca se imita",
+          "porque": "Una voz puede imitarse; no prueba por sí sola quién envió el mensaje.",
+          "icono": "📱"
+        },
+        {
+          "id": "f2",
+          "texto": "No difundir imágenes que humillan",
+          "textoCorto": "No difundir imágenes que humillan",
+          "porque": "Aunque una imagen sea falsa, difundirla puede causar daño.",
+          "icono": "📱"
+        },
+        {
+          "id": "f3",
+          "texto": "Si parece real, envío mi código",
+          "textoCorto": "Si parece real, envío mi código",
+          "porque": "Ni una cara ni una voz justifican compartir códigos privados.",
+          "icono": "📱"
+        }
+      ],
+      "clasificacion": {
+        "f0": "safe",
+        "f1": "danger",
+        "f2": "safe",
+        "f3": "danger"
+      },
+      "explicacion": "Una voz o imagen puede imitarse. Confirmar por otro medio ayuda a revisar una identidad. Reconocer una voz o una cara no basta para confirmar un pedido urgente de datos o dinero. Si algo ya pasó, también merecés ayuda.",
+      "explicacionCorta": "Una voz o imagen puede imitarse. Confirmar por otro medio ayuda a revisar una identidad."
+    },
+    "insignia": {
+      "icono": "🤖",
+      "nombre": "Verificador de voces"
+    },
+    "id": "caso-15",
+    "variantes": [
+      {
+        "titulo": "El video que pide un código",
+        "categoria": "Inteligencia artificial y engaños",
+        "tema": "ia-suplantacion-voz",
+        "personaje": "Un caso ficticio para aprender",
+        "relato": "Un video parece mostrar a una docente. Pide códigos de acceso por privado y no aparece en el canal escolar. La imagen podría estar manipulada. La escuela puede confirmar el aviso por sus canales habituales.",
+        "relatoCorto": "Un video parece mostrar a una docente. Pide códigos de acceso por privado y no aparece en el canal escolar.",
+        "relatoDecidir": "La imagen podría estar manipulada. La escuela puede confirmar el aviso por sus canales habituales.",
+        "pistas": [
+          {
+            "id": "p1",
+            "texto": "Solicita códigos de acceso",
+            "textoCorto": "Solicita códigos de acceso",
+            "porque": "Reconocer una voz o una cara no basta para confirmar un pedido urgente de datos o dinero.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p2",
+            "texto": "No aparece en el canal escolar",
+            "textoCorto": "No aparece en el canal escolar",
+            "porque": "Reconocer una voz o una cara no basta para confirmar un pedido urgente de datos o dinero.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p3",
+            "texto": "El nombre del personaje",
+            "textoCorto": "El nombre del personaje",
+            "porque": "Un nombre por sí solo no permite saber si una situación es segura.",
+            "icono": "💬",
+            "correcta": false
+          },
+          {
+            "id": "p4",
+            "texto": "El mensaje aparece en una pantalla",
+            "textoCorto": "El mensaje aparece en una pantalla",
+            "porque": "La pantalla no determina el riesgo; importa lo que se pide y cómo se trata a las personas.",
+            "icono": "💬",
+            "correcta": false
+          }
+        ],
+        "pregunta": "¿Qué hace el curso con ese video?",
+        "opciones": [
+          {
+            "id": "o0",
+            "texto": "Verificar por el canal de la escuela",
+            "textoCorto": "Consultar el canal escolar",
+            "porque": "Una voz o imagen puede imitarse. Confirmar por otro medio ayuda a revisar una identidad.",
+            "icono": "🧭"
+          },
+          {
+            "id": "o1",
+            "texto": "Mandar códigos por reconocer la cara",
+            "textoCorto": "Mandar códigos por reconocer la cara",
+            "porque": "Reconocer una voz o una cara no basta para confirmar un pedido urgente de datos o dinero.",
+            "icono": "💬"
+          },
+          {
+            "id": "o2",
+            "texto": "Creerlo porque parece real",
+            "textoCorto": "Creerlo porque parece real",
+            "porque": "Reconocer una voz o una cara no basta para confirmar un pedido urgente de datos o dinero.",
+            "icono": "💡"
+          },
+          {
+            "id": "o3",
+            "texto": "Responder con capturas de cuentas",
+            "textoCorto": "Responder con capturas de cuentas",
+            "porque": "Reconocer una voz o una cara no basta para confirmar un pedido urgente de datos o dinero.",
+            "icono": "💭"
+          }
+        ],
+        "respuesta": "o0",
+        "explicacion": "Una voz o imagen puede imitarse. Confirmar por otro medio ayuda a revisar una identidad. Reconocer una voz o una cara no basta para confirmar un pedido urgente de datos o dinero. Si algo ya pasó, también merecés ayuda.",
+        "consejoCorto": "Una voz o imagen puede imitarse. Confirmar por otro medio ayuda a revisar una identidad.",
+        "miniJuego": {
+          "tipo": "chat",
+          "titulo": "Chat: Verificador de voces",
+          "contexto": "Un laboratorio de verificación recibe audios, videos e imágenes dudosas. Decidí cómo revisarlos.",
+          "instruccion": "Leé cada mensaje y elegí la respuesta que corresponde. Podés reintentar.",
+          "instruccionCorta": "Leé el mensaje y elegí cómo responder.",
+          "situaciones": [
+            {
+              "id": "s0",
+              "texto": "Soy tu familiar, pagá sin llamarme",
+              "textoCorto": "Soy tu familiar, pagá sin llamarme",
+              "porque": "La urgencia y la negativa a verificar merecen una consulta por otra vía.",
+              "icono": "💬"
+            },
+            {
+              "id": "s1",
+              "texto": "Este video prueba todo",
+              "textoCorto": "Este video prueba todo",
+              "porque": "Un video puede recortarse o manipularse; hay que revisar su procedencia.",
+              "icono": "💬"
+            },
+            {
+              "id": "s2",
+              "texto": "Reenviá esta imagen para burlarnos",
+              "textoCorto": "Reenviá esta imagen para burlarnos",
+              "porque": "Una imagen manipulada también puede lastimar a la persona que representa.",
+              "icono": "💬"
+            }
+          ],
+          "acciones": [
+            {
+              "id": "a0",
+              "texto": "Confirmar por un número conocido",
+              "textoCorto": "Confirmar por un número conocido",
+              "porque": "La urgencia y la negativa a verificar merecen una consulta por otra vía.",
+              "icono": "🧭"
+            },
+            {
+              "id": "a1",
+              "texto": "Revisar su origen con ayuda",
+              "textoCorto": "Revisar su origen con ayuda",
+              "porque": "Un video puede recortarse o manipularse; hay que revisar su procedencia.",
+              "icono": "🧭"
+            },
+            {
+              "id": "a2",
+              "texto": "No difundir y acompañar",
+              "textoCorto": "No difundir y acompañar",
+              "porque": "Una imagen manipulada también puede lastimar a la persona que representa.",
+              "icono": "🧭"
+            }
+          ],
+          "soluciones": {
+            "s0": "a0",
+            "s1": "a1",
+            "s2": "a2"
+          },
+          "explicacion": "Una voz o imagen puede imitarse. Confirmar por otro medio ayuda a revisar una identidad. Reconocer una voz o una cara no basta para confirmar un pedido urgente de datos o dinero. Si algo ya pasó, también merecés ayuda.",
+          "explicacionCorta": "Una voz o imagen puede imitarse. Confirmar por otro medio ayuda a revisar una identidad."
+        },
+        "insignia": {
+          "icono": "🤖",
+          "nombre": "Verificador de voces"
+        }
+      },
+      {
+        "titulo": "La imagen que usan para acusar",
+        "categoria": "Inteligencia artificial y engaños",
+        "tema": "ia-suplantacion-voz",
+        "personaje": "Un caso ficticio para aprender",
+        "relato": "Circula una imagen de un compañero que podría ser falsa. Quieren compartirla para ridiculizarlo. Aunque no sepan cómo se creó, no hace falta difundirla. Pueden buscar ayuda para revisar y acompañar.",
+        "relatoCorto": "Circula una imagen de un compañero que podría ser falsa. Quieren compartirla para ridiculizarlo.",
+        "relatoDecidir": "Aunque no sepan cómo se creó, no hace falta difundirla. Pueden buscar ayuda para revisar y acompañar.",
+        "pistas": [
+          {
+            "id": "p1",
+            "texto": "Quieren ridiculizar a un compañero",
+            "textoCorto": "Quieren ridiculizar a un compañero",
+            "porque": "Reconocer una voz o una cara no basta para confirmar un pedido urgente de datos o dinero.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p2",
+            "texto": "La imagen no está verificada",
+            "textoCorto": "La imagen no está verificada",
+            "porque": "Reconocer una voz o una cara no basta para confirmar un pedido urgente de datos o dinero.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p3",
+            "texto": "El nombre del personaje",
+            "textoCorto": "El nombre del personaje",
+            "porque": "Un nombre por sí solo no permite saber si una situación es segura.",
+            "icono": "💬",
+            "correcta": false
+          },
+          {
+            "id": "p4",
+            "texto": "El mensaje aparece en una pantalla",
+            "textoCorto": "El mensaje aparece en una pantalla",
+            "porque": "La pantalla no determina el riesgo; importa lo que se pide y cómo se trata a las personas.",
+            "icono": "💬",
+            "correcta": false
+          }
+        ],
+        "pregunta": "¿Qué ayuda ante esa imagen?",
+        "opciones": [
+          {
+            "id": "o0",
+            "texto": "No difundir y buscar apoyo",
+            "textoCorto": "No difundir y buscar apoyo",
+            "porque": "Una voz o imagen puede imitarse. Confirmar por otro medio ayuda a revisar una identidad.",
+            "icono": "🧭"
+          },
+          {
+            "id": "o1",
+            "texto": "Reenviar para ver si es cierta",
+            "textoCorto": "Reenviar para ver si es cierta",
+            "porque": "Reconocer una voz o una cara no basta para confirmar un pedido urgente de datos o dinero.",
+            "icono": "💬"
+          },
+          {
+            "id": "o2",
+            "texto": "Burlarse porque parece una broma",
+            "textoCorto": "Burlarse porque parece una broma",
+            "porque": "Reconocer una voz o una cara no basta para confirmar un pedido urgente de datos o dinero.",
+            "icono": "💡"
+          },
+          {
+            "id": "o3",
+            "texto": "Pedirle al compañero que se culpe",
+            "textoCorto": "Pedirle al compañero que se culpe",
+            "porque": "Reconocer una voz o una cara no basta para confirmar un pedido urgente de datos o dinero.",
+            "icono": "💭"
+          }
+        ],
+        "respuesta": "o0",
+        "explicacion": "Una voz o imagen puede imitarse. Confirmar por otro medio ayuda a revisar una identidad. Reconocer una voz o una cara no basta para confirmar un pedido urgente de datos o dinero. Si algo ya pasó, también merecés ayuda.",
+        "consejoCorto": "Una voz o imagen puede imitarse. Confirmar por otro medio ayuda a revisar una identidad.",
+        "miniJuego": {
+          "tipo": "ordenar",
+          "titulo": "Ruta: Verificador de voces",
+          "contexto": "Al club llegó un audio urgente con una voz conocida. Prepará la ruta para comprobar el pedido.",
+          "instruccion": "En esta ruta: primero no reenviar el pedido urgente, después confirmar desde un canal conocido y al final revisar el origen con ayuda.",
+          "instruccionCorta": "Ordená esta ruta de cuidado. Podés pedir ayuda en cualquier momento.",
+          "pasos": [
+            {
+              "id": "r0",
+              "texto": "No reenviar el pedido urgente",
+              "textoCorto": "No reenviar el pedido urgente",
+              "porque": "Reconocer una voz o una cara no basta para confirmar un pedido urgente de datos o dinero.",
+              "icono": "🧩"
+            },
+            {
+              "id": "r1",
+              "texto": "Confirmar desde un canal conocido",
+              "textoCorto": "Confirmar desde un canal conocido",
+              "porque": "Una voz o imagen puede imitarse. Confirmar por otro medio ayuda a revisar una identidad.",
+              "icono": "🧩"
+            },
+            {
+              "id": "r2",
+              "texto": "Revisar el origen con ayuda",
+              "textoCorto": "Revisar el origen con ayuda",
+              "porque": "Revisar con ayuda permite decidir sin presión y sin enfrentar el problema en soledad.",
+              "icono": "🧩"
+            }
+          ],
+          "ordenCorrecto": [
+            "r0",
+            "r1",
+            "r2"
+          ],
+          "explicacion": "Una voz o imagen puede imitarse. Confirmar por otro medio ayuda a revisar una identidad. Reconocer una voz o una cara no basta para confirmar un pedido urgente de datos o dinero. Si algo ya pasó, también merecés ayuda.",
+          "explicacionCorta": "Una voz o imagen puede imitarse. Confirmar por otro medio ayuda a revisar una identidad."
+        },
+        "insignia": {
+          "icono": "🤖",
+          "nombre": "Verificador de voces"
+        }
+      }
+    ]
+  },
+  {
+    "titulo": "La racha que no deja dormir",
+    "categoria": "Bienestar y descanso digital",
+    "tema": "bienestar-digital",
+    "personaje": "Un caso ficticio para aprender",
+    "relato": "Vale está cansada. Un juego anuncia que perderá su racha si no sigue jugando esa noche. Vale puede guardar lo que sea posible y descansar. Perder una racha no la hace peor jugadora.",
+    "relatoCorto": "Vale está cansada. Un juego anuncia que perderá su racha si no sigue jugando esa noche.",
+    "relatoDecidir": "Vale puede guardar lo que sea posible y descansar. Perder una racha no la hace peor jugadora.",
+    "pistas": [
+      {
+        "id": "p1",
+        "texto": "Vale está cansada",
+        "textoCorto": "Vale está cansada",
+        "porque": "Un premio o una racha no vale más que tu descanso. Podés parar sin tener que justificarte.",
+        "icono": "💬",
+        "correcta": true
+      },
+      {
+        "id": "p2",
+        "texto": "La racha presiona para seguir",
+        "textoCorto": "La racha presiona para seguir",
+        "porque": "Un premio o una racha no vale más que tu descanso. Podés parar sin tener que justificarte.",
+        "icono": "💬",
+        "correcta": true
+      },
+      {
+        "id": "p3",
+        "texto": "El nombre del personaje",
+        "textoCorto": "El nombre del personaje",
+        "porque": "Un nombre por sí solo no permite saber si una situación es segura.",
+        "icono": "💬",
+        "correcta": false
+      },
+      {
+        "id": "p4",
+        "texto": "El mensaje aparece en una pantalla",
+        "textoCorto": "El mensaje aparece en una pantalla",
+        "porque": "La pantalla no determina el riesgo; importa lo que se pide y cómo se trata a las personas.",
+        "icono": "💬",
+        "correcta": false
+      }
+    ],
+    "pregunta": "¿Qué puede elegir Vale?",
+    "opciones": [
+      {
+        "id": "o0",
+        "texto": "Parar y cuidar su descanso",
+        "textoCorto": "Parar y cuidar su descanso",
+        "porque": "Hacer una pausa y pedir compañía permite cuidar el descanso y cómo te sentís al jugar.",
+        "icono": "🧭"
+      },
+      {
+        "id": "o1",
+        "texto": "Seguir aunque esté agotada",
+        "textoCorto": "Seguir aunque esté agotada",
+        "porque": "Un premio o una racha no vale más que tu descanso. Podés parar sin tener que justificarte.",
+        "icono": "💬"
+      },
+      {
+        "id": "o2",
+        "texto": "Ocultar que juega toda la noche",
+        "textoCorto": "Ocultar que juega toda la noche",
+        "porque": "Un premio o una racha no vale más que tu descanso. Podés parar sin tener que justificarte.",
+        "icono": "💡"
+      },
+      {
+        "id": "o3",
+        "texto": "Pedir a alguien que juegue sin parar",
+        "textoCorto": "Pedir que jueguen sin parar",
+        "porque": "Un premio o una racha no vale más que tu descanso. Podés parar sin tener que justificarte.",
+        "icono": "💭"
+      }
+    ],
+    "respuesta": "o0",
+    "explicacion": "Hacer una pausa y pedir compañía permite cuidar el descanso y cómo te sentís al jugar. Un premio o una racha no vale más que tu descanso. Podés parar sin tener que justificarte. Si algo ya pasó, también merecés ayuda.",
+    "consejoCorto": "Hacer una pausa y pedir compañía permite cuidar el descanso y cómo te sentís al jugar.",
+    "miniJuego": {
+      "tipo": "feed",
+      "titulo": "Feed: Pausa que cuida",
+      "contexto": "En una cartelera de práctica aparecen otras ideas sobre bienestar y descanso digital. Revisá cada tarjeta.",
+      "instruccion": "Revisá cada publicación: ¿me cuida o necesita atención?",
+      "instruccionCorta": "Revisá cada publicación: ¿me cuida o necesita atención?",
+      "tarjetas": [
+        {
+          "id": "f0",
+          "texto": "Puedo parar aunque haya premios",
+          "textoCorto": "Puedo parar aunque haya premios",
+          "porque": "Un premio del juego no es más importante que cómo te sentís.",
+          "icono": "📱"
+        },
+        {
+          "id": "f1",
+          "texto": "Debo contestar todos los avisos",
+          "textoCorto": "Debo contestar todos los avisos",
+          "porque": "Podés decidir cuándo estar disponible y silenciar las notificaciones.",
+          "icono": "📱"
+        },
+        {
+          "id": "f2",
+          "texto": "Hablar si jugar me hace mal",
+          "textoCorto": "Hablar si jugar me hace mal",
+          "porque": "Contar cómo te sentís permite buscar apoyo y ajustar hábitos.",
+          "icono": "📱"
+        },
+        {
+          "id": "f3",
+          "texto": "Descansar me hace peor jugador",
+          "textoCorto": "Descansar me hace peor jugador",
+          "porque": "Descansar cuida tu bienestar y no define cuánto valés como jugador.",
+          "icono": "📱"
+        }
+      ],
+      "clasificacion": {
+        "f0": "safe",
+        "f1": "danger",
+        "f2": "safe",
+        "f3": "danger"
+      },
+      "explicacion": "Hacer una pausa y pedir compañía permite cuidar el descanso y cómo te sentís al jugar. Un premio o una racha no vale más que tu descanso. Podés parar sin tener que justificarte. Si algo ya pasó, también merecés ayuda.",
+      "explicacionCorta": "Hacer una pausa y pedir compañía permite cuidar el descanso y cómo te sentís al jugar."
+    },
+    "insignia": {
+      "icono": "🌱",
+      "nombre": "Pausa que cuida"
+    },
+    "id": "caso-16",
+    "variantes": [
+      {
+        "titulo": "Las notificaciones sin pausa",
+        "categoria": "Bienestar y descanso digital",
+        "tema": "bienestar-digital",
+        "personaje": "Un caso ficticio para aprender",
+        "relato": "Nico quiere hacer otra actividad. Un grupo le manda avisos constantes y exige responder enseguida. Nico puede silenciar los avisos y acordar otro momento para hablar. No debe estar disponible siempre.",
+        "relatoCorto": "Nico quiere hacer otra actividad. Un grupo le manda avisos constantes y exige responder enseguida.",
+        "relatoDecidir": "Nico puede silenciar los avisos y acordar otro momento para hablar. No debe estar disponible siempre.",
+        "pistas": [
+          {
+            "id": "p1",
+            "texto": "Exigen responder enseguida",
+            "textoCorto": "Exigen responder enseguida",
+            "porque": "Un premio o una racha no vale más que tu descanso. Podés parar sin tener que justificarte.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p2",
+            "texto": "Los avisos interrumpen su actividad",
+            "textoCorto": "Los avisos interrumpen su actividad",
+            "porque": "Un premio o una racha no vale más que tu descanso. Podés parar sin tener que justificarte.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p3",
+            "texto": "El nombre del personaje",
+            "textoCorto": "El nombre del personaje",
+            "porque": "Un nombre por sí solo no permite saber si una situación es segura.",
+            "icono": "💬",
+            "correcta": false
+          },
+          {
+            "id": "p4",
+            "texto": "El mensaje aparece en una pantalla",
+            "textoCorto": "El mensaje aparece en una pantalla",
+            "porque": "La pantalla no determina el riesgo; importa lo que se pide y cómo se trata a las personas.",
+            "icono": "💬",
+            "correcta": false
+          }
+        ],
+        "pregunta": "¿Qué límite puede poner Nico?",
+        "opciones": [
+          {
+            "id": "o0",
+            "texto": "Silenciar y acordar otro momento",
+            "textoCorto": "Silenciar y acordar otro momento",
+            "porque": "Hacer una pausa y pedir compañía permite cuidar el descanso y cómo te sentís al jugar.",
+            "icono": "🧭"
+          },
+          {
+            "id": "o1",
+            "texto": "Responder siempre aunque no quiera",
+            "textoCorto": "Responder siempre aunque no quiera",
+            "porque": "Un premio o una racha no vale más que tu descanso. Podés parar sin tener que justificarte.",
+            "icono": "💬"
+          },
+          {
+            "id": "o2",
+            "texto": "Dejar de hacer todo lo demás",
+            "textoCorto": "Dejar de hacer todo lo demás",
+            "porque": "Un premio o una racha no vale más que tu descanso. Podés parar sin tener que justificarte.",
+            "icono": "💡"
+          },
+          {
+            "id": "o3",
+            "texto": "Disculparse por no estar conectado",
+            "textoCorto": "Disculparse por no estar conectado",
+            "porque": "Un premio o una racha no vale más que tu descanso. Podés parar sin tener que justificarte.",
+            "icono": "💭"
+          }
+        ],
+        "respuesta": "o0",
+        "explicacion": "Hacer una pausa y pedir compañía permite cuidar el descanso y cómo te sentís al jugar. Un premio o una racha no vale más que tu descanso. Podés parar sin tener que justificarte. Si algo ya pasó, también merecés ayuda.",
+        "consejoCorto": "Hacer una pausa y pedir compañía permite cuidar el descanso y cómo te sentís al jugar.",
+        "miniJuego": {
+          "tipo": "chat",
+          "titulo": "Chat: Pausa que cuida",
+          "contexto": "En el chat del equipo hablan del sueño, los avisos y la angustia al jugar. Elegí respuestas que cuiden.",
+          "instruccion": "Leé cada mensaje y elegí la respuesta que corresponde. Podés reintentar.",
+          "instruccionCorta": "Leé el mensaje y elegí cómo responder.",
+          "situaciones": [
+            {
+              "id": "s0",
+              "texto": "Seguimos aunque tengas sueño",
+              "textoCorto": "Seguimos aunque tengas sueño",
+              "porque": "El sueño es una señal para cuidar el descanso, aunque la partida siga.",
+              "icono": "💬"
+            },
+            {
+              "id": "s1",
+              "texto": "Respondé todos los avisos ya",
+              "textoCorto": "Respondé todos los avisos ya",
+              "porque": "No es necesario estar disponible todo el tiempo para mantener una amistad.",
+              "icono": "💬"
+            },
+            {
+              "id": "s2",
+              "texto": "Este juego me deja angustiado",
+              "textoCorto": "Este juego me deja angustiado",
+              "porque": "La angustia merece escucha; no tenés que seguir jugando para ganar premios.",
+              "icono": "💬"
+            }
+          ],
+          "acciones": [
+            {
+              "id": "a0",
+              "texto": "Elegir descansar",
+              "textoCorto": "Elegir descansar",
+              "porque": "El sueño es una señal para cuidar el descanso, aunque la partida siga.",
+              "icono": "🧭"
+            },
+            {
+              "id": "a1",
+              "texto": "Poner un límite a los avisos",
+              "textoCorto": "Poner un límite a los avisos",
+              "porque": "No es necesario estar disponible todo el tiempo para mantener una amistad.",
+              "icono": "🧭"
+            },
+            {
+              "id": "a2",
+              "texto": "Hablar y hacer una pausa",
+              "textoCorto": "Hablar y hacer una pausa",
+              "porque": "La angustia merece escucha; no tenés que seguir jugando para ganar premios.",
+              "icono": "🧭"
+            }
+          ],
+          "soluciones": {
+            "s0": "a0",
+            "s1": "a1",
+            "s2": "a2"
+          },
+          "explicacion": "Hacer una pausa y pedir compañía permite cuidar el descanso y cómo te sentís al jugar. Un premio o una racha no vale más que tu descanso. Podés parar sin tener que justificarte. Si algo ya pasó, también merecés ayuda.",
+          "explicacionCorta": "Hacer una pausa y pedir compañía permite cuidar el descanso y cómo te sentís al jugar."
+        },
+        "insignia": {
+          "icono": "🌱",
+          "nombre": "Pausa que cuida"
+        }
+      },
+      {
+        "titulo": "Después del juego me siento mal",
+        "categoria": "Bienestar y descanso digital",
+        "tema": "bienestar-digital",
+        "personaje": "Un caso ficticio para aprender",
+        "relato": "Sofi termina cada partida triste y tensa. Sigue entrando porque teme perder los premios del día. Puede hacer una pausa y contar cómo se siente. El juego debería poder disfrutarse sin esa presión.",
+        "relatoCorto": "Sofi termina cada partida triste y tensa. Sigue entrando porque teme perder los premios del día.",
+        "relatoDecidir": "Puede hacer una pausa y contar cómo se siente. El juego debería poder disfrutarse sin esa presión.",
+        "pistas": [
+          {
+            "id": "p1",
+            "texto": "Termina triste y tensa",
+            "textoCorto": "Termina triste y tensa",
+            "porque": "Un premio o una racha no vale más que tu descanso. Podés parar sin tener que justificarte.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p2",
+            "texto": "Los premios la presionan a volver",
+            "textoCorto": "Los premios la presionan a volver",
+            "porque": "Un premio o una racha no vale más que tu descanso. Podés parar sin tener que justificarte.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p3",
+            "texto": "El nombre del personaje",
+            "textoCorto": "El nombre del personaje",
+            "porque": "Un nombre por sí solo no permite saber si una situación es segura.",
+            "icono": "💬",
+            "correcta": false
+          },
+          {
+            "id": "p4",
+            "texto": "El mensaje aparece en una pantalla",
+            "textoCorto": "El mensaje aparece en una pantalla",
+            "porque": "La pantalla no determina el riesgo; importa lo que se pide y cómo se trata a las personas.",
+            "icono": "💬",
+            "correcta": false
+          }
+        ],
+        "pregunta": "¿Qué ayuda a Sofi?",
+        "opciones": [
+          {
+            "id": "o0",
+            "texto": "Pausar y hablar de cómo se siente",
+            "textoCorto": "Pausar y contar cómo se siente",
+            "porque": "Hacer una pausa y pedir compañía permite cuidar el descanso y cómo te sentís al jugar.",
+            "icono": "🧭"
+          },
+          {
+            "id": "o1",
+            "texto": "Seguir para no perder premios",
+            "textoCorto": "Seguir para no perder premios",
+            "porque": "Un premio o una racha no vale más que tu descanso. Podés parar sin tener que justificarte.",
+            "icono": "💬"
+          },
+          {
+            "id": "o2",
+            "texto": "Esconder que el juego le afecta",
+            "textoCorto": "Esconder que el juego le afecta",
+            "porque": "Un premio o una racha no vale más que tu descanso. Podés parar sin tener que justificarte.",
+            "icono": "💡"
+          },
+          {
+            "id": "o3",
+            "texto": "Creer que debe aguantar siempre",
+            "textoCorto": "Creer que debe aguantar siempre",
+            "porque": "Un premio o una racha no vale más que tu descanso. Podés parar sin tener que justificarte.",
+            "icono": "💭"
+          }
+        ],
+        "respuesta": "o0",
+        "explicacion": "Hacer una pausa y pedir compañía permite cuidar el descanso y cómo te sentís al jugar. Un premio o una racha no vale más que tu descanso. Podés parar sin tener que justificarte. Si algo ya pasó, también merecés ayuda.",
+        "consejoCorto": "Hacer una pausa y pedir compañía permite cuidar el descanso y cómo te sentís al jugar.",
+        "miniJuego": {
+          "tipo": "ordenar",
+          "titulo": "Ruta: Pausa que cuida",
+          "contexto": "El equipo va a cerrar su partida. Organizá una salida que permita descansar y hablar de cómo se sienten.",
+          "instruccion": "En esta ruta: primero guardar y pausar el juego, después hablar de cómo me siento y al final acordar momentos de descanso.",
+          "instruccionCorta": "Ordená esta ruta de cuidado. Podés pedir ayuda en cualquier momento.",
+          "pasos": [
+            {
+              "id": "r0",
+              "texto": "Guardar y pausar el juego",
+              "textoCorto": "Guardar y pausar el juego",
+              "porque": "Un premio o una racha no vale más que tu descanso. Podés parar sin tener que justificarte.",
+              "icono": "🧩"
+            },
+            {
+              "id": "r1",
+              "texto": "Hablar de cómo me siento",
+              "textoCorto": "Hablar de cómo me siento",
+              "porque": "Hacer una pausa y pedir compañía permite cuidar el descanso y cómo te sentís al jugar.",
+              "icono": "🧩"
+            },
+            {
+              "id": "r2",
+              "texto": "Acordar momentos de descanso",
+              "textoCorto": "Acordar momentos de descanso",
+              "porque": "Revisar con ayuda permite decidir sin presión y sin enfrentar el problema en soledad.",
+              "icono": "🧩"
+            }
+          ],
+          "ordenCorrecto": [
+            "r0",
+            "r1",
+            "r2"
+          ],
+          "explicacion": "Hacer una pausa y pedir compañía permite cuidar el descanso y cómo te sentís al jugar. Un premio o una racha no vale más que tu descanso. Podés parar sin tener que justificarte. Si algo ya pasó, también merecés ayuda.",
+          "explicacionCorta": "Hacer una pausa y pedir compañía permite cuidar el descanso y cómo te sentís al jugar."
+        },
+        "insignia": {
+          "icono": "🌱",
+          "nombre": "Pausa que cuida"
+        }
+      }
+    ]
+  },
+  {
+    "titulo": "El reto por seguidores",
+    "categoria": "Retos y presión del grupo",
+    "tema": "retos-presion",
+    "personaje": "Un caso ficticio para aprender",
+    "relato": "Un grupo invita a Bel a un reto que puede lastimar. Promete seguidores y se burla de quien no participa. Bel puede decir que no y hablar con alguien que la cuide. No necesita probar valentía ante el grupo.",
+    "relatoCorto": "Un grupo invita a Bel a un reto que puede lastimar. Promete seguidores y se burla de quien no participa.",
+    "relatoDecidir": "Bel puede decir que no y hablar con alguien que la cuide. No necesita probar valentía ante el grupo.",
+    "pistas": [
+      {
+        "id": "p1",
+        "texto": "El reto puede lastimar",
+        "textoCorto": "El reto puede lastimar",
+        "porque": "La popularidad, las vistas o la presión del grupo no vuelven seguro un reto riesgoso.",
+        "icono": "💬",
+        "correcta": true
+      },
+      {
+        "id": "p2",
+        "texto": "Se burlan de quien no participa",
+        "textoCorto": "Se burlan de quien no participa",
+        "porque": "La popularidad, las vistas o la presión del grupo no vuelven seguro un reto riesgoso.",
+        "icono": "💬",
+        "correcta": true
+      },
+      {
+        "id": "p3",
+        "texto": "El nombre del personaje",
+        "textoCorto": "El nombre del personaje",
+        "porque": "Un nombre por sí solo no permite saber si una situación es segura.",
+        "icono": "💬",
+        "correcta": false
+      },
+      {
+        "id": "p4",
+        "texto": "El mensaje aparece en una pantalla",
+        "textoCorto": "El mensaje aparece en una pantalla",
+        "porque": "La pantalla no determina el riesgo; importa lo que se pide y cómo se trata a las personas.",
+        "icono": "💬",
+        "correcta": false
+      }
+    ],
+    "pregunta": "¿Cómo puede responder Bel?",
+    "opciones": [
+      {
+        "id": "o0",
+        "texto": "Rechazarlo y buscar apoyo",
+        "textoCorto": "Rechazarlo y buscar apoyo",
+        "porque": "Podés rechazar un reto que te preocupa. Pedir apoyo no significa ser menos valiente.",
+        "icono": "🧭"
+      },
+      {
+        "id": "o1",
+        "texto": "Hacerlo para demostrar valentía",
+        "textoCorto": "Hacerlo para demostrar valentía",
+        "porque": "La popularidad, las vistas o la presión del grupo no vuelven seguro un reto riesgoso.",
+        "icono": "💬"
+      },
+      {
+        "id": "o2",
+        "texto": "Probar sin avisarle a nadie",
+        "textoCorto": "Probar sin avisarle a nadie",
+        "porque": "La popularidad, las vistas o la presión del grupo no vuelven seguro un reto riesgoso.",
+        "icono": "💡"
+      },
+      {
+        "id": "o3",
+        "texto": "Pedir que otro lo haga primero",
+        "textoCorto": "Pedir que otro lo haga primero",
+        "porque": "La popularidad, las vistas o la presión del grupo no vuelven seguro un reto riesgoso.",
+        "icono": "💭"
+      }
+    ],
+    "respuesta": "o0",
+    "explicacion": "Podés rechazar un reto que te preocupa. Pedir apoyo no significa ser menos valiente. La popularidad, las vistas o la presión del grupo no vuelven seguro un reto riesgoso. Si algo ya pasó, también merecés ayuda.",
+    "consejoCorto": "Podés rechazar un reto que te preocupa. Pedir apoyo no significa ser menos valiente.",
+    "miniJuego": {
+      "tipo": "feed",
+      "titulo": "Feed: Valentía para decir no",
+      "contexto": "En una cartelera de práctica aparecen otras ideas sobre retos y presión del grupo. Revisá cada tarjeta.",
+      "instruccion": "Revisá cada publicación: ¿me cuida o necesita atención?",
+      "instruccionCorta": "Revisá cada publicación: ¿me cuida o necesita atención?",
+      "tarjetas": [
+        {
+          "id": "f0",
+          "texto": "Puedo decir no a un reto",
+          "textoCorto": "Puedo decir no a un reto",
+          "porque": "Decidir no participar protege tus límites aunque otras personas insistan.",
+          "icono": "📱"
+        },
+        {
+          "id": "f1",
+          "texto": "Muchas vistas significan seguridad",
+          "textoCorto": "Muchas vistas significan seguridad",
+          "porque": "Las vistas muestran popularidad, no una revisión de los riesgos.",
+          "icono": "📱"
+        },
+        {
+          "id": "f2",
+          "texto": "Busco ayuda si el grupo presiona",
+          "textoCorto": "Busco ayuda si el grupo presiona",
+          "porque": "La compañía de alguien de confianza ayuda a responder a la presión.",
+          "icono": "📱"
+        },
+        {
+          "id": "f3",
+          "texto": "Debo probar para saber el riesgo",
+          "textoCorto": "Debo probar para saber el riesgo",
+          "porque": "No hace falta exponerte para revisar un reto con ayuda.",
+          "icono": "📱"
+        }
+      ],
+      "clasificacion": {
+        "f0": "safe",
+        "f1": "danger",
+        "f2": "safe",
+        "f3": "danger"
+      },
+      "explicacion": "Podés rechazar un reto que te preocupa. Pedir apoyo no significa ser menos valiente. La popularidad, las vistas o la presión del grupo no vuelven seguro un reto riesgoso. Si algo ya pasó, también merecés ayuda.",
+      "explicacionCorta": "Podés rechazar un reto que te preocupa. Pedir apoyo no significa ser menos valiente."
+    },
+    "insignia": {
+      "icono": "💪",
+      "nombre": "Valentía para decir no"
+    },
+    "id": "caso-17",
+    "variantes": [
+      {
+        "titulo": "El video que oculta el riesgo",
+        "categoria": "Retos y presión del grupo",
+        "tema": "retos-presion",
+        "personaje": "Un caso ficticio para aprender",
+        "relato": "Un video muestra un reto como fácil. No explica los riesgos y exige copiarlo sin consultar a personas adultas. Lo que se ve en un video puede estar editado. No hace falta intentarlo para saber si es seguro.",
+        "relatoCorto": "Un video muestra un reto como fácil. No explica los riesgos y exige copiarlo sin consultar a personas adultas.",
+        "relatoDecidir": "Lo que se ve en un video puede estar editado. No hace falta intentarlo para saber si es seguro.",
+        "pistas": [
+          {
+            "id": "p1",
+            "texto": "Oculta información sobre riesgos",
+            "textoCorto": "Oculta información sobre riesgos",
+            "porque": "La popularidad, las vistas o la presión del grupo no vuelven seguro un reto riesgoso.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p2",
+            "texto": "Exige hacerlo sin consultar",
+            "textoCorto": "Exige hacerlo sin consultar",
+            "porque": "La popularidad, las vistas o la presión del grupo no vuelven seguro un reto riesgoso.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p3",
+            "texto": "El nombre del personaje",
+            "textoCorto": "El nombre del personaje",
+            "porque": "Un nombre por sí solo no permite saber si una situación es segura.",
+            "icono": "💬",
+            "correcta": false
+          },
+          {
+            "id": "p4",
+            "texto": "El mensaje aparece en una pantalla",
+            "textoCorto": "El mensaje aparece en una pantalla",
+            "porque": "La pantalla no determina el riesgo; importa lo que se pide y cómo se trata a las personas.",
+            "icono": "💬",
+            "correcta": false
+          }
+        ],
+        "pregunta": "¿Qué conviene hacer con el reto?",
+        "opciones": [
+          {
+            "id": "o0",
+            "texto": "No copiarlo y consultar con ayuda",
+            "textoCorto": "No copiarlo y consultar con ayuda",
+            "porque": "Podés rechazar un reto que te preocupa. Pedir apoyo no significa ser menos valiente.",
+            "icono": "🧭"
+          },
+          {
+            "id": "o1",
+            "texto": "Probar para ver si es seguro",
+            "textoCorto": "Probar para ver si es seguro",
+            "porque": "La popularidad, las vistas o la presión del grupo no vuelven seguro un reto riesgoso.",
+            "icono": "💬"
+          },
+          {
+            "id": "o2",
+            "texto": "Imitarlo por tener muchas vistas",
+            "textoCorto": "Imitarlo por tener muchas vistas",
+            "porque": "La popularidad, las vistas o la presión del grupo no vuelven seguro un reto riesgoso.",
+            "icono": "💡"
+          },
+          {
+            "id": "o3",
+            "texto": "Grabarlo sin acompañamiento",
+            "textoCorto": "Grabarlo sin acompañamiento",
+            "porque": "La popularidad, las vistas o la presión del grupo no vuelven seguro un reto riesgoso.",
+            "icono": "💭"
+          }
+        ],
+        "respuesta": "o0",
+        "explicacion": "Podés rechazar un reto que te preocupa. Pedir apoyo no significa ser menos valiente. La popularidad, las vistas o la presión del grupo no vuelven seguro un reto riesgoso. Si algo ya pasó, también merecés ayuda.",
+        "consejoCorto": "Podés rechazar un reto que te preocupa. Pedir apoyo no significa ser menos valiente.",
+        "miniJuego": {
+          "tipo": "chat",
+          "titulo": "Chat: Valentía para decir no",
+          "contexto": "Tres mensajes presionan para participar en retos. Practicá responder sin poner a nadie en riesgo.",
+          "instruccion": "Leé cada mensaje y elegí la respuesta que corresponde. Podés reintentar.",
+          "instruccionCorta": "Leé el mensaje y elegí cómo responder.",
+          "situaciones": [
+            {
+              "id": "s0",
+              "texto": "Hacelo o te sacamos del equipo",
+              "textoCorto": "Hacelo o te sacamos del equipo",
+              "porque": "Un equipo no debería exigir que te arriesgues para pertenecer.",
+              "icono": "💬"
+            },
+            {
+              "id": "s1",
+              "texto": "Todos lo hicieron, es seguro",
+              "textoCorto": "Todos lo hicieron, es seguro",
+              "porque": "Que otras personas participen no elimina los riesgos.",
+              "icono": "💬"
+            },
+            {
+              "id": "s2",
+              "texto": "Ya aceptaste, ahora no podés parar",
+              "textoCorto": "Ya aceptaste, ahora no podés parar",
+              "porque": "Podés detenerte aunque antes hayas dicho que sí.",
+              "icono": "💬"
+            }
+          ],
+          "acciones": [
+            {
+              "id": "a0",
+              "texto": "Rechazar la presión y pedir apoyo",
+              "textoCorto": "Rechazar la presión y pedir apoyo",
+              "porque": "Un equipo no debería exigir que te arriesgues para pertenecer.",
+              "icono": "🧭"
+            },
+            {
+              "id": "a1",
+              "texto": "No usar popularidad como prueba",
+              "textoCorto": "No usar popularidad como prueba",
+              "porque": "Que otras personas participen no elimina los riesgos.",
+              "icono": "🧭"
+            },
+            {
+              "id": "a2",
+              "texto": "Poder cambiar mi decisión",
+              "textoCorto": "Poder cambiar mi decisión",
+              "porque": "Podés detenerte aunque antes hayas dicho que sí.",
+              "icono": "🧭"
+            }
+          ],
+          "soluciones": {
+            "s0": "a0",
+            "s1": "a1",
+            "s2": "a2"
+          },
+          "explicacion": "Podés rechazar un reto que te preocupa. Pedir apoyo no significa ser menos valiente. La popularidad, las vistas o la presión del grupo no vuelven seguro un reto riesgoso. Si algo ya pasó, también merecés ayuda.",
+          "explicacionCorta": "Podés rechazar un reto que te preocupa. Pedir apoyo no significa ser menos valiente."
+        },
+        "insignia": {
+          "icono": "💪",
+          "nombre": "Valentía para decir no"
+        }
+      },
+      {
+        "titulo": "La apuesta del equipo",
+        "categoria": "Retos y presión del grupo",
+        "tema": "retos-presion",
+        "personaje": "Un caso ficticio para aprender",
+        "relato": "A Oli le proponen una apuesta riesgosa para seguir en el equipo. Dicen que no puede echarse atrás. Oli puede cambiar de opinión. Pertenecer a un equipo no exige aceptar algo que lo ponga en riesgo.",
+        "relatoCorto": "A Oli le proponen una apuesta riesgosa para seguir en el equipo. Dicen que no puede echarse atrás.",
+        "relatoDecidir": "Oli puede cambiar de opinión. Pertenecer a un equipo no exige aceptar algo que lo ponga en riesgo.",
+        "pistas": [
+          {
+            "id": "p1",
+            "texto": "Condicionan su lugar en el equipo",
+            "textoCorto": "Condicionan su lugar en el equipo",
+            "porque": "La popularidad, las vistas o la presión del grupo no vuelven seguro un reto riesgoso.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p2",
+            "texto": "Niegan su derecho a cambiar opinión",
+            "textoCorto": "Niegan su derecho a cambiar opinión",
+            "porque": "La popularidad, las vistas o la presión del grupo no vuelven seguro un reto riesgoso.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p3",
+            "texto": "El nombre del personaje",
+            "textoCorto": "El nombre del personaje",
+            "porque": "Un nombre por sí solo no permite saber si una situación es segura.",
+            "icono": "💬",
+            "correcta": false
+          },
+          {
+            "id": "p4",
+            "texto": "El mensaje aparece en una pantalla",
+            "textoCorto": "El mensaje aparece en una pantalla",
+            "porque": "La pantalla no determina el riesgo; importa lo que se pide y cómo se trata a las personas.",
+            "icono": "💬",
+            "correcta": false
+          }
+        ],
+        "pregunta": "¿Qué puede decidir Oli?",
+        "opciones": [
+          {
+            "id": "o0",
+            "texto": "No participar y pedir acompañamiento",
+            "textoCorto": "No participar y pedir acompañamiento",
+            "porque": "Podés rechazar un reto que te preocupa. Pedir apoyo no significa ser menos valiente.",
+            "icono": "🧭"
+          },
+          {
+            "id": "o1",
+            "texto": "Aceptar para conservar su lugar",
+            "textoCorto": "Aceptar para conservar su lugar",
+            "porque": "La popularidad, las vistas o la presión del grupo no vuelven seguro un reto riesgoso.",
+            "icono": "💬"
+          },
+          {
+            "id": "o2",
+            "texto": "Callarse aunque tenga miedo",
+            "textoCorto": "Callarse aunque tenga miedo",
+            "porque": "La popularidad, las vistas o la presión del grupo no vuelven seguro un reto riesgoso.",
+            "icono": "💡"
+          },
+          {
+            "id": "o3",
+            "texto": "Convencer a otro de hacerlo",
+            "textoCorto": "Convencer a otro de hacerlo",
+            "porque": "La popularidad, las vistas o la presión del grupo no vuelven seguro un reto riesgoso.",
+            "icono": "💭"
+          }
+        ],
+        "respuesta": "o0",
+        "explicacion": "Podés rechazar un reto que te preocupa. Pedir apoyo no significa ser menos valiente. La popularidad, las vistas o la presión del grupo no vuelven seguro un reto riesgoso. Si algo ya pasó, también merecés ayuda.",
+        "consejoCorto": "Podés rechazar un reto que te preocupa. Pedir apoyo no significa ser menos valiente.",
+        "miniJuego": {
+          "tipo": "ordenar",
+          "titulo": "Ruta: Valentía para decir no",
+          "contexto": "Una patrulla del juego ve presión para copiar un reto. Armá una ruta hacia una actividad que cuide.",
+          "instruccion": "En esta ruta: primero no imitar el reto riesgoso, después contar la presión del grupo y al final elegir una actividad que cuide.",
+          "instruccionCorta": "Ordená esta ruta de cuidado. Podés pedir ayuda en cualquier momento.",
+          "pasos": [
+            {
+              "id": "r0",
+              "texto": "No imitar el reto riesgoso",
+              "textoCorto": "No imitar el reto riesgoso",
+              "porque": "La popularidad, las vistas o la presión del grupo no vuelven seguro un reto riesgoso.",
+              "icono": "🧩"
+            },
+            {
+              "id": "r1",
+              "texto": "Contar la presión del grupo",
+              "textoCorto": "Contar la presión del grupo",
+              "porque": "Podés rechazar un reto que te preocupa. Pedir apoyo no significa ser menos valiente.",
+              "icono": "🧩"
+            },
+            {
+              "id": "r2",
+              "texto": "Elegir una actividad que cuide",
+              "textoCorto": "Elegir una actividad que cuide",
+              "porque": "Revisar con ayuda permite decidir sin presión y sin enfrentar el problema en soledad.",
+              "icono": "🧩"
+            }
+          ],
+          "ordenCorrecto": [
+            "r0",
+            "r1",
+            "r2"
+          ],
+          "explicacion": "Podés rechazar un reto que te preocupa. Pedir apoyo no significa ser menos valiente. La popularidad, las vistas o la presión del grupo no vuelven seguro un reto riesgoso. Si algo ya pasó, también merecés ayuda.",
+          "explicacionCorta": "Podés rechazar un reto que te preocupa. Pedir apoyo no significa ser menos valiente."
+        },
+        "insignia": {
+          "icono": "💪",
+          "nombre": "Valentía para decir no"
+        }
+      }
+    ]
+  },
+  {
+    "titulo": "El botón que parece un premio",
+    "categoria": "Publicidad y compras en juegos",
+    "tema": "publicidad-compras",
+    "personaje": "Un caso ficticio para aprender",
+    "relato": "Un botón dice «Abrí tu premio», pero activa una compra. No muestra claramente el precio ni pide permiso. Todavía no se confirmó nada. Se puede cerrar y revisar las condiciones con una persona adulta.",
+    "relatoCorto": "Un botón dice «Abrí tu premio», pero activa una compra. No muestra claramente el precio ni pide permiso.",
+    "relatoDecidir": "Todavía no se confirmó nada. Se puede cerrar y revisar las condiciones con una persona adulta.",
+    "pistas": [
+      {
+        "id": "p1",
+        "texto": "Oculta que hay una compra",
+        "textoCorto": "Oculta que hay una compra",
+        "porque": "La urgencia de un anuncio no justifica comprar sin permiso ni compartir datos de pago.",
+        "icono": "💬",
+        "correcta": true
+      },
+      {
+        "id": "p2",
+        "texto": "No muestra claramente el precio",
+        "textoCorto": "No muestra claramente el precio",
+        "porque": "La urgencia de un anuncio no justifica comprar sin permiso ni compartir datos de pago.",
+        "icono": "💬",
+        "correcta": true
+      },
+      {
+        "id": "p3",
+        "texto": "El nombre del personaje",
+        "textoCorto": "El nombre del personaje",
+        "porque": "Un nombre por sí solo no permite saber si una situación es segura.",
+        "icono": "💬",
+        "correcta": false
+      },
+      {
+        "id": "p4",
+        "texto": "El mensaje aparece en una pantalla",
+        "textoCorto": "El mensaje aparece en una pantalla",
+        "porque": "La pantalla no determina el riesgo; importa lo que se pide y cómo se trata a las personas.",
+        "icono": "💬",
+        "correcta": false
+      }
+    ],
+    "pregunta": "¿Qué hacemos antes de tocar?",
+    "opciones": [
+      {
+        "id": "o0",
+        "texto": "Cerrar y revisar con ayuda",
+        "textoCorto": "Cerrar y revisar con ayuda",
+        "porque": "Antes de comprar, revisá con una persona adulta qué se paga y qué condiciones tiene.",
+        "icono": "🧭"
+      },
+      {
+        "id": "o1",
+        "texto": "Confirmar para ver cuánto cuesta",
+        "textoCorto": "Confirmar para ver cuánto cuesta",
+        "porque": "La urgencia de un anuncio no justifica comprar sin permiso ni compartir datos de pago.",
+        "icono": "💬"
+      },
+      {
+        "id": "o2",
+        "texto": "Probar con una tarjeta familiar",
+        "textoCorto": "Probar con una tarjeta familiar",
+        "porque": "La urgencia de un anuncio no justifica comprar sin permiso ni compartir datos de pago.",
+        "icono": "💡"
+      },
+      {
+        "id": "o3",
+        "texto": "Comprar porque parece un regalo",
+        "textoCorto": "Comprar porque parece un regalo",
+        "porque": "La urgencia de un anuncio no justifica comprar sin permiso ni compartir datos de pago.",
+        "icono": "💭"
+      }
+    ],
+    "respuesta": "o0",
+    "explicacion": "Antes de comprar, revisá con una persona adulta qué se paga y qué condiciones tiene. La urgencia de un anuncio no justifica comprar sin permiso ni compartir datos de pago. Si algo ya pasó, también merecés ayuda.",
+    "consejoCorto": "Antes de comprar, revisá con una persona adulta qué se paga y qué condiciones tiene.",
+    "miniJuego": {
+      "tipo": "feed",
+      "titulo": "Feed: Compra con pausa",
+      "contexto": "En una cartelera de práctica aparecen otras ideas sobre publicidad y compras en juegos. Revisá cada tarjeta.",
+      "instruccion": "Revisá cada publicación: ¿me cuida o necesita atención?",
+      "instruccionCorta": "Revisá cada publicación: ¿me cuida o necesita atención?",
+      "tarjetas": [
+        {
+          "id": "f0",
+          "texto": "Revisar el precio antes de aceptar",
+          "textoCorto": "Revisar el precio antes de aceptar",
+          "porque": "Un precio claro permite saber qué se está comprando.",
+          "icono": "📱"
+        },
+        {
+          "id": "f1",
+          "texto": "Usar una tarjeta sin consultar",
+          "textoCorto": "Usar una tarjeta sin consultar",
+          "porque": "Los datos de pago no se usan ni comparten sin autorización.",
+          "icono": "📱"
+        },
+        {
+          "id": "f2",
+          "texto": "Puedo dejar pasar una oferta",
+          "textoCorto": "Puedo dejar pasar una oferta",
+          "porque": "Un contador o un premio no te obligan a comprar.",
+          "icono": "📱"
+        },
+        {
+          "id": "f3",
+          "texto": "Una prueba nunca cobra después",
+          "textoCorto": "Una prueba nunca cobra después",
+          "porque": "Algunas pruebas pasan a cobros automáticos; revisá las condiciones con ayuda.",
+          "icono": "📱"
+        }
+      ],
+      "clasificacion": {
+        "f0": "safe",
+        "f1": "danger",
+        "f2": "safe",
+        "f3": "danger"
+      },
+      "explicacion": "Antes de comprar, revisá con una persona adulta qué se paga y qué condiciones tiene. La urgencia de un anuncio no justifica comprar sin permiso ni compartir datos de pago. Si algo ya pasó, también merecés ayuda.",
+      "explicacionCorta": "Antes de comprar, revisá con una persona adulta qué se paga y qué condiciones tiene."
+    },
+    "insignia": {
+      "icono": "🛒",
+      "nombre": "Compra con pausa"
+    },
+    "id": "caso-18",
+    "variantes": [
+      {
+        "titulo": "La oferta que se termina ya",
+        "categoria": "Publicidad y compras en juegos",
+        "tema": "publicidad-compras",
+        "personaje": "Un caso ficticio para aprender",
+        "relato": "Un anuncio ofrece una mejora del juego. Presiona con un contador y pide usar datos de pago sin consultar. La mejora no es necesaria para que el jugador valga más. Puede dejar pasar la oferta.",
+        "relatoCorto": "Un anuncio ofrece una mejora del juego. Presiona con un contador y pide usar datos de pago sin consultar.",
+        "relatoDecidir": "La mejora no es necesaria para que el jugador valga más. Puede dejar pasar la oferta.",
+        "pistas": [
+          {
+            "id": "p1",
+            "texto": "El contador presiona para comprar",
+            "textoCorto": "El contador presiona para comprar",
+            "porque": "La urgencia de un anuncio no justifica comprar sin permiso ni compartir datos de pago.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p2",
+            "texto": "Pide usar pagos sin consultar",
+            "textoCorto": "Pide usar pagos sin consultar",
+            "porque": "La urgencia de un anuncio no justifica comprar sin permiso ni compartir datos de pago.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p3",
+            "texto": "El nombre del personaje",
+            "textoCorto": "El nombre del personaje",
+            "porque": "Un nombre por sí solo no permite saber si una situación es segura.",
+            "icono": "💬",
+            "correcta": false
+          },
+          {
+            "id": "p4",
+            "texto": "El mensaje aparece en una pantalla",
+            "textoCorto": "El mensaje aparece en una pantalla",
+            "porque": "La pantalla no determina el riesgo; importa lo que se pide y cómo se trata a las personas.",
+            "icono": "💬",
+            "correcta": false
+          }
+        ],
+        "pregunta": "¿Qué protege ante esta oferta?",
+        "opciones": [
+          {
+            "id": "o0",
+            "texto": "Esperar y consultar antes de comprar",
+            "textoCorto": "Esperar y consultar antes de comprar",
+            "porque": "Antes de comprar, revisá con una persona adulta qué se paga y qué condiciones tiene.",
+            "icono": "🧭"
+          },
+          {
+            "id": "o1",
+            "texto": "Usar la tarjeta sin pedir permiso",
+            "textoCorto": "Usar la tarjeta sin pedir permiso",
+            "porque": "La urgencia de un anuncio no justifica comprar sin permiso ni compartir datos de pago.",
+            "icono": "💬"
+          },
+          {
+            "id": "o2",
+            "texto": "Guardar datos de pago en el chat",
+            "textoCorto": "Guardar datos de pago en chat",
+            "porque": "La urgencia de un anuncio no justifica comprar sin permiso ni compartir datos de pago.",
+            "icono": "💡"
+          },
+          {
+            "id": "o3",
+            "texto": "Comprar para evitar quedar afuera",
+            "textoCorto": "Comprar para evitar quedar afuera",
+            "porque": "La urgencia de un anuncio no justifica comprar sin permiso ni compartir datos de pago.",
+            "icono": "💭"
+          }
+        ],
+        "respuesta": "o0",
+        "explicacion": "Antes de comprar, revisá con una persona adulta qué se paga y qué condiciones tiene. La urgencia de un anuncio no justifica comprar sin permiso ni compartir datos de pago. Si algo ya pasó, también merecés ayuda.",
+        "consejoCorto": "Antes de comprar, revisá con una persona adulta qué se paga y qué condiciones tiene.",
+        "miniJuego": {
+          "tipo": "chat",
+          "titulo": "Chat: Compra con pausa",
+          "contexto": "Una mesa de compras recibe avisos sobre tarjetas, suscripciones y presión para gastar. Revisá cada pedido.",
+          "instruccion": "Leé cada mensaje y elegí la respuesta que corresponde. Podés reintentar.",
+          "instruccionCorta": "Leé el mensaje y elegí cómo responder.",
+          "situaciones": [
+            {
+              "id": "s0",
+              "texto": "Usá la tarjeta sin que se enteren",
+              "textoCorto": "Usá la tarjeta a escondidas",
+              "porque": "La urgencia no justifica usar datos de pago sin autorización.",
+              "icono": "💬"
+            },
+            {
+              "id": "s1",
+              "texto": "Gratis hoy, luego cobro semanal",
+              "textoCorto": "Gratis hoy, luego cobro semanal",
+              "porque": "Una prueba puede convertirse en una suscripción con cobros.",
+              "icono": "💬"
+            },
+            {
+              "id": "s2",
+              "texto": "Comprá ya para pertenecer",
+              "textoCorto": "Comprá ya para pertenecer",
+              "porque": "Comprar una mejora no determina tu valor ni tu derecho a participar.",
+              "icono": "💬"
+            }
+          ],
+          "acciones": [
+            {
+              "id": "a0",
+              "texto": "No usar pagos sin permiso",
+              "textoCorto": "No usar pagos sin permiso",
+              "porque": "La urgencia no justifica usar datos de pago sin autorización.",
+              "icono": "🧭"
+            },
+            {
+              "id": "a1",
+              "texto": "Revisar condiciones con ayuda",
+              "textoCorto": "Revisar condiciones con ayuda",
+              "porque": "Una prueba puede convertirse en una suscripción con cobros.",
+              "icono": "🧭"
+            },
+            {
+              "id": "a2",
+              "texto": "No comprar por presión",
+              "textoCorto": "No comprar por presión",
+              "porque": "Comprar una mejora no determina tu valor ni tu derecho a participar.",
+              "icono": "🧭"
+            }
+          ],
+          "soluciones": {
+            "s0": "a0",
+            "s1": "a1",
+            "s2": "a2"
+          },
+          "explicacion": "Antes de comprar, revisá con una persona adulta qué se paga y qué condiciones tiene. La urgencia de un anuncio no justifica comprar sin permiso ni compartir datos de pago. Si algo ya pasó, también merecés ayuda.",
+          "explicacionCorta": "Antes de comprar, revisá con una persona adulta qué se paga y qué condiciones tiene."
+        },
+        "insignia": {
+          "icono": "🛒",
+          "nombre": "Compra con pausa"
+        }
+      },
+      {
+        "titulo": "La suscripción escondida",
+        "categoria": "Publicidad y compras en juegos",
+        "tema": "publicidad-compras",
+        "personaje": "Un caso ficticio para aprender",
+        "relato": "Una app ofrece una prueba que parece gratis. La letra pequeña dice que luego cobrará cada semana. Una persona adulta puede revisar el costo y cómo se cancela antes de aceptar. No hay que apurarse.",
+        "relatoCorto": "Una app ofrece una prueba que parece gratis. La letra pequeña dice que luego cobrará cada semana.",
+        "relatoDecidir": "Una persona adulta puede revisar el costo y cómo se cancela antes de aceptar. No hay que apurarse.",
+        "pistas": [
+          {
+            "id": "p1",
+            "texto": "La prueba incluye cobros posteriores",
+            "textoCorto": "La prueba incluye cobros posteriores",
+            "porque": "La urgencia de un anuncio no justifica comprar sin permiso ni compartir datos de pago.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p2",
+            "texto": "El costo semanal está poco visible",
+            "textoCorto": "El costo semanal está poco visible",
+            "porque": "La urgencia de un anuncio no justifica comprar sin permiso ni compartir datos de pago.",
+            "icono": "💬",
+            "correcta": true
+          },
+          {
+            "id": "p3",
+            "texto": "El nombre del personaje",
+            "textoCorto": "El nombre del personaje",
+            "porque": "Un nombre por sí solo no permite saber si una situación es segura.",
+            "icono": "💬",
+            "correcta": false
+          },
+          {
+            "id": "p4",
+            "texto": "El mensaje aparece en una pantalla",
+            "textoCorto": "El mensaje aparece en una pantalla",
+            "porque": "La pantalla no determina el riesgo; importa lo que se pide y cómo se trata a las personas.",
+            "icono": "💬",
+            "correcta": false
+          }
+        ],
+        "pregunta": "¿Qué hay que revisar primero?",
+        "opciones": [
+          {
+            "id": "o0",
+            "texto": "Costos y cancelación con ayuda",
+            "textoCorto": "Costos y cancelación con ayuda",
+            "porque": "Antes de comprar, revisá con una persona adulta qué se paga y qué condiciones tiene.",
+            "icono": "🧭"
+          },
+          {
+            "id": "o1",
+            "texto": "Aceptar y pensar el costo después",
+            "textoCorto": "Aceptar y pensar el costo después",
+            "porque": "La urgencia de un anuncio no justifica comprar sin permiso ni compartir datos de pago.",
+            "icono": "💬"
+          },
+          {
+            "id": "o2",
+            "texto": "Creer que gratis significa para siempre",
+            "textoCorto": "Creer que gratis significa para siempre",
+            "porque": "La urgencia de un anuncio no justifica comprar sin permiso ni compartir datos de pago.",
+            "icono": "💡"
+          },
+          {
+            "id": "o3",
+            "texto": "Ocultar el cobro a la familia",
+            "textoCorto": "Ocultar el cobro a la familia",
+            "porque": "La urgencia de un anuncio no justifica comprar sin permiso ni compartir datos de pago.",
+            "icono": "💭"
+          }
+        ],
+        "respuesta": "o0",
+        "explicacion": "Antes de comprar, revisá con una persona adulta qué se paga y qué condiciones tiene. La urgencia de un anuncio no justifica comprar sin permiso ni compartir datos de pago. Si algo ya pasó, también merecés ayuda.",
+        "consejoCorto": "Antes de comprar, revisá con una persona adulta qué se paga y qué condiciones tiene.",
+        "miniJuego": {
+          "tipo": "ordenar",
+          "titulo": "Ruta: Compra con pausa",
+          "contexto": "Un personaje encuentra un botón de compra confuso. Prepará una ruta para revisar sin gastar por presión.",
+          "instruccion": "En esta ruta: primero cerrar sin confirmar la compra, después revisar el precio y las condiciones y al final consultar antes de decidir.",
+          "instruccionCorta": "Ordená esta ruta de cuidado. Podés pedir ayuda en cualquier momento.",
+          "pasos": [
+            {
+              "id": "r0",
+              "texto": "Cerrar sin confirmar la compra",
+              "textoCorto": "Cerrar sin confirmar la compra",
+              "porque": "La urgencia de un anuncio no justifica comprar sin permiso ni compartir datos de pago.",
+              "icono": "🧩"
+            },
+            {
+              "id": "r1",
+              "texto": "Revisar el precio y las condiciones",
+              "textoCorto": "Revisar el precio y las condiciones",
+              "porque": "Antes de comprar, revisá con una persona adulta qué se paga y qué condiciones tiene.",
+              "icono": "🧩"
+            },
+            {
+              "id": "r2",
+              "texto": "Consultar antes de decidir",
+              "textoCorto": "Consultar antes de decidir",
+              "porque": "Revisar con ayuda permite decidir sin presión y sin enfrentar el problema en soledad.",
+              "icono": "🧩"
+            }
+          ],
+          "ordenCorrecto": [
+            "r0",
+            "r1",
+            "r2"
+          ],
+          "explicacion": "Antes de comprar, revisá con una persona adulta qué se paga y qué condiciones tiene. La urgencia de un anuncio no justifica comprar sin permiso ni compartir datos de pago. Si algo ya pasó, también merecés ayuda.",
+          "explicacionCorta": "Antes de comprar, revisá con una persona adulta qué se paga y qué condiciones tiene."
+        },
+        "insignia": {
+          "icono": "🛒",
+          "nombre": "Compra con pausa"
+        }
+      }
+    ]
   }
 ]
 

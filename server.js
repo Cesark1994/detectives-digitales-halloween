@@ -194,7 +194,21 @@ function shuffled(list,seed) {
   return out;
 }
 function newSeed() { return crypto.randomInt(1,2147483647); }
-function missionOrder(room) { const all=cases.map((_,i)=>i); return (room.random?shuffled(all,room.seed):all).slice(0,room.caseCount); }
+function missionOrder(room) {
+  const all=cases.map((_,i)=>i);
+  if(!room.random)return all.slice(0,room.caseCount);
+  // Keep the unused themes for the next game instead of drawing the same ones again.
+  room.missionDeck??=[];
+  const selected=[],themes=new Set();
+  while(selected.length<room.caseCount) {
+    if(!room.missionDeck.length)room.missionDeck=shuffled(all,room.seed+selected.length*7919);
+    const at=room.missionDeck.findIndex(i=>!themes.has(cases[i].tema||cases[i].categoria));
+    if(at<0)break;
+    const [index]=room.missionDeck.splice(at,1);
+    selected.push(index);themes.add(cases[index].tema||cases[index].categoria);
+  }
+  return selected;
+}
 function drawVariant(room,c) {
   room.variantDecks??={};
   let deck=room.variantDecks[c.id];
@@ -328,7 +342,7 @@ const server=http.createServer(async(req,res)=>{
    if(req.method==='POST'&&u.pathname==='/api/crear') {
      const data=await bodyJSON(req);
      const requestedCount=data.caseCount===undefined?'all':data.caseCount;
-     if(![3,6,9,'all'].includes(requestedCount)) throw error('Elegí una partida de 3, 6, 9 casos o todos los casos.');
+     if(![3,6,9,12,15,18,'all'].includes(requestedCount)) throw error('Elegí una cantidad de misiones disponible o todos los casos.');
      const pace=data.pace===undefined?'calm':data.pace;
      if(typeof pace!=='string' || !Object.hasOwn(PACES,pace)) throw error('Elegí un ritmo tranquilo o clásico.');
      const caseCount=requestedCount==='all'?cases.length:Math.min(requestedCount,cases.length);

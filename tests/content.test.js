@@ -8,7 +8,8 @@ const cases=JSON.parse(fs.readFileSync(path.join(__dirname,'../casos.json'),'utf
 const source=fs.readFileSync(path.join(__dirname,'../server.js'),'utf8');
 
 test('contenido infantil: historias y tarjetas breves conservan una opción de lectura completa',()=>{
- assert.equal(cases.length,9);
+ assert.equal(cases.length,18);
+ assert.equal(new Set(cases.map(c=>c.tema||c.categoria)).size,cases.length,'Una temática por misión.');
  for(const c of cases){
   assert.ok(c.relatoCorto.length<=130,`${c.id}: relato de ${c.relatoCorto.length} caracteres`);
   assert.ok(c.relatoCorto.length<c.relato.length,`${c.id}: la historia breve debe reducir la lectura`);
@@ -26,7 +27,7 @@ test('contenido infantil: historias y tarjetas breves conservan una opción de l
 });
 
 test('contenido didáctico: cada pista, opción y tarjeta de minijuego explica por qué',()=>{
- const reasoned={tocar:'opciones',seleccionar:'opciones',atrapar:'opciones',linterna:'opciones',ordenar:'pasos',pocion:'pasos',clasificar:'tarjetas',conectar:'situaciones',defender:'situaciones'};
+ const reasoned={tocar:'opciones',seleccionar:'opciones',atrapar:'opciones',linterna:'opciones',ordenar:'pasos',pocion:'pasos',clasificar:'tarjetas',feed:'tarjetas',conectar:'situaciones',chat:'situaciones',defender:'situaciones'};
  for(const c of cases){
   assert.ok(c.opciones.length>=4,`${c.id}: al menos cuatro opciones para decidir`);
   for(const card of [...c.pistas,...c.opciones,...c.miniJuego[reasoned[c.miniJuego.tipo]]]){
@@ -58,7 +59,7 @@ test('variantes: cada tema incluye historias completas y otras formas de jugar',
    }
   }
  }
- assert.equal(titles.size,27);
+ assert.equal(titles.size,cases.length*3);
 });
 
 test('contenido infantil: cada misión entrega una carta con nombre breve y un minijuego distinto',()=>{
@@ -66,7 +67,7 @@ test('contenido infantil: cada misión entrega una carta con nombre breve y un m
   assert.ok(c.insignia?.icono?.trim(),`${c.id}: falta el ícono de la carta`);
   assert.ok(c.insignia.nombre.length<=22,`${c.id}: nombre de carta demasiado largo`);
  }
- assert.equal(new Set(cases.map(c=>c.miniJuego.tipo)).size,cases.length,'Cada misión se juega de una forma diferente.');
+ assert.ok(new Set(cases.map(c=>c.miniJuego.tipo)).size>=9,'El catálogo conserva al menos nueve mecánicas.');
 });
 
 test('contenido infantil: historias compactas mantienen las señales de los nueve casos',()=>{
@@ -81,7 +82,7 @@ test('contenido infantil: historias compactas mantienen las señales de los nuev
   [/reenviá ya/i,/de dónde salió/i,/fecha/i],
   [/no pidió/i,/código privado/i,/ya/i]
  ];
- cases.forEach((c,i)=>ideas[i].forEach(idea=>assert.match(c.relatoCorto,idea,c.id)));
+ cases.slice(0,9).forEach((c,i)=>ideas[i].forEach(idea=>assert.match(c.relatoCorto,idea,c.id)));
 });
 
 test('API infantil: los textos breves no revelan respuestas ni consejos antes de tiempo',()=>{

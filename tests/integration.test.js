@@ -188,7 +188,7 @@ test('todos los minijuegos validan respuestas, ocultan soluciones y puntúan exa
   const answer=(player,body)=>request(base,'/api/responder',{code:room.code,token:player.token,stage:'mini',...body});
   const hiddenKeys=['respuesta','ordenCorrecto','clasificacion','correctas','soluciones','explicacion'];
   // Arcade formats answer with the same shape as a classic one.
-  const kinds={pocion:'ordenar',atrapar:'seleccionar',linterna:'seleccionar',defender:'conectar'};
+  const kinds={pocion:'ordenar',atrapar:'seleccionar',linterna:'seleccionar',defender:'conectar',feed:'clasificar',chat:'conectar'};
   const seen=new Set();
   await next();
   for(let i=0;i<content.length;i++) {
@@ -235,7 +235,7 @@ test('todos los minijuegos validan respuestas, ocultan soluciones y puntúan exa
    await next();s=await getState();assert.equal(s.personal.score,(i+1)*300);
    await next();
   }
-  assert.deepEqual(seen,new Set(['tocar','ordenar','clasificar','seleccionar','conectar','atrapar','linterna','pocion','defender']));
+  assert.deepEqual(seen,new Set(content.map(c=>c.miniJuego.tipo)));
   assert.equal((await getState()).stage,'final');
  } finally {await server.stop()}
 });

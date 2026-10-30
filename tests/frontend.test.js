@@ -78,6 +78,15 @@ test('pantalla del jugador: muestra la pregunta del escenario y el contexto prop
  assert.ok(!html.includes(c.relato),'El minijuego presenta su propia situación.');
 });
 
+test('configuración: permite recorridos largos y conserva Todas las misiones al volver a mostrar el formulario',()=>{
+ const app=frontend();
+ app.set({catalog:{caseCount:18,missions:[],paces:{}},setupValues:{caseCount:'all',pace:'calm',maxPlayers:'6',order:'azar'}});
+ app.evaluate(`var setupHtml=''; show=html=>{setupHtml=html};document.getElementById=()=>({});renderHostCreate();`);
+ assert.equal(app.evaluate('setupValues.caseCount'),'all');
+ assert.ok(app.evaluate('setupHtml').includes('value="all" selected'));
+ for(const count of [12,15,18])assert.ok(app.evaluate('setupHtml').includes('value="'+count+'"'));
+});
+
 test('explicaciones visibles: tanto un acierto como un error muestran el motivo sin tocar otra tarjeta',()=>{
  const app=frontend();
  for(const correct of [true,false]){
