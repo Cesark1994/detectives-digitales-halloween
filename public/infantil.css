@@ -5,6 +5,16 @@
 body.player-mode{background:#1d0b3a;color:#fff;overflow-x:hidden}
 body.player-mode:before{content:'';top:0;right:0;bottom:0;left:0;font-size:0;letter-spacing:0;opacity:1;background:radial-gradient(circle 30px at calc(100% - 42px) 112px,#fff8dc 0 90%,transparent 100%),radial-gradient(circle 95px at calc(100% - 42px) 112px,#ffe9a838,transparent 100%),radial-gradient(ellipse 80% 64px at 16% 100%,#0b0318 0 96%,transparent 100%),radial-gradient(ellipse 70% 50px at 90% 100%,#110524 0 96%,transparent 100%),radial-gradient(ellipse 60% 35% at 88% 0%,#ff9d3a40,transparent 70%),radial-gradient(ellipse 80% 45% at 10% 100%,#b04bff33,transparent 70%),radial-gradient(1.6px 1.6px at 18px 26px,#ffffffd0 50%,transparent 55%),radial-gradient(1.2px 1.2px at 92px 74px,#ffffffa0 50%,transparent 55%),radial-gradient(1.4px 1.4px at 48px 118px,#ffe8a6c0 50%,transparent 55%),radial-gradient(1px 1px at 128px 14px,#ffffff90 50%,transparent 55%),linear-gradient(180deg,#2d1259 0%,#1d0b3a 55%,#14072a 100%);background-size:auto,auto,auto,auto,auto,auto,140px 140px,140px 140px,140px 140px,140px 140px,auto;background-repeat:no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,repeat,repeat,repeat,repeat,no-repeat}
 body.player-mode:after{content:'🦇';position:fixed;top:18%;right:8%;z-index:-1;font-size:26px;opacity:.3;pointer-events:none;text-shadow:-150px 70px 0 #05011099,-70px 150px 0 #05011080;animation:bat-float 7s ease-in-out infinite}
+/* Instant feedback after each move: a bubble at the top with the reason. */
+body.player-mode #coach{position:fixed;top:max(8px,env(safe-area-inset-top));left:50%;z-index:70;display:flex;align-items:flex-start;gap:10px;width:min(calc(100% - 20px),500px);padding:10px 14px 10px 10px;border:3px solid #12062a;border-radius:16px;background:#fff8ea;color:#2a1240;box-shadow:0 5px 0 #12062a,0 12px 24px #00000088;opacity:0;transform:translate(-50%,-140%);transition:transform .3s cubic-bezier(.3,1.4,.5,1),opacity .2s;pointer-events:none;cursor:pointer}
+body.player-mode #coach.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+body.player-mode #coach.good{border-color:#145a10;box-shadow:0 5px 0 #145a10,0 12px 24px #00000088}
+body.player-mode #coach.bad{border-color:#6b2a00;box-shadow:0 5px 0 #6b2a00,0 12px 24px #00000088}
+body.player-mode #coach>span{display:grid;place-items:center;flex:none;width:36px;height:36px;border:2px solid #12062a;border-radius:50%;background:#5b37a6;color:#fff;font-size:20px;font-weight:900;line-height:1}
+body.player-mode #coach.good>span{background:linear-gradient(180deg,#a6f57d,#36b02a)}
+body.player-mode #coach.bad>span{background:linear-gradient(180deg,#ffb45a,#e9640b)}
+body.player-mode #coach b{display:block;font-family:ui-rounded,'Arial Rounded MT Bold','Segoe UI',system-ui,sans-serif;font-size:17px;font-weight:900;line-height:1.2}
+body.player-mode #coach p{margin:2px 0 0;font-size:15px;font-weight:650;line-height:1.3}
 body.player-mode #toast{bottom:max(18px,env(safe-area-inset-bottom));background:#12062a;border:3px solid #ffd84a;color:#fff;font-size:15px;font-weight:800;box-shadow:0 5px 0 #000}
 
 .player-app{--display:ui-rounded,'Arial Rounded MT Bold','Segoe UI',system-ui,-apple-system,Roboto,'Helvetica Neue',Arial,sans-serif;--edge:#12062a;--stroke:#12062a;position:relative;display:flex;flex-direction:column;gap:8px;width:100%;max-width:520px;min-height:100vh;min-height:100dvh;margin:0 auto;padding:max(8px,env(safe-area-inset-top)) 10px max(10px,env(safe-area-inset-bottom));font-size:16px;line-height:1.35;color:#fff}
@@ -144,6 +154,7 @@ body.player-mode #toast{bottom:max(18px,env(safe-area-inset-bottom));background:
 .player-app .sort-button.safe.selected,.player-app .sort-button.danger.selected{transform:translateY(-3px);border-color:#fff6c2;background:var(--btn-bg);color:#fff;box-shadow:0 0 0 3px #ffb800,0 0 20px 3px #ffd84a99,0 8px 0 var(--cd)}
 .player-app .sort-button.selected:after{content:'✓';position:absolute;top:-10px;right:-8px;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:linear-gradient(180deg,#fff07a,#ffad1f);border:2px solid #6b3200;color:#6b3200;font-size:16px;text-shadow:none}
 .player-app .child-classify:has(.selected) .sort-button:not(.selected){filter:saturate(.45) brightness(.8)}
+.player-app .sort-button.verdict-bad:after{content:'✗';background:#e9640b;border-color:#6b2a00;color:#fff}
 .player-app .child-match-options.child-options{grid-template-columns:1fr;gap:9px}
 .player-app .child-match-button{display:flex;align-items:center;gap:10px;min-height:54px;padding:6px 10px 6px 6px;border:3px solid var(--edge);border-radius:15px;background:#fff8ea;color:#2a1240;font-size:16px;line-height:1.2;font-weight:800;text-align:left;box-shadow:0 4px 0 var(--edge),0 7px 12px #00000040;transition:transform .1s,box-shadow .1s}
 .player-app .child-match-button>span:first-child{display:grid;place-items:center;flex:none;width:40px;height:40px;font-size:24px;line-height:1;border-radius:11px;background:linear-gradient(180deg,#a5dcff,#3f9cf2);border:2px solid #123f7a;box-shadow:inset 0 2px 0 #ffffff80}
@@ -152,6 +163,47 @@ body.player-mode #toast{bottom:max(18px,env(safe-area-inset-bottom));background:
 .player-app .child-match-button:active:not(:disabled){transform:translateY(3px);box-shadow:0 1px 0 var(--edge)}
 .player-app .child-match-button.selected{transform:translateY(-2px);background:#fff0a8;box-shadow:0 0 0 3px #ffb800,0 0 18px 2px #ffd84a99,0 6px 0 var(--edge)}
 .player-app .child-match-button.selected>.child-match-check{background:linear-gradient(180deg,#a6f57d,#36b02a);border-color:#145a10}
+
+/* Verdicts: green when the first try was right, orange when it was not (and why is in the bubble). */
+.player-app .choice.verdict-good{box-shadow:0 0 0 3px #36b02a,0 0 16px #7dff6a88,0 5px 0 var(--fd)}
+.player-app .choice.verdict-good .choice-check{background:linear-gradient(180deg,#a6f57d,#36b02a);border-color:#145a10;color:#fff}
+.player-app .choice.verdict-bad{transform:none;box-shadow:0 0 0 3px #e9640b,0 5px 0 var(--fd)}
+.player-app .choice.verdict-bad .choice-text{background:#ffe1d6}
+.player-app .choice.verdict-bad .choice-check{background:#e9640b;border-color:#6b2a00;color:#fff}
+.player-app .child-match-button.verdict-good{background:#eaffdf}
+.player-app .child-match-button.verdict-bad{background:#ffe1d6;box-shadow:0 2px 0 var(--edge);opacity:.8}
+.player-app .child-match-button.verdict-bad>.child-match-check{background:#e9640b;border-color:#6b2a00}
+.player-app .swipe-card.verdict-good{box-shadow:0 0 0 4px #7dff6a,0 0 26px #7dff6a99,0 5px 0 var(--edge)}
+.player-app .swipe-card.verdict-bad{box-shadow:0 0 0 4px #ff9d3a,0 0 26px #ff9d3a99,0 5px 0 var(--edge)}
+.player-app .hand-card{position:relative}
+.player-app .hand-card.verdict-bad:after{content:'✗';position:absolute;top:4px;right:4px;display:grid;place-items:center;width:24px;height:24px;border:2px solid #6b2a00;border-radius:50%;background:#e9640b;color:#fff;font-size:14px;font-weight:900}
+.player-app .child-stepper i.done.good{background:#6ee35a}
+.player-app .child-stepper i.done.bad{background:#ff9d3a}
+.player-app .child-first-try{margin:auto 0 0;padding:8px 10px;border:2px solid #000;border-radius:12px;background:#12062a;font-size:14px;color:#ffe9a8}
+.player-app .nope{animation:nope .4s ease-in-out}
+/* Reveal: every card says how it went for this child; a tap opens the reason. */
+.player-app .child-verdicts{display:grid;gap:7px}
+.player-app .verdict{display:flex;align-items:center;gap:10px;min-height:46px;padding:4px 10px 4px 5px;border:3px solid var(--edge);border-radius:14px;background:#fff8ea;color:#2a1240;box-shadow:0 3px 0 var(--edge);font-size:15px;line-height:1.2;text-align:left;cursor:pointer;transition:transform .1s}
+.player-app .verdict:active{transform:translateY(2px)}
+.player-app .verdict-icon{display:grid;place-items:center;flex:none;width:34px;height:34px;border-radius:10px;background:#efe4d0;font-size:21px;line-height:1}
+.player-app .verdict>b{flex:1;min-width:0;font-weight:800}
+.player-app .verdict-tag{flex:none;padding:3px 8px;border-radius:99px;background:#36b02a;color:#fff;font-size:13px;font-weight:900;white-space:nowrap}
+.player-app .verdict.verdict-good,.player-app .verdict.verdict-chosen{background:#eaffdf}
+.player-app .verdict.verdict-skip{background:#f3eefa}
+.player-app .verdict.verdict-skip .verdict-tag{background:#8a7aa5}
+.player-app .verdict.verdict-best{background:#fff0a8}
+.player-app .verdict.verdict-best .verdict-tag{background:#d48a00}
+.player-app .verdict.verdict-missed{background:#fff1e3}
+.player-app .verdict.verdict-missed .verdict-tag{background:#e9640b}
+.player-app .verdict.verdict-wrong,.player-app .verdict.verdict-mistake{background:#ffe1d6}
+.player-app .verdict.verdict-wrong .verdict-tag,.player-app .verdict.verdict-mistake .verdict-tag{background:#c2410c}
+.player-app .verdict.verdict-other{opacity:.75}
+.player-app .child-why-hint{margin-top:-2px;font-size:14px}
+.player-app .child-first-score{margin:0;font-size:17px;font-weight:800;text-align:center;color:#ffe9a8}
+.player-app .child-first-score b{color:#ffe066}
+.player-app .result-row .tv-why{display:block;margin-top:3px;font-size:14px;font-weight:650;line-height:1.3;color:#4b3a5c}
+.player-app .result-row.result-no{background:#f3eefa;color:#5d4b72}
+.player-app .result-mark{color:#c2410c;font-weight:900}
 
 /* "Sent" badge while the team finishes. */
 .player-app .child-sent{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;margin:0;padding:16px 8px;text-align:center}
@@ -282,7 +334,9 @@ body.player-mode #toast{bottom:max(18px,env(safe-area-inset-bottom));background:
 .player-app .ghost-jar-label{flex:none;font-size:14px;font-weight:800;line-height:1.1;text-transform:uppercase;color:#d8c6ff}
 .player-app .ghost-jar-items{flex:1;display:flex;flex-wrap:wrap;gap:8px;min-width:0}
 .player-app .ghost-chip{position:relative;display:grid;place-items:center;width:40px;height:40px;padding:0;border:2px solid #6b3200;border-radius:11px;background:linear-gradient(180deg,#fff07a,#ffad1f);box-shadow:0 3px 0 #6b3200;font-size:22px;line-height:1;animation:pop-in .3s cubic-bezier(.3,1.6,.5,1) backwards}
-.player-app .ghost-chip:after{content:'×';position:absolute;top:-7px;right:-7px;width:18px;height:18px;border-radius:50%;background:#e2412a;border:2px solid #5e0b0b;color:#fff;font-size:12px;font-weight:900;line-height:14px;text-align:center}
+.player-app .ghost-chip:after{content:'✓';position:absolute;top:-7px;right:-7px;width:18px;height:18px;border-radius:50%;background:#36b02a;border:2px solid #145a10;color:#fff;font-size:11px;font-weight:900;line-height:14px;text-align:center}
+.player-app .ghost-chip.bad{border-color:#3a3d50;background:linear-gradient(180deg,#d6d9e6,#9aa0b5);box-shadow:0 3px 0 #3a3d50}
+.player-app .ghost-chip.bad:after{content:'✗';background:#e9640b;border-color:#6b2a00}
 .player-app .ghost-jar-empty{font-size:14px;font-weight:700;color:#8f7bbd}
 
 /* Linterna: a dark room lit by the player's finger. */
@@ -300,6 +354,7 @@ body.player-mode #toast{bottom:max(18px,env(safe-area-inset-bottom));background:
 .player-app .room-item.selected{background:#ffe1d6;box-shadow:0 0 0 3px #ff5a45,0 0 18px #ff5a4599,0 4px 0 var(--fd)}
 .player-app .room-stamp{position:absolute;top:-12px;right:-8px;display:none;font-size:22px;line-height:1}
 .player-app .room-item.selected .room-stamp{display:block}
+.player-app .room-item.verdict-bad{background:#eef0f5;box-shadow:0 0 0 3px #9aa0b5,0 4px 0 var(--fd)}
 .player-app .room-dark{position:absolute;z-index:2;top:0;right:0;bottom:0;left:0;pointer-events:none;background:radial-gradient(circle var(--lamp) at var(--x) var(--y),#fff6c41a 0,transparent 55%,#070212cc 80%,#050110 100%);transition:opacity .6s}
 .player-app .dark-room.all-found .room-dark{opacity:0}
 .player-app .room-eyes i{position:absolute;z-index:3;display:flex;gap:7px;pointer-events:none;transition:opacity .6s;animation:blink 4s ease-in-out infinite}
@@ -347,6 +402,7 @@ body.player-mode #toast{bottom:max(18px,env(safe-area-inset-bottom));background:
 .player-app .castle-icon{font-size:42px;line-height:1;filter:drop-shadow(0 3px 0 #000)}
 .player-app .castle-shields{display:flex;gap:5px}
 .player-app .castle-shields>span{display:grid;place-items:center;width:32px;height:32px;border:2px solid #000;border-radius:9px;background:#12062a;color:#9a7ddc;font-size:15px;font-weight:900;line-height:1}
+.player-app .castle-shields>span.done.late{background:linear-gradient(180deg,#fff0a8,#ffc94a);border-color:#6b3a00;color:#6b3a00}
 .player-app .castle-shields>span.done{background:linear-gradient(180deg,#a6f57d,#36b02a);border-color:#145a10;color:#fff;font-size:18px}
 .player-app .castle-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:38px;font-size:15px;font-weight:800;color:#e3d6ff}
 .player-app .castle-meta b{color:#ffe066}
@@ -380,6 +436,7 @@ body.player-mode #toast{bottom:max(18px,env(safe-area-inset-bottom));background:
 .player-app .child-mini-ordenar .child-order-slots .order-slot{flex-direction:column;gap:2px;min-height:clamp(62px,10vh,88px);padding:8px 4px 6px;border:3px solid #2a2d3d;border-radius:40px 40px 6px 6px/34px 34px 6px 6px;background:linear-gradient(180deg,#a7acc2,#757a93);color:#3a3d50;box-shadow:inset 0 3px 0 #ffffff59,inset 0 -4px 0 #00000033,0 4px 0 #11131c}
 .player-app .child-mini-ordenar .child-order-slots .order-slot b{background:#3a3d50;color:#e8eaf5}
 .player-app .child-mini-ordenar .child-order-slots .order-slot.filled{border-color:#145a10;background:linear-gradient(180deg,#c6ffb0,#5fd34a);box-shadow:inset 0 3px 0 #ffffff80,0 0 18px #7dff6a99,0 4px 0 #145a10}
+.player-app .child-mini-ordenar .child-order-slots .order-slot.filled.late{border-color:#6b3a00;background:linear-gradient(180deg,#fff0a8,#ffc94a);box-shadow:inset 0 3px 0 #ffffff80,0 4px 0 #6b3a00}
 .player-app .slot-hopper{position:absolute;top:-25px;left:50%;margin-left:-14px;font-size:27px;font-style:normal;line-height:1;filter:drop-shadow(0 2px 0 #000);animation:hop .5s cubic-bezier(.3,1.6,.5,1) backwards}
 
 /* Clasificar: ¿dulce o truco? A night-sky card with bats, a candy button and a ghost button. */
@@ -396,6 +453,7 @@ body.player-mode #toast{bottom:max(18px,env(safe-area-inset-bottom));background:
 .player-app .bucket-candies{display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px;min-width:0;font-size:15px;font-weight:800;line-height:1.2;color:#ffe9a8}
 .player-app .bucket-candies i{font-size:20px;font-style:normal;animation:candy-drop .35s cubic-bezier(.3,1.5,.5,1) backwards}
 .player-app .candy-bucket.bump .bucket-pumpkin{animation:wiggle .4s ease-in-out}
+.player-app .bucket-candies i.bad{color:#ff7a6b;font-weight:900}
 
 /* Conectar: the situation appears inside a crystal ball. */
 .player-app .child-mini-conectar .child-item-icon{position:relative;background:radial-gradient(circle at 34% 28%,#ffffffe6 0 9%,#e6d4ff 22%,#a07ae8 55%,#5a33a8 100%);box-shadow:inset 0 -6px 12px #3a1e6c99,0 0 22px #c9a8ffaa,0 3px 0 var(--edge)}
@@ -503,6 +561,7 @@ body.player-mode #toast{bottom:max(18px,env(safe-area-inset-bottom));background:
 @keyframes threat-walk{from{opacity:0;transform:translateY(-50px) scale(.6)}}
 @keyframes threat-bob{50%{transform:translateY(-4px) rotate(4deg)}}
 @keyframes threat-hit{30%{transform:scale(1.15) rotate(-6deg);filter:brightness(2)}100%{opacity:0;transform:scale(.2) rotate(20deg)}}
+@keyframes nope{20%{transform:translateX(-7px) rotate(-2deg)}40%{transform:translateX(6px) rotate(2deg)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
 @keyframes candle{50%{filter:brightness(1.18)}}
 @keyframes pumpkin-hop{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-8px) rotate(-6deg)}}
 @keyframes hop{0%{transform:translateY(-22px) scale(.7)}}
@@ -597,3 +656,4 @@ body.player-mode #toast{bottom:max(18px,env(safe-area-inset-bottom));background:
  .player-app .child-task h2{font-size:21px}
  .player-app .child-brand b{font-size:18px}
 }
+

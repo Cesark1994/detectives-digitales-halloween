@@ -41,7 +41,9 @@ Mantené abierto el panel durante la actividad.
 
 - **Detectar:** leé la historia corta, marcá las pistas y tocá **Enviar**. Podés elegir varias tarjetas.
 - **Decidir:** elegí una acción y tocá **Enviar**.
-- **Minijuego:** seguí la consigna breve y completá el reto. En los retos por pasos, usá **Siguiente**; al terminar, tocá **Enviar**.
+- **Minijuego:** seguí la consigna breve. Cada jugada responde al instante con su porqué; cuenta el primer intento. Los juegos de marcar terminan con **Enviar**; los demás se completan solos.
+
+Cuando todo el equipo respondió, el resultado aparece solo a los pocos segundos. En el resultado, cada chico ve qué acertó, qué se le pasó y por qué (tocando cada tarjeta). La pantalla grande muestra el porqué de cada pista y de cada opción.
 
 | Ritmo elegido por el organizador | Detectar | Decidir | Minijuego |
 | --- | --- | --- | --- |
@@ -51,16 +53,16 @@ Mantené abierto el panel durante la actividad.
 Los nueve minijuegos son:
 
 - **Encendé una calabaza (tocar):** elegí la calabaza con la acción que ayuda; se enciende al tocarla.
-- **Camino embrujado (ordenar):** tocá los pasos en el orden que consideres correcto. Usá la opción de deshacer si querés corregir antes de confirmar.
-- **¿Dulce o truco? (clasificar):** aparece una carta por vez. Deslizala a la derecha (**Dulce**: me cuida) o a la izquierda (**Truco**: atención), o tocá el botón. La siguiente carta llega sola.
-- **Llená tu calabaza (seleccionar):** marcá todas las tarjetas que cumplan la consigna; cada una cae como un dulce en la calabaza.
-- **Bola de cristal (conectar):** aparece una situación por vez dentro de la bola de cristal. Tocá la acción que la ayuda y luego **Siguiente**.
-- **Cazafantasmas:** tocá **¡Empezar!**. Durante unos 15 segundos asoman fantasmas por las ventanas; atrapá los que llevan datos privados y dejá ir los demás. Cada fantasma aparece dos veces. Al terminar podés soltar uno tocándolo o jugar **Otra vez**.
-- **Linterna detective:** mové el dedo por la habitación oscura para encontrar todas las tarjetas. Después tocá las que no tienen sentido para marcarlas 🚨.
+- **Camino embrujado (ordenar):** tocá los pasos en orden. Si un paso no va ahí, se explica por qué y probás otro.
+- **¿Dulce o truco? (clasificar):** aparece una carta por vez. Deslizala a la derecha (**Dulce**: me cuida) o a la izquierda (**Truco**: atención), o tocá el botón. Cada carta dice enseguida si era dulce o truco y por qué, y la siguiente llega sola.
+- **Llená tu calabaza (seleccionar):** marcá las ideas que cuidan; cada marca responde al instante y no se puede desmarcar. Al final, **Enviar**.
+- **Bola de cristal (conectar):** aparece una situación por vez dentro de la bola de cristal. Tocá la acción que la ayuda; si no es la indicada, probás otra.
+- **Cazafantasmas:** tocá **¡Empezar!**. Durante unos 15 segundos asoman fantasmas por las ventanas; atrapá los que llevan datos privados y dejá ir los demás. Cada fantasma aparece dos veces. Atrapar uno inofensivo también se explica. Podés jugar **Otra vez** y al final tocar **Enviar**.
+- **Linterna detective:** mové el dedo por la habitación oscura para encontrar todas las tarjetas. Después tocá las que no tienen sentido para marcarlas 🚨; cada marca responde al instante.
 - **Poción anti-rumores:** echá los ingredientes al caldero en el orden de la consigna.
-- **Defendé tu cuenta:** cada amenaza avanza hacia el castillo. Tocá la carta de tu mano que la frena. **Deshacer** devuelve la última amenaza.
+- **Defendé tu cuenta:** cada amenaza avanza hacia el castillo. Tocá la carta de tu mano que la frena; si no alcanza, probás otra.
 
-Antes de enviar un reto por pasos, podés usar **Atrás** para revisar y cambiar tus elecciones. Tocar una opción no envía la respuesta automáticamente.
+Las misiones pueden salir **al azar** (opción recomendada al crear la sala): cada partida elige misiones distintas y las pistas, opciones y tarjetas se mezclan siempre.
 
 Los puntos se muestran como dulces 🍬. Al terminar cada misión, cada chico ve tres calabazas 🎃 (se enciende una por etapa acertada) y una calabaza sorpresa. Al tocarla aparece la carta de superpoder de esa misión: común, rara, épica o legendaria según las calabazas encendidas. En el podio final se muestra la colección completa. El sonido y la vibración se apagan desde la sala de espera con **Sonido: sí / no**.
 
@@ -78,7 +80,7 @@ Las respuestas confirmadas no se pueden modificar. El organizador avanza con el 
 | Señal incorrecta marcada en Detectar | −100 |
 | Decisión correcta | +500 |
 | Decisión incorrecta | −500 |
-| Mini juego superado | +300 |
+| Mini juego con todo acertado al primer intento | +300 |
 | No responder | 0 |
 
 Los puntajes pueden ser negativos. Revisá el ranking al avanzar y el podio al terminar. Exportá el ranking en CSV desde el panel para conservar los resultados. Podés volver a comenzar con los jugadores presentes o cerrar la sala.
@@ -127,3 +129,4 @@ En los celulares usá el enlace del QR; la dirección localhost corresponde a la
 La dirección pública del juego se mantiene cuando el proveedor actualiza el servicio existente de Render. Al publicar una nueva versión se reinicia el servidor y se pierden las salas abiertas: terminá la partida y descargá el ranking antes de la actualización. Después, abrí de nuevo el enlace del organizador y creá una sala.
 
 Para el proveedor: actualizá los archivos en el repositorio de GitHub conectado a Render, en su rama de publicación. Esperá a que el despliegue automático termine en **Live**; si está desactivado, usá **Manual Deploy > Deploy latest commit** en Render. Probá una sala nueva antes de avisar al cliente. Las instrucciones completas están en `README.md`.
+

@@ -63,6 +63,10 @@ function advance(room, action='next') {
   if(action==='reset') {
     room.stage='lobby'; room.caseIndex=0; room.endsAt=0;
     room.submissions={}; for(const p of room.players) p.score=0;
+    // Replaying a mission draws a different question and challenge from the last game.
+    for(const c of cases) if(room.variantChoices?.[c.id]!==undefined)
+      room.variantChoices[c.id]=(room.variantChoices[c.id]+1)%(1+(c.variantes?.length||0));
+    room.seed=newSeed(); room.order=missionOrder(room);
     return;
   }
   switch(room.stage) {
@@ -82,22 +86,70 @@ function advance(room, action='next') {
     case 'final': if(action==='reset') return advance(room, 'reset'); else throw error('La partida terminó. Elegí «Volver a comenzar».');
   }
 }
+// When the whole team answered, the reveal comes a moment later instead of waiting for the clock.
+function maybeFinish(room) {
+  if(room.auto && ['detect','decide','mini'].includes(room.stage) && room.players.length && room.players.every(p=>room.submissions[p.id]?.[room.stage])) room.endsAt=Math.min(room.endsAt,Date.now()+2500);
+}
+// Minigames answer card by card: the first attempt is what scores, later attempts only help to learn.
+// Clasificar and tocar are one-shot; conectar and ordenar allow retrying until right; seleccionar marks stay marked.
+function checkMiniItem(mini,answer,data) {
+  const kind=MINI_KIND[mini.tipo],checks=answer.checks||(answer.checks={});
+  const item=String(data.item??''),value=String(data.value??'');
+  const find=(list,id)=>list.find(v=>v.id===id);
+  if(kind==='tocar') {
+    const option=find(mini.opciones,item); if(!option) throw error('Elegí una tarjeta válida.');
+    checks[item]={value:true,correct:item===mini.respuesta};
+    return {correct:checks[item].correct,porque:option.porque,answer:mini.respuesta,complete:{selection:item,scored:false}};
+  }
+  if(kind==='seleccionar') {
+    const option=find(mini.opciones,item); if(!option) throw error('Elegí una tarjeta válida.');
+    if(!checks[item]) checks[item]={value:true,correct:mini.correctas.includes(item)};
+    return {correct:checks[item].correct,porque:option.porque};
+  }
+  if(kind==='clasificar') {
+    const card=find(mini.tarjetas,item); if(!card||!['safe','danger'].includes(value)) throw error('Clasificá una tarjeta válida.');
+    if(!checks[item]) checks[item]={value,correct:mini.clasificacion[item]===value};
+    const complete=mini.tarjetas.every(t=>checks[t.id])?{groups:Object.fromEntries(mini.tarjetas.map(t=>[t.id,checks[t.id].value])),scored:false}:null;
+    return {correct:checks[item].correct,porque:card.porque,answer:mini.clasificacion[item],complete};
+  }
+  if(kind==='conectar') {
+    const situation=find(mini.situaciones,item); if(!situation||!find(mini.acciones,value)) throw error('Elegí una acción válida.');
+    if(checks[item]?.solved) return {correct:true,porque:situation.porque};
+    const correct=mini.soluciones[item]===value;
+    if(!checks[item]) checks[item]={value,correct};
+    if(correct) Object.assign(checks[item],{solved:true,placed:value});
+    const complete=mini.situaciones.every(v=>checks[v.id]?.solved)?{matches:Object.fromEntries(mini.situaciones.map(v=>[v.id,checks[v.id].value])),scored:false}:null;
+    return {correct,porque:correct?situation.porque:'',complete};
+  }
+  if(kind==='ordenar') {
+    const step=find(mini.pasos,item),position=Number(value);
+    if(!step||!Number.isInteger(position)) throw error('Elegí un paso válido.');
+    const next=mini.ordenCorrecto.findIndex((_,k)=>!checks['pos'+k]?.solved);
+    if(position!==next) throw error('Elegí el paso que sigue.');
+    const correct=mini.ordenCorrecto[position]===item,key='pos'+position;
+    if(!checks[key]) checks[key]={value:item,correct};
+    if(correct) Object.assign(checks[key],{solved:true,placed:item});
+    const complete=mini.ordenCorrecto.every((_,k)=>checks['pos'+k]?.solved)?{sequence:mini.ordenCorrecto.map((_,k)=>checks['pos'+k].value),scored:false}:null;
+    return {correct,porque:step.porque,complete};
+  }
+  throw error('Este mini juego no está disponible.');
+}
 function scoreDetect(room) {
-  const c=cases[room.caseIndex]; const good=new Set(c.pistas.filter(v=>v.correcta).map(v=>v.id));
+  const c=caseOf(room); const good=new Set(c.pistas.filter(v=>v.correcta).map(v=>v.id));
   for(const p of room.players) {
     const sub=room.submissions[p.id]?.detect;
     if(sub && !sub.scored) { p.score += sub.selections.reduce((n,id)=> n+(good.has(id)?100:-100),0); sub.scored=true; }
   }
 }
 function scoreDecide(room) {
-  const c=cases[room.caseIndex];
+  const c=caseOf(room);
   for(const p of room.players) {
     const sub=room.submissions[p.id]?.decide;
     if(sub && !sub.scored) { p.score+=(sub.selection===c.respuesta?500:-500); sub.scored=true; }
   }
 }
 function scoreMini(room) {
-  const mini=cases[room.caseIndex].miniJuego,kind=MINI_KIND[mini.tipo];
+  const mini=caseOf(room).miniJuego,kind=MINI_KIND[mini.tipo];
   for(const p of room.players) {
     const sub=room.submissions[p.id]?.mini;
     if(!sub || sub.scored) continue;
@@ -111,32 +163,59 @@ function scoreMini(room) {
     sub.scored=true;
   }
 }
-function miniForClient(mini,reveal) {
-  const card=v=>({id:v.id,icono:v.icono,texto:v.texto,...(v.textoCorto?{textoCorto:v.textoCorto}:{})});
+function miniForClient(mini,reveal,mix=list=>list) {
+  const card=v=>({id:v.id,icono:v.icono,texto:v.texto,...(v.textoCorto?{textoCorto:v.textoCorto}:{}),...(reveal&&v.porque?{porque:v.porque}:{})});
   const kind=MINI_KIND[mini.tipo];
   const out={tipo:mini.tipo,titulo:mini.titulo,instruccion:mini.instruccion,...(mini.instruccionCorta?{instruccionCorta:mini.instruccionCorta}:{})};
-  if(kind==='tocar') {out.opciones=mini.opciones.map(card); if(reveal) out.respuesta=mini.respuesta;}
-  if(kind==='ordenar') {out.pasos=mini.pasos.map(card); if(reveal) out.ordenCorrecto=mini.ordenCorrecto;}
-  if(kind==='clasificar') {out.tarjetas=mini.tarjetas.map(card); if(reveal) out.clasificacion=mini.clasificacion;}
-  if(kind==='seleccionar') {out.opciones=mini.opciones.map(card); if(reveal) out.correctas=mini.correctas;}
+  if(kind==='tocar') {out.opciones=mix(mini.opciones,3).map(card); if(reveal) out.respuesta=mini.respuesta;}
+  if(kind==='ordenar') {
+    // Never deal the steps already in the right order.
+    let pasos=mix(mini.pasos,4); if(pasos.map(v=>v.id).join('|')===mini.ordenCorrecto.join('|')) pasos=[...pasos.slice(1),pasos[0]];
+    out.pasos=pasos.map(card); if(reveal) out.ordenCorrecto=mini.ordenCorrecto;
+  }
+  if(kind==='clasificar') {out.tarjetas=mix(mini.tarjetas,5).map(card); if(reveal) out.clasificacion=mini.clasificacion;}
+  if(kind==='seleccionar') {out.opciones=mix(mini.opciones,3).map(card); if(reveal) out.correctas=mini.correctas;}
   if(kind==='conectar') {
-    out.situaciones=mini.situaciones.map(card);
-    out.acciones=mini.acciones.map(card);
+    out.situaciones=mix(mini.situaciones,6).map(card);
+    out.acciones=mix(mini.acciones,7).map(card);
     if(reveal) out.soluciones=mini.soluciones;
   }
   if(reveal) {out.explicacion=mini.explicacion;if(mini.explicacionCorta)out.explicacionCorta=mini.explicacionCorta;}
   return out;
 }
+// Seeded shuffles: the same order for everyone while a game runs, a new order on every new game.
+function seeded(seed) {
+  let t=seed>>>0;
+  return ()=>{t=(t+0x6D2B79F5)>>>0;let r=Math.imul(t^(t>>>15),1|t);r^=r+Math.imul(r^(r>>>7),61|r);return ((r^(r>>>14))>>>0)/4294967296;};
+}
+function shuffled(list,seed) {
+  const random=seeded(seed),out=[...list];
+  for(let i=out.length-1;i>0;i--) {const j=Math.floor(random()*(i+1));[out[i],out[j]]=[out[j],out[i]];}
+  return out;
+}
+function newSeed() { return crypto.randomInt(1,2147483647); }
+function missionOrder(room) { const all=cases.map((_,i)=>i); return (room.random?shuffled(all,room.seed):all).slice(0,room.caseCount); }
+function caseOf(room) {
+  const c=cases[room.order?room.order[room.caseIndex]:room.caseIndex];
+  if(!c || !room.random || room.seed===undefined || !c.variantes?.length) return c;
+  const variants=[c,...c.variantes];
+  room.variantChoices??={};
+  room.variantChoices[c.id]??=Math.floor(seeded(room.seed+room.caseIndex*104729+3571)()*variants.length);
+  const variant=variants[room.variantChoices[c.id]];
+  return variant===c?c:{...c,...variant,miniJuego:{...c.miniJuego,...variant.miniJuego}};
+}
 function currentCase(room) {
-  const c=cases[room.caseIndex];
+  const c=caseOf(room);
   if(!c) return null;
+  const mix=(list,salt)=>room.seed===undefined?list:shuffled(list,room.seed+salt*7919+room.caseIndex*104729);
   const reveal=['detect_reveal','decide','decide_reveal','mini','mini_reveal','leaderboard','final'].includes(room.stage);
+  const decided=['decide_reveal','mini','mini_reveal','leaderboard','final'].includes(room.stage);
   return {
     id:c.id, titulo:c.titulo, categoria:c.categoria, personaje:c.personaje,...(c.insignia?{insignia:c.insignia}:{}), relato:c.relato,...(c.relatoCorto?{relatoCorto:c.relatoCorto}:{}),
-    pistas:c.pistas.map(p=>({id:p.id,texto:p.texto,icono:p.icono,...(p.textoCorto?{textoCorto:p.textoCorto}:{}),...(reveal?{correcta:p.correcta}:{})})),
-    pregunta:c.pregunta, opciones:c.opciones,
-    ...(['decide_reveal','mini','mini_reveal','leaderboard','final'].includes(room.stage)?{respuesta:c.respuesta,explicacion:c.explicacion,...(c.consejoCorto?{consejoCorto:c.consejoCorto}:{})}:{}),
-    ...(c.miniJuego?{miniJuego:miniForClient(c.miniJuego,['mini_reveal','leaderboard','final'].includes(room.stage))}:{})
+    pistas:mix(c.pistas,1).map(p=>({id:p.id,texto:p.texto,icono:p.icono,...(p.textoCorto?{textoCorto:p.textoCorto}:{}),...(reveal?{correcta:p.correcta,porque:p.porque}:{})})),
+    pregunta:c.pregunta, opciones:mix(c.opciones,2).map(o=>({id:o.id,icono:o.icono,texto:o.texto,...(o.textoCorto?{textoCorto:o.textoCorto}:{}),...(decided?{porque:o.porque}:{})})),
+    ...(decided?{respuesta:c.respuesta,explicacion:c.explicacion,...(c.consejoCorto?{consejoCorto:c.consejoCorto}:{})}:{}),
+    ...(c.miniJuego?{miniJuego:miniForClient(c.miniJuego,['mini_reveal','leaderboard','final'].includes(room.stage),mix)}:{})
   };
 }
 function state(room,token) {
@@ -244,10 +323,12 @@ const server=http.createServer(async(req,res)=>{
      const caseCount=requestedCount==='all'?cases.length:Math.min(requestedCount,cases.length);
      allowRate('create:'+clientIP,6,60_000);
      if(rooms.size>=MAX_ROOMS) throw error('Se alcanzó el límite de salas activas. Cerrá una sala anterior o intentá más tarde.');
+     for(const flag of ['random','auto']) if(data[flag]!==undefined&&typeof data[flag]!=='boolean') throw error('Las opciones de la partida no son válidas.');
      const maxPlayers=Math.min(30,Math.max(MIN_PLAYERS,Number(data.maxPlayers)||6));
-     const room={code:uniqueCode(),hostToken:newToken(),stage:'lobby',caseIndex:0,endsAt:0,maxPlayers,caseCount,pace,players:[],submissions:{},clients:new Set(),lastActivity:Date.now()};
+     const room={code:uniqueCode(),hostToken:newToken(),stage:'lobby',caseIndex:0,endsAt:0,maxPlayers,caseCount,pace,random:data.random===true,auto:data.auto===true,seed:newSeed(),players:[],submissions:{},clients:new Set(),lastActivity:Date.now()};
+     room.order=missionOrder(room);
      rooms.set(room.code,room);
-     return json(res,{code:room.code,hostToken:room.hostToken,maxPlayers,totalCases:caseCount,pace});
+     return json(res,{code:room.code,hostToken:room.hostToken,maxPlayers,totalCases:caseCount,pace,random:room.random,auto:room.auto});
    }
    if(req.method==='POST'&&u.pathname==='/api/ingresar') {allowRate('join:'+clientIP,40,60_000);const data=await bodyJSON(req);return json(res,join(findRoom(data.code),data));}
    if(req.method==='POST'&&u.pathname==='/api/accion') {
@@ -265,15 +346,15 @@ const server=http.createServer(async(req,res)=>{
      if(answer[room.stage]) throw error('Tu respuesta ya fue confirmada para esta etapa.',409);
      if(room.stage==='detect') {
        if(!Array.isArray(data.selections)) throw error('La selección no es válida.');
-       const valid=new Set(cases[room.caseIndex].pistas.map(v=>v.id));
+       const valid=new Set(caseOf(room).pistas.map(v=>v.id));
        const selections=[...new Set(data.selections.map(String))];
        if(selections.some(v=>!valid.has(v))) throw error('Señal no válida.');
        answer.detect={selections,scored:false};
      } else if(room.stage==='decide') {
-       if(!cases[room.caseIndex].opciones.some(v=>v.id===data.selection)) throw error('Seleccioná una respuesta válida.');
+       if(!caseOf(room).opciones.some(v=>v.id===data.selection)) throw error('Seleccioná una respuesta válida.');
        answer.decide={selection:data.selection,scored:false};
      } else {
-       const mini=cases[room.caseIndex].miniJuego,kind=MINI_KIND[mini.tipo];
+       const mini=caseOf(room).miniJuego,kind=MINI_KIND[mini.tipo];
        if(!kind) throw error('Este mini juego no está disponible.');
        if(kind==='tocar') {
          if(!mini.opciones.some(v=>v.id===data.selection)) throw error('Elegí una tarjeta válida.');
@@ -292,9 +373,11 @@ const server=http.createServer(async(req,res)=>{
          if(Object.keys(data.groups).some(id=>!valid.has(id))) throw error('La tarjeta no es válida.');
          answer.mini={groups,scored:false};
        }
+       // Card-by-card answers already happened on screen: the final answer is built from them.
+       if(answer.checks&&kind!=='seleccionar') throw error('Seguí el reto en tu pantalla.');
        if(kind==='seleccionar') {
          if(!Array.isArray(data.selections)) throw error('Seleccioná las tarjetas que correspondan.');
-         const valid=new Set(mini.opciones.map(v=>v.id)); const selections=data.selections.map(String);
+         const valid=new Set(mini.opciones.map(v=>v.id)); const selections=answer.checks?Object.keys(answer.checks):data.selections.map(String);
          if(new Set(selections).size!==selections.length || selections.some(id=>!valid.has(id))) throw error('La selección no es válida.');
          answer.mini={selections,scored:false};
        }
@@ -310,7 +393,19 @@ const server=http.createServer(async(req,res)=>{
          answer.mini={matches,scored:false};
        }
      }
-     touch(room);room.submissions[p.id]=answer;push(room);return json(res,{ok:true});
+     touch(room);room.submissions[p.id]=answer;maybeFinish(room);push(room);return json(res,{ok:true});
+   }
+   if(req.method==='POST'&&u.pathname==='/api/comprobar') {
+     const data=await bodyJSON(req);const room=findRoom(data.code);
+     const p=room.players.find(p=>p.token===data.token);if(!p) throw error('Debés ingresar como investigador.',401);
+     if(room.stage!=='mini'||room.endsAt<=Date.now()) throw error('El tiempo de esta etapa terminó.');
+     if(data.stage!=='mini') throw error('La etapa cambió. Actualizá la pantalla.');
+     const answer=room.submissions[p.id]||{};
+     if(answer.mini) throw error('Tu respuesta ya fue confirmada para esta etapa.',409);
+     const result=checkMiniItem(caseOf(room).miniJuego,answer,data);
+     if(result.complete) answer.mini=result.complete;
+     touch(room);room.submissions[p.id]=answer;maybeFinish(room);push(room);
+     return json(res,{correct:result.correct,porque:result.porque,...(result.answer!==undefined?{answer:result.answer}:{}),answers:answer});
    }
    if(req.method==='GET') return sendStatic(req,res,u);
    throw error('Método no permitido.',405);
@@ -339,3 +434,4 @@ server.on('error',e=>{console.error('No se pudo iniciar el servidor:',e.message)
 
 function terminate(){ for(const r of rooms.values()) closeRoom(r); server.close(()=>process.exit(0)); setTimeout(()=>process.exit(1),5000).unref(); }
 process.on('SIGINT',terminate);process.on('SIGTERM',terminate);
+

@@ -25,6 +25,16 @@ test('contenido infantil: historias y tarjetas breves conservan una opción de l
  }
 });
 
+test('contenido didáctico: cada pista, opción y tarjeta de minijuego explica por qué',()=>{
+ const reasoned={tocar:'opciones',seleccionar:'opciones',atrapar:'opciones',linterna:'opciones',ordenar:'pasos',pocion:'pasos',clasificar:'tarjetas',conectar:'situaciones',defender:'situaciones'};
+ for(const c of cases){
+  assert.ok(c.opciones.length>=3,`${c.id}: al menos tres opciones para decidir`);
+  for(const card of [...c.pistas,...c.opciones,...c.miniJuego[reasoned[c.miniJuego.tipo]]]){
+   assert.ok(card.porque?.length>=15&&card.porque.length<=110,`${c.id}/${card.id}: porqué de ${card.porque?.length} caracteres`);
+  }
+ }
+});
+
 test('contenido infantil: cada misión entrega una carta con nombre breve y un minijuego distinto',()=>{
  for(const c of cases){
   assert.ok(c.insignia?.icono?.trim(),`${c.id}: falta el ícono de la carta`);
@@ -57,14 +67,18 @@ test('API infantil: los textos breves no revelan respuestas ni consejos antes de
   const get=stage=>JSON.parse(vm.runInContext(`JSON.stringify(currentCase({caseIndex:${i},stage:${JSON.stringify(stage)}}))`,context));
   const detect=get('detect');
   assert.equal(detect.relatoCorto,cases[i].relatoCorto);
-  assert.ok(detect.pistas.every(p=>p.textoCorto&&!('correcta'in p)));
+  assert.ok(detect.pistas.every(p=>p.textoCorto&&!('correcta'in p)&&!('porque'in p)));
+  assert.ok(detect.opciones.every(o=>!('porque'in o)));
+  assert.ok(get('decide').opciones.every(o=>!('porque'in o)),'Las opciones se explican recién en el resultado.');
   assert.ok(detect.opciones.every(p=>p.textoCorto));
   for(const stage of ['detect','detect_reveal','decide'])assert.equal('consejoCorto'in get(stage),false,stage);
   assert.equal(get('decide_reveal').consejoCorto,cases[i].consejoCorto);
   const mini=get('mini').miniJuego;
   assert.equal(mini.instruccionCorta,cases[i].miniJuego.instruccionCorta);
   for(const key of ['respuesta','correctas','soluciones','ordenCorrecto','clasificacion','explicacion','explicacionCorta'])assert.equal(key in mini,false,`${cases[i].id}: ${key}`);
+  for(const key of ['opciones','pasos','tarjetas','situaciones'])if(mini[key])assert.ok(mini[key].every(v=>!('porque'in v)),`${cases[i].id}: porqué antes de tiempo`);
   for(const key of ['opciones','pasos','tarjetas','situaciones','acciones'])if(mini[key])assert.ok(mini[key].every(v=>v.textoCorto));
   assert.equal(get('mini_reveal').miniJuego.explicacionCorta,cases[i].miniJuego.explicacionCorta);
  }
 });
+

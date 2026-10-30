@@ -21,7 +21,8 @@ Consulta: 28 de octubre de 2026. Los nueve casos y sus retos son originales; no 
 - El permiso de cámara o micrófono solo se presenta como coherente con una tarea específica; no como garantía de que una aplicación sea confiable.
 - Los retos de ordenar presentan una ruta indicada en la consigna; no afirman que exista un único orden obligatorio ante todos los incidentes. Pedir ayuda puede ocurrir en cualquier momento.
 - Los nueve formatos son tocar, ordenar, clasificar, seleccionar varias tarjetas, conectar situaciones con acciones, Cazafantasmas, Linterna detective, Poción anti-rumores y Defendé tu cuenta. Ninguno exige escritura ni arrastre preciso: deslizar la carta de clasificar tiene botones equivalentes, la linterna también responde al toque y al teclado, y en Cazafantasmas cada tarjeta aparece dos veces, se puede soltar lo atrapado y repetir la ronda.
-- Los minijuegos no muestran si una elección es correcta hasta la revelación compartida, igual que las otras etapas: el aprendizaje se conversa en equipo.
+- Retroalimentación formativa: cada pista, opción y tarjeta tiene un porqué breve. En los minijuegos la respuesta es inmediata y explica el error sin retar; cuenta el primer intento y, en los juegos de pasos y de parejas, se puede reintentar hasta encontrar la respuesta. Buscar pistas y decidir siguen siendo una predicción del grupo: el porqué aparece en la revelación compartida, para conversarlo en equipo.
+- Las misiones pueden salir al azar y el orden de pistas, opciones y tarjetas cambia en cada partida, para que nadie gane por memorizar posiciones. Cada decisión ofrece tres opciones.
 - Siguiendo la guía de Google para apps infantiles ([Designing engaging apps](https://developers.google.com/building-for-kids/designing-engaging-apps)), cada acción responde con imagen, texto y un sonido breve; los errores se muestran con mensajes positivos ("Aprendemos juntos"); y el sonido se puede apagar. Las animaciones de celebración se desactivan con la preferencia del sistema "reducir movimiento".
 - Las recompensas (calabazas encendidas y cartas) dependen solo de las respuestas: no hay azar, compras ni tiempos de espera.
 - La ambientación de Halloween es amable: fantasmas, murciélagos, calabazas y telarañas de dibujo, sin sangre ni imágenes de miedo. En "¿Dulce o truco?", "dulce" significa que algo nos cuida y "truco" que necesita atención; los botones muestran también "Me cuida" y "Atención".
@@ -29,3 +30,4 @@ Consulta: 28 de octubre de 2026. Los nueve casos y sus retos son originales; no 
 ## Revisión antes de una actividad
 
 La persona organizadora debería leer los casos y ajustar la selección, el ritmo y el acompañamiento a su grupo. Conviene probar comprensión y legibilidad con participantes de la edad prevista. No se ha realizado una validación con niños ni una evaluación formal de aprendizaje.
+

@@ -21,8 +21,8 @@ const buttonNext={lobby:'Empezar aventura →',detect:'Mostrar las pistas →',d
 let session=null,live=null,current=null,catalog=null,network=[],selectedIP='',busy=false,selectedAvatar='🕵️',connectionState='';
 let draftDetect=[],draftDecide='',draftMini={},draftCase=-1,draftStage='',clockOffset=0,screenKey='';
 let childStepKey='',childStep=0,speechPlaying=false,scoreMark=null;
-let soundOn=true,audio=null,arcade=null,lamp=null,roomFresh='',lastThreat='',castleBusy=false;
-let setupValues={caseCount:'3',pace:'calm',maxPlayers:'6'};
+let soundOn=true,audio=null,arcade=null,lamp=null,roomFresh='',lastThreat='',castleBusy=false,cardHold=null,wrongTried={};
+let setupValues={caseCount:'3',pace:'calm',maxPlayers:'6',order:'azar'};
 let posterOpen=false,posterWifi='';
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
@@ -59,7 +59,7 @@ function brand(){if(!HOST_MODE)return `<header class="top child-header"><span cl
 function footer(){return HOST_MODE?`<footer class="footer"><span>Hecho para aprender, investigar y cuidarnos. 🎃</span><span>Detectives Digitales · ${ONLINE?'Conectados desde cualquier lugar':'Aventura en tu red Wi-Fi'}</span></footer>`:''}
 function show(content){
  // A confirmed answer counts as a new screen so the player sees the "sent" badge animate in.
- const sent=!HOST_MODE&&current&&stateAnswerFor(current.stage)?':sent':'';
+ const sent=!HOST_MODE&&current&&stateAnswerFor(current.stage)&&!holdActive()?':sent':'';
  const nextKey=current?`${current.code}:${current.caseIndex}:${current.stage}${sent}`:(HOST_MODE?'setup':'join');
  const sameScreen=nextKey===screenKey,active=document.activeElement,focusId=sameScreen?active?.id:'';
  const selection=active&&typeof active.selectionStart==='number'?{start:active.selectionStart,end:active.selectionEnd}:null;
@@ -99,7 +99,7 @@ function connect(){
  live.addEventListener('update',event=>{
   try{
    const incoming=JSON.parse(event.data),changed=!current||current.caseIndex!==incoming.caseIndex||current.stage!==incoming.stage;
-   if(changed){stopSpeech();if(['detect','decide','mini'].includes(incoming.stage)){draftCase=incoming.caseIndex;draftStage=incoming.stage;draftDetect=[];draftDecide='';draftMini={};resetArcade()}}
+   if(changed){stopSpeech();document.getElementById('coach')?.classList.remove('show');if(['detect','decide','mini'].includes(incoming.stage)){draftCase=incoming.caseIndex;draftStage=incoming.stage;draftDetect=[];draftDecide='';draftMini={};resetArcade()}}
    current=incoming;clockOffset=incoming.serverNow-Date.now();connectionState='connected';render();
   }catch(error){console.error('No se pudo leer la actualización de la sala.',error)}
  });
@@ -112,7 +112,8 @@ function setupDetails(){
  const count=setupValues.caseCount==='all'?catalog.caseCount:Math.min(Number(setupValues.caseCount),catalog.caseCount);
  const missions=(catalog.missions||[]).slice(0,count),types=new Set(missions.map(m=>m.tipo));
  const durations=catalog.paces?.[setupValues.pace];
- return `<p class="setup-summary"><b>${count} misiones</b>${types.size?` · ${types.size} formas de jugar`:''}</p>${durations?`<p class="help pace-summary">Buscar pistas: ${formatDuration(durations.detect)} · Decidir: ${formatDuration(durations.decide)} · Desafío: ${formatDuration(durations.mini)}</p>`:''}`;
+ const random=setupValues.order==='azar'&&count<catalog.caseCount;
+ return `<p class="setup-summary"><b>${count} misiones</b>${random?` al azar entre ${catalog.caseCount}`:types.size?` · ${types.size} formas de jugar`:''}</p>${durations?`<p class="help pace-summary">Buscar pistas: ${formatDuration(durations.detect)} · Decidir: ${formatDuration(durations.decide)} · Desafío: ${formatDuration(durations.mini)}</p>`:''}`;
 }
 function missionGallery(){
  if(!catalog?.missions?.length)return `<section class="missions-section"><div class="section-heading"><div><span class="section-kicker">UN MUNDO POR DESCUBRIR</span><h2>Historias para aprender jugando</h2></div></div><p class="help">Creá una sala para descubrir las misiones disponibles.</p></section>`;
@@ -124,16 +125,16 @@ function renderHostCreate(){
  if(!counts.length)counts=[3];
  if(!counts.includes(Number(setupValues.caseCount)))setupValues.caseCount=String(counts[0]);
  const caseOptions=counts.map(n=>`<option value="${n}" ${setupValues.caseCount===String(n)?'selected':''}>${n} misiones${n===3?' · Aventura corta':n===6?' · A explorar':' · Experiencia completa'}</option>`).join('')+(available>9?'<option value="all">Todas las misiones</option>':'');
- show(`<section class="setup-grid"><div class="adventure-hero"><div class="hero-copy"><span class="hero-eyebrow hero-chip">✦ MISTERIOS. PISTAS. SUSTOS AMABLES.</span><h2>Pequeños detectives.<br><em>Grandes misterios.</em></h2><p class="hero-subtitle">Una aventura de Halloween para aprender a cuidarnos en Internet. Buscá pistas, resolvé minijuegos y vencé los sustos digitales.</p><div class="hero-facts"><span class="hero-fact"><b>🎃</b> Casos misteriosos</span><span class="hero-fact"><b>🧩</b> Minijuegos nuevos</span><span class="hero-fact"><b>🦇</b> ¡En equipo o en solitario!</span></div></div>${heroArt()}</div><section class="panel setup-panel"><span class="section-kicker">TU PRÓXIMA AVENTURA</span><h2>Armemos el equipo<span class="brand-dot">.</span></h2><p class="help">Elegí cómo quieren jugar. ¡Con un detective ya podemos empezar!</p><form id="setup-form" class="setup-form"><div class="setup-field"><label class="label" for="case-count">🗂️ ¿Cuántas misiones?</label><select class="field" id="case-count">${caseOptions}</select></div><div class="setup-field"><label class="label" for="pace">⏱️ El ritmo de la aventura</label><select class="field" id="pace"><option value="calm" ${setupValues.pace==='calm'?'selected':''}>🌱 Tranquilo</option><option value="classic" ${setupValues.pace==='classic'?'selected':''}>⚡ Clásico</option></select></div><div class="setup-field"><label class="label" for="max-players">👥 Tamaño del equipo</label><select class="field" id="max-players">${[1,6,10,15,20,30].map(n=>`<option value="${n}" ${setupValues.maxPlayers===String(n)?'selected':''}>${n===1?'1 detective · Individual':`Hasta ${n} detectives`}</option>`).join('')}</select></div><div class="setup-details" id="setup-details">${setupDetails()}</div><button class="button primary full" id="create" type="submit">Crear aventura <span aria-hidden="true">→</span></button></form><p class="setup-footnote"><span class="indicator"></span>${ONLINE?'Todos pueden sumarse desde cualquier lugar con Internet.':'En red local, conecten los celulares al mismo Wi-Fi.'}</p></section></section><div class="how-it-works"><span><b>01</b> Creá una sala</span><span><b>02</b> Compartí el QR</span><span><b>03</b> ¡A investigar!</span></div>${missionGallery()}`);
- for(const [id,key] of [['case-count','caseCount'],['pace','pace'],['max-players','maxPlayers']])document.getElementById(id).onchange=e=>{setupValues[key]=e.target.value;document.getElementById('setup-details').innerHTML=setupDetails()};
+ show(`<section class="setup-grid"><div class="adventure-hero"><div class="hero-copy"><span class="hero-eyebrow hero-chip">✦ MISTERIOS. PISTAS. SUSTOS AMABLES.</span><h2>Pequeños detectives.<br><em>Grandes misterios.</em></h2><p class="hero-subtitle">Una aventura de Halloween para aprender a cuidarnos en Internet. Buscá pistas, resolvé minijuegos y vencé los sustos digitales.</p><div class="hero-facts"><span class="hero-fact"><b>🎃</b> Casos misteriosos</span><span class="hero-fact"><b>🧩</b> Minijuegos nuevos</span><span class="hero-fact"><b>🦇</b> ¡En equipo o en solitario!</span></div></div>${heroArt()}</div><section class="panel setup-panel"><span class="section-kicker">TU PRÓXIMA AVENTURA</span><h2>Armemos el equipo<span class="brand-dot">.</span></h2><p class="help">Elegí cómo quieren jugar. ¡Con un detective ya podemos empezar!</p><form id="setup-form" class="setup-form"><div class="setup-field"><label class="label" for="case-count">🗂️ ¿Cuántas misiones?</label><select class="field" id="case-count">${caseOptions}</select></div><div class="setup-field"><label class="label" for="pace">⏱️ El ritmo de la aventura</label><select class="field" id="pace"><option value="calm" ${setupValues.pace==='calm'?'selected':''}>🌱 Tranquilo</option><option value="classic" ${setupValues.pace==='classic'?'selected':''}>⚡ Clásico</option></select></div><div class="setup-field"><label class="label" for="mission-order">🎲 ¿Qué misiones?</label><select class="field" id="mission-order"><option value="azar" ${setupValues.order==='azar'?'selected':''}>🎲 Al azar, distintas cada vez</option><option value="orden" ${setupValues.order==='orden'?'selected':''}>📚 Siempre en orden</option></select></div><div class="setup-field"><label class="label" for="max-players">👥 Tamaño del equipo</label><select class="field" id="max-players">${[1,6,10,15,20,30].map(n=>`<option value="${n}" ${setupValues.maxPlayers===String(n)?'selected':''}>${n===1?'1 detective · Individual':`Hasta ${n} detectives`}</option>`).join('')}</select></div><div class="setup-details" id="setup-details">${setupDetails()}</div><button class="button primary full" id="create" type="submit">Crear aventura <span aria-hidden="true">→</span></button></form><p class="setup-footnote"><span class="indicator"></span>${ONLINE?'Todos pueden sumarse desde cualquier lugar con Internet.':'En red local, conecten los celulares al mismo Wi-Fi.'}</p></section></section><div class="how-it-works"><span><b>01</b> Creá una sala</span><span><b>02</b> Compartí el QR</span><span><b>03</b> ¡A investigar!</span></div>${missionGallery()}`);
+ for(const [id,key] of [['case-count','caseCount'],['pace','pace'],['max-players','maxPlayers'],['mission-order','order']])document.getElementById(id).onchange=e=>{setupValues[key]=e.target.value;document.getElementById('setup-details').innerHTML=setupDetails()};
  document.getElementById('setup-form').onsubmit=async event=>{
   event.preventDefault();if(busy)return;busy=true;const button=document.getElementById('create');button.disabled=true;button.textContent='Preparando aventura…';
-  try{const result=await api('/api/crear',{maxPlayers:Number(setupValues.maxPlayers),caseCount:setupValues.caseCount==='all'?'all':Number(setupValues.caseCount),pace:setupValues.pace});saveSession({code:result.code,token:result.hostToken});connect()}
+  try{const result=await api('/api/crear',{maxPlayers:Number(setupValues.maxPlayers),caseCount:setupValues.caseCount==='all'?'all':Number(setupValues.caseCount),pace:setupValues.pace,random:setupValues.order==='azar',auto:true});saveSession({code:result.code,token:result.hostToken});connect()}
   catch(error){toast(error.message);button.disabled=false;button.textContent='Crear aventura →'}finally{busy=false}
  };
 }
 // Team meter for the big screen: every avatar lights up once that detective answers.
-function progress(s){const total=s.players.length,width=total?Math.round(100*s.submitted/total):0;return `<div class="tv-team" role="progressbar" aria-label="Respuestas del equipo" aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${s.submitted}"><div class="tv-team-head"><span><b>${s.submitted}</b> de ${total} respondieron</span><div class="progress"><div style="width:${width}%"></div></div></div><div class="tv-team-avatars">${s.players.map(player=>`<span class="${player.answered?'done':''}" title="${esc(player.name)}">${esc(player.avatar)}</span>`).join('')}</div></div>`}
+function progress(s){const total=s.players.length,width=total?Math.round(100*s.submitted/total):0;return `<div class="tv-team" role="progressbar" aria-label="Respuestas del equipo" aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${s.submitted}"><div class="tv-team-head"><span>${total&&s.submitted===total?'<b>¡Todos respondieron!</b> 🎉':`<b>${s.submitted}</b> de ${total} respondieron`}</span><div class="progress"><div style="width:${width}%"></div></div></div><div class="tv-team-avatars">${s.players.map(player=>`<span class="${player.answered?'done':''}" title="${esc(player.name)}">${esc(player.avatar)}</span>`).join('')}</div></div>`}
 function storyCard(c){return `<article class="story-card tv-story"><div class="story-meta"><span>MISIÓN ${String((current?.caseIndex||0)+1).padStart(2,'0')}</span><span>${esc(c.categoria)}</span></div><div class="story-heading"><span class="story-avatar" aria-hidden="true">${esc(c.insignia?.icono||'🕵️')}</span><div><h2>${esc(c.titulo)}</h2><p>${esc(c.personaje)}</p></div></div>${owlBubble(c.relato,'story-text')}${c.insignia?`<div class="tv-prize"><span class="tv-prize-icon" aria-hidden="true">${esc(c.insignia.icono)}</span><div><small>Carta de esta misión</small><b>${esc(c.insignia.nombre)}</b></div><span class="tv-prize-pumpkins" aria-hidden="true">🎃🎃🎃</span></div>`:''}</article>`}
 function owlBubble(text,cls=''){return `<div class="tv-owl"><span aria-hidden="true">🦉</span><p class="${cls}">${esc(text)}</p></div>`}
 function tvRibbon(icon,title,help='',kicker=''){return `<div class="tv-ribbon"><span class="tv-ribbon-icon" aria-hidden="true">${icon}</span><div>${kicker?`<span class="tv-kicker">${esc(kicker)}</span>`:''}<h2>${esc(title)}</h2>${help?`<p>${esc(help)}</p>`:''}</div></div>`}
@@ -184,17 +185,17 @@ function childHud(s,timer){
 function rankRows(s,{from=0,limit=Infinity}={}){const shown=s.ranking.slice(from,from+limit),rest=s.ranking.length-from-shown.length;return `<div class="rank" style="--rows:${Math.max(1,Math.ceil(shown.length/2))}">${shown.map((player,k)=>{const i=from+k;return `<div class="rank-row ${i===0?'toprank':''} ${i<3?'podium-'+(i+1):''} ${player.id===s.personal?.id?'is-me':''}"><span class="rank-num">${['🥇','🥈','🥉'][i]||i+1}</span><strong class="rank-name"><span class="rank-face" aria-hidden="true">${esc(player.avatar)}</span> ${esc(player.name)}${player.id===s.personal?.id?' <small>(vos)</small>':''}</strong><b class="rank-points">${player.score} pts</b></div>`}).join('')}</div>${rest>0?`<p class="help tv-rank-more">Y ${rest} detectives más. Descargá el ranking CSV para verlos a todos.</p>`:''}`}
 function podium(s){const order=[s.ranking[1],s.ranking[0],s.ranking[2]];return `<div class="podium">${order.map((player,i)=>player?`<div class="podium-place ${['second','first','third'][i]}"><span class="podium-face">${esc(player.avatar)}</span><b class="podium-name">${esc(player.name)}</b><span class="podium-score">${player.score} pts</span><div class="podium-block">${[2,1,3][i]}</div></div>`:'').join('')}</div>`}
 // Clue cards on the big screen: neutral while the team answers, then marked when revealed.
-function clueCards(c,reveal){return `<div class="tv-cards">${c.pistas.map((clue,i)=>`<div class="tv-card choice-${i%4} ${reveal?(clue.correcta?'good':'neutral'):''}"><span class="tv-card-icon" aria-hidden="true">${esc(clue.icono)}</span><b>${esc(clue.texto)}</b>${reveal?`<small>${clue.correcta?'✓ Señal de alerta':'Por sí sola no es una alerta'}</small>`:''}</div>`).join('')}</div>`}
-function answerList(c,reveal){return `<div class="answers">${c.opciones.map((option,i)=>`<div class="answer ${reveal&&option.id===c.respuesta?'correct':''}"><span class="answer-icon">${esc(option.icono||['💬','🧭','🛡️'][i%3])}</span><span>${esc(option.texto)}</span>${reveal&&option.id===c.respuesta?'<b>✓</b>':''}</div>`).join('')}</div>`}
+function clueCards(c,reveal){return `<div class="tv-cards">${c.pistas.map((clue,i)=>`<div class="tv-card choice-${i%4} ${reveal?(clue.correcta?'good':'neutral'):''}"><span class="tv-card-icon" aria-hidden="true">${esc(clue.icono)}</span><div class="tv-card-text"><b>${esc(clue.texto)}</b>${reveal?`<p class="tv-why"><strong>${clue.correcta?'✓ Alerta.':'No es alerta.'}</strong> ${esc(clue.porque||'')}</p>`:''}</div></div>`).join('')}</div>`}
+function answerList(c,reveal){return `<div class="answers">${c.opciones.map((option,i)=>`<div class="answer ${reveal&&option.id===c.respuesta?'correct':''}"><span class="answer-icon">${esc(option.icono||['💬','🧭','🛡️'][i%3])}</span><span>${esc(option.texto)}${reveal&&option.porque?`<small class="tv-why">${esc(option.porque)}</small>`:''}</span>${reveal&&option.id===c.respuesta?'<b>✓</b>':''}</div>`).join('')}</div>`}
 function miniList(m){const items=m.opciones||m.pasos||m.tarjetas||m.situaciones||[];return `<div class="mini-preview">${items.map(item=>`<div class="mini-preview-card"><span>${esc(item.icono)}</span><b>${esc(item.texto)}</b></div>`).join('')}</div>`}
 function miniResult(m){
- let rows=[];const kind=miniKind(m);
- if(kind==='tocar'){const item=m.opciones.find(option=>option.id===m.respuesta);if(item)rows=[`${esc(item.icono)} ${esc(item.texto)}`]}
- if(kind==='ordenar')rows=m.ordenCorrecto.map((id,i)=>{const item=m.pasos.find(option=>option.id===id);return `${i+1}. ${esc(item?.icono)} ${esc(item?.texto)}`});
- if(kind==='clasificar')rows=m.tarjetas.map(item=>`${esc(item.icono)} ${esc(item.texto)} <b>${m.clasificacion[item.id]==='safe'?'🛡️ Me cuida':'⚠️ Atención'}</b>`);
- if(kind==='seleccionar')rows=m.opciones.filter(option=>m.correctas.includes(option.id)).map(item=>`${esc(item.icono)} ${esc(item.texto)}`);
- if(kind==='conectar')rows=m.situaciones.map(item=>{const action=m.acciones.find(option=>option.id===m.soluciones[item.id]);return `${esc(item.icono)} ${esc(item.texto)} <b>→ ${esc(action?.icono)} ${esc(action?.texto)}</b>`});
- return `<div class="mini-result">${rows.map(row=>`<div class="result-row">${row}</div>`).join('')}</div>`;
+ let rows=[];const kind=miniKind(m),why=item=>item?.porque?`<small class="tv-why">${esc(item.porque)}</small>`:'';
+ if(kind==='tocar')rows=[...m.opciones].sort((a,b)=>(b.id===m.respuesta)-(a.id===m.respuesta)).map(item=>({good:item.id===m.respuesta,html:`${esc(item.icono)} ${esc(item.texto)}${why(item)}`}));
+ if(kind==='ordenar')rows=m.ordenCorrecto.map((id,i)=>{const item=m.pasos.find(option=>option.id===id);return {good:true,html:`${i+1}. ${esc(item?.icono)} ${esc(item?.texto)}${why(item)}`}});
+ if(kind==='clasificar')rows=m.tarjetas.map(item=>({good:true,html:`${esc(item.icono)} ${esc(item.texto)} <b>${m.clasificacion[item.id]==='safe'?'🍬 Dulce: me cuida':'👻 Truco: atención'}</b>${why(item)}`}));
+ if(kind==='seleccionar')rows=[...m.opciones].sort((a,b)=>m.correctas.includes(b.id)-m.correctas.includes(a.id)).map(item=>({good:m.correctas.includes(item.id),html:`${esc(item.icono)} ${esc(item.texto)}${why(item)}`}));
+ if(kind==='conectar')rows=m.situaciones.map(item=>{const action=m.acciones.find(option=>option.id===m.soluciones[item.id]);return {good:true,html:`${esc(item.icono)} ${esc(item.texto)} <b>→ ${esc(action?.icono)} ${esc(action?.texto)}</b>${why(item)}`}});
+ return `<div class="mini-result">${rows.map(row=>`<div class="result-row ${row.good?'':'result-no'}">${row.good?'':'<span class="result-mark">✗ No va</span> '}${row.html}</div>`).join('')}</div>`;
 }
 // A4 poster for the room: big QR, room code, four picture steps and the address to type by hand.
 function posterSheet(s,address,base){return `<article class="print-poster" aria-label="Vista previa del cartel"><div class="poster-inner"><header class="poster-head"><span aria-hidden="true">🎃</span><div><small>Misterios en la noche</small><b>Detectives Digitales</b></div><span aria-hidden="true">🦇</span></header><h2>¡Sumate a la aventura!</h2><img class="poster-qr" src="/api/qr?texto=${encodeURIComponent(address)}" alt="QR para entrar a la sala ${esc(s.code)}"><div class="poster-code"><small>Código de sala</small><b>${esc(s.code)}</b></div><ol class="poster-steps"><li><span aria-hidden="true">📶</span><p>${LOCAL_HOST?`Conectá el celular al Wi-Fi <strong id="poster-wifi-name">${esc(posterWifi||'del aula')}</strong>.`:'Conectá el celular a Internet.'}</p></li><li><span aria-hidden="true">📷</span><p>Abrí la cámara, apuntá al QR y tocá el enlace.</p></li><li><span aria-hidden="true">🦊</span><p>Escribí un <strong>apodo</strong> (no tu nombre real) y elegí tu personaje.</p></li><li><span aria-hidden="true">🎮</span><p>Tocá <strong>¡A jugar!</strong> y esperá a que empiece la misión.</p></li></ol><p class="poster-url">¿No funciona la cámara? Escribí en el navegador<br><b>${esc(base)}</b><br>y poné el código <b>${esc(s.code)}</b>.</p><footer class="poster-foot">🦉 Cuidá tus datos: nunca compartas tu dirección, tu teléfono ni tus claves.</footer></div></article>`}
@@ -236,7 +237,7 @@ function renderHost(){
  if(s.stage==='decide')content=`${tvRibbon('💡',c.pregunta,'Elegí una opción en tu celular.')}${answerList(c,false)}${progress(s)}`;
  if(s.stage==='decide_reveal')content=`${tvRibbon('🧭','Una decisión que nos cuida')}${answerList(c,true)}${owlBubble(c.explicacion)}`;
  if(s.stage==='mini')content=`${tvRibbon(miniIcons[m.tipo]||'🎮',m.titulo,m.instruccion,`${miniNames[m.tipo]||'Minijuego'} · +300 puntos`)}${miniList(m)}${progress(s)}`;
- if(s.stage==='mini_reveal')content=`${tvRibbon('🎓',m.titulo,'','Aprendemos juntos')}${miniResult(m)}${owlBubble(m.explicacion)}`;
+ if(s.stage==='mini_reveal')content=`${tvRibbon('🎓',m.titulo,'','Aprendemos juntos')}${miniResult(m)}${owlBubble(m.explicacionCorta||m.explicacion)}`;
  show(`<section class="tv-stage tv-${s.stage}"><div class="tv-hud">${missionProgress(s)}<h2 class="tv-stage-name">${esc(stageNames[s.stage])}</h2>${active?countdown():'<span class="tv-talk">💬 Para conversar en equipo</span>'}</div><div class="screen host-play-grid tv-grid">${storyCard(c)}<section class="panel question-panel tv-board">${content}<div class="tv-actions"><span class="tv-team-total">👥 ${s.players.length} ${s.players.length===1?'detective':'detectives'}</span><button class="button ghost btn-small" id="fullscreen" aria-label="Pantalla completa">⛶</button><button class="button primary" id="next">${buttonNext[s.stage]}</button></div></section></div></section>`);
  document.getElementById('next').onclick=()=>hostAction('next');document.getElementById('fullscreen').onclick=toggleFullscreen;
 }
@@ -295,40 +296,90 @@ function submitArea(submitted,label='Enviar'){
  return submitted?childWaiting():`<div class="submit-area child-actions"><button class="button primary full" data-answer-submit id="submit-answer" disabled>${label} <span aria-hidden="true">✓</span></button><p class="answer-status child-helper" id="answer-status" role="status"></p></div>`;
 }
 function questionHeading(icon,title,help){return `<div class="question-heading"><span class="question-icon lilac" aria-hidden="true">${icon}</span><div><h2>${esc(title)}</h2><p class="help">${esc(help)}</p></div></div>`}
-function choiceCard(item,index,{name,type,selected,disabled}){
- return `<label class="choice choice-${index%4} ${selected?'selected':''} ${disabled?'locked':''}" for="${name}-${index}"><input id="${name}-${index}" type="${type}" name="${name}" value="${esc(item.id)}" ${selected?'checked':''} ${disabled?'disabled':'data-answer-control'}><span class="choice-emoji" aria-hidden="true">${esc(item.icono||['💬','🧭','🛡️','🌟'][index%4])}</span><strong class="choice-text">${esc(shortText(item))}</strong><span class="choice-check" aria-hidden="true">${selected?'✓':'+'}</span></label>`;
+function choiceCard(item,index,{name,type,selected,disabled,verdict=''}){
+ return `<label class="choice choice-${index%4} ${selected?'selected':''} ${disabled?'locked':''} ${verdict?'verdict-'+verdict:''}" for="${name}-${index}"><input id="${name}-${index}" type="${type}" name="${name}" value="${esc(item.id)}" ${selected?'checked':''} ${disabled?'disabled':'data-answer-control'}><span class="choice-emoji" aria-hidden="true">${esc(item.icono||['💬','🧭','🛡️','🌟'][index%4])}</span><strong class="choice-text">${esc(shortText(item))}</strong><span class="choice-check" aria-hidden="true">${verdict==='bad'?'✗':selected?'✓':'+'}</span></label>`;
 }
 function bindChoices(name,onChange){document.querySelectorAll(`input[name="${name}"]`).forEach(input=>input.onchange=()=>{onChange(input);document.querySelectorAll(`input[name="${name}"]`).forEach(control=>{control.closest('.choice').classList.toggle('selected',control.checked);control.closest('.choice').querySelector('.choice-check').textContent=control.checked?'✓':'+'});if(input.checked)bump(input.closest('.choice'));sfx(input.checked?'pick':'tap');updateTimers()})}
 function miniGame(m,submitted){
+ const checks=checksNow();
  if(m.tipo==='tocar'||m.tipo==='seleccionar'){
-  const multi=m.tipo==='seleccionar';return `<div class="mini-game-grid choice-grid child-options">${m.opciones.map((option,i)=>choiceCard(option,i,{name:'mini-choice',type:multi?'checkbox':'radio',selected:multi?(draftMini.selections||[]).includes(option.id):draftMini.selection===option.id,disabled:!!submitted})).join('')}</div>${multi?`<div class="candy-bucket" id="candy-bucket" role="status"><span class="bucket-pumpkin" aria-hidden="true">🎃</span><span class="bucket-candies" id="bucket-candies">${candyBucket()}</span></div>`:''}`;
+  const multi=m.tipo==='seleccionar';
+  return `<div class="mini-game-grid choice-grid child-options">${m.opciones.map((option,i)=>{const verdict=multi&&checks[option.id]?(checks[option.id].correct?'good':'bad'):'';return choiceCard(option,i,{name:'mini-choice',type:multi?'checkbox':'radio',selected:multi?!!checks[option.id]:draftMini.selection===option.id,disabled:!!submitted||!!verdict,verdict})}).join('')}</div>${multi?`<div class="candy-bucket" id="candy-bucket" role="status"><span class="bucket-pumpkin" aria-hidden="true">🎃</span><span class="bucket-candies" id="bucket-candies">${candyBucket()}</span></div>`:''}`;
  }
  if(m.tipo==='ordenar'){
   const sequence=draftMini.sequence||[];
-  return `<div class="mini-order-slots child-order-slots" aria-label="Tu secuencia">${m.pasos.map((_,i)=>{const item=m.pasos.find(step=>step.id===sequence[i]);return `<div class="order-slot ${item?'filled':''}"><b>${i+1}</b><span>${item?esc(item.icono):'·'}</span><small>${item?esc(shortText(item)):''}</small>${item&&i===sequence.length-1?`<i class="slot-hopper" aria-hidden="true">${esc(current?.personal?.avatar||'🕵️')}</i>`:''}</div>`}).join('')}</div><p class="child-helper child-order-help">${sequence.length<m.pasos.length?`Elegí el paso ${sequence.length+1}`:'¡Tu secuencia está lista!'}</p>${orderCards(m,submitted)}`;
+  return `<div class="mini-order-slots child-order-slots" aria-label="Tu secuencia">${m.pasos.map((_,i)=>{const item=m.pasos.find(step=>step.id===sequence[i]);return `<div class="order-slot ${item?'filled':''} ${item&&checks['pos'+i]&&!checks['pos'+i].correct?'late':''}"><b>${i+1}</b><span>${item?esc(item.icono):'·'}</span><small>${item?esc(shortText(item)):''}</small>${item&&i===sequence.length-1?`<i class="slot-hopper" aria-hidden="true">${esc(current?.personal?.avatar||'🕵️')}</i>`:''}</div>`}).join('')}</div><p class="child-helper child-order-help">${sequence.length<m.pasos.length?`¿Cuál es el paso ${sequence.length+1}?`:'¡Llegaste al final del camino!'}</p>${orderCards(m,submitted)}`;
  }
  if(m.tipo==='pocion')return potionGame(m,submitted);
  if(m.tipo==='atrapar')return ghostGame(m);
  if(m.tipo==='linterna')return darkRoom(m);
  if(m.tipo==='defender')return castleGame(m);
- if(childWizard(m)){
-  const items=childItems(m),item=items[childStep],disabled=submitted?'disabled':'data-answer-control';
-  const counter=`<div class="child-stepper"><span>Tarjeta <b>${childStep+1}/${items.length}</b></span><div aria-hidden="true">${items.map((_,i)=>`<i class="${i===childStep?'active':i<childStep?'done':''}"></i>`).join('')}</div></div>`;
-  if(m.tipo==='clasificar'){
-   const group=draftMini.groups?.[item.id];
-   // A swipe deck: drag the card right when it protects you, left when it needs attention. The buttons do the same.
-   const card=`<div class="child-item swipe-card ${group?'is-'+group:''} ${childStep<items.length-1?'has-more':''}" id="child-item" data-card="${esc(item.id)}"><span class="swipe-stamp safe" aria-hidden="true">🍬 ¡Dulce!</span><span class="swipe-stamp danger" aria-hidden="true">👻 ¡Truco!</span><span class="child-item-icon" aria-hidden="true">${esc(item.icono)}</span><h3>${esc(shortText(item))}</h3><span class="swipe-hint" aria-hidden="true"><i>← 👻 Truco</i><i>Dulce 🍬 →</i></span></div>`;
-   return `${counter}${card}<div class="classification-actions sort-actions child-options child-classify" role="group" aria-label="Elegí cómo clasificar esta tarjeta">${[['danger','👻','Truco','Atención'],['safe','🍬','Dulce','Me cuida']].map(([value,icon,label,meaning])=>`<button type="button" class="classify-button sort-button ${value} ${group===value?'selected':''}" id="classify-${childStep}-${value}" data-card="${esc(item.id)}" data-group="${value}" aria-pressed="${group===value}" ${disabled}><span aria-hidden="true">${icon}</span><b>${label}</b><small>${meaning}</small></button>`).join('')}</div>`;
-  }
-  const card=`<div class="child-item" id="child-item"><span class="child-item-icon" aria-hidden="true">${esc(item.icono)}</span><h3>${esc(shortText(item))}</h3></div>`;
-  return `${counter}${card}<div class="child-match-options child-options">${m.acciones.map((action,i)=>`<button type="button" class="child-match-button ${draftMini.matches?.[item.id]===action.id?'selected':''}" id="child-match-${childStep}-${i}" data-match-item="${esc(item.id)}" data-match-action="${esc(action.id)}" aria-pressed="${draftMini.matches?.[item.id]===action.id}" ${disabled}><span aria-hidden="true">${esc(action.icono)}</span><b>${esc(shortText(action))}</b><span class="child-match-check" aria-hidden="true">${draftMini.matches?.[item.id]===action.id?'✓':''}</span></button>`).join('')}</div>`;
- }
+ if(m.tipo==='clasificar')return sortDeck(m);
+ if(m.tipo==='conectar')return crystalBall(m);
  return '<p>Esperá el próximo reto.</p>';
 }
-function candyBucket(){const count=(draftMini.selections||[]).length;return count?`<span aria-hidden="true">${'<i>🍬</i>'.repeat(count)}</span><b>${count} ${count===1?'dulce':'dulces'} en tu calabaza</b>`:'<b>Tu calabaza está vacía</b>'}
+// Card-by-card answers live on the server; the draft mirrors them so Enviar and the counters stay in step.
+function checksNow(){return current?.personal?.answers?.checks||{}}
+function placedSteps(m){const checks=checksNow(),out=[];for(let k=0;k<(m.pasos||[]).length;k++){const at=checks['pos'+k];if(!at?.solved)break;out.push(at.placed)}return out}
+function syncChecks(m){const kind=miniKind(m),checks=checksNow();if(kind==='seleccionar')draftMini={...draftMini,selections:Object.keys(checks)};if(kind==='ordenar')draftMini={...draftMini,sequence:placedSteps(m)}}
+// A card that was just answered stays on screen a moment so the child sees why, then the next one comes in.
+function holdActive(){return !!cardHold&&cardHold.key===arcadeKey()&&cardHold.until>Date.now()}
+function heldItem(items){return holdActive()?items.find(item=>item.id===cardHold.id):null}
+function hold(id,ms){cardHold={key:arcadeKey(),id,until:Date.now()+ms};setTimeout(()=>{if(current?.stage!=='mini')return;render();document.getElementById('child-item')?.classList.add('child-item-in')},ms+40)}
+function triedFor(id){const first=checksNow()[id];return [...new Set([...(wrongTried[arcadeKey()+':'+id]||[]),...(first&&!first.correct?[first.value]:[])])]}
+function markTried(id,value){const key=arcadeKey()+':'+id;wrongTried[key]=[...(wrongTried[key]||[]),value]}
+function bumpNope(element){if(!element)return;element.classList.remove('nope');void element.offsetWidth;element.classList.add('nope')}
+function stepper(index,statuses,label){return `<div class="child-stepper"><span>${label} <b>${Math.min(index+1,statuses.length)}/${statuses.length}</b></span><div aria-hidden="true">${statuses.map((status,i)=>`<i class="${i===index?'active':status?'done '+status:''}"></i>`).join('')}</div></div>`}
+// Instant feedback after each move: a bubble at the top of the screen with the reason. Tap to close.
+function coach(good,title,text,ms){
+ if(HOST_MODE)return;
+ let node=document.getElementById('coach');
+ if(!node){node=document.createElement('div');node.id='coach';node.setAttribute('role','status');node.setAttribute('aria-live','polite');node.onclick=()=>node.classList.remove('show');document.body.appendChild(node)}
+ node.className=good===true?'good':good===false?'bad':'info';
+ node.innerHTML=`<span aria-hidden="true">${good===true?'✓':good===false?'!':'🦉'}</span><div><b>${esc(title)}</b>${text?`<p>${esc(text)}</p>`:''}</div>`;
+ void node.offsetWidth;node.classList.add('show');
+ clearTimeout(coach.timer);coach.timer=setTimeout(()=>node.classList.remove('show'),ms||(good===false?4500:2800));
+}
+async function checkItem(item,value,{concurrent=false}={}){
+ if((busy&&!concurrent)||!session||secondsRemaining()<=0||stateAnswerFor('mini'))return null;
+ if(!concurrent){busy=true;updateTimers()}
+ try{
+  const result=await api('/api/comprobar',{code:session.code,token:session.token,stage:'mini',item,value});
+  const answers=current?.stage==='mini'&&current.personal?.answers;
+  if(answers){answers.checks={...(answers.checks||{}),...(result.answers.checks||{})};if(result.answers.mini)answers.mini=result.answers.mini}
+  return result;
+ }catch(error){toast(error.message);return null}
+ finally{if(!concurrent)busy=false;updateTimers()}
+}
+async function submitMini(m){
+ if(m.tipo==='tocar'){
+  if(!draftMini.selection)return;
+  const result=await checkItem(draftMini.selection);
+  if(result){const right=m.opciones.find(option=>option.id===result.answer);sfx(result.correct?'win':'learn');coach(result.correct,result.correct?'¡Encendiste la calabaza justa!':`La que ayuda: ${shortText(right)}`,result.porque)}
+  render();return;
+ }
+ // Set games: every mark already got its answer, Enviar closes the round.
+ sendAnswer(miniPayload(m));
+}
+// ¿Dulce o truco?: one card at a time; each card answers on the spot and the next one comes in.
+function sortDeck(m){
+ const checks=checksNow(),items=m.tarjetas,item=heldItem(items)||items.find(card=>!checks[card.id])||items[items.length-1];
+ const index=items.indexOf(item),check=checks[item.id],group=check?.value||'',verdict=check?(check.correct?'good':'bad'):'';
+ const truth=check?(check.correct?group:group==='safe'?'danger':'safe'):'';
+ const card=`<div class="child-item swipe-card ${truth?'is-'+truth:''} ${verdict?'verdict-'+verdict:''} ${index<items.length-1?'has-more':''}" id="child-item" data-card="${esc(item.id)}"><span class="swipe-stamp safe" aria-hidden="true">🍬 ${verdict?'¡Es dulce!':'¡Dulce!'}</span><span class="swipe-stamp danger" aria-hidden="true">👻 ${verdict?'¡Es truco!':'¡Truco!'}</span><span class="child-item-icon" aria-hidden="true">${esc(item.icono)}</span><h3>${esc(shortText(item))}</h3><span class="swipe-hint" aria-hidden="true"><i>← 👻 Truco</i><i>Dulce 🍬 →</i></span></div>`;
+ return `${stepper(index,items.map(card=>checks[card.id]?(checks[card.id].correct?'good':'bad'):''),'Tarjeta')}${card}<div class="classification-actions sort-actions child-options child-classify" role="group" aria-label="Elegí cómo clasificar esta tarjeta">${[['danger','👻','Truco','Atención'],['safe','🍬','Dulce','Me cuida']].map(([value,icon,label,meaning])=>`<button type="button" class="classify-button sort-button ${value} ${group===value?'selected verdict-'+verdict:''}" id="classify-${index}-${value}" data-card="${esc(item.id)}" data-group="${value}" aria-pressed="${group===value}" ${check?'disabled':'data-answer-control'}><span aria-hidden="true">${icon}</span><b>${label}</b><small>${meaning}</small></button>`).join('')}</div>`;
+}
+// Bola de cristal: each situation waits for the right help; a wrong pick explains and stays crossed out.
+function crystalBall(m){
+ const checks=checksNow(),items=m.situaciones,item=heldItem(items)||items.find(situation=>!checks[situation.id]?.solved)||items[items.length-1];
+ const index=items.indexOf(item),check=checks[item.id],tried=triedFor(item.id);
+ const statuses=items.map(situation=>checks[situation.id]?.solved?(checks[situation.id].correct?'good':'bad'):'');
+ return `${stepper(index,statuses,'Situación')}<div class="child-item" id="child-item"><span class="child-item-icon" aria-hidden="true">${esc(item.icono)}</span><h3>${esc(shortText(item))}</h3></div><div class="child-match-options child-options">${m.acciones.map((action,i)=>{const solved=!!check?.solved&&check.placed===action.id,wrong=tried.includes(action.id);return `<button type="button" class="child-match-button ${solved?'selected verdict-good':''} ${wrong?'verdict-bad':''}" id="child-match-${index}-${i}" data-match-item="${esc(item.id)}" data-match-action="${esc(action.id)}" aria-pressed="${solved}" ${check?.solved||wrong?'disabled':'data-answer-control'}><span aria-hidden="true">${esc(action.icono)}</span><b>${esc(shortText(action))}</b><span class="child-match-check" aria-hidden="true">${solved?'✓':wrong?'✗':''}</span></button>`}).join('')}</div>`;
+}
+function candyBucket(){const checks=Object.values(checksNow()),good=checks.filter(check=>check.correct).length,bad=checks.length-good;return checks.length?`<span aria-hidden="true">${'<i>🍬</i>'.repeat(good)}${'<i class="bad">✗</i>'.repeat(bad)}</span><b>${good} ${good===1?'dulce':'dulces'}${bad?` · ${bad} ${bad===1?'error':'errores'}`:''}</b>`:'<b>Tu calabaza está vacía</b>'}
 function orderCards(m,submitted){
  const sequence=draftMini.sequence||[];
- return `<div class="mini-game-grid order-options child-options">${m.pasos.map((step,i)=>`<button type="button" class="mini-card choice-${i%4} ${sequence.includes(step.id)?'selected':''}" id="mini-step-${i}" data-mini-step="${esc(step.id)}" ${submitted||sequence.includes(step.id)?'disabled':'data-answer-control'}><span class="emoji">${esc(step.icono)}</span><strong>${esc(shortText(step))}</strong>${sequence.includes(step.id)?`<small>✓ ${sequence.indexOf(step.id)+1}</small>`:''}</button>`).join('')}</div>${submitted?'':`<button type="button" class="button ghost btn-small child-undo" id="mini-undo" ${!sequence.length?'disabled':''}>↶ Deshacer</button>`}`;
+ return `<div class="mini-game-grid order-options child-options">${m.pasos.map((step,i)=>`<button type="button" class="mini-card choice-${i%4} ${sequence.includes(step.id)?'selected':''}" id="mini-step-${i}" data-mini-step="${esc(step.id)}" ${submitted||sequence.includes(step.id)?'disabled':'data-answer-control'}><span class="emoji">${esc(step.icono)}</span><strong>${esc(shortText(step))}</strong>${sequence.includes(step.id)?`<small>✓ ${sequence.indexOf(step.id)+1}</small>`:''}</button>`).join('')}</div>`;
 }
 // Potion: the same ordering task, poured into a cauldron that changes color with each ingredient.
 function potionGame(m,submitted){
@@ -337,7 +388,7 @@ function potionGame(m,submitted){
 }
 // Ghost hunt: every card pops out of the windows twice. The timeline lives outside the DOM so live updates can redraw it.
 // A replayed mission (after "Volver a jugar") starts its arcade game from scratch.
-function resetArcade(){arcade=null;lamp=null;lastThreat='';if(ghostTick.timer){clearInterval(ghostTick.timer);ghostTick.timer=0}}
+function resetArcade(){arcade=null;lamp=null;lastThreat='';cardHold=null;wrongTried={};if(ghostTick.timer){clearInterval(ghostTick.timer);ghostTick.timer=0}}
 function arcadeKey(){return `${current?.code}:${current?.caseIndex}:mini`}
 function ghostState(){return arcade?.key===arcadeKey()?arcade:null}
 function ghostSchedule(items){
@@ -347,7 +398,7 @@ function ghostSchedule(items){
  order.forEach((item,i)=>{const t0=700+i*1000,taken=pops.filter(pop=>pop.t0<=t0&&pop.t1>t0).map(pop=>pop.hole),free=[0,1,2,3,4,5].filter(hole=>!taken.includes(hole)&&hole!==pops[i-1]?.hole);pops.push({id:item.id,hole:free[Math.floor(Math.random()*free.length)],t0,t1:t0+2100})});
  return pops;
 }
-function ghostJar(m){const caught=draftMini.selections||[];return caught.length?caught.map(id=>{const item=m.opciones.find(option=>option.id===id);return `<button type="button" class="ghost-chip" data-release="${esc(id)}" aria-label="Soltar: ${esc(shortText(item))}" data-answer-control><span aria-hidden="true">${esc(item?.icono)}</span></button>`}).join(''):'<span class="ghost-jar-empty">Ninguno todavía</span>'}
+function ghostJar(m){const caught=Object.entries(checksNow());return caught.length?caught.map(([id,check])=>{const item=m.opciones.find(option=>option.id===id);return `<span class="ghost-chip ${check.correct?'good':'bad'}" title="${esc(shortText(item))}"><span aria-hidden="true">${esc(item?.icono)}</span><span class="sr-only">${esc(shortText(item))}: ${check.correct?'dato privado':'no era privado'}</span></span>`}).join(''):'<span class="ghost-jar-empty">Ninguno todavía</span>'}
 function ghostGame(m){
  const game=ghostState();
  const overlay=!game?'<div class="arena-overlay"><span aria-hidden="true">👻</span><button type="button" class="button primary" id="ghost-start" data-answer-control>▶ ¡Empezar!</button></div>':draftMini.done?'<div class="arena-overlay arena-done"><b>¡Ronda terminada!</b><button type="button" class="button ghost btn-small" id="ghost-again" data-answer-control>↻ Otra vez</button></div>':'';
@@ -366,43 +417,41 @@ function ghostTick(){
   hole.dataset.show=want;
   if(!want){hole.innerHTML='';continue}
   const i=Number(want.slice(1)),item=m.opciones.find(option=>option.id===game.pops[i].id);
-  hole.innerHTML=want[0]==='c'?'<span class="ghost-caught" aria-hidden="true">✨</span>':`<button type="button" class="ghost-pop" data-pop="${i}" data-item="${esc(item.id)}" aria-label="Atrapar: ${esc(shortText(item))}" data-answer-control><span class="ghost-body" aria-hidden="true">👻</span><span class="ghost-card"><span aria-hidden="true">${esc(item.icono)}</span><b>${esc(shortText(item))}</b></span></button>`;
+  hole.innerHTML=want[0]==='c'?`<span class="ghost-caught" aria-hidden="true">${game.verdict[i]===false?'💨':'✨'}</span>`:`<button type="button" class="ghost-pop" data-pop="${i}" data-item="${esc(item.id)}" aria-label="Atrapar: ${esc(shortText(item))}" data-answer-control><span class="ghost-body" aria-hidden="true">👻</span><span class="ghost-card"><span aria-hidden="true">${esc(item.icono)}</span><b>${esc(shortText(item))}</b></span></button>`;
  }
 }
 function ghostStart(m){
  if(busy||secondsRemaining()<=0)return;
  const pops=ghostSchedule(m.opciones);
- arcade={key:arcadeKey(),start:Date.now(),pops,caught:{},end:pops[pops.length-1].t1+300,done:false};
- draftMini={selections:[],done:false};sfx('whoosh');render();
+ arcade={key:arcadeKey(),start:Date.now(),pops,caught:{},verdict:{},end:pops[pops.length-1].t1+300,done:false};
+ draftMini={...draftMini,done:false};syncChecks(current.case.miniJuego);sfx('whoosh');render();
  clearInterval(ghostTick.timer);ghostTick.timer=setInterval(ghostTick,100);
 }
 function bindGhosts(m){
  const start=document.getElementById('ghost-start');if(start)start.onclick=()=>ghostStart(m);
  const again=document.getElementById('ghost-again');if(again)again.onclick=()=>ghostStart(m);
- const house=document.getElementById('ghost-house'),jar=document.getElementById('ghost-jar');
- const refresh=()=>{jar.innerHTML=ghostJar(m);updateTimers()};
- if(house)house.onclick=event=>{
+ const house=document.getElementById('ghost-house');
+ // Each catch is checked on the spot; catches can overlap, so these requests run side by side.
+ if(house)house.onclick=async event=>{
   const pop=event.target.closest('[data-pop]'),game=ghostState();
-  if(!pop||pop.disabled||!game||game.done||busy||secondsRemaining()<=0)return;
+  if(!pop||pop.disabled||!game||game.done||secondsRemaining()<=0)return;
   const i=Number(pop.dataset.pop);if(game.caught[i]!==undefined)return;
-  game.caught[i]=Date.now()-game.start;
-  const id=game.pops[i].id,caught=draftMini.selections||[];
-  if(!caught.includes(id))draftMini={...draftMini,selections:[...caught,id]};
-  sfx('pop');ghostTick();refresh();
- };
- if(jar)jar.onclick=event=>{
-  const chip=event.target.closest('[data-release]');if(!chip||chip.disabled||busy||secondsRemaining()<=0)return;
-  draftMini={...draftMini,selections:(draftMini.selections||[]).filter(id=>id!==chip.dataset.release)};sfx('tap');refresh();
+  game.caught[i]=Date.now()-game.start;sfx('pop');ghostTick();
+  const result=await checkItem(game.pops[i].id,undefined,{concurrent:true});if(!result)return;
+  game.verdict[i]=result.correct;
+  coach(result.correct,result.correct?'¡Atrapado! Es un dato privado':'¡Ese era inofensivo!',result.porque,2200);
+  if(!result.correct)sfx('learn');
+  syncChecks(m);const jar=document.getElementById('ghost-jar');if(jar)jar.innerHTML=ghostJar(m);updateTimers();
  };
  ghostTick();
  if(ghostState()&&!ghostState().done&&!ghostTick.timer)ghostTick.timer=setInterval(ghostTick,100);
 }
 // Detective flashlight: permissions hide in a dark room. Light them up, then mark the suspicious ones.
 const roomSpots=[[26,22],[74,36],[27,64],[73,82],[50,50],[50,10]];
-function roomCount(m){const found=(draftMini.found||[]).length,total=m.opciones.length;return found<total?`🔦 Encontraste ${found} de ${total}`:`¡Encontraste todo! Marcaste ${(draftMini.selections||[]).length} 🚨`}
+function roomCount(m){const found=(draftMini.found||[]).length,total=m.opciones.length,marked=Object.keys(checksNow()).length;return found<total?`🔦 Encontraste ${found} de ${total}`:`¡Encontraste todo! Marcaste ${marked} 🚨`}
 function darkRoom(m){
- const found=draftMini.found||[],marked=draftMini.selections||[],light=lamp?.key===arcadeKey()?lamp:null;
- return `<div class="dark-room ${found.length===m.opciones.length?'all-found':''}" id="dark-room" style="--x:${light?light.x+'px':'50%'};--y:${light?light.y+'px':'45%'}"><span class="room-deco" aria-hidden="true"><i>🕸️</i><i>🖼️</i><i>🕯️</i><i>🦇</i><i>🎃</i></span>${m.opciones.map((item,i)=>`<button type="button" class="room-item choice-${i%4} ${found.includes(item.id)?'found':''} ${marked.includes(item.id)?'selected':''}" style="left:${roomSpots[i][0]}%;top:${roomSpots[i][1]}%" data-room-item="${esc(item.id)}" aria-pressed="${marked.includes(item.id)}" data-answer-control><span class="room-item-icon" aria-hidden="true">${esc(item.icono)}</span><b>${esc(shortText(item))}</b><span class="room-stamp" aria-hidden="true">🚨</span></button>`).join('')}<div class="room-dark" aria-hidden="true"></div><span class="room-eyes" aria-hidden="true"><i></i><i></i></span>${found.length?'':'<span class="room-hint" aria-hidden="true">👆 Mové el dedo</span>'}</div><p class="child-helper room-count" id="room-count" role="status">${roomCount(m)}</p>`;
+ const found=draftMini.found||[],checks=checksNow(),light=lamp?.key===arcadeKey()?lamp:null;
+ return `<div class="dark-room ${found.length===m.opciones.length?'all-found':''}" id="dark-room" style="--x:${light?light.x+'px':'50%'};--y:${light?light.y+'px':'45%'}"><span class="room-deco" aria-hidden="true"><i>🕸️</i><i>🖼️</i><i>🕯️</i><i>🦇</i><i>🎃</i></span>${m.opciones.map((item,i)=>`<button type="button" class="room-item choice-${i%4} ${found.includes(item.id)?'found':''} ${checks[item.id]?'selected verdict-'+(checks[item.id].correct?'good':'bad'):''}" style="left:${roomSpots[i][0]}%;top:${roomSpots[i][1]}%" data-room-item="${esc(item.id)}" aria-pressed="${!!checks[item.id]}" ${checks[item.id]?'aria-disabled="true"':'data-answer-control'}><span class="room-item-icon" aria-hidden="true">${esc(item.icono)}</span><b>${esc(shortText(item))}</b><span class="room-stamp" aria-hidden="true">${checks[item.id]&&!checks[item.id].correct?'❌':'🚨'}</span></button>`).join('')}<div class="room-dark" aria-hidden="true"></div><span class="room-eyes" aria-hidden="true"><i></i><i></i></span>${found.length?'':'<span class="room-hint" aria-hidden="true">👆 Mové el dedo</span>'}</div><p class="child-helper room-count" id="room-count" role="status">${roomCount(m)}</p>`;
 }
 function bindRoom(m){
  const room=document.getElementById('dark-room');if(!room)return;
@@ -425,44 +474,45 @@ function bindRoom(m){
  room.onpointermove=event=>sweep(event,false);
  room.querySelectorAll('[data-room-item]').forEach(item=>{
   item.onfocus=()=>{const box=room.getBoundingClientRect(),r=item.getBoundingClientRect();light(r.left+r.width/2-box.left,r.top+r.height/2-box.top);reveal(item)};
-  item.onclick=()=>{
+  // Marking answers at once: a suspicious permission gets 🚨, a sensible one is explained and crossed out.
+  item.onclick=async()=>{
    if(busy||secondsRemaining()<=0)return;
    const id=item.dataset.roomItem;if(roomFresh===id){roomFresh='';return}
-   reveal(item);
-   const marked=draftMini.selections||[],on=!marked.includes(id);
-   draftMini={...draftMini,selections:on?[...marked,id]:marked.filter(other=>other!==id)};
-   item.classList.toggle('selected',on);item.setAttribute('aria-pressed',String(on));if(on)bump(item);sfx(on?'pick':'tap');
-   document.getElementById('room-count').textContent=roomCount(m);updateTimers();
+   reveal(item);if(checksNow()[id])return;
+   bump(item);
+   const result=await checkItem(id);if(!result)return;
+   coach(result.correct,result.correct?'¡Bien visto! Es sospechoso 🚨':'Este permiso tiene sentido',result.porque);
+   sfx(result.correct?'pick':'learn');syncChecks(m);render();
   };
  });
 }
 // Castle defense: threats walk down the lane one at a time; play the card from your hand that stops each one.
 function castleGame(m){
- const matches=draftMini.matches||{},index=m.situaciones.findIndex(item=>!matches[item.id]),threat=m.situaciones[index];
- const walk=threat&&lastThreat!==arcadeKey()+threat.id;if(threat)lastThreat=arcadeKey()+threat.id;
- const lane=threat?`<div class="threat ${walk?'walk':''}" id="threat"><span class="threat-monster" aria-hidden="true">${monsters[index%monsters.length]}</span><span class="threat-card"><span aria-hidden="true">${esc(threat.icono)}</span><b>${esc(shortText(threat))}</b></span></div>`:'<div class="castle-safe"><b>¡Castillo a salvo!</b></div>';
- const shields=m.situaciones.map((item,i)=>{const action=m.acciones.find(option=>option.id===matches[item.id]);return `<span class="${action?'done':''}">${action?esc(action.icono):i+1}</span>`}).join('');
- return `<div class="castle-lane" id="castle-lane"><span class="lane-moon" aria-hidden="true"></span>${lane}<div class="castle-base"><span class="castle-icon" aria-hidden="true">🏰</span><div class="castle-shields" aria-hidden="true">${shields}</div></div></div><div class="castle-meta"><span role="status">${threat?`Amenaza <b>${index+1}/${m.situaciones.length}</b>`:'<b>¡Todas frenadas!</b>'}</span>${Object.keys(matches).length?'<button type="button" class="button ghost btn-small child-undo" id="castle-undo" data-answer-control>↶ Deshacer</button>':''}</div><div class="card-hand" role="group" aria-label="Tus cartas">${m.acciones.map((action,i)=>`<button type="button" class="hand-card choice-${(i+1)%4}" data-defend="${esc(action.id)}" ${threat?'data-answer-control':'disabled'}><span class="hand-card-icon" aria-hidden="true">${esc(action.icono)}</span><b>${esc(shortText(action))}</b></button>`).join('')}</div>`;
+ const checks=checksNow(),items=m.situaciones,held=heldItem(items),index=held?items.indexOf(held):items.findIndex(situation=>!checks[situation.id]?.solved),threat=items[index];
+ const walk=threat&&!held&&lastThreat!==arcadeKey()+threat.id;if(threat&&!held)lastThreat=arcadeKey()+threat.id;
+ const tried=threat?triedFor(threat.id):[];
+ const lane=threat?`<div class="threat ${walk?'walk':''} ${held?'hit':''}" id="threat"><span class="threat-monster" aria-hidden="true">${monsters[index%monsters.length]}</span><span class="threat-card"><span aria-hidden="true">${esc(threat.icono)}</span><b>${esc(shortText(threat))}</b></span></div>`:'<div class="castle-safe"><b>¡Castillo a salvo!</b></div>';
+ const shields=items.map((item,i)=>{const check=checks[item.id],action=check?.solved&&m.acciones.find(option=>option.id===check.placed);return `<span class="${action?(check.correct?'done':'done late'):''}">${action?esc(action.icono):i+1}</span>`}).join('');
+ return `<div class="castle-lane" id="castle-lane"><span class="lane-moon" aria-hidden="true"></span>${lane}<div class="castle-base"><span class="castle-icon" aria-hidden="true">🏰</span><div class="castle-shields" aria-hidden="true">${shields}</div></div></div><div class="castle-meta"><span role="status">${threat?`Amenaza <b>${index+1}/${items.length}</b>`:'<b>¡Todas frenadas!</b>'}</span></div><div class="card-hand" role="group" aria-label="Tus cartas">${m.acciones.map((action,i)=>{const wrong=tried.includes(action.id);return `<button type="button" class="hand-card choice-${(i+1)%4} ${wrong?'verdict-bad':''}" data-defend="${esc(action.id)}" ${threat&&!held&&!wrong?'data-answer-control':'disabled'}><span class="hand-card-icon" aria-hidden="true">${esc(action.icono)}</span><b>${esc(shortText(action))}</b></button>`}).join('')}</div>`;
 }
 function bindCastle(m){
- document.querySelectorAll('[data-defend]').forEach(card=>card.onclick=()=>{
-  if(busy||secondsRemaining()<=0||castleBusy)return;
-  const matches=draftMini.matches||{},threat=m.situaciones.find(item=>!matches[item.id]);if(!threat)return;
-  castleBusy=true;draftMini={matches:{...matches,[threat.id]:card.dataset.defend}};
-  card.classList.add('played');document.getElementById('threat')?.classList.add('hit');sfx('zap');
-  setTimeout(()=>{castleBusy=false;if(current?.stage==='mini'&&!stateAnswerFor('mini'))render()},450);
+ document.querySelectorAll('[data-defend]').forEach(card=>card.onclick=async()=>{
+  const threat=m.situaciones.find(situation=>!checksNow()[situation.id]?.solved);if(!threat||holdActive())return;
+  card.classList.add('played');sfx('zap');
+  const result=await checkItem(threat.id,card.dataset.defend);if(!result){render();return}
+  if(result.correct){hold(threat.id,1100);coach(true,'¡Amenaza frenada!',result.porque)}
+  else{markTried(threat.id,card.dataset.defend);sfx('learn');coach(false,'¡No alcanzó!','Esa carta sirve para otra amenaza. ¡Probá con otra!')}
+  render();
  });
- const undo=document.getElementById('castle-undo');
- if(undo)undo.onclick=()=>{if(busy||secondsRemaining()<=0||castleBusy)return;const matches={...(draftMini.matches||{})},last=[...m.situaciones].reverse().find(item=>matches[item.id]);if(last)delete matches[last.id];draftMini={matches};sfx('tap');render()};
 }
-function chooseGroup(m,id,group){
- if(secondsRemaining()<=0||busy||stateAnswerFor('mini'))return;
- draftMini={groups:{...(draftMini.groups||{}),[id]:group}};
- for(const other of document.querySelectorAll('[data-group]')){const selected=draftMini.groups?.[other.dataset.card]===other.dataset.group;other.classList.toggle('selected',selected);other.setAttribute('aria-pressed',String(selected));if(selected)bump(other)}
- const card=document.getElementById('child-item');if(card){card.classList.remove('is-safe','is-danger');card.classList.add('is-'+group)}
- sfx('pick');updateTimers();
- // Deal the next card like a swipe deck; the last one waits for "Enviar".
- if(card&&childStep<childItems(m).length-1){card.classList.add(group==='safe'?'fly-right':'fly-left');const step=childStep;setTimeout(()=>{if(current?.stage==='mini'&&childStep===step)childMove(m,1)},300)}
+async function chooseGroup(m,id,group){
+ if(secondsRemaining()<=0||busy||holdActive()||checksNow()[id]||stateAnswerFor('mini'))return;
+ sfx('pick');
+ const result=await checkItem(id,group);if(!result){render();return}
+ hold(id,result.correct?1300:2700);
+ coach(result.correct,result.correct?(group==='safe'?'¡Sí! Es dulce 🍬':'¡Sí! Es truco 👻'):(result.answer==='safe'?'¡Ups! Era dulce 🍬':'¡Ups! Era truco 👻'),result.porque);
+ if(!result.correct)sfx('learn');
+ render();
 }
 function bindSwipe(m){
  const card=document.getElementById('child-item');if(!card||m.tipo!=='clasificar'||stateAnswerFor('mini'))return;
@@ -476,24 +526,43 @@ function bindSwipe(m){
 function miniPayload(m){const payload={stage:'mini'},kind=miniKind(m);if(kind==='tocar')payload.selection=draftMini.selection;if(kind==='seleccionar')payload.selections=draftMini.selections;if(kind==='ordenar')payload.sequence=draftMini.sequence;if(kind==='clasificar')payload.groups=draftMini.groups;if(kind==='conectar')payload.matches=draftMini.matches;return payload}
 function bindMini(m){
  if(m.tipo==='tocar')bindChoices('mini-choice',input=>{draftMini={selection:input.value}});
- if(m.tipo==='seleccionar')bindChoices('mini-choice',()=>{draftMini={selections:[...document.querySelectorAll('input[name="mini-choice"]:checked')].map(input=>input.value)};const candies=document.getElementById('bucket-candies');if(candies){candies.innerHTML=candyBucket();bump(document.getElementById('candy-bucket'))}});
+ if(m.tipo==='seleccionar')bindChoices('mini-choice',async input=>{
+  // Marks cannot be taken back: each one answers right away.
+  if(!input.checked){input.checked=true;return}
+  const result=await checkItem(input.value);
+  if(!result){input.checked=false;render();return}
+  coach(result.correct,result.correct?'¡A la calabaza! 🍬':'¡Ojo! Esa idea no cuida',result.porque);
+  if(!result.correct)sfx('learn');syncChecks(m);render();bump(document.getElementById('candy-bucket'));
+ });
  if(m.tipo==='atrapar')bindGhosts(m);
  if(m.tipo==='linterna')bindRoom(m);
  if(m.tipo==='defender')bindCastle(m);
  bindSwipe(m);
- document.querySelectorAll('[data-mini-step]').forEach(button=>button.onclick=()=>{if(secondsRemaining()<=0||busy)return;const id=button.dataset.miniStep,sequence=[...(draftMini.sequence||[])];if(sequence.includes(id))return;sequence.push(id);draftMini={sequence};sfx('pick');render();document.getElementById('cauldron')?.classList.add('splash')});
- const undo=document.getElementById('mini-undo');if(undo)undo.onclick=()=>{if(secondsRemaining()<=0||busy)return;draftMini={sequence:(draftMini.sequence||[]).slice(0,-1)};sfx('tap');render()};
+ document.querySelectorAll('[data-mini-step]').forEach(button=>button.onclick=async()=>{
+  const placed=draftMini.sequence||[],id=button.dataset.miniStep;if(placed.includes(id)||holdActive())return;
+  const result=await checkItem(id,placed.length);if(!result){render();return}
+  if(result.correct){sfx('pick');coach(true,`¡Bien! Ese es el paso ${placed.length+1}`,result.porque);if(result.answers.mini)hold('final',1300)}
+  else{sfx('learn');coach(false,'Todavía no va ese paso',result.porque)}
+  syncChecks(m);render();
+  if(result.correct)document.getElementById('cauldron')?.classList.add('splash');else bumpNope(document.querySelector(`[data-mini-step="${id}"]`));
+ });
  document.querySelectorAll('[data-group]').forEach(button=>button.onclick=()=>chooseGroup(m,button.dataset.card,button.dataset.group));
- document.querySelectorAll('[data-match-item]').forEach(button=>button.onclick=()=>{if(secondsRemaining()<=0||busy)return;draftMini={matches:{...(draftMini.matches||{}),[button.dataset.matchItem]:button.dataset.matchAction}};for(const other of document.querySelectorAll('[data-match-item]')){const selected=draftMini.matches?.[other.dataset.matchItem]===other.dataset.matchAction;other.classList.toggle('selected',selected);other.setAttribute('aria-pressed',String(selected));other.querySelector('.child-match-check').textContent=selected?'✓':''}bump(button);sfx('pick');updateTimers()});
- const prev=document.getElementById('child-prev');if(prev)prev.onclick=()=>childMove(m,-1);
- const next=document.getElementById('child-next');if(next)next.onclick=()=>childMove(m,1);
+ document.querySelectorAll('[data-match-item]').forEach(button=>button.onclick=async()=>{
+  if(holdActive())return;
+  const item=button.dataset.matchItem,action=button.dataset.matchAction;
+  sfx('pick');bump(button);
+  const result=await checkItem(item,action);if(!result){render();return}
+  if(result.correct)hold(item,1500),coach(true,'¡Esa ayuda sirve!',result.porque);
+  else{markTried(item,action);sfx('learn');coach(false,'Mejor otra ayuda','Esa acción sirve para otra situación. ¡Probá otra!')}
+  render();
+ });
 }
 function miniSucceeded(m,sub){if(!sub)return false;const kind=miniKind(m);if(kind==='tocar')return sub.selection===m.respuesta;if(kind==='ordenar')return sub.sequence?.join('|')===m.ordenCorrecto.join('|');if(kind==='clasificar')return Object.entries(m.clasificacion).every(([id,value])=>sub.groups?.[id]===value);if(kind==='seleccionar')return sub.selections?.length===m.correctas.length&&sub.selections.every(id=>m.correctas.includes(id));if(kind==='conectar')return Object.entries(m.soluciones).every(([id,value])=>sub.matches?.[id]===value);return false}
 function childMiniActions(m,submitted){
  if(submitted)return childWaiting();
- if(!childWizard(m))return submitArea(null,'Enviar');
- const last=childStep===childItems(m).length-1;
- return `<div class="child-nav child-actions"><button class="button ghost" id="child-prev" data-child-prev type="button" ${childStep===0?'disabled':''}>← Atrás</button>${last?'<button class="button primary" id="submit-answer" data-answer-submit type="button" disabled>Enviar ✓</button>':'<button class="button primary" id="child-next" data-child-next type="button" disabled>Siguiente →</button>'}<p class="answer-status child-helper" id="answer-status" role="status"></p></div>`;
+ // Card-by-card games finish by themselves; the others close the round with Enviar.
+ if(['tocar','seleccionar','atrapar','linterna'].includes(m.tipo))return submitArea(null,'Enviar');
+ return '<p class="child-helper child-first-try">⭐ Cuenta tu primer intento. Si te equivocás, aprendés por qué y seguís.</p>';
 }
 function childRank(s){
  const top=s.ranking.slice(0,3),me=s.ranking.find(item=>item.id===s.personal?.id),shown=me&&!top.some(item=>item.id===me.id)?[...top,me]:top;
@@ -520,25 +589,38 @@ function badgeCollection(s){
  const crowns=cards.reduce((total,card)=>total+card.crowns,0);
  return `<div class="badge-collection"><span class="badge-collection-title">Tu colección <b>🎃 ${crowns}/${s.totalCases*3}</b></span><div class="badge-row">${cards.map(card=>{const [rarity,label]=rarities[card.crowns]||rarities[0];return `<span class="badge-mini rarity-${rarity}"><span aria-hidden="true">${esc(card.icono)}</span><span class="sr-only">${esc(card.nombre)}, ${label}</span></span>`}).join('')}</div></div>`;
 }
+const verdictLabels={good:'✓ ¡La viste!',missed:'⚠ Se te pasó',wrong:'✗ No era alerta',skip:'✓ No era alerta',chosen:'✓ Tu elección',best:'⭐ La mejor',mistake:'✗ Tu elección',other:''};
+function verdictRows(rows){return `<div class="child-verdicts">${rows.map(({item,status})=>`<button type="button" class="verdict verdict-${status}" data-why="${esc(item.porque||'')}" data-verdict="${status}"><span class="verdict-icon" aria-hidden="true">${esc(item.icono)}</span><b>${esc(shortText(item))}</b>${verdictLabels[status]?`<span class="verdict-tag">${verdictLabels[status]}</span>`:''}</button>`).join('')}</div>`}
+function firstTryScore(m,sub){
+ const all=current?.personal?.answers?.checks||{},kind=miniKind(m);
+ if(!Object.keys(all).length)return null;
+ if(kind==='tocar')return {good:all[m.respuesta]?.correct?1:0,total:1};
+ if(kind==='seleccionar')return {good:m.opciones.filter(option=>!!all[option.id]===m.correctas.includes(option.id)).length,total:m.opciones.length};
+ if(kind==='clasificar')return {good:m.tarjetas.filter(card=>all[card.id]?.correct).length,total:m.tarjetas.length};
+ if(kind==='conectar')return {good:m.situaciones.filter(item=>all[item.id]?.correct).length,total:m.situaciones.length};
+ if(kind==='ordenar')return {good:m.pasos.filter((_,k)=>all['pos'+k]?.correct).length,total:m.pasos.length};
+ return null;
+}
 function childReveal(s){
  const c=s.case,stage=s.stage.replace('_reveal',''),sub=stateAnswerFor(stage),m=c.miniJuego;
- let title='',message='',result='',success=false,mascot='💡';
+ let title='',message='',result='',success=false,mascot='💡',rows=[];
  if(stage==='detect'){
-  const correct=c.pistas.filter(item=>item.correcta);success=detectSucceeded(c,sub);
+  const marked=new Set(sub?.selections||[]);success=detectSucceeded(c,sub);
   title=success?'¡Buenas pistas!':'Mirá las pistas';
-  message='Estas señales nos invitan a pedir ayuda.';
-  result=`<div class="child-reveal-pistas">${correct.map(item=>`<span>${esc(item.icono)} ${esc(shortText(item))}</span>`).join('')}</div>`;
+  rows=c.pistas.map(item=>({item,status:item.correcta?(marked.has(item.id)?'good':'missed'):(marked.has(item.id)?'wrong':'skip')}));
+  result=`${verdictRows(rows)}<p class="child-helper child-why-hint">👆 Tocá una tarjeta para saber por qué.</p>`;
  }
  if(stage==='decide'){
   success=sub?.selection===c.respuesta;title=success?'¡Buena decisión!':'Aprendemos juntos';
   message=c.consejoCorto||c.explicacion;
-  const item=c.opciones.find(option=>option.id===c.respuesta);
-  result=item?`<div class="child-safe-answer"><span>${esc(item.icono||'🛡️')}</span><b>${esc(shortText(item))}</b></div>`:'';
+  rows=c.opciones.map(item=>({item,status:item.id===c.respuesta?(sub?.selection===item.id?'chosen':'best'):(sub?.selection===item.id?'mistake':'other')}));
+  result=verdictRows(rows);
  }
  if(stage==='mini'){
   success=miniSucceeded(m,sub);title=success?'¡Reto superado!':'¡Ahora lo sabés!';
   message=m.explicacionCorta||m.explicacion;
-  result=`<details class="child-details"><summary>Ver la solución</summary>${miniResult(m)}</details>`;
+  const score=firstTryScore(m,sub);
+  result=`${score?`<p class="child-first-score">⭐ A la primera: <b>${score.good} de ${score.total}</b></p>`:''}<details class="child-details"><summary>Ver la solución</summary>${miniResult(m)}</details>`;
  }
  if(success)mascot='🌟';
  const speech=`${title}. ${message}`;
@@ -546,8 +628,11 @@ function childReveal(s){
  const gained=scoreMark?.key===`${s.caseIndex}:${stage}`?s.personal.score-scoreMark.score:0;
  const streak=streakAfter(`${s.caseIndex}:${stage}`,success);
  const chips=`${gained>0?`<span class="child-gain">+${gained} <span aria-hidden="true">🍬</span><span class="sr-only">puntos</span></span>`:''}${success&&streak>=2?`<span class="child-gain child-streak"><span aria-hidden="true">🔥</span> Racha x${streak}</span>`:''}`;
- return {success,html:`${success?confetti():''}<section class="panel child-panel child-result ${success?'child-win':''}">${childBurst(mascot)}<div class="child-task"><h2 id="child-task-title">${title}</h2>${speechControls(speech)}</div>${chips?`<div class="child-chips">${chips}</div>`:''}${result}${childBubble(message,'child-lesson')}<p class="child-helper">Esperá al equipo.</p></section>`};
+ // The first mistake explains itself as soon as the result appears.
+ const lesson=rows.find(row=>['missed','wrong','mistake'].includes(row.status));
+ return {success,lesson,html:`${success?confetti():''}<section class="panel child-panel child-result child-result-${stage} ${success?'child-win':''}">${childBurst(mascot)}<div class="child-task"><h2 id="child-task-title">${title}</h2>${speechControls(speech)}</div>${chips?`<div class="child-chips">${chips}</div>`:''}${result}${message?childBubble(message,'child-lesson'):''}<p class="child-helper">Esperá al equipo.</p></section>`};
 }
+function bindVerdicts(){document.querySelectorAll('[data-why]').forEach(button=>button.onclick=()=>{const status=button.dataset.verdict,good=['good','skip','chosen','best'].includes(status);sfx('tap');coach(good,button.querySelector('b').textContent,button.dataset.why)})}
 function renderPlayer(){
  const s=current;if(!s){renderPlayerJoin();return}const c=s.case,me=s.personal;
  childReset(s);
@@ -567,14 +652,20 @@ function renderPlayer(){
  }
  if(s.stage==='mini'){
   initDraft();const m=c.miniJuego,sub=stateAnswerFor('mini'),wizard=childWizard(m),item=childItems(m)[childStep];
+  // The last answered card stays on screen a moment before the "sent" badge.
+  syncChecks(m);const playing=!sub||holdActive();
   const title=childMiniTitles[m.tipo]||m.titulo;
   const instruction=m.instruccionCorta||m.instruccion;
   const cards=m.tipo==='defender'?[...m.situaciones,...m.acciones]:(m.opciones||m.pasos||[]);
   const speech=`${title}. ${instruction}. ${wizard?shortText(item)+'. '+(m.tipo==='conectar'?m.acciones.map(shortText).join('. '):'Dulce: me cuida. Truco: atención.'):cards.map(shortText).join('. ')}`;
-  show(`<section class="child-screen">${childTop(s)}<section class="panel child-panel child-mini child-mini-${m.tipo}">${sub?childWaiting():`<div class="child-task"><h2 id="child-task-title">${esc(title)}</h2>${speechControls(speech)}</div><p class="child-prompt">${esc(instruction)}</p>${miniGame(m,null)}${childMiniActions(m,null)}`}</section></section>`);
-  if(!sub){bindMini(m);const submit=document.getElementById('submit-answer');if(submit)submit.onclick=()=>sendAnswer(miniPayload(m))}return;
+  show(`<section class="child-screen">${childTop(s)}<section class="panel child-panel child-mini child-mini-${m.tipo}">${playing?`<div class="child-task"><h2 id="child-task-title">${esc(title)}</h2>${speechControls(speech)}</div><p class="child-prompt">${esc(instruction)}</p>${miniGame(m,null)}${childMiniActions(m,null)}`:childWaiting()}</section></section>`);
+  if(playing){bindMini(m);const submit=document.getElementById('submit-answer');if(submit)submit.onclick=()=>submitMini(m)}return;
  }
- if(s.stage.endsWith('_reveal')){const reveal=childReveal(s);if(show(`${childHud(s,false)}${reveal.html}`))sfx(reveal.success?'win':'learn');return}
+ if(s.stage.endsWith('_reveal')){
+  const reveal=childReveal(s);
+  if(show(`${childHud(s,false)}${reveal.html}`)){sfx(reveal.success?'win':'learn');if(reveal.lesson)setTimeout(()=>{if(current?.stage===s.stage)coach(false,`${shortText(reveal.lesson.item)}: ${verdictLabels[reveal.lesson.status].replace(/^\S+ /,'')}`,reveal.lesson.item.porque,5200)},900)}
+  bindVerdicts();return;
+ }
  if(s.stage==='leaderboard'){
   // End of a mission: crowns for each stage won and a chest with this mission's badge card.
   const {crowns,card}=missionReward(s);
@@ -610,3 +701,4 @@ async function boot(){
 }
 window.addEventListener('pagehide',stopSpeech);
 boot();
+

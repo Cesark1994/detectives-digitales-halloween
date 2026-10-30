@@ -141,14 +141,24 @@ body.host-mode #toast{background:#12062a;border:3px solid #ffd84a;color:#fff;fon
 .host-app .tv-card small{position:absolute;right:10px;bottom:-12px;padding:3px 10px;border:2px solid #000;border-radius:99px;background:#12062a;color:#d8c6ff;font-size:clamp(12px,.9vw,17px);font-weight:800;white-space:nowrap}
 .host-app .tv-card.good{border-color:#145a10;background:#eaffdf;box-shadow:0 0 0 3px #7dff6a,0 0 22px #7dff6a80,0 4px 0 #145a10}
 .host-app .tv-card.good small{background:linear-gradient(180deg,#a6f57d,#36b02a);border-color:#145a10;color:#fff}
-.host-app .tv-card.neutral{filter:saturate(.35) brightness(.8)}
+.host-app .tv-card.neutral{filter:saturate(.5) brightness(.93)}
+/* Reasons on the big screen, so the teacher can read them aloud. */
+.host-app .tv-card-text{flex:1;min-width:0}
+.host-app .tv-why{display:block;margin:4px 0 0;color:#3d2a55;font-size:clamp(13px,1.05vw,20px);font-weight:650;line-height:1.3}
+.host-app .tv-why strong{color:#1d6a12}
+.host-app .tv-card.neutral .tv-why strong{color:#5d4b72}
+.host-app .tv-board .result-row.result-no{background:#f3eefa;color:#5d4b72}
+.host-app .result-mark{color:#c2410c;font-weight:900}
+/* The minigame solution lists every card with its reason, so its rows are compact. */
+.host-app .tv-mini_reveal .tv-board .result-row{padding:6px 12px;font-size:clamp(14px,1.15vw,24px);line-height:1.25}
+.host-app .tv-mini_reveal .tv-board .result-row .tv-why{margin-top:2px;font-size:clamp(12px,.95vw,19px)}
 .host-app .tv-detect .tv-card{min-height:clamp(64px,14vh,170px)}
 .host-app .tv-detect_reveal .tv-card{min-height:clamp(64px,17vh,230px)}
 .host-app .tv-board .answers{display:grid;gap:clamp(8px,1.2vh,12px)}
 .host-app .tv-board .answer{display:flex;align-items:center;gap:14px;min-height:clamp(56px,9.5vh,120px);padding:8px 16px 8px 8px;border:3px solid var(--edge);border-radius:16px;background:#fff8ea;box-shadow:0 4px 0 var(--edge);color:#2a1240;font-size:clamp(17px,1.5vw,30px);font-weight:800;line-height:1.25}
 .host-app .tv-board .answer-icon{display:grid;place-items:center;flex:none;align-self:stretch;width:clamp(50px,7.5vh,96px);border-radius:11px;background:linear-gradient(180deg,#a5dcff,#3f9cf2);font-size:clamp(26px,4.6vh,52px);box-shadow:inset 0 -3px 0 #00000024}
 .host-app .tv-board .answer>b{display:grid;place-items:center;flex:none;width:34px;height:34px;margin-left:auto;border-radius:50%;background:linear-gradient(180deg,#a6f57d,#36b02a);border:2px solid #145a10;color:#fff;font-size:18px}
-.host-app .tv-decide_reveal .answer:not(.correct){filter:saturate(.35) brightness(.78)}
+.host-app .tv-decide_reveal .answer:not(.correct){filter:saturate(.5) brightness(.92)}
 .host-app .tv-board .answer.correct{background:#fff0a8;box-shadow:0 0 0 3px #ffb800,0 0 22px #ffd84a99,0 4px 0 var(--edge)}
 .host-app .tv-board .mini-preview{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:clamp(8px,1.2vh,12px)}
 .host-app .tv-board .mini-preview-card{display:flex;align-items:center;gap:12px;min-height:clamp(58px,9vh,130px);padding:8px 12px 8px 8px;border:3px solid var(--edge);border-radius:16px;background:#fff8ea;box-shadow:0 4px 0 var(--edge);color:#2a1240;text-align:left}
@@ -318,3 +328,4 @@ body.host-mode #toast{background:#12062a;border:3px solid #ffd84a;color:#fff;fon
  .host-app .print-poster{width:100%;max-width:none;margin:0;border-radius:0;box-shadow:none;break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}
  .host-app *{animation:none!important;transition:none!important}
 }
+

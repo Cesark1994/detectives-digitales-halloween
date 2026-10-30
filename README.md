@@ -12,6 +12,7 @@ El contenido y las consignas están orientados a chicos de **8 a 12 años**, con
 - Partidas de **3, 6 o 9 casos**, elegidas al crear la sala.
 - **Detectar**: elegir varias señales de alerta.
 - **Decidir**: seleccionar una acción segura.
+- **Partidas distintas y didácticas**: las misiones pueden salir al azar (distintas en cada partida) y las pistas, opciones y tarjetas se mezclan siempre. Cada pista, opción y tarjeta tiene su **porqué**: en los minijuegos cada jugada responde al instante con la explicación (cuenta el primer intento y se puede reintentar para aprender), y en cada resultado el chico ve qué acertó, qué se le pasó y por qué. Cuando todo el equipo respondió, el resultado aparece solo.
 - **Nueve minijuegos de Halloween, uno distinto por misión**: **Encendé una calabaza** (tocar la opción que ayuda), **Camino embrujado** (ordenar pasos sobre lápidas), **¿Dulce o truco?** (deslizar cada carta: dulce = me cuida, truco = atención), **Llená tu calabaza** (seleccionar las ideas que cuidan), **Cazafantasmas** (atrapar los datos privados que asoman por las ventanas de una casa embrujada), **Bola de cristal** (conectar situaciones con acciones), **Linterna detective** (iluminar una habitación oscura y marcar permisos sospechosos), **Poción anti-rumores** (echar los pasos al caldero en orden) y **Defendé tu cuenta** (frenar a fantasmas, murciélagos y vampiros con cartas de la mano). +300 puntos por superar cada reto.
 - **Recompensas de juego móvil con temática de Halloween**: los puntos se muestran como dulces 🍬, cada misión y minijuego se presenta con murciélagos, hay racha 🔥 de aciertos, tres calabazas 🎃 que se encienden por misión y una calabaza sorpresa con una carta de superpoder cuya rareza depende de las calabazas. Al final, cada chico ve su colección de cartas. Fondo con luna, murciélagos y telarañas. Sonidos cortos de Halloween y vibración opcionales (se apagan desde la sala de espera).
 - **Ritmo tranquilo** para dar más tiempo de lectura y **ritmo clásico** para partidas más rápidas.
@@ -148,3 +149,4 @@ Modificar el archivo `casos.json` conservando la estructura, IDs únicos, la opc
 ## 👥 Alcance del material original
 
 El diseño conserva las etapas **Detectar / Decidir**, el ranking y la temática Halloween. Los nueve casos son material de demostración y deben ser revisados por el área responsable antes de una actividad institucional. Las referencias educativas y los criterios de adaptación se encuentran en `FUENTES_EDUCATIVAS.md`.
+
